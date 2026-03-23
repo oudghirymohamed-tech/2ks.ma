@@ -8,6 +8,7 @@ import { EmergencyDemoPage } from './pages/EmergencyDemoPage';
 import { LandingPage } from './pages/LandingPage';
 import { ProfessionalDashboardPage } from './pages/ProfessionalDashboardPage';
 import { ProfessionalLandingPage } from './pages/ProfessionalLandingPage';
+import { CheckoutPage } from './pages/CheckoutPage';
 import { RegistrationPage } from './pages/RegistrationPage';
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<LandingPage />} />
+                    <Route path="/checkout" element={<CheckoutPage />} />
                     <Route path="/register" element={<RegistrationPage />} />
                     <Route path="/dashboard" element={<DashboardPage />} />
                     <Route path="/u/:token" element={<EmergencyDemoPage />} />

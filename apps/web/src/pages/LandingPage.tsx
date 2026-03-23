@@ -81,11 +81,15 @@ export function LandingPage() {
                             transition={{ delay: 0.2 }}
                             className="mt-8 flex flex-wrap gap-3"
                         >
-                            <Link to="/register" className="inline-flex items-center gap-2 rounded-full bg-sapphire px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#0C43A0]">
+                            <Link to="/checkout" className="inline-flex items-center gap-2 rounded-full bg-sapphire px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#0C43A0]">
+                                Commander ma carte
+                                <ArrowRight className="h-4 w-4" />
+                            </Link>
+                            <Link to="/register" className="inline-flex items-center gap-2 rounded-full border border-sapphire/40 bg-powder/45 px-6 py-3.5 text-sm font-semibold text-navy transition hover:border-sapphire">
                                 {copy.heroPatient}
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
-                            <Link to="/u/demo-token" className="inline-flex items-center gap-2 rounded-full border border-sapphire/40 bg-powder/45 px-6 py-3.5 text-sm font-semibold text-navy transition hover:border-sapphire">
+                            <Link to="/u/demo-token" className="inline-flex items-center gap-2 rounded-full border border-sapphire/25 bg-white/30 px-6 py-3.5 text-sm font-semibold text-navy transition hover:border-sapphire">
                                 {copy.heroSecondary}
                                 <QrCode className="h-4 w-4" />
                             </Link>
@@ -266,8 +270,9 @@ export function LandingPage() {
                         <p className="mt-4 text-base leading-7 text-white/78">Passez d’une vue investor narrative à un vrai parcours produit en un clic.</p>
                     </div>
                     <div className="mt-8 flex flex-wrap gap-3 lg:mt-0">
-                        <Link to="/register" className="inline-flex rounded-full bg-sapphire px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0C43A0]">Créer un profil</Link>
-                        <Link to="/u/demo-token" className="inline-flex rounded-full border border-powder/30 bg-powder/15 px-6 py-3 text-sm font-semibold text-white transition hover:bg-powder/25">Scanner le live demo</Link>
+                        <Link to="/checkout" className="inline-flex rounded-full bg-sapphire px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0C43A0]">Commander ma carte</Link>
+                        <Link to="/register" className="inline-flex rounded-full border border-powder/30 bg-powder/15 px-6 py-3 text-sm font-semibold text-white transition hover:bg-powder/25">Créer un profil</Link>
+                        <Link to="/u/demo-token" className="inline-flex rounded-full border border-powder/20 bg-powder/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-powder/25">Scanner le live demo</Link>
                     </div>
                 </div>
             </section>

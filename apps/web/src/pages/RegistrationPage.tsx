@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { CheckCircle2, ChevronLeft, ChevronRight, ShieldCheck } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { PhoneVerificationCard } from '../components/PhoneVerificationCard';
 import { PageMeta } from '../components/PageMeta';
 import { MarketingLayout } from '../layouts/MarketingLayout';
 
@@ -9,6 +10,7 @@ const stepTitles = ['Identité', 'Infos médicales', 'Consentement'];
 
 export function RegistrationPage() {
     const [step, setStep] = useState(0);
+    const [isPhoneVerified, setIsPhoneVerified] = useState(false);
     const [form, setForm] = useState({
         fullName: 'Salma El Idrissi',
         city: 'Marrakech',
@@ -27,6 +29,9 @@ export function RegistrationPage() {
     );
 
     const canAdvance = step < stepTitles.length - 1;
+    const requiresPhoneVerification = step === 0 && !isPhoneVerified;
+    const canGoNext = canAdvance && !requiresPhoneVerification;
+    const canFinishRegistration = isPhoneVerified;
 
     return (
         <MarketingLayout>
@@ -85,10 +90,12 @@ export function RegistrationPage() {
                                                 <span className="mb-2 block text-sm font-medium text-slate-700">Ville</span>
                                                 <input value={form.city} onChange={(event) => setForm({ ...form, city: event.target.value })} className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-950" />
                                             </label>
-                                            <label className="block">
-                                                <span className="mb-2 block text-sm font-medium text-slate-700">Téléphone contact principal</span>
-                                                <input value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-950" />
-                                            </label>
+                                            <PhoneVerificationCard
+                                                phone={form.phone}
+                                                onPhoneChange={(value) => setForm({ ...form, phone: value })}
+                                                isVerified={isPhoneVerified}
+                                                onVerifiedChange={setIsPhoneVerified}
+                                            />
                                         </>
                                     ) : null}
 
@@ -144,19 +151,41 @@ export function RegistrationPage() {
                                 {canAdvance ? (
                                     <button
                                         type="button"
-                                        onClick={() => setStep((current) => Math.min(stepTitles.length - 1, current + 1))}
-                                        className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
+                                        onClick={() => {
+                                            if (!requiresPhoneVerification) {
+                                                setStep((current) => Math.min(stepTitles.length - 1, current + 1));
+                                            }
+                                        }}
+                                        disabled={!canGoNext}
+                                        className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
                                     >
                                         Suivant
                                         <ChevronRight className="h-4 w-4" />
                                     </button>
                                 ) : (
-                                    <Link to="/dashboard" className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700">
-                                        Voir le dashboard
-                                        <CheckCircle2 className="h-4 w-4" />
-                                    </Link>
+                                    canFinishRegistration ? (
+                                        <Link to="/dashboard" className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700">
+                                            Voir le dashboard
+                                            <CheckCircle2 className="h-4 w-4" />
+                                        </Link>
+                                    ) : (
+                                        <button
+                                            type="button"
+                                            disabled
+                                            className="inline-flex items-center gap-2 rounded-full bg-slate-400 px-5 py-2.5 text-sm font-semibold text-white opacity-70"
+                                        >
+                                            Voir le dashboard
+                                            <CheckCircle2 className="h-4 w-4" />
+                                        </button>
+                                    )
                                 )}
                             </div>
+
+                            {!isPhoneVerified ? (
+                                <div className="mt-4 rounded-2xl border border-emergency/30 bg-emergency/10 px-4 py-3 text-sm font-medium text-emergency">
+                                    La vérification du téléphone est obligatoire avant la création du compte
+                                </div>
+                            ) : null}
                         </div>
 
                         <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-soft">
