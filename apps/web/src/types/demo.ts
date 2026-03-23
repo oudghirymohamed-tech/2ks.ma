@@ -43,6 +43,17 @@ export interface NfcCard {
     lastScannedAt: string;
 }
 
+export type DocumentCategory = 'prescription' | 'lab-report' | 'medical-scan' | 'doctor-report' | 'other';
+
+export interface MedicalDocument {
+    id: string;
+    fileName: string;
+    category: DocumentCategory;
+    uploadedAt: string;
+    fileSize: number;
+    mimeType: string;
+}
+
 export interface Patient {
     id: string;
     fullName: string;
@@ -57,6 +68,7 @@ export interface Patient {
     medicalProfile: MedicalProfile;
     accessLogs: AccessLog[];
     nfcCard: NfcCard;
+    medicalDocuments: MedicalDocument[];
 }
 
 export interface Professional {

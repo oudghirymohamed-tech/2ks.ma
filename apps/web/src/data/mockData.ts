@@ -64,7 +64,33 @@ export const fallbackPatients: Record<string, Patient> = {
             issuedAt: '2026-01-10T08:00:00Z',
             qrToken: 'demo-token',
             lastScannedAt: '2026-02-20T09:18:00Z'
-        }
+        },
+        medicalDocuments: [
+            {
+                id: 'doc-1',
+                fileName: 'Ordonnance_Insuline_2026-02.pdf',
+                category: 'prescription',
+                uploadedAt: '2026-02-15T10:30:00Z',
+                fileSize: 1024 * 245,
+                mimeType: 'application/pdf'
+            },
+            {
+                id: 'doc-2',
+                fileName: 'Resultat_Glycemie_2026-02.pdf',
+                category: 'lab-report',
+                uploadedAt: '2026-02-10T14:20:00Z',
+                fileSize: 1024 * 512,
+                mimeType: 'application/pdf'
+            },
+            {
+                id: 'doc-3',
+                fileName: 'Scan_Pancreas_2026-01.jpg',
+                category: 'medical-scan',
+                uploadedAt: '2026-01-28T09:15:00Z',
+                fileSize: 1024 * 2048,
+                mimeType: 'image/jpeg'
+            }
+        ]
     },
     'demo-patient-b': {
         id: 'demo-patient-b',
@@ -116,7 +142,25 @@ export const fallbackPatients: Record<string, Patient> = {
             issuedAt: '2026-01-18T12:30:00Z',
             qrToken: 'demo-minor',
             lastScannedAt: '2026-02-05T14:22:00Z'
-        }
+        },
+        medicalDocuments: [
+            {
+                id: 'doc-4',
+                fileName: 'Ordonnance_Ventoline_2026-02.pdf',
+                category: 'prescription',
+                uploadedAt: '2026-02-18T11:00:00Z',
+                fileSize: 1024 * 180,
+                mimeType: 'application/pdf'
+            },
+            {
+                id: 'doc-5',
+                fileName: 'Certificat_Asthme_Medecin.pdf',
+                category: 'doctor-report',
+                uploadedAt: '2026-02-05T15:45:00Z',
+                fileSize: 1024 * 220,
+                mimeType: 'application/pdf'
+            }
+        ]
     }
 };
 

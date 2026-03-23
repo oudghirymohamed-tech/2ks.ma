@@ -1,14 +1,17 @@
 import { Download, Lock, QrCode, ShieldAlert, Trash2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { DocumentList } from '../components/DocumentList';
+import { DocumentUpload } from '../components/DocumentUpload';
 import { PageMeta } from '../components/PageMeta';
 import { MarketingLayout } from '../layouts/MarketingLayout';
 import { getPatientProfile, revokeCard } from '../services/api';
-import type { Patient } from '../types/demo';
+import type { Patient, DocumentCategory, MedicalDocument } from '../types/demo';
 import { formatDate } from '../utils/format';
 
 export function DashboardPage() {
     const [patient, setPatient] = useState<Patient | null>(null);
     const [cardMessage, setCardMessage] = useState('Carte active');
+    const [uploadMessage, setUploadMessage] = useState('');
 
     useEffect(() => {
         getPatientProfile('demo-patient-a').then(setPatient);
@@ -22,6 +25,39 @@ export function DashboardPage() {
         const result = await revokeCard(patient.nfcCard.id);
         setCardMessage(`Carte ${result.status}`);
         setPatient({ ...patient, nfcCard: { ...patient.nfcCard, status: 'revoked' } });
+    }
+
+    function handleDocumentUpload(file: File, category: DocumentCategory) {
+        if (!patient) return;
+
+        // Create a new mock document
+        const newDoc: MedicalDocument = {
+            id: 'doc-' + Date.now(),
+            fileName: file.name,
+            category,
+            uploadedAt: new Date().toISOString(),
+            fileSize: file.size,
+            mimeType: file.type
+        };
+
+        // Update patient state with new document
+        setPatient({
+            ...patient,
+            medicalDocuments: [newDoc, ...patient.medicalDocuments]
+        });
+
+        // Show success message
+        setUploadMessage(`Document "${file.name}" uploadé avec succès !`);
+        setTimeout(() => setUploadMessage(''), 3000);
+    }
+
+    function handleDocumentDelete(docId: string) {
+        if (!patient) return;
+
+        setPatient({
+            ...patient,
+            medicalDocuments: patient.medicalDocuments.filter(doc => doc.id !== docId)
+        });
     }
 
     if (!patient) {
@@ -139,6 +175,46 @@ export function DashboardPage() {
                     </div>
 
                     <div className="space-y-6">
+                        <article className="rounded-[2rem] border border-sapphire/20 bg-powder/25 p-6 shadow-soft">
+                            <div className="flex items-center gap-3">
+                                <div className="rounded-2xl bg-sapphire p-3 text-white">
+                                    <Download className="h-5 w-5" />
+                                </div>
+                                <div>
+                                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-navy/70">Medical documents</p>
+                                    <p className="text-xl font-semibold text-navy">Mes documents</p>
+                                </div>
+                            </div>
+
+                            {uploadMessage && (
+                                <div className="mt-4 rounded-2xl border border-call/30 bg-call/20 p-3 text-sm font-medium text-call">
+                                    ✓ {uploadMessage}
+                                </div>
+                            )}
+
+                            <div className="mt-6 space-y-6">
+                                {/* Upload Section */}
+                                <div className="rounded-3xl border border-sapphire/25 bg-powder/20 p-5">
+                                    <p className="text-sm font-semibold text-navy mb-4">Télécharger un document</p>
+                                    <DocumentUpload onUpload={handleDocumentUpload} />
+                                </div>
+
+                                {/* Documents List */}
+                                <div>
+                                    <p className="text-sm font-semibold text-navy mb-4">Documents stockés ({patient.medicalDocuments.length})</p>
+                                    <DocumentList
+                                        documents={patient.medicalDocuments}
+                                        onDelete={handleDocumentDelete}
+                                    />
+                                </div>
+
+                                {/* Security Notice */}
+                                <div className="rounded-3xl border border-sapphire/25 bg-[#011A35] p-4 text-sm leading-6 text-ice/85">
+                                    🔒 Vos documents sont stockés de façon sécurisée et partagés uniquement selon vos autorisations.
+                                </div>
+                            </div>
+                        </article>
+
                         <article className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-soft">
                             <div className="flex items-center gap-3">
                                 <div className="rounded-2xl bg-slate-950 p-3 text-white">
