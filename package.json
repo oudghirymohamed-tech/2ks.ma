@@ -1,0 +1,21 @@
+{
+    "name": "hayatid-demo-monorepo",
+    "private": true,
+    "version": "0.1.0",
+    "packageManager": "npm@10.9.0",
+    "workspaces": [
+        "apps/web",
+        "apps/api"
+    ],
+    "scripts": {
+        "dev": "concurrently -n web,api -c cyan,green \"npm run dev -w @hayatid/web\" \"npm run dev -w @hayatid/api\"",
+        "dev:web": "npm run dev -w @hayatid/web",
+        "dev:api": "npm run dev -w @hayatid/api",
+        "build": "npm run build -w @hayatid/web && npm run build -w @hayatid/api",
+        "preview": "npm run preview -w @hayatid/web",
+        "start": "npm run start -w @hayatid/api"
+    },
+    "devDependencies": {
+        "concurrently": "^9.2.1"
+    }
+}
