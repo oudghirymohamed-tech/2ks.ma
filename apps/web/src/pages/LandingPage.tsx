@@ -46,16 +46,16 @@ export function LandingPage() {
                 description="Premium Gitex Africa 2026 demo for HayatID by 2KS: emergency QR/NFC identity, patient dashboard, professional verification, and partner flows."
             />
 
-            <section className="relative overflow-hidden border-b border-slate-200 bg-[linear-gradient(180deg,#F5F0E8_0%,#F8F4EE_46%,#FDFBF9_100%)]">
-                <div className="absolute inset-0 bg-grid bg-[size:18px_18px] opacity-30" />
-                <div className="absolute -left-24 top-16 h-64 w-64 rounded-full bg-emerald-200/60 blur-3xl" />
-                <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-amber-100/70 blur-3xl" />
+            <section className="relative overflow-hidden border-b border-sapphire/25 bg-[linear-gradient(180deg,#D6E6F3_0%,#DCEAF6_48%,#E8F1F8_100%)]">
+                <div className="absolute inset-0 bg-grid bg-[size:18px_18px] opacity-40" />
+                <div className="absolute -left-24 top-16 h-64 w-64 rounded-full bg-powder/80 blur-3xl" />
+                <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-sapphire/20 blur-3xl" />
                 <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:py-24">
                     <div className="max-w-3xl">
                         <motion.p
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="inline-flex rounded-full border border-emerald-300/60 bg-white/70 px-4 py-2 text-sm font-semibold text-emerald-800 shadow-sm"
+                            className="inline-flex rounded-full border border-sapphire/30 bg-powder/45 px-4 py-2 text-sm font-semibold text-sapphire shadow-sm"
                         >
                             {copy.heroEyebrow}
                         </motion.p>
@@ -63,7 +63,7 @@ export function LandingPage() {
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.08 }}
-                            className="mt-6 text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl lg:text-7xl"
+                            className="mt-6 text-5xl font-semibold tracking-tight text-navy sm:text-6xl lg:text-7xl"
                         >
                             {copy.heroTitle}
                         </motion.h1>
@@ -71,7 +71,7 @@ export function LandingPage() {
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.14 }}
-                            className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl"
+                            className="mt-6 max-w-2xl text-lg leading-8 text-navy/75 sm:text-xl"
                         >
                             {copy.heroBody}
                         </motion.p>
@@ -81,11 +81,11 @@ export function LandingPage() {
                             transition={{ delay: 0.2 }}
                             className="mt-8 flex flex-wrap gap-3"
                         >
-                            <Link to="/register" className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-slate-800">
+                            <Link to="/register" className="inline-flex items-center gap-2 rounded-full bg-sapphire px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#0C43A0]">
                                 {copy.heroPatient}
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
-                            <Link to="/u/demo-token" className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/80 px-6 py-3.5 text-sm font-semibold text-slate-900 transition hover:border-slate-400">
+                            <Link to="/u/demo-token" className="inline-flex items-center gap-2 rounded-full border border-sapphire/40 bg-powder/45 px-6 py-3.5 text-sm font-semibold text-navy transition hover:border-sapphire">
                                 {copy.heroSecondary}
                                 <QrCode className="h-4 w-4" />
                             </Link>
@@ -100,14 +100,14 @@ export function LandingPage() {
                                         initial={{ opacity: 0, y: 12 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.12 + index * 0.08 }}
-                                        className="rounded-3xl border border-white/70 bg-white/75 p-5 shadow-soft backdrop-blur"
+                                        className="rounded-3xl border border-sapphire/20 bg-powder/45 p-5 shadow-soft backdrop-blur"
                                     >
-                                        <div className="inline-flex rounded-2xl bg-slate-950 p-3 text-white">
+                                        <div className="inline-flex rounded-2xl bg-sapphire p-3 text-white">
                                             <Icon className="h-5 w-5" />
                                         </div>
-                                        <h3 className="mt-4 text-lg font-semibold text-slate-950">{item.title}</h3>
-                                        <p className="mt-2 text-sm leading-6 text-slate-600">{item.body}</p>
-                                        <Link to={item.link} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700">
+                                        <h3 className="mt-4 text-lg font-semibold text-navy">{item.title}</h3>
+                                        <p className="mt-2 text-sm leading-6 text-navy/75">{item.body}</p>
+                                        <Link to={item.link} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-sapphire">
                                             Ouvrir le flux
                                             <ArrowRight className="h-4 w-4" />
                                         </Link>
@@ -150,9 +150,9 @@ export function LandingPage() {
                             'Médication urgente inconnue du premier intervenant',
                             'Famille impossible à joindre immédiatement'
                         ].map((item) => (
-                            <div key={item} className="rounded-3xl border border-slate-200 bg-canvas p-6 shadow-soft">
+                            <div key={item} className="rounded-3xl border border-sapphire/20 bg-powder/45 p-6 shadow-soft">
                                 <Sparkles className="h-5 w-5 text-emergency" />
-                                <p className="mt-4 text-base font-medium leading-7 text-slate-900">{item}</p>
+                                <p className="mt-4 text-base font-medium leading-7 text-navy">{item}</p>
                             </div>
                         ))}
                     </div>
@@ -171,16 +171,16 @@ export function LandingPage() {
                         ['02', 'Recevoir la carte', 'Une carte NFC + QR matérialise l’accès d’urgence sans dépendre d’une app.'],
                         ['03', 'Scanner en urgence', 'Toute personne voit le niveau 0. Les pros vérifiés débloquent le niveau 1.']
                     ].map(([step, title, body]) => (
-                        <motion.div key={step} whileHover={{ y: -6 }} className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-soft">
-                            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-emerald-700">{step}</p>
-                            <h3 className="mt-5 text-2xl font-semibold text-slate-950">{title}</h3>
-                            <p className="mt-3 text-base leading-7 text-slate-600">{body}</p>
+                        <motion.div key={step} whileHover={{ y: -6 }} className="rounded-[2rem] border border-sapphire/20 bg-powder/38 p-7 shadow-soft">
+                            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sapphire">{step}</p>
+                            <h3 className="mt-5 text-2xl font-semibold text-navy">{title}</h3>
+                            <p className="mt-3 text-base leading-7 text-navy/75">{body}</p>
                         </motion.div>
                     ))}
                 </div>
             </section>
 
-            <section className="border-y border-slate-200 bg-slate-950 text-white">
+            <section className="border-y border-sapphire/30 bg-navy text-white">
                 <div className="mx-auto grid max-w-7xl gap-8 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
                     <SectionHeading
                         eyebrow="Professionnels"
@@ -217,19 +217,19 @@ export function LandingPage() {
                 />
                 <div className="mt-10 grid gap-6 lg:grid-cols-3">
                     {partnerOffers.map((offer) => (
-                        <motion.div key={offer.title} whileHover={{ y: -8 }} className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-soft">
-                            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">{offer.title}</p>
-                            <p className="mt-4 text-4xl font-semibold text-slate-950">{offer.price}</p>
-                            <p className="mt-3 text-base leading-7 text-slate-600">{offer.description}</p>
+                        <motion.div key={offer.title} whileHover={{ y: -8 }} className="rounded-[2rem] border border-sapphire/20 bg-powder/42 p-7 shadow-soft">
+                            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-navy/70">{offer.title}</p>
+                            <p className="mt-4 text-4xl font-semibold text-navy">{offer.price}</p>
+                            <p className="mt-3 text-base leading-7 text-navy/75">{offer.description}</p>
                             <div className="mt-5 flex flex-col gap-3">
                                 {offer.bullets.map((bullet) => (
-                                    <div key={bullet} className="inline-flex items-center gap-3 text-sm text-slate-700">
-                                        <BadgeCheck className="h-4 w-4 text-emerald-600" />
+                                    <div key={bullet} className="inline-flex items-center gap-3 text-sm text-navy/85">
+                                        <BadgeCheck className="h-4 w-4 text-sapphire" />
                                         {bullet}
                                     </div>
                                 ))}
                             </div>
-                            <Link to="/b2b" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700">
+                            <Link to="/b2b" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-sapphire">
                                 Book partnership discussion
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
@@ -248,10 +248,10 @@ export function LandingPage() {
                     />
                     <div className="mt-10 grid gap-6 lg:grid-cols-3">
                         {roadmap.map((item) => (
-                            <div key={item.year} className="rounded-[2rem] border border-slate-200 bg-canvas p-7 shadow-soft">
-                                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-emerald-700">{item.year}</p>
-                                <h3 className="mt-4 text-2xl font-semibold text-slate-950">{item.title}</h3>
-                                <p className="mt-3 text-base leading-7 text-slate-600">{item.body}</p>
+                            <div key={item.year} className="rounded-[2rem] border border-sapphire/20 bg-powder/45 p-7 shadow-soft">
+                                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sapphire">{item.year}</p>
+                                <h3 className="mt-4 text-2xl font-semibold text-navy">{item.title}</h3>
+                                <p className="mt-3 text-base leading-7 text-navy/75">{item.body}</p>
                             </div>
                         ))}
                     </div>
@@ -259,15 +259,15 @@ export function LandingPage() {
             </section>
 
             <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-                <div className="rounded-[2.5rem] bg-slate-950 px-6 py-12 text-white shadow-panel sm:px-10 lg:flex lg:items-center lg:justify-between">
+                <div className="rounded-[2.5rem] bg-navy px-6 py-12 text-white shadow-panel sm:px-10 lg:flex lg:items-center lg:justify-between">
                     <div className="max-w-2xl">
-                        <p className="text-sm font-semibold uppercase tracking-[0.24em] text-emerald-300">Final CTA</p>
+                        <p className="text-sm font-semibold uppercase tracking-[0.24em] text-powder">Final CTA</p>
                         <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">{copy.finalCtaTitle}</h2>
-                        <p className="mt-4 text-base leading-7 text-white/70">Passez d’une vue investor narrative à un vrai parcours produit en un clic.</p>
+                        <p className="mt-4 text-base leading-7 text-white/78">Passez d’une vue investor narrative à un vrai parcours produit en un clic.</p>
                     </div>
                     <div className="mt-8 flex flex-wrap gap-3 lg:mt-0">
-                        <Link to="/register" className="inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-50">Créer un profil</Link>
-                        <Link to="/u/demo-token" className="inline-flex rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10">Scanner le live demo</Link>
+                        <Link to="/register" className="inline-flex rounded-full bg-sapphire px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0C43A0]">Créer un profil</Link>
+                        <Link to="/u/demo-token" className="inline-flex rounded-full border border-powder/30 bg-powder/15 px-6 py-3 text-sm font-semibold text-white transition hover:bg-powder/25">Scanner le live demo</Link>
                     </div>
                 </div>
             </section>

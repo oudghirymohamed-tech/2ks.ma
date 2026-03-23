@@ -12,7 +12,7 @@ export function LanguageSwitcher() {
     const { language, setLanguage } = useLanguage();
 
     return (
-        <div className="inline-flex rounded-full border border-slate-200 bg-white/80 p-1 shadow-sm backdrop-blur">
+        <div className="inline-flex rounded-full border border-sapphire/30 bg-powder/55 p-1 shadow-sm backdrop-blur">
             {languages.map((item) => (
                 <button
                     key={item.value}
@@ -20,7 +20,7 @@ export function LanguageSwitcher() {
                     onClick={() => setLanguage(item.value)}
                     className={cn(
                         'rounded-full px-3 py-1.5 text-sm font-semibold transition',
-                        language === item.value ? 'bg-slate-900 text-white' : 'text-slate-600 hover:text-slate-900'
+                        language === item.value ? 'bg-sapphire text-white' : 'text-navy/80 hover:text-sapphire'
                     )}
                     aria-pressed={language === item.value}
                 >

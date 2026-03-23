@@ -22,7 +22,7 @@ export function EmergencyDemoPage() {
     }
 
     if (!profile) {
-        return <div className="min-h-screen bg-shell px-6 py-20 text-white">Chargement du profil d’urgence...</div>;
+        return <div className="min-h-screen bg-navy px-6 py-20 text-white">Chargement du profil d’urgence...</div>;
     }
 
     const patient = profile.patient;
@@ -33,13 +33,13 @@ export function EmergencyDemoPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-shell text-white">
+        <div className="min-h-screen bg-navy text-white">
             <PageMeta
                 title="HayatID | Emergency scan demo"
                 description="Mobile-first emergency scan demo with blood type, allergies, instructions, emergency contact, and professional OTP level access."
             />
             <main className="mx-auto max-w-xl px-4 pb-28 pt-4 sm:px-6">
-                <section className="sticky top-0 z-20 -mx-4 border-b border-white/10 bg-shell/95 px-4 pb-4 pt-2 backdrop-blur sm:-mx-6 sm:px-6">
+                <section className="sticky top-0 z-20 -mx-4 border-b border-sapphire/20 bg-navy/95 px-4 pb-4 pt-2 backdrop-blur sm:-mx-6 sm:px-6">
                     <div className="rounded-[1.8rem] bg-emergency p-5 shadow-panel">
                         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">Emergency access</p>
                         <h1 className="mt-3 text-2xl font-semibold">Vital profile visible immediately</h1>
@@ -48,107 +48,107 @@ export function EmergencyDemoPage() {
                 </section>
 
                 {patient.isMinor && patient.guardianRelationship ? (
-                    <section className="mt-4 rounded-[1.6rem] bg-minor p-4">
+                    <section className="mt-4 rounded-[1.6rem] border border-sapphire/30 bg-sapphire/45 p-4">
                         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/75">Patient mineur</p>
                         <p className="mt-2 text-base font-semibold">Contacter le représentant légal: {patient.guardianRelationship.guardianName}</p>
                         <p className="mt-1 text-sm text-white/80">{patient.guardianRelationship.relation} · {patient.guardianRelationship.phone}</p>
                     </section>
                 ) : null}
 
-                <section className="mt-4 rounded-[2rem] border border-white/10 bg-white/5 p-5">
-                    <p className="text-xs uppercase tracking-[0.22em] text-white/45">Blood type</p>
-                    <p className="mt-3 text-7xl font-semibold leading-none text-white">{patient.medicalProfile.bloodType}</p>
+                <section className="mt-4 rounded-[2rem] border border-emergency/45 bg-emergency/15 p-5">
+                    <p className="text-xs uppercase tracking-[0.22em] text-emergency">Blood type</p>
+                    <p className="mt-3 text-7xl font-semibold leading-none text-emergency">{patient.medicalProfile.bloodType}</p>
                 </section>
 
-                <section className="mt-4 rounded-[2rem] border border-orange-400/20 bg-orange-400/10 p-5">
-                    <p className="text-xs uppercase tracking-[0.22em] text-orange-200">Allergies</p>
+                <section className="mt-4 rounded-[2rem] border border-emergency/35 bg-powder/30 p-5">
+                    <p className="text-xs uppercase tracking-[0.22em] text-emergency">Allergies</p>
                     <div className="mt-3 flex flex-wrap gap-2">
                         {patient.medicalProfile.allergies.map((allergy) => (
-                            <span key={allergy} className="rounded-full bg-allergy px-3 py-1.5 text-sm font-semibold text-slate-950">{allergy}</span>
+                            <span key={allergy} className="rounded-full border border-emergency/35 bg-powder px-3 py-1.5 text-sm font-semibold text-navy">{allergy}</span>
                         ))}
                     </div>
                 </section>
 
                 {patient.medicalProfile.g6pd ? (
-                    <section className="mt-4 rounded-[1.6rem] border border-amber-400/20 bg-amber-400/10 p-5 text-amber-50">
-                        <p className="text-xs uppercase tracking-[0.2em] text-amber-200">Alerte G6PD</p>
+                    <section className="mt-4 rounded-[1.6rem] border border-emergency/35 bg-emergency/15 p-5 text-white">
+                        <p className="text-xs uppercase tracking-[0.2em] text-emergency">Alerte G6PD</p>
                         <p className="mt-2 text-base font-semibold">Déficit G6PD signalé. Vérifier avant administration de molécules à risque.</p>
                     </section>
                 ) : null}
 
                 {details.map((detail) => (
-                    <section key={detail.title} className="mt-4 rounded-[2rem] border border-white/10 bg-white/5 p-5">
-                        <p className="text-xs uppercase tracking-[0.22em] text-white/45">{detail.title}</p>
+                    <section key={detail.title} className="mt-4 rounded-[2rem] border border-sapphire/20 bg-[#02133C] p-5">
+                        <p className="text-xs uppercase tracking-[0.22em] text-powder/80">{detail.title}</p>
                         <div className="mt-3 flex flex-wrap gap-2">
                             {detail.values.length > 0 ? (
                                 detail.values.map((value) => (
-                                    <span key={value} className="rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-sm font-medium text-white">{value}</span>
+                                    <span key={value} className="rounded-full border border-sapphire/20 bg-sapphire/20 px-3 py-1.5 text-sm font-medium text-ice">{value}</span>
                                 ))
                             ) : (
-                                <span className="text-sm text-white/60">Aucun élément déclaré.</span>
+                                <span className="text-sm text-ice/75">Aucun élément déclaré.</span>
                             )}
                         </div>
                     </section>
                 ))}
 
-                <section className="mt-4 rounded-[2rem] border border-emerald-400/20 bg-emerald-400/10 p-5">
-                    <div className="flex items-center gap-3 text-emerald-100">
+                <section className="mt-4 rounded-[2rem] border border-sapphire/30 bg-sapphire/20 p-5">
+                    <div className="flex items-center gap-3 text-ice">
                         <ShieldAlert className="h-5 w-5" />
                         <p className="text-sm font-semibold uppercase tracking-[0.22em]">Instructions pour témoin</p>
                     </div>
-                    <ul className="mt-4 space-y-3 text-sm leading-7 text-emerald-50/90">
+                    <ul className="mt-4 space-y-3 text-sm leading-7 text-ice/95">
                         {patient.medicalProfile.emergencyInstructions.map((instruction) => (
-                            <li key={instruction} className="rounded-2xl bg-black/10 px-4 py-3">{instruction}</li>
+                            <li key={instruction} className="rounded-2xl bg-navy/40 px-4 py-3">{instruction}</li>
                         ))}
                     </ul>
                 </section>
 
-                <section className="mt-4 rounded-[2rem] border border-white/10 bg-white/5 p-5 text-sm leading-7 text-white/75">
+                <section className="mt-4 rounded-[2rem] border border-sapphire/20 bg-[#011238] p-5 text-sm leading-7 text-ice/80">
                     <p className="font-semibold text-white">Medical disclaimer</p>
                     <p className="mt-2">Ces informations sont fournies à titre d’aide d’urgence et ne remplacent pas une évaluation médicale. Vérifier toute décision clinique selon le contexte réel.</p>
                 </section>
 
-                <section className="mt-4 rounded-[2rem] border border-white/10 bg-white/5 p-5">
-                    <p className="text-xs uppercase tracking-[0.22em] text-white/45">Emergency contact</p>
+                <section className="mt-4 rounded-[2rem] border border-sapphire/20 bg-[#011238] p-5">
+                    <p className="text-xs uppercase tracking-[0.22em] text-powder/85">Emergency contact</p>
                     <p className="mt-3 text-xl font-semibold">{patient.emergencyContact.name}</p>
                     <p className="mt-1 text-sm text-white/70">{patient.emergencyContact.relation}</p>
-                    <a href={`tel:${patient.emergencyContact.phone.replace(/\s/g, '')}`} className="mt-3 inline-flex rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-semibold text-white">
+                    <a href={`tel:${patient.emergencyContact.phone.replace(/\s/g, '')}`} className="mt-3 inline-flex rounded-full border border-call/30 bg-call/20 px-4 py-2 text-sm font-semibold text-white">
                         {patient.emergencyContact.phone}
                     </a>
                 </section>
 
-                <section className="mt-4 rounded-[2rem] border border-white/10 bg-white/5 p-5">
-                    <p className="text-xs uppercase tracking-[0.22em] text-white/45">Advance directives</p>
-                    <p className="mt-3 text-sm leading-7 text-white/75">{patient.medicalProfile.advanceDirectives}</p>
+                <section className="mt-4 rounded-[2rem] border border-sapphire/20 bg-[#011238] p-5">
+                    <p className="text-xs uppercase tracking-[0.22em] text-powder/85">Advance directives</p>
+                    <p className="mt-3 text-sm leading-7 text-ice/80">{patient.medicalProfile.advanceDirectives}</p>
                 </section>
 
-                <section className="mt-4 rounded-[2rem] border border-white/10 bg-white/5 p-5">
+                <section className="mt-4 rounded-[2rem] border border-sapphire/20 bg-[#00133A] p-5">
                     <button
                         type="button"
                         onClick={() => setLevelOneOpen((current) => !current)}
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-white/80"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-powder"
                     >
                         <LockKeyhole className="h-4 w-4" />
                         Accès professionnel
                     </button>
-                    <p className="mt-2 text-sm leading-6 text-white/55">Secondaire et discret par défaut. Déverrouillage demo via OTP code 2026.</p>
+                    <p className="mt-2 text-sm leading-6 text-ice/75">Secondaire et discret par défaut. Déverrouillage demo via OTP code 2026.</p>
                     <div className="mt-4">
                         <OtpPanel patientToken={token} onRequestOtp={requestProfessionalOtp} onVerifyOtp={handleVerify} />
                     </div>
                     {levelOneOpen ? (
-                        <div className="mt-4 rounded-3xl border border-emerald-400/20 bg-emerald-400/10 p-4 text-sm leading-7 text-emerald-50">
+                        <div className="mt-4 rounded-3xl border border-sapphire/30 bg-sapphire/20 p-4 text-sm leading-7 text-ice">
                             Niveau 1 ouvert. Dans un vrai produit, ce contenu viendrait exclusivement d’un backend vérifié avec audit renforcé.
                         </div>
                     ) : null}
                 </section>
 
-                <Link to="/demo" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white/70">
+                <Link to="/demo" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-powder/90">
                     <AlertTriangle className="h-4 w-4" />
                     Retour au hub de démonstration
                 </Link>
             </main>
 
-            <div className="fixed inset-x-0 bottom-0 z-30 border-t border-white/10 bg-shell/95 p-4 backdrop-blur">
+            <div className="fixed inset-x-0 bottom-0 z-30 border-t border-sapphire/25 bg-navy/95 p-4 backdrop-blur">
                 <div className="mx-auto max-w-xl">
                     <a
                         href="tel:112"
