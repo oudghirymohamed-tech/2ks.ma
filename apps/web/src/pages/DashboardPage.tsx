@@ -53,6 +53,47 @@ const dashboardCopy = {
             'Sensitive information flows through backend APIs. The frontend displays only authorized responses.',
         errorsPrefix: 'Error:'
     },
+    fr: {
+        metaTitle: '2ks | Tableau de bord patient',
+        metaDescription:
+            'Tableau de bord avec resume profile, fichiers medicaux, details urgence, navigation, et deconnexion.',
+        loading: 'Chargement du tableau de bord patient...',
+        badge: 'Tableau de bord patient',
+        greeting: 'Bonjour',
+        intro:
+            'Ce tableau de bord simplifie votre parcours: profil urgence, gestion securisee, actions claires.',
+        home: 'Accueil',
+        logout: 'Deconnexion',
+        profileSummary: 'Resume du profil',
+        profileCompletion: 'Completude du profil',
+        profileHint: 'Completez vos details plus tard sans perdre votre acces urgence.',
+        cardPreview: 'Apercu de la carte',
+        emergencyCard: 'Carte urgence',
+        qrToken: 'Code QR',
+        lastScan: 'Dernier scan',
+        downloadQr: 'Telecharger le QR',
+        revokeCard: 'Revoquer la carte',
+        nfcStatus: 'Statut NFC',
+        issuedAt: 'Emise le',
+        status: 'Statut',
+        revokeHint:
+            'Cette action est enregistree sur le serveur avec confirmation.',
+        medicalSummary: 'Resume medical',
+        allergies: 'Allergies',
+        chronic: 'Maladies chroniques',
+        medications: 'Medicaments',
+        filesTitle: 'Fichiers medicaux telecharges',
+        filesSubtitle: 'Gere vos rapports, scans, ordonnances et documents.',
+        uploadCard: 'Telecharger un document',
+        storedDocs: 'Documents stockes',
+        secureStorage: 'Documents stockes securises et partages selon votre autoristion.',
+        timelineTitle: 'Historique acces',
+        timelineSubtitle: 'Chrono patient',
+        privacyTitle: 'Architecture securisee',
+        privacyBody:
+            'Les informations sensibles transitent par les APIs. L\'interface affiche les reponses autorisees.',
+        errorsPrefix: 'Erreur:'
+    },
     ar: {
         metaTitle: '2ks | لوحة المريض',
         metaDescription:
@@ -100,7 +141,8 @@ export function DashboardPage() {
     const { logout } = useAuth();
     const { language } = useLanguage();
     const isArabic = language === 'ar';
-    const copy = dashboardCopy[isArabic ? 'ar' : 'en'];
+    const isFrench = language === 'fr';
+    const copy = dashboardCopy[language === 'en' ? 'en' : language === 'ar' ? 'ar' : 'fr'];
 
     const [patient, setPatient] = useState<Patient | null>(null);
     const [cardMessage, setCardMessage] = useState(isArabic ? 'البطاقة فعالة' : 'Card active');

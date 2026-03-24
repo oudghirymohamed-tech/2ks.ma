@@ -4,6 +4,7 @@ import { cn } from '../utils/format';
 
 const languages: Array<{ value: Language; label: string }> = [
     { value: 'en', label: 'EN' },
+    { value: 'fr', label: 'FR' },
     { value: 'ar', label: 'AR' }
 ];
 

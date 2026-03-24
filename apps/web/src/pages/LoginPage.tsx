@@ -12,12 +12,14 @@ export function LoginPage() {
     const { setSession } = useAuth();
     const { language } = useLanguage();
     const isArabic = language === 'ar';
+    const isFrench = language === 'fr';
 
     const [loginValue, setLoginValue] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
+    // DEMO: GITEX demo account support with exact credentials
     async function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
         setError('');
@@ -34,32 +36,43 @@ export function LoginPage() {
 
             navigate('/dashboard');
         } catch (requestError) {
-            setError(requestError instanceof Error ? requestError.message : 'Unable to login.');
+            const errorMsg = requestError instanceof Error ? requestError.message : 'Unable to login.';
+            const translatedError = isFrench ? 'Impossible de se connecter.' : isArabic ? 'لا يمكن تسجيل الدخول.' : errorMsg;
+            setError(translatedError);
         } finally {
             setIsLoading(false);
         }
     }
 
+    const getLabel = (enText: string, frText: string, arText: string) => {
+        if (isFrench) return frText;
+        if (isArabic) return arText;
+        return enText;
+    };
+
     return (
         <MarketingLayout>
-            <PageMeta title="2ks | Login" description="Secure login for patient, doctor, and partner access." />
+            <PageMeta
+                title={getLabel('2ks | Login', '2ks | Connexion', '2ks | تسجيل الدخول')}
+                description={getLabel('Secure login for patient, doctor, and partner access.', 'Connexion sécurisée pour patients, doctors et partenaires.', 'تسجيل دخول آمن للمرضى والأطباء والشركاء.')}
+            />
             <section className="mx-auto max-w-xl px-4 py-14 sm:px-6 lg:px-8">
                 <div className={`rounded-[2rem] border border-slate-200 bg-white p-7 shadow-soft sm:p-9 ${isArabic ? 'font-arabic text-right' : ''}`}>
                     <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sapphire">
-                        {isArabic ? 'تسجيل الدخول' : 'Login'}
+                        {getLabel('Login', 'Connexion', 'تسجيل الدخول')}
                     </p>
                     <h1 className="mt-3 text-3xl font-semibold text-navy">
-                        {isArabic ? 'الدخول إلى حسابك في 2ks' : 'Sign in to your 2ks account'}
+                        {getLabel('Sign in to your 2ks account', 'Connectez-vous à votre compte 2ks', 'الدخول إلى حسابك في 2ks')}
                     </h1>
                     <p className="mt-3 text-sm leading-7 text-navy/70">
-                        {isArabic
-                            ? 'استخدم رقم الهاتف أو البريد المرتبط بالحساب مع كلمة المرور.'
-                            : 'Use your phone/email and password to access your account.'}
+                        {getLabel('Use your phone/email and password to access your account.', 'Utilisez votre email et mot de passe.', 'استخدم رقم الهاتف أو البريد مع كلمة المرور.')}
                     </p>
 
                     <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                         <label className="block">
-                            <span className="mb-2 block text-sm font-medium text-navy">{isArabic ? 'الهاتف أو البريد' : 'Phone or email'}</span>
+                            <span className="mb-2 block text-sm font-medium text-navy">
+                                {getLabel('Phone or email', 'Email', 'الهاتف أو البريد')}
+                            </span>
                             <input
                                 value={loginValue}
                                 onChange={(event) => setLoginValue(event.target.value)}
@@ -69,7 +82,9 @@ export function LoginPage() {
                         </label>
 
                         <label className="block">
-                            <span className="mb-2 block text-sm font-medium text-navy">{isArabic ? 'كلمة المرور' : 'Password'}</span>
+                            <span className="mb-2 block text-sm font-medium text-navy">
+                                {getLabel('Password', 'Mot de passe', 'كلمة المرور')}
+                            </span>
                             <input
                                 type="password"
                                 value={password}
@@ -94,12 +109,8 @@ export function LoginPage() {
                         >
                             <LogIn className="h-4 w-4" />
                             {isLoading
-                                ? isArabic
-                                    ? 'جارٍ تسجيل الدخول...'
-                                    : 'Signing in...'
-                                : isArabic
-                                    ? 'دخول'
-                                    : 'Sign in'}
+                                ? getLabel('Signing in...', 'Connexion en cours...', 'جارٍ تسجيل الدخول...')
+                                : getLabel('Sign in', 'Se connecter', 'دخول')}
                         </button>
                     </form>
                 </div>
