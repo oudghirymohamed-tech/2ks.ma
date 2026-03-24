@@ -2,6 +2,124 @@ import type { AccessLog, DocumentCategory, MedicalDocument, Patient, Professiona
 
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL?.trim() || 'http://localhost:4000/api').replace(/\/$/, '');
 
+// DEMO/STAGING ONLY: GITEX presentation account fallback when API is unavailable.
+const DEMO_LOGIN_EMAIL = 'oudghirymohamed@gmail.com';
+const DEMO_LOGIN_PASSWORD = '555HTM##';
+const DEMO_TOKEN = 'demo-gitex-local-token';
+
+const DEMO_USER: ApiUser = {
+    id: 'user-gitex-demo',
+    role: 'patient',
+    patientId: 'gitex-demo-patient',
+    profileId: 'gitex-demo-patient'
+};
+
+const DEMO_DOCUMENTS: MedicalDocument[] = [
+    {
+        id: 'demo-doc-analysis',
+        fileName: 'Analyses_Biochimie_Mars_2026.pdf',
+        category: 'lab-report',
+        uploadedAt: '2026-03-12T09:30:00Z',
+        fileSize: 224000,
+        mimeType: 'application/pdf',
+        url: '/uploads/demo-analyses.pdf'
+    },
+    {
+        id: 'demo-doc-radiology',
+        fileName: 'Radiology_Chest_2026-03-10.pdf',
+        category: 'medical-scan',
+        uploadedAt: '2026-03-10T15:20:00Z',
+        fileSize: 482000,
+        mimeType: 'application/pdf',
+        url: '/uploads/demo-radiology.pdf'
+    },
+    {
+        id: 'demo-doc-ecg',
+        fileName: 'ECG_Report_2026-03-09.pdf',
+        category: 'medical-scan',
+        uploadedAt: '2026-03-09T08:45:00Z',
+        fileSize: 198000,
+        mimeType: 'application/pdf',
+        url: '/uploads/demo-ecg.pdf'
+    },
+    {
+        id: 'demo-doc-prescription',
+        fileName: 'Prescription_Cardiologie.pdf',
+        category: 'prescription',
+        uploadedAt: '2026-03-08T11:05:00Z',
+        fileSize: 116000,
+        mimeType: 'application/pdf',
+        url: '/uploads/demo-prescription.pdf'
+    },
+    {
+        id: 'demo-doc-other',
+        fileName: 'Other_Insurance_Authorization.pdf',
+        category: 'other',
+        uploadedAt: '2026-03-07T13:55:00Z',
+        fileSize: 91000,
+        mimeType: 'application/pdf',
+        url: '/uploads/demo-other.pdf'
+    }
+];
+
+const DEMO_PATIENT: Patient = {
+    id: 'gitex-demo-patient',
+    fullName: 'Mohammed Oudghir',
+    age: 45,
+    isMinor: false,
+    city: 'Marrakech',
+    language: 'fr',
+    avatarInitials: 'MO',
+    profileCompletion: 95,
+    emergencyContact: {
+        name: 'Fatima Oudghir',
+        relation: 'Spouse',
+        phone: '+212600778899'
+    },
+    medicalProfile: {
+        bloodType: 'A+',
+        allergies: ['Latex', 'Aspirin'],
+        implants: [],
+        chronicConditions: ['Hypertension'],
+        medications: ['Lisinopril 10mg'],
+        g6pd: false,
+        advanceDirectives: 'Contact spouse for non-emergency decisions.',
+        emergencyInstructions: [
+            'ECG history available in records.',
+            'Prefer private clinic in Marrakech when possible.',
+            'Share emergency profile with triage immediately.'
+        ]
+    },
+    accessLogs: [
+        {
+            id: 'demo-log-1',
+            actor: 'Dr. Amal Benali',
+            role: 'Emergency Doctor',
+            location: 'Clinique Atlas',
+            accessLevel: 'level-1',
+            timestamp: '2026-03-15T14:22:00Z',
+            status: 'completed'
+        },
+        {
+            id: 'demo-log-2',
+            actor: 'Public scan',
+            role: 'Bystander',
+            location: 'Marrakech center',
+            accessLevel: 'level-0',
+            timestamp: '2026-03-05T16:40:00Z',
+            status: 'completed'
+        }
+    ],
+    nfcCard: {
+        id: 'card-gitex-demo',
+        status: 'active',
+        issuedAt: '2026-01-15T10:00:00Z',
+        qrToken: 'gitex-demo-qr-token',
+        lastScannedAt: '2026-03-20T14:00:00Z'
+    },
+    medicalDocuments: DEMO_DOCUMENTS
+};
+
 export interface ApiUser {
     id: string;
     role: 'patient' | 'doctor' | 'b2b' | 'admin';
@@ -22,6 +140,14 @@ export class ApiError extends Error {
     }
 }
 
+function isDemoCredentials(loginValue: string, password: string) {
+    return loginValue.trim().toLowerCase() === DEMO_LOGIN_EMAIL && password === DEMO_LOGIN_PASSWORD;
+}
+
+function isDemoSession() {
+    return readAuthToken() === DEMO_TOKEN;
+}
+
 function readAuthToken() {
     return localStorage.getItem('twoKS_auth_token') ?? '';
 }
@@ -34,10 +160,16 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
         headers.set('Authorization', `Bearer ${token}`);
     }
 
-    const response = await fetch(`${API_BASE_URL}${path}`, {
-        ...init,
-        headers
-    });
+    let response: Response;
+
+    try {
+        response = await fetch(`${API_BASE_URL}${path}`, {
+            ...init,
+            headers
+        });
+    } catch {
+        throw new ApiError('Unable to reach API. Please check server availability.', 0);
+    }
 
     if (!response.ok) {
         const maybeError = (await response.json().catch(() => ({ message: 'Request failed.' }))) as ApiErrorPayload;
@@ -48,6 +180,14 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 }
 
 export async function login(loginValue: string, password: string) {
+    // DEMO/STAGING ONLY: allow direct presentation login regardless of backend status.
+    if (isDemoCredentials(loginValue, password)) {
+        return {
+            token: DEMO_TOKEN,
+            user: DEMO_USER
+        };
+    }
+
     return request<{ token: string; user: ApiUser }>('/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -56,6 +196,10 @@ export async function login(loginValue: string, password: string) {
 }
 
 export async function getAuthMe() {
+    if (isDemoSession()) {
+        return { user: DEMO_USER };
+    }
+
     return request<{ user: ApiUser }>('/auth/me');
 }
 
@@ -160,6 +304,10 @@ export async function verifyProfessionalOtp(otp: string, professionalId: string,
 }
 
 export async function getPatientMe(): Promise<Patient> {
+    if (isDemoSession()) {
+        return { ...DEMO_PATIENT, medicalDocuments: [...DEMO_DOCUMENTS] };
+    }
+
     return request<Patient>('/patients/me');
 }
 
@@ -176,12 +324,20 @@ export async function updatePatientProfile(id: string, payload: Partial<Patient>
 }
 
 export async function revokeCard(cardId: string): Promise<{ status: string; cardId: string }> {
+    if (isDemoSession()) {
+        return { status: 'revoked', cardId };
+    }
+
     return request<{ status: string; cardId: string }>(`/cards/${encodeURIComponent(cardId)}/revoke`, {
         method: 'POST'
     });
 }
 
 export async function getPatientDocuments(patientId: string): Promise<MedicalDocument[]> {
+    if (isDemoSession() && patientId === DEMO_PATIENT.id) {
+        return [...DEMO_DOCUMENTS];
+    }
+
     return request<MedicalDocument[]>(`/patients/${encodeURIComponent(patientId)}/documents`);
 }
 
