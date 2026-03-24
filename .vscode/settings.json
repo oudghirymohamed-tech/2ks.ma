@@ -1,0 +1,11 @@
+{
+  // Code review instructions
+  "github.copilot.chat.reviewSelection.instructions": [
+    { "text": "Check for security vulnerabilities and code style issues." }
+  ],
+
+  // Pull request description generation instructions
+  "github.copilot.chat.pullRequestDescriptionGeneration.instructions": [
+    { "text": "Summarize the main changes and reference related issues." }
+  ]
+}

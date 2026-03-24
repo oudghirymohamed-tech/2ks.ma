@@ -9,7 +9,7 @@ export default {
                 powder: '#A6C5D7',
                 sapphire: '#0F52BA',
                 navy: '#000926',
-                emergency: '#C0392B',
+                emergency: '#cc2c1a',
                 call: '#1A8A3A',
                 canvas: '#D6E6F3',
                 ink: '#000926',

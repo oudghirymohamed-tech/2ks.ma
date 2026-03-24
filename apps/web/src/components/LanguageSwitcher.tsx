@@ -3,7 +3,6 @@ import type { Language } from '../types/demo';
 import { cn } from '../utils/format';
 
 const languages: Array<{ value: Language; label: string }> = [
-    { value: 'fr', label: 'FR' },
     { value: 'en', label: 'EN' },
     { value: 'ar', label: 'AR' }
 ];

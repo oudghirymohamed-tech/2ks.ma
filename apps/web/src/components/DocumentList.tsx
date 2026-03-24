@@ -5,6 +5,14 @@ import { formatDate } from '../utils/format';
 interface DocumentListProps {
     documents: MedicalDocument[];
     onDelete?: (docId: string) => void;
+    labels?: {
+        emptyTitle: string;
+        emptyHint: string;
+        viewTitle: string;
+        downloadTitle: string;
+        deleteTitle: string;
+        categories?: Partial<Record<DocumentCategory, string>>;
+    };
 }
 
 const categoryLabels: Record<DocumentCategory, string> = {
@@ -41,13 +49,15 @@ function getMimeTypeIcon(mimeType: string): React.ReactNode {
     return '📎';
 }
 
-export function DocumentList({ documents, onDelete }: DocumentListProps) {
+export function DocumentList({ documents, onDelete, labels }: DocumentListProps) {
+    const categoryLabel = labels?.categories;
+
     if (documents.length === 0) {
         return (
             <div className="rounded-3xl border border-sapphire/20 bg-powder/15 p-8 text-center">
                 <File className="mx-auto h-12 w-12 text-navy/40" />
-                <p className="mt-3 text-sm font-medium text-navy/70">Aucun document uploadé</p>
-                <p className="mt-1 text-xs text-navy/60">Commencez par télécharger vos premières documents médicaux.</p>
+                <p className="mt-3 text-sm font-medium text-navy/70">{labels?.emptyTitle ?? 'Aucun document uploadé'}</p>
+                <p className="mt-1 text-xs text-navy/60">{labels?.emptyHint ?? 'Commencez par télécharger vos premiers documents médicaux.'}</p>
             </div>
         );
     }
@@ -68,7 +78,7 @@ export function DocumentList({ documents, onDelete }: DocumentListProps) {
                             <div className="flex items-center gap-3 flex-wrap">
                                 <h3 className="font-medium text-navy truncate">{doc.fileName}</h3>
                                 <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${categoryColors[doc.category]}`}>
-                                    {categoryLabels[doc.category]}
+                                    {categoryLabel?.[doc.category] ?? categoryLabels[doc.category]}
                                 </span>
                             </div>
                             <p className="mt-2 text-xs text-navy/65">
@@ -78,24 +88,49 @@ export function DocumentList({ documents, onDelete }: DocumentListProps) {
 
                         {/* Action Buttons */}
                         <div className="flex items-center gap-2">
-                            <button
-                                type="button"
-                                title="Voir le document"
-                                className="rounded-full border border-sapphire/30 bg-sapphire/15 p-2.5 text-sapphire transition hover:bg-sapphire/25"
-                            >
-                                <Eye className="h-4 w-4" />
-                            </button>
-                            <button
-                                type="button"
-                                title="Télécharger"
-                                className="rounded-full border border-call/30 bg-call/15 p-2.5 text-call transition hover:bg-call/25"
-                            >
-                                <Download className="h-4 w-4" />
-                            </button>
+                            {doc.url ? (
+                                <a
+                                    href={doc.url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    title={labels?.viewTitle ?? 'Voir le document'}
+                                    className="rounded-full border border-sapphire/30 bg-sapphire/15 p-2.5 text-sapphire transition hover:bg-sapphire/25"
+                                >
+                                    <Eye className="h-4 w-4" />
+                                </a>
+                            ) : (
+                                <button
+                                    type="button"
+                                    disabled
+                                    title={labels?.viewTitle ?? 'Voir le document'}
+                                    className="rounded-full border border-slate-200 bg-slate-100 p-2.5 text-slate-400"
+                                >
+                                    <Eye className="h-4 w-4" />
+                                </button>
+                            )}
+                            {doc.url ? (
+                                <a
+                                    href={doc.url}
+                                    download={doc.fileName}
+                                    title={labels?.downloadTitle ?? 'Télécharger'}
+                                    className="rounded-full border border-call/30 bg-call/15 p-2.5 text-call transition hover:bg-call/25"
+                                >
+                                    <Download className="h-4 w-4" />
+                                </a>
+                            ) : (
+                                <button
+                                    type="button"
+                                    disabled
+                                    title={labels?.downloadTitle ?? 'Télécharger'}
+                                    className="rounded-full border border-slate-200 bg-slate-100 p-2.5 text-slate-400"
+                                >
+                                    <Download className="h-4 w-4" />
+                                </button>
+                            )}
                             <button
                                 type="button"
                                 onClick={() => onDelete?.(doc.id)}
-                                title="Supprimer"
+                                title={labels?.deleteTitle ?? 'Supprimer'}
                                 className="rounded-full border border-emergency/30 bg-emergency/15 p-2.5 text-emergency transition hover:bg-emergency/25"
                             >
                                 <Trash2 className="h-4 w-4" />

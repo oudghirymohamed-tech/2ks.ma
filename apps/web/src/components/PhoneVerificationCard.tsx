@@ -6,6 +6,22 @@ interface PhoneVerificationCardProps {
     onPhoneChange: (value: string) => void;
     isVerified: boolean;
     onVerifiedChange: (value: boolean) => void;
+    copy?: {
+        badgeTitle: string;
+        helper: string;
+        verifiedLabel: string;
+        pendingLabel: string;
+        phoneInputLabel: string;
+        sendCodeButton: string;
+        sendingCodeButton: string;
+        codeSentMessage: string;
+        verifyCodeButton: string;
+        verifyingCodeButton: string;
+        resendCodeButton: string;
+        resendInLabel: string;
+        incorrectCodeLabel: string;
+        verifiedMessage: string;
+    };
 }
 
 function wait(ms: number) {
@@ -16,8 +32,26 @@ export function PhoneVerificationCard({
     phone,
     onPhoneChange,
     isVerified,
-    onVerifiedChange
+    onVerifiedChange,
+    copy
 }: PhoneVerificationCardProps) {
+    const labels = copy ?? {
+        badgeTitle: 'Vérification du numéro',
+        helper: 'La vérification du téléphone est obligatoire avant la création du compte',
+        verifiedLabel: 'Numéro vérifié',
+        pendingLabel: 'En attente',
+        phoneInputLabel: 'Entrez votre numéro de téléphone',
+        sendCodeButton: 'Envoyer le code',
+        sendingCodeButton: 'Envoi...',
+        codeSentMessage: 'Nous avons envoyé un code à 6 chiffres',
+        verifyCodeButton: 'Vérifier le code',
+        verifyingCodeButton: 'Vérification...',
+        resendCodeButton: 'Renvoyer le code',
+        resendInLabel: 'Renvoyer dans',
+        incorrectCodeLabel: 'Code incorrect',
+        verifiedMessage: 'Numéro vérifié'
+    };
+
     const [otp, setOtp] = useState('');
     const [isSending, setIsSending] = useState(false);
     const [isVerifying, setIsVerifying] = useState(false);
@@ -78,7 +112,7 @@ export function PhoneVerificationCard({
 
     async function handleVerifyCode() {
         if (otp.length !== 6) {
-            setErrorMessage('Code incorrect');
+            setErrorMessage(labels.incorrectCodeLabel);
             return;
         }
 
@@ -89,10 +123,10 @@ export function PhoneVerificationCard({
         if (otp === '123456') {
             onVerifiedChange(true);
             setErrorMessage('');
-            setInfoMessage('Numéro vérifié');
+            setInfoMessage(labels.verifiedMessage);
         } else {
             onVerifiedChange(false);
-            setErrorMessage('Code incorrect');
+            setErrorMessage(labels.incorrectCodeLabel);
         }
 
         setIsVerifying(false);
@@ -110,27 +144,27 @@ export function PhoneVerificationCard({
         <div className="rounded-[1.7rem] border border-sapphire/25 bg-powder/20 p-5">
             <div className="flex items-start justify-between gap-3">
                 <div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sapphire">Vérification du numéro</p>
+                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sapphire">{labels.badgeTitle}</p>
                     <p className="mt-2 text-sm leading-6 text-navy/75">
-                        La vérification du téléphone est obligatoire avant la création du compte
+                        {labels.helper}
                     </p>
                 </div>
                 {isVerified ? (
                     <span className="inline-flex items-center gap-2 rounded-full border border-call/35 bg-call/20 px-3 py-1 text-xs font-semibold text-call">
                         <CheckCircle2 className="h-4 w-4" />
-                        Numéro vérifié
+                        {labels.verifiedLabel}
                     </span>
                 ) : (
                     <span className="inline-flex items-center gap-2 rounded-full border border-sapphire/25 bg-sapphire/10 px-3 py-1 text-xs font-semibold text-sapphire">
                         <ShieldCheck className="h-4 w-4" />
-                        En attente
+                        {labels.pendingLabel}
                     </span>
                 )}
             </div>
 
             <div className="mt-5 space-y-4">
                 <label className="block">
-                    <span className="mb-2 block text-sm font-medium text-navy">Entrez votre numéro de téléphone</span>
+                    <span className="mb-2 block text-sm font-medium text-navy">{labels.phoneInputLabel}</span>
                     <div className="flex flex-col gap-3 sm:flex-row">
                         <input
                             value={phone}
@@ -144,14 +178,14 @@ export function PhoneVerificationCard({
                             className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl bg-sapphire px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#0C43A0] disabled:cursor-not-allowed disabled:opacity-50"
                         >
                             <Send className="h-4 w-4" />
-                            {isSending ? 'Envoi...' : 'Envoyer le code'}
+                            {isSending ? labels.sendingCodeButton : labels.sendCodeButton}
                         </button>
                     </div>
                 </label>
 
                 {isCodeSent ? (
                     <div className="rounded-2xl border border-sapphire/20 bg-sapphire/10 p-4">
-                        <p className="text-sm font-medium text-sapphire">Nous avons envoyé un code à 6 chiffres</p>
+                        <p className="text-sm font-medium text-sapphire">{labels.codeSentMessage}</p>
                         <div className="mt-3 flex flex-col gap-3 sm:flex-row">
                             <input
                                 value={otp}
@@ -166,7 +200,7 @@ export function PhoneVerificationCard({
                                 disabled={isVerifying}
                                 className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl bg-call px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#166D2F] disabled:cursor-not-allowed disabled:opacity-50"
                             >
-                                {isVerifying ? 'Vérification...' : 'Vérifier le code'}
+                                {isVerifying ? labels.verifyingCodeButton : labels.verifyCodeButton}
                             </button>
                         </div>
                         <div className="mt-3 flex items-center justify-between gap-3">
@@ -177,9 +211,9 @@ export function PhoneVerificationCard({
                                 className="inline-flex items-center gap-2 rounded-full border border-sapphire/30 bg-white px-3 py-1.5 text-xs font-semibold text-sapphire transition hover:bg-powder/30 disabled:cursor-not-allowed disabled:opacity-50"
                             >
                                 <RefreshCw className="h-3.5 w-3.5" />
-                                Renvoyer le code
+                                {labels.resendCodeButton}
                             </button>
-                            {resendTimer > 0 ? <p className="text-xs text-navy/65">Renvoyer dans {resendTimer}s</p> : null}
+                            {resendTimer > 0 ? <p className="text-xs text-navy/65">{labels.resendInLabel} {resendTimer}s</p> : null}
                         </div>
                     </div>
                 ) : null}
