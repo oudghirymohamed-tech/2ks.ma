@@ -1,0 +1,42 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { AlertTriangle, LockKeyhole, PhoneCall, ShieldAlert } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { OtpPanel } from '../components/OtpPanel';
+import { PageMeta } from '../components/PageMeta';
+import { useLanguage } from '../context/LanguageContext';
+import { getPublicEmergencyProfile, requestProfessionalOtp, verifyProfessionalOtp } from '../services/api';
+export function EmergencyDemoPage() {
+    const { token = 'demo-token' } = useParams();
+    const { language } = useLanguage();
+    const isArabic = language === 'ar';
+    const [profile, setProfile] = useState(null);
+    const [levelOneOpen, setLevelOneOpen] = useState(false);
+    const [error, setError] = useState('');
+    useEffect(() => {
+        getPublicEmergencyProfile(token)
+            .then(setProfile)
+            .catch((requestError) => {
+            setError(requestError instanceof Error ? requestError.message : 'Unable to load emergency profile.');
+        });
+    }, [token]);
+    async function handleVerify(otp) {
+        const result = await verifyProfessionalOtp(otp, 'pro-demo-1', token);
+        setLevelOneOpen(result.status === 'verified');
+        return { status: result.status };
+    }
+    if (error) {
+        return _jsx("div", { className: "min-h-screen bg-navy px-6 py-20 text-white", children: error });
+    }
+    if (!profile) {
+        return (_jsx("div", { className: "min-h-screen bg-navy px-6 py-20 text-white", children: isArabic ? 'جارٍ تحميل ملف الطوارئ...' : 'Loading emergency profile...' }));
+    }
+    const patient = profile.patient;
+    return (_jsxs("div", { className: `min-h-screen bg-navy text-white ${isArabic ? 'font-arabic text-right' : ''}`, children: [_jsx(PageMeta, { title: "2ks | Emergency access", description: "Emergency-critical public profile with professional OTP unlock for deeper access." }), _jsxs("main", { className: "mx-auto max-w-xl px-4 pb-28 pt-4 sm:px-6", children: [_jsx("section", { className: "sticky top-0 z-20 -mx-4 border-b border-sapphire/20 bg-navy/95 px-4 pb-4 pt-2 backdrop-blur sm:-mx-6 sm:px-6", children: _jsxs("div", { className: "rounded-[1.8rem] bg-emergency p-5 shadow-panel", children: [_jsx("p", { className: "text-xs font-semibold uppercase tracking-[0.24em] text-white/80", children: isArabic ? 'وصول الطوارئ' : 'Emergency access' }), _jsx("h1", { className: "mt-3 text-2xl font-semibold", children: isArabic ? 'معلومات حرجة ظاهرة فوراً' : 'Critical profile visible immediately' }), _jsx("p", { className: "mt-2 text-sm leading-6 text-white/80", children: isArabic
+                                        ? 'يتم عرض البيانات الضرورية للطوارئ فقط في هذا المستوى العام.'
+                                        : 'Only emergency-critical data is visible in this public level.' })] }) }), patient.isMinor && patient.guardianRelationship ? (_jsxs("section", { className: "mt-4 rounded-[1.6rem] border border-sapphire/30 bg-sapphire/45 p-4", children: [_jsx("p", { className: "text-xs font-semibold uppercase tracking-[0.2em] text-white/75", children: isArabic ? 'مريض قاصر' : 'Minor patient' }), _jsxs("p", { className: "mt-2 text-base font-semibold", children: [isArabic ? 'تواصل مع ولي الأمر:' : 'Contact legal guardian:', " ", patient.guardianRelationship.guardianName] }), _jsxs("p", { className: "mt-1 text-sm text-white/80", children: [patient.guardianRelationship.relation, " \u00B7 ", patient.guardianRelationship.phone] })] })) : null, _jsxs("section", { className: "mt-4 rounded-[2rem] border border-emergency/45 bg-emergency/15 p-5", children: [_jsx("p", { className: "text-xs uppercase tracking-[0.22em] text-emergency", children: isArabic ? 'فصيلة الدم' : 'Blood type' }), _jsx("p", { className: "mt-3 text-7xl font-semibold leading-none text-emergency", children: patient.medicalProfile.bloodType })] }), _jsxs("section", { className: "mt-4 rounded-[2rem] border border-emergency/35 bg-powder/30 p-5", children: [_jsx("p", { className: "text-xs uppercase tracking-[0.22em] text-emergency", children: isArabic ? 'الحساسية' : 'Allergies' }), _jsx("div", { className: "mt-3 flex flex-wrap gap-2", children: patient.medicalProfile.allergies.map((allergy) => (_jsx("span", { className: "rounded-full border border-emergency/35 bg-powder px-3 py-1.5 text-sm font-semibold text-navy", children: allergy }, allergy))) })] }), _jsxs("section", { className: "mt-4 rounded-[2rem] border border-sapphire/20 bg-[#02133C] p-5", children: [_jsx("p", { className: "text-xs uppercase tracking-[0.22em] text-powder/80", children: isArabic ? 'الأمراض المزمنة' : 'Chronic conditions' }), _jsx("div", { className: "mt-3 flex flex-wrap gap-2", children: patient.medicalProfile.chronicConditions.length > 0 ? (patient.medicalProfile.chronicConditions.map((value) => (_jsx("span", { className: "rounded-full border border-sapphire/20 bg-sapphire/20 px-3 py-1.5 text-sm font-medium text-ice", children: value }, value)))) : (_jsx("span", { className: "text-sm text-ice/75", children: isArabic ? 'لا توجد بيانات' : 'No data provided.' })) })] }), _jsxs("section", { className: "mt-4 rounded-[2rem] border border-sapphire/30 bg-sapphire/20 p-5", children: [_jsxs("div", { className: "flex items-center gap-3 text-ice", children: [_jsx(ShieldAlert, { className: "h-5 w-5" }), _jsx("p", { className: "text-sm font-semibold uppercase tracking-[0.22em]", children: isArabic ? 'تعليمات الطوارئ' : 'Emergency instructions' })] }), _jsx("ul", { className: "mt-4 space-y-3 text-sm leading-7 text-ice/95", children: patient.medicalProfile.emergencyInstructions.map((instruction) => (_jsx("li", { className: "rounded-2xl bg-navy/40 px-4 py-3", children: instruction }, instruction))) })] }), _jsxs("section", { className: "mt-4 rounded-[2rem] border border-sapphire/20 bg-[#011238] p-5", children: [_jsx("p", { className: "text-xs uppercase tracking-[0.22em] text-powder/85", children: isArabic ? 'جهة اتصال الطوارئ' : 'Emergency contact' }), _jsx("p", { className: "mt-3 text-xl font-semibold", children: patient.emergencyContact.name }), _jsx("p", { className: "mt-1 text-sm text-white/70", children: patient.emergencyContact.relation }), _jsx("a", { href: `tel:${patient.emergencyContact.phone.replace(/\s/g, '')}`, className: "mt-3 inline-flex rounded-full border border-call/30 bg-call/20 px-4 py-2 text-sm font-semibold text-white", children: patient.emergencyContact.phone })] }), _jsxs("section", { className: "mt-4 rounded-[2rem] border border-sapphire/20 bg-[#00133A] p-5", children: [_jsxs("button", { type: "button", onClick: () => setLevelOneOpen((current) => !current), className: "inline-flex items-center gap-2 text-sm font-semibold text-powder", children: [_jsx(LockKeyhole, { className: "h-4 w-4" }), isArabic ? 'وصول الطبيب' : 'Professional access'] }), _jsx("p", { className: "mt-2 text-sm leading-6 text-ice/75", children: isArabic
+                                    ? 'مستوى إضافي للطبيب بعد OTP، لا يظهر بشكل افتراضي في المسار العام.'
+                                    : 'Secondary clinician level unlocked only after OTP verification.' }), _jsx("div", { className: "mt-4", children: _jsx(OtpPanel, { patientToken: token, onRequestOtp: requestProfessionalOtp, onVerifyOtp: handleVerify }) }), levelOneOpen ? (_jsx("div", { className: "mt-4 rounded-3xl border border-sapphire/30 bg-sapphire/20 p-4 text-sm leading-7 text-ice", children: isArabic
+                                    ? 'تم فتح المستوى المهني. البيانات الموسعة يجب أن تأتي من واجهة خلفية موثقة.'
+                                    : 'Level 1 unlocked. Extended details should only be delivered through verified backend access.' })) : null] }), _jsxs(Link, { to: "/demo", className: "mt-6 inline-flex items-center gap-2 text-sm font-semibold text-powder/90", children: [_jsx(AlertTriangle, { className: "h-4 w-4" }), isArabic ? 'العودة إلى مركز العرض' : 'Back to demo hub'] })] }), _jsx("div", { className: "fixed inset-x-0 bottom-0 z-30 border-t border-sapphire/25 bg-navy/95 p-4 backdrop-blur", children: _jsx("div", { className: "mx-auto max-w-xl", children: _jsxs("a", { href: "tel:112", className: "flex min-h-14 items-center justify-center gap-3 rounded-full bg-call px-6 text-base font-semibold text-white shadow-panel", children: [_jsx(PhoneCall, { className: "h-5 w-5" }), isArabic ? 'اتصل بالطوارئ' : 'Call emergency'] }) }) })] }));
+}

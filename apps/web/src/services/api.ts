@@ -6,6 +6,14 @@ const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL?.trim() || 'http://local
 const DEMO_LOGIN_EMAIL = 'oudghirymohamed@gmail.com';
 const DEMO_LOGIN_PASSWORD = '555HTM##';
 const DEMO_TOKEN = 'demo-gitex-local-token';
+const DEMO_EMERGENCY_TOKENS = new Set(['demo-token', 'gitex-demo-qr-token']);
+
+// DEMO/STAGING ONLY: GITEX card-verification + registration fallback.
+const DEMO_CARD_SERIALS = new Set(['2KS-BETA-NEW', 'GITEX-2026-DEMO', 'GITEX-DEMO-001']);
+const DEMO_CARD_ID = 'demo-card-gitex-verified';
+const DEMO_OTP_ID = 'demo-otp-gitex-registration';
+// Module-level flag — set true when a demo card is verified; cleared after registerPatient.
+let _demoRegistrationActive = false;
 
 const DEMO_USER: ApiUser = {
     id: 'user-gitex-demo',
@@ -120,6 +128,32 @@ const DEMO_PATIENT: Patient = {
     medicalDocuments: DEMO_DOCUMENTS
 };
 
+const DEMO_PROFESSIONAL: Professional = {
+    id: 'pro-demo-1',
+    fullName: 'Dr. Amal Benali',
+    profession: 'Emergency doctor',
+    licenseRegion: 'Marrakech-Safi',
+    phone: '+212611223344',
+    kycStatus: 'verified',
+    accessHistory: [],
+    activeDelegations: []
+};
+
+const DEMO_PUBLIC_EMERGENCY: PublicEmergencyResponse = {
+    token: 'demo-token',
+    patient: {
+        id: DEMO_PATIENT.id,
+        fullName: DEMO_PATIENT.fullName,
+        age: DEMO_PATIENT.age,
+        isMinor: DEMO_PATIENT.isMinor,
+        city: DEMO_PATIENT.city,
+        emergencyContact: DEMO_PATIENT.emergencyContact,
+        guardianRelationship: DEMO_PATIENT.guardianRelationship,
+        medicalProfile: DEMO_PATIENT.medicalProfile,
+        nfcCard: DEMO_PATIENT.nfcCard
+    }
+};
+
 export interface ApiUser {
     id: string;
     role: 'patient' | 'doctor' | 'b2b' | 'admin';
@@ -204,6 +238,12 @@ export async function getAuthMe() {
 }
 
 export async function verifyCard(serial: string, activationCode: string) {
+    // DEMO/STAGING ONLY: treat any known demo serial as instantly verified.
+    if (DEMO_CARD_SERIALS.has(serial.trim().toUpperCase())) {
+        _demoRegistrationActive = true;
+        return { cardId: DEMO_CARD_ID, serial, status: 'active' };
+    }
+
     return request<{ cardId: string; serial: string; status: string }>('/cards/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -212,6 +252,11 @@ export async function verifyCard(serial: string, activationCode: string) {
 }
 
 export async function requestOtp(phone: string, profileId: string, scope: 'patient-registration' | 'doctor-onboarding') {
+    // DEMO/STAGING ONLY: skip OTP API when a demo registration is in progress.
+    if (_demoRegistrationActive) {
+        return { otpId: DEMO_OTP_ID, expiresAt: '', message: 'Demo OTP sent.', debugCode: '123456' };
+    }
+
     return request<{ otpId: string; expiresAt: string; message: string; debugCode?: string }>('/otp/request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -220,6 +265,11 @@ export async function requestOtp(phone: string, profileId: string, scope: 'patie
 }
 
 export async function verifyOtp(otpId: string, code: string) {
+    // DEMO/STAGING ONLY: any 6-digit code is accepted for the demo OTP.
+    if (_demoRegistrationActive && otpId === DEMO_OTP_ID) {
+        return { status: 'verified' as const };
+    }
+
     return request<{ status: 'verified' }>('/otp/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -247,6 +297,12 @@ export interface PatientRegistrationPayload {
 }
 
 export async function registerPatient(payload: PatientRegistrationPayload) {
+    // DEMO/STAGING ONLY: create a demo session when the demo card was used.
+    if (_demoRegistrationActive && payload.cardId === DEMO_CARD_ID) {
+        _demoRegistrationActive = false;
+        return { token: DEMO_TOKEN, user: DEMO_USER };
+    }
+
     return request<{ token: string; user: ApiUser }>('/patients/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -284,10 +340,26 @@ export async function onboardB2B(payload: {
 }
 
 export async function getPublicEmergencyProfile(token: string): Promise<PublicEmergencyResponse> {
+    if (DEMO_EMERGENCY_TOKENS.has(token)) {
+        return {
+            ...DEMO_PUBLIC_EMERGENCY,
+            token
+        };
+    }
+
     return request<PublicEmergencyResponse>(`/public/emergency/${encodeURIComponent(token)}`);
 }
 
 export async function requestProfessionalOtp(phone: string, patientToken: string) {
+    if (DEMO_EMERGENCY_TOKENS.has(patientToken)) {
+        return {
+            status: 'sent',
+            message: 'OTP sent for professional verification.',
+            otpId: 'demo-prof-otp',
+            debugCode: '123456'
+        };
+    }
+
     return request<{ status: string; message: string; otpId: string; debugCode?: string }>('/professional/request-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -296,6 +368,19 @@ export async function requestProfessionalOtp(phone: string, patientToken: string
 }
 
 export async function verifyProfessionalOtp(otp: string, professionalId: string, patientToken: string) {
+    if (DEMO_EMERGENCY_TOKENS.has(patientToken)) {
+        if (otp !== '123456') {
+            throw new ApiError('Invalid OTP.', 401);
+        }
+
+        return {
+            status: 'verified',
+            accessLevel: 'level-1' as const,
+            patient: { ...DEMO_PATIENT, medicalDocuments: [...DEMO_DOCUMENTS] },
+            professional: DEMO_PROFESSIONAL
+        };
+    }
+
     return request<{ status: string; accessLevel: 'level-1'; patient: Patient; professional: Professional }>('/professional/verify-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

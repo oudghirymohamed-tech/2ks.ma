@@ -1,0 +1,10 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
+export function Footer() {
+    const { language } = useLanguage();
+    const isArabic = language === 'ar';
+    return (_jsx("footer", { className: "border-t border-sapphire/20 bg-powder/45", children: _jsxs("div", { className: "mx-auto grid max-w-7xl gap-8 px-4 py-10 text-sm text-navy/80 sm:px-6 lg:grid-cols-[1.3fr_1fr_1fr] lg:px-8", children: [_jsxs("div", { children: [_jsx("p", { className: "text-lg font-semibold text-navy", children: "HayatID by 2KS" }), _jsx("p", { className: "mt-3 max-w-md leading-7", children: isArabic
+                                ? 'تجربة عرض احترافية لـ GITEX. البيانات المعروضة تجريبية فقط ولا يتم كشف أي معلومات طبية محمية من الواجهة.'
+                                : 'Professional GITEX demo experience. Mock data only. No protected medical data is exposed from the frontend.' })] }), _jsxs("div", { children: [_jsx("p", { className: "font-semibold text-navy", children: isArabic ? 'المسارات' : 'Flows' }), _jsxs("div", { className: "mt-3 flex flex-col gap-2", children: [_jsx(Link, { to: "/demo", className: "hover:text-sapphire", children: isArabic ? 'مركز العرض' : 'Demo hub' }), _jsx(Link, { to: "/u/demo-token", className: "hover:text-sapphire", children: isArabic ? 'مسح الطوارئ' : 'Emergency scan' }), _jsx(Link, { to: "/dashboard", className: "hover:text-sapphire", children: isArabic ? 'لوحة المريض' : 'Patient dashboard' })] })] }), _jsxs("div", { children: [_jsx("p", { className: "font-semibold text-navy", children: isArabic ? 'المنصة' : 'Platform' }), _jsxs("div", { className: "mt-3 flex flex-col gap-2", children: [_jsx("span", { children: isArabic ? 'الواجهة: Vercel' : 'Frontend: Vercel' }), _jsx("span", { children: isArabic ? 'الخلفية: اختيارية في هذه النسخة التجريبية' : 'Backend: optional in this demo build' }), _jsx("span", { children: isArabic ? 'التوسع لاحقاً: Supabase و Redis و Resend' : 'Future stack: Supabase, Redis, Resend' })] })] })] }) }));
+}
