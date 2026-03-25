@@ -12,6 +12,7 @@ const landingContent = {
         eyebrow: '2ks medical NFC platform',
         title: 'Emergency medical access in one tap.',
         body: 'A patient taps the NFC card and 2ks opens instantly with the right emergency details, clear next steps, and a secure path to the full account experience.',
+        primaryCta: 'Become a client',
         urgentLabel: 'Urgent access',
         urgentBody: 'Show the critical profile immediately: blood type, allergies, chronic conditions, and emergency notes.',
         infoLabel: 'More information',
@@ -45,6 +46,7 @@ const landingContent = {
         eyebrow: 'Plateforme medicale NFC 2ks',
         title: 'Acces medical d\'urgence en un geste.',
         body: 'Le patient approche sa carte NFC et 2ks s\'ouvre instantanement avec les bonnes informations d\'urgence, puis un acces securise au compte.',
+        primaryCta: 'Devenir un client',
         urgentLabel: 'Acces urgent',
         urgentBody: 'Afficher immediatement le profil critique: groupe sanguin, allergies, maladies chroniques et notes d\'urgence.',
         infoLabel: 'Plus d\'informations',
@@ -78,6 +80,7 @@ const landingContent = {
         eyebrow: 'منصة 2ks الطبية عبر NFC',
         title: 'الوصول الطبي العاجل بلمسة واحدة.',
         body: 'عند لمس بطاقة المريض NFC تفتح منصة 2ks فوراً وتعرض معلومات الطوارئ المناسبة مع مسار واضح وآمن للوصول إلى الحساب الكامل.',
+        primaryCta: 'كن عميلاً',
         urgentLabel: 'وصول الطوارئ',
         urgentBody: 'إظهار المعلومات الحرجة فوراً مثل فصيلة الدم والحساسية والأمراض المزمنة وملاحظات الطوارئ.',
         infoLabel: 'معلومات إضافية',
@@ -137,6 +140,36 @@ export function LandingPage() {
                             <p className="mt-5 max-w-2xl text-base leading-7 text-navy/75 sm:text-lg sm:leading-8">
                                 {content.body}
                             </p>
+
+                            <div className="mt-6 flex flex-wrap items-center gap-3">
+                                <Link
+                                    to="/contact"
+                                    className="inline-flex items-center gap-2 rounded-full bg-sapphire px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0C43A0]"
+                                >
+                                    {content.primaryCta}
+                                </Link>
+                                <a
+                                    href="tel:+212600000000"
+                                    className="inline-flex items-center gap-2 rounded-full border border-sapphire/20 bg-white/80 px-4 py-2.5 text-xs font-semibold text-navy sm:text-sm"
+                                >
+                                    <Phone className="h-4 w-4 text-sapphire" />
+                                    +212 6XX XXX XXX
+                                </a>
+                                <a
+                                    href="https://wa.me/212600000000"
+                                    className="inline-flex items-center gap-2 rounded-full border border-sapphire/20 bg-white/80 px-4 py-2.5 text-xs font-semibold text-navy sm:text-sm"
+                                >
+                                    <Phone className="h-4 w-4 text-sapphire" />
+                                    WhatsApp: +212 6XX XXX XXX
+                                </a>
+                                <a
+                                    href="mailto:contact@2ks.ma"
+                                    className="inline-flex items-center gap-2 rounded-full border border-sapphire/20 bg-white/80 px-4 py-2.5 text-xs font-semibold text-navy sm:text-sm"
+                                >
+                                    <Phone className="h-4 w-4 text-sapphire" />
+                                    contact@2ks.ma
+                                </a>
+                            </div>
 
                             <div className="mt-8 grid gap-3 sm:grid-cols-2">
                                 <Link

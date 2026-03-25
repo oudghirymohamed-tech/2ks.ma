@@ -1,18 +1,25 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { AboutUsPage } from './pages/AboutUsPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { AdminPage } from './pages/AdminPage';
 import { B2BPage } from './pages/B2BPage';
+import { ContactUsPage } from './pages/ContactUsPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { DemoHubPage } from './pages/DemoHubPage';
 import { EmergencyDemoPage } from './pages/EmergencyDemoPage';
+import { FaqPage } from './pages/FaqPage';
+import { HowItWorksPage } from './pages/HowItWorksPage';
 import { LandingPage } from './pages/LandingPage';
 import { LoginPage } from './pages/LoginPage';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { ProfessionalDashboardPage } from './pages/ProfessionalDashboardPage';
 import { ProfessionalLandingPage } from './pages/ProfessionalLandingPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import { RegistrationPage } from './pages/RegistrationPage';
+import { ServicesPage } from './pages/ServicesPage';
+import { TermsPage } from './pages/TermsPage';
 
 export default function App() {
     return (
@@ -21,6 +28,13 @@ export default function App() {
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<LandingPage />} />
+                        <Route path="/about" element={<AboutUsPage />} />
+                        <Route path="/how-it-works" element={<HowItWorksPage />} />
+                        <Route path="/services" element={<ServicesPage />} />
+                        <Route path="/contact" element={<ContactUsPage />} />
+                        <Route path="/faq" element={<FaqPage />} />
+                        <Route path="/terms" element={<TermsPage />} />
+                        <Route path="/privacy" element={<PrivacyPolicyPage />} />
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/checkout" element={<CheckoutPage />} />
                         <Route path="/register" element={<RegistrationPage />} />
