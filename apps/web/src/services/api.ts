@@ -6,7 +6,7 @@ const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL?.trim() || 'http://local
 const DEMO_LOGIN_EMAIL = 'oudghirymohamed@gmail.com';
 const DEMO_LOGIN_PASSWORD = '555HTM##';
 const DEMO_TOKEN = 'demo-gitex-local-token';
-const DEMO_EMERGENCY_TOKENS = new Set(['demo-token', 'gitex-demo-qr-token']);
+const DEMO_EMERGENCY_TOKENS = new Set(['demo-token', 'demo-minor', 'gitex-demo-qr-token']);
 
 // DEMO/STAGING ONLY: GITEX card-verification + registration fallback.
 const DEMO_CARD_SERIALS = new Set(['2KS-BETA-NEW', 'GITEX-2026-DEMO', 'GITEX-DEMO-001']);
@@ -151,6 +151,48 @@ const DEMO_PUBLIC_EMERGENCY: PublicEmergencyResponse = {
         guardianRelationship: DEMO_PATIENT.guardianRelationship,
         medicalProfile: DEMO_PATIENT.medicalProfile,
         nfcCard: DEMO_PATIENT.nfcCard
+    }
+};
+
+const DEMO_PUBLIC_EMERGENCY_MINOR: PublicEmergencyResponse = {
+    token: 'demo-minor',
+    patient: {
+        id: 'demo-patient-minor',
+        fullName: 'Adam Lahlou',
+        age: 9,
+        isMinor: true,
+        city: 'Casablanca',
+        emergencyContact: {
+            name: 'Nadia Lahlou',
+            relation: 'Mother',
+            phone: '+212603551987'
+        },
+        guardianRelationship: {
+            guardianName: 'Nadia Lahlou',
+            relation: 'Mother',
+            phone: '+212603551987'
+        },
+        medicalProfile: {
+            bloodType: 'A+',
+            allergies: ['Latex'],
+            implants: [],
+            chronicConditions: ['Intermittent asthma'],
+            medications: ['Ventolin as needed'],
+            g6pd: false,
+            advanceDirectives: 'Contact legal guardian before non-urgent decisions.',
+            emergencyInstructions: [
+                'Notify guardian once patient is stabilized.',
+                'Avoid latex exposure.',
+                'Escalate for pediatric support when needed.'
+            ]
+        },
+        nfcCard: {
+            id: 'card-demo-minor',
+            status: 'active',
+            issuedAt: '2026-01-18T12:30:00Z',
+            qrToken: 'demo-minor',
+            lastScannedAt: '2026-03-18T11:10:00Z'
+        }
     }
 };
 
@@ -341,6 +383,13 @@ export async function onboardB2B(payload: {
 
 export async function getPublicEmergencyProfile(token: string): Promise<PublicEmergencyResponse> {
     if (DEMO_EMERGENCY_TOKENS.has(token)) {
+        if (token === 'demo-minor') {
+            return {
+                ...DEMO_PUBLIC_EMERGENCY_MINOR,
+                token
+            };
+        }
+
         return {
             ...DEMO_PUBLIC_EMERGENCY,
             token

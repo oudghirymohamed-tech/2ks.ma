@@ -176,7 +176,7 @@ export function B2BPage() {
                             {isArabic ? 'فتح مركز العرض' : 'Open demo hub'}
                             <ArrowRight className="h-4 w-4" />
                         </Link>
-                        <Link to="/u/demo-token" className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700">
+                        <Link to="/card/demo-token" className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700">
                             {isArabic ? 'عرض مسار الطوارئ' : 'View emergency scan'}
                         </Link>
                     </div>

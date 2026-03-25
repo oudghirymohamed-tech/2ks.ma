@@ -54,10 +54,13 @@ export function LoginPage() {
         <MarketingLayout>
             <PageMeta
                 title={getLabel('2ks | Login', '2ks | Connexion', '2ks | تسجيل الدخول')}
-                description={getLabel('Secure login for patient, doctor, and partner access.', 'Connexion sécurisée pour patients, doctors et partenaires.', 'تسجيل دخول آمن للمرضى والأطباء والشركاء.')}
+                description={getLabel('Clean login demo flow for HayatID account access.', 'Flux de connexion demo propre pour l\'acces compte HayatID.', 'تدفق تسجيل دخول تجريبي واضح للوصول إلى حساب HayatID.')}
             />
             <section className="mx-auto max-w-xl px-4 py-14 sm:px-6 lg:px-8">
                 <div className={`rounded-[2rem] border border-slate-200 bg-white p-7 shadow-soft sm:p-9 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                    <div className="inline-flex rounded-full border border-sapphire/20 bg-sapphire/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-sapphire">
+                        {getLabel('Demo / Staging', 'Demo / Staging', 'تجريبي / مرحلي')}
+                    </div>
                     <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sapphire">
                         {getLabel('Login', 'Connexion', 'تسجيل الدخول')}
                     </p>
@@ -65,7 +68,7 @@ export function LoginPage() {
                         {getLabel('Sign in to your 2ks account', 'Connectez-vous à votre compte 2ks', 'الدخول إلى حسابك في 2ks')}
                     </h1>
                     <p className="mt-3 text-sm leading-7 text-navy/70">
-                        {getLabel('Use your phone/email and password to access your account.', 'Utilisez votre email et mot de passe.', 'استخدم رقم الهاتف أو البريد مع كلمة المرور.')}
+                        {getLabel('Use only your email or phone number and password to continue.', 'Utilisez uniquement votre email ou telephone et votre mot de passe pour continuer.', 'استخدم البريد الإلكتروني أو رقم الهاتف مع كلمة المرور للمتابعة.')}
                     </p>
 
                     <form onSubmit={handleSubmit} className="mt-6 space-y-4">
@@ -77,6 +80,7 @@ export function LoginPage() {
                                 value={loginValue}
                                 onChange={(event) => setLoginValue(event.target.value)}
                                 required
+                                placeholder={getLabel('you@example.com or +212...', 'email@exemple.com ou +212...', 'you@example.com أو +212...')}
                                 className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-sapphire"
                             />
                         </label>
@@ -91,6 +95,7 @@ export function LoginPage() {
                                 onChange={(event) => setPassword(event.target.value)}
                                 required
                                 minLength={8}
+                                placeholder="********"
                                 className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-sapphire"
                             />
                         </label>

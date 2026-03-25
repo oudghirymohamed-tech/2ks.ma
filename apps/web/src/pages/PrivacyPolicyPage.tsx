@@ -79,6 +79,14 @@ export function PrivacyPolicyPage() {
                         </article>
                     ))}
                 </div>
+
+                <div className={`mt-6 rounded-3xl border border-sapphire/15 bg-powder/25 p-4 text-sm text-navy/78 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                    {t(
+                        'Last updated: March 2026. This policy is intended for a polished public demo and will evolve with production deployment.',
+                        'Derniere mise a jour : mars 2026. Cette politique est prevue pour une demo publique soignee et evoluera avec la production.',
+                        'آخر تحديث: مارس 2026. هذه السياسة مخصصة لعرض عام احترافي وستتطور مع الإطلاق الإنتاجي.'
+                    )}
+                </div>
             </section>
         </MarketingLayout>
     );

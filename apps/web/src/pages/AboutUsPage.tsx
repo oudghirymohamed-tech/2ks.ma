@@ -15,39 +15,39 @@ export function AboutUsPage() {
 
     const pillars = [
         {
+            icon: Building2,
+            title: t('Who We Are', 'Qui nous sommes', 'من نحن'),
+            body: t(
+                '2ks Digital Solutions is building HayatID as a medical-tech concept focused on practical emergency readiness for patients and care teams.',
+                '2ks Digital Solutions developpe HayatID comme un concept medical-tech axe sur une preparedness d\'urgence pratique pour patients et soignants.',
+                'تطور 2ks Digital Solutions مشروع HayatID كمفهوم طبي تقني يركز على جاهزية طوارئ عملية للمرضى وفرق الرعاية.'
+            )
+        },
+        {
             icon: Target,
             title: t('Mission', 'Mission', 'المهمة'),
             body: t(
-                'Make emergency medical identity clear, fast, and accessible with NFC-powered patient cards.',
-                'Rendre l\'identite medicale d\'urgence claire, rapide et accessible via des cartes patients NFC.',
-                'جعل الهوية الطبية للطوارئ واضحة وسريعة ومتاحة عبر بطاقات المرضى بتقنية NFC.'
+                'Our mission is to make emergency medical identity fast, understandable, and trustworthy using NFC-enabled card experiences.',
+                'Notre mission est de rendre l\'identite medicale d\'urgence rapide, comprehensible et fiable via des experiences carte NFC.',
+                'مهمتنا هي جعل الهوية الطبية للطوارئ سريعة ومفهومة وموثوقة عبر تجارب بطاقات NFC.'
             )
         },
         {
             icon: ShieldCheck,
-            title: t('Trust Model', 'Modele de confiance', 'نموذج الثقة'),
+            title: t('Vision', 'Vision', 'الرؤية'),
             body: t(
-                'Urgent access reveals only life-critical data while private records remain protected behind controlled workflows.',
-                'L\'acces urgent n\'affiche que les donnees vitales, tandis que les donnees privees restent protegees.',
-                'يعرض وضع الطوارئ البيانات الحيوية فقط، بينما تبقى البيانات الخاصة محمية ضمن مسارات مضبوطة.'
+                'We aim to become a trusted digital health identity layer where urgent data is instantly available and private medical depth stays protected.',
+                'Nous visons une couche d\'identite sante de confiance ou les donnees urgentes sont immediates et les donnees privees restent protegees.',
+                'نطمح لأن نصبح طبقة موثوقة للهوية الصحية الرقمية حيث تتوفر بيانات الطوارئ فوراً وتبقى الخصوصية محمية.'
             )
         },
         {
             icon: Users,
-            title: t('Audience', 'Audience', 'الفئة المستهدفة'),
+            title: t('Startup Focus', 'Orientation startup', 'توجه الشركة الناشئة'),
             body: t(
-                'Built for patients, families, providers, and partner institutions seeking practical emergency readiness.',
-                'Concu pour les patients, familles, soignants et institutions partenaires cherchant une vraie preparedness.',
-                'مصمم للمرضى والعائلات ومقدمي الرعاية والشركاء الباحثين عن جاهزية طوارئ عملية.'
-            )
-        },
-        {
-            icon: Building2,
-            title: t('Company', 'Entreprise', 'الشركة'),
-            body: t(
-                'HayatID is a concept by 2ks Digital Solutions, prepared as a premium public showcase for GITEX.',
-                'HayatID est un concept de 2ks Digital Solutions, prepare comme vitrine premium pour GITEX.',
-                'HayatID هو مفهوم من 2ks Digital Solutions، ومجهز كعرض احترافي متميز لـ GITEX.'
+                'HayatID is presented as a premium startup showcase for GITEX to validate market demand, build trust, and accelerate partnerships.',
+                'HayatID est presente comme vitrine startup premium pour GITEX afin de valider la demande, renforcer la confiance et accelerer les partenariats.',
+                'يتم تقديم HayatID كعرض شركة ناشئة متميز لـ GITEX للتحقق من الطلب وبناء الثقة وتسريع الشراكات.'
             )
         }
     ];
@@ -70,9 +70,9 @@ export function AboutUsPage() {
                     </p>
                     <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-navy sm:text-5xl">
                         {t(
-                            'A medical-tech identity concept designed for speed, trust, and clarity in emergencies.',
-                            'Un concept d\'identite medical-tech concu pour la vitesse, la confiance et la clarte en urgence.',
-                            'مفهوم هوية طبية تقنية مصمم للسرعة والثقة والوضوح في حالات الطوارئ.'
+                            'The startup behind a smarter medical NFC card experience.',
+                            'La startup derriere une experience carte NFC medicale plus intelligente.',
+                            'الشركة الناشئة وراء تجربة بطاقة NFC طبية أكثر ذكاءً.'
                         )}
                     </h1>
                     <p className="mt-5 max-w-3xl text-base leading-8 text-navy/75 sm:text-lg">

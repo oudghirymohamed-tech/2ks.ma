@@ -90,7 +90,7 @@ export function ProfessionalLandingPage() {
                                 {isArabic ? 'لوحة الطبيب' : 'Open pro dashboard'}
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
-                            <Link to="/u/demo-token" className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700">
+                            <Link to="/card/demo-token" className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700">
                                 {isArabic ? 'اختبار المسح العام' : 'Test public scan'}
                                 <LockKeyhole className="h-4 w-4" />
                             </Link>

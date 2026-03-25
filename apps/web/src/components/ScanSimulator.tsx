@@ -47,7 +47,7 @@ export function ScanSimulator() {
                 </div>
 
                 <Link
-                    to="/u/demo-token"
+                    to="/card/demo-token"
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-sapphire px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#0C43A0]"
                 >
                     Open scan demo

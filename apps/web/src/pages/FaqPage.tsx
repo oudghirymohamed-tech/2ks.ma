@@ -20,9 +20,9 @@ export function FaqPage() {
                 'هل HayatID منصة طبية إنتاجية كاملة الآن؟'
             ),
             a: t(
-                'Not yet. The current website is a professional public showcase with controlled demo flows.',
-                'Pas encore. Le site actuel est une vitrine publique professionnelle avec des flux demo controles.',
-                'ليس بعد. الموقع الحالي عرض عام احترافي مع مسارات تجريبية مضبوطة.'
+                'Not yet. The current website is a polished public showcase for GITEX with controlled demo flows.',
+                'Pas encore. Le site actuel est une vitrine publique premium pour GITEX avec des flux demo controles.',
+                'ليس بعد. الموقع الحالي عرض عام احترافي لـ GITEX مع مسارات تجريبية مضبوطة.'
             )
         },
         {
@@ -59,6 +59,18 @@ export function FaqPage() {
                 'Yes. The experience is designed to be premium, clear, and presentation-ready for GITEX.',
                 'Oui. L\'experience est concue pour etre premium, claire et prete pour GITEX.',
                 'نعم. التجربة مصممة لتكون احترافية وواضحة وجاهزة للعرض في GITEX.'
+            )
+        },
+        {
+            q: t(
+                'How can I contact the 2ks team?',
+                'Comment contacter l\'equipe 2ks ?',
+                'كيف يمكن التواصل مع فريق 2ks؟'
+            ),
+            a: t(
+                'Use the Contact Us page to reach us by phone, WhatsApp, or email and request a demo discussion.',
+                'Utilisez la page Contact pour nous joindre par telephone, WhatsApp ou email et demander une discussion demo.',
+                'استخدم صفحة تواصل معنا للوصول إلينا عبر الهاتف أو واتساب أو البريد الإلكتروني وطلب نقاش حول العرض.'
             )
         }
     ];

@@ -1,4 +1,4 @@
-import { ArrowRight, CreditCard, ShieldAlert, ShieldCheck, Smartphone } from 'lucide-react';
+import { ArrowRight, CreditCard, Link as LinkIcon, LogIn, ShieldAlert, Smartphone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PageMeta } from '../components/PageMeta';
 import { useLanguage } from '../context/LanguageContext';
@@ -17,38 +17,47 @@ export function HowItWorksPage() {
     const steps = [
         {
             icon: CreditCard,
-            title: t('1. Card is tapped or scanned', '1. Carte scannee ou approchee', '1. يتم لمس البطاقة أو مسحها'),
+            title: t('1. Obtain an NFC card', '1. Obtenir une carte NFC', '1. الحصول على بطاقة NFC'),
             body: t(
-                'A HayatID NFC card or QR opens a card-related page immediately.',
-                'Une carte NFC ou QR HayatID ouvre instantanement une page liee a la carte.',
-                'تفتح بطاقة NFC أو QR الخاصة بـ HayatID صفحة مرتبطة بالبطاقة فوراً.'
+                'The user receives a 2ks NFC medical card designed for fast emergency identification.',
+                'L\'utilisateur recoit une carte medicale NFC 2ks concue pour une identification d\'urgence rapide.',
+                'يتلقى المستخدم بطاقة 2ks الطبية بتقنية NFC والمصممة للتعريف السريع في الطوارئ.'
             )
         },
         {
-            icon: ShieldAlert,
-            title: t('2. Urgent mode appears first', '2. Mode urgent en premier', '2. يظهر وضع الطوارئ أولاً'),
+            icon: LinkIcon,
+            title: t('2. Link the card to the user', '2. Lier la carte a l\'utilisateur', '2. ربط البطاقة بالمستخدم'),
             body: t(
-                'Emergency-critical fields are visible instantly: blood type, allergies, chronic conditions, emergency notes.',
-                'Les informations critiques apparaissent instantanement: groupe sanguin, allergies, pathologies chroniques, notes d\'urgence.',
-                'تظهر بيانات الطوارئ الحرجة فوراً: فصيلة الدم، الحساسية، الحالات المزمنة، ملاحظات الطوارئ.'
-            )
-        },
-        {
-            icon: ShieldCheck,
-            title: t('3. Protected journey continues', '3. Le parcours protege continue', '3. يستمر المسار المحمي'),
-            body: t(
-                'Login and account onboarding continue through controlled demo/staging workflows.',
-                'La connexion et l\'onboarding continuent via des workflows demo/staging controles.',
-                'يتابع تسجيل الدخول وإنشاء الحساب عبر مسارات تجريبية/مرحلية مضبوطة.'
+                'The profile is connected to the card through a guided onboarding flow.',
+                'Le profil est relie a la carte via un parcours d\'onboarding guide.',
+                'يتم ربط الملف الشخصي بالبطاقة عبر مسار تهيئة موجه.'
             )
         },
         {
             icon: Smartphone,
-            title: t('4. Investor-ready presentation', '4. Presentation prete investisseur', '4. عرض جاهز للمستثمرين'),
+            title: t('3. Scan or open on phone', '3. Scanner ou ouvrir sur telephone', '3. المسح أو الفتح على الهاتف'),
             body: t(
-                'The experience is designed for mobile-first clarity, trust signaling, and booth storytelling.',
-                'L\'experience est concue pour la clarte mobile-first, la confiance et le storytelling salon.',
-                'التجربة مصممة لوضوح الهاتف أولاً، وبناء الثقة، وسرد قصصي مناسب للمعارض.'
+                'A tap or scan opens the card experience instantly on a mobile device.',
+                'Un tap ou scan ouvre instantanement l\'experience carte sur mobile.',
+                'يفتح اللمس أو المسح تجربة البطاقة فوراً على الهاتف.'
+            )
+        },
+        {
+            icon: LogIn,
+            title: t('4. Access login', '4. Acceder a la connexion', '4. الوصول إلى تسجيل الدخول'),
+            body: t(
+                'Users can continue to the login interface for the protected account journey.',
+                'Les utilisateurs poursuivent vers l\'interface de connexion pour le parcours compte protege.',
+                'يمكن للمستخدم متابعة تسجيل الدخول للوصول إلى مسار الحساب المحمي.'
+            )
+        },
+        {
+            icon: ShieldAlert,
+            title: t('5. Use Urgent in emergencies', '5. Utiliser Urgent en cas d\'urgence', '5. استخدام Urgent في الطوارئ'),
+            body: t(
+                'In emergency situations, Urgent highlights only life-critical fields for fast action.',
+                'En cas d\'urgence, Urgent affiche uniquement les champs vitaux pour une action rapide.',
+                'في حالات الطوارئ، يعرض زر Urgent الحقول الحيوية فقط لتصرف سريع.'
             )
         }
     ];
@@ -71,14 +80,14 @@ export function HowItWorksPage() {
                     </p>
                     <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-navy sm:text-5xl">
                         {t(
-                            'A clear four-step model from card interaction to emergency-ready visibility.',
-                            'Un modele clair en quatre etapes de l\'interaction carte a la visibilite d\'urgence.',
-                            'نموذج واضح من أربع خطوات من تفاعل البطاقة إلى عرض جاهز للطوارئ.'
+                            'A simple five-step journey from card setup to urgent emergency access.',
+                            'Un parcours simple en cinq etapes, de la configuration carte a l\'acces urgent.',
+                            'رحلة بسيطة من خمس خطوات من إعداد البطاقة إلى وصول الطوارئ العاجل.'
                         )}
                     </h1>
                 </div>
 
-                <div className="mt-10 grid gap-5 md:grid-cols-2">
+                <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
                     {steps.map((step) => {
                         const Icon = step.icon;
 
@@ -106,7 +115,7 @@ export function HowItWorksPage() {
                         )}
                     </h2>
                     <div className="mt-5 flex flex-wrap gap-3">
-                        <Link to="/u/demo-token" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-navy">
+                        <Link to="/card/demo-token" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-navy">
                             {t('Open NFC card demo', 'Ouvrir la demo NFC', 'فتح عرض بطاقة NFC')}
                             <ArrowRight className={`h-4 w-4 ${isArabic ? 'rotate-180' : ''}`} />
                         </Link>

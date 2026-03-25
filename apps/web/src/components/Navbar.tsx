@@ -66,13 +66,13 @@ export function Navbar() {
                             {t('Logout', 'Deconnexion', 'تسجيل الخروج')}
                         </button>
                     ) : (
-                        <Link to="/u/demo-token" className="hidden text-sm font-semibold text-navy/80 sm:inline-flex">
-                            {t('Urgent Demo', 'Demo Urgence', 'عرض الطوارئ')}
+                        <Link to="/login" className="hidden text-sm font-semibold text-navy/80 sm:inline-flex">
+                            {t('Login', 'Connexion', 'تسجيل الدخول')}
                         </Link>
                     )}
                     <Link
                         to={isAuthenticated && user?.role === 'patient' ? '/dashboard' : '/contact'}
-                        className="inline-flex rounded-full bg-sapphire px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#0C43A0]"
+                        className="hidden rounded-full bg-sapphire px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#0C43A0] sm:inline-flex"
                     >
                         {isAuthenticated && user?.role === 'patient'
                             ? isArabic
@@ -98,6 +98,21 @@ export function Navbar() {
             {isMobileMenuOpen ? (
                 <nav className="border-t border-sapphire/20 bg-white/80 px-4 py-4 lg:hidden sm:px-6">
                     <div className="flex flex-col gap-3">
+                        <Link
+                            to={isAuthenticated && user?.role === 'patient' ? '/dashboard' : '/contact'}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="inline-flex items-center justify-center rounded-full bg-sapphire px-4 py-2.5 text-sm font-semibold text-white"
+                        >
+                            {isAuthenticated && user?.role === 'patient'
+                                ? isArabic
+                                    ? 'لوحة المريض'
+                                    : 'Dashboard'
+                                : isFrench
+                                    ? 'Devenir un client'
+                                    : isArabic
+                                        ? 'كن عميلاً'
+                                        : 'Become a client'}
+                        </Link>
                         {links.map((link) => (
                             <NavLink
                                 key={`mobile-${link.to}`}

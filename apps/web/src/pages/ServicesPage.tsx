@@ -1,4 +1,4 @@
-import { Building2, HeartPulse, Stethoscope, Users } from 'lucide-react';
+import { Building2, HeartPulse, LogIn, ShieldAlert, Users } from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
 import { useLanguage } from '../context/LanguageContext';
 import { MarketingLayout } from '../layouts/MarketingLayout';
@@ -16,38 +16,47 @@ export function ServicesPage() {
     const services = [
         {
             icon: HeartPulse,
-            title: t('Patient Emergency Identity', 'Identite d\'urgence patient', 'هوية طوارئ للمريض'),
+            title: t('Smart NFC Medical Identification', 'Identification medicale NFC intelligente', 'تعريف طبي ذكي عبر NFC'),
             body: t(
-                'NFC-enabled card identity for fast emergency-critical visibility.',
-                'Identite carte NFC pour une visibilite immediate des informations vitales.',
-                'هوية بطاقة NFC لعرض سريع وفوري للمعلومات الحيوية.'
+                'A modern card-based identity layer that helps people carry emergency-ready medical context.',
+                'Une couche d\'identite moderne basee sur carte pour porter un contexte medical d\'urgence.',
+                'طبقة هوية حديثة تعتمد على البطاقة لحمل سياق طبي جاهز للطوارئ.'
             )
         },
         {
-            icon: Stethoscope,
-            title: t('Provider Access Layers', 'Niveaux d\'acces soignants', 'طبقات وصول لمقدمي الرعاية'),
+            icon: ShieldAlert,
+            title: t('Quick Urgent Access', 'Acces urgent rapide', 'وصول سريع للطوارئ'),
             body: t(
-                'Public urgent mode is separated from deeper verified professional access.',
-                'Le mode urgent public est separe de l\'acces professionnel verifie.',
-                'وضع الطوارئ العام منفصل عن الوصول المهني المتحقق.'
+                'Critical information is surfaced in seconds during emergencies while keeping private depth separated.',
+                'Les informations critiques apparaissent en quelques secondes tout en separant les donnees privees.',
+                'تظهر المعلومات الحرجة خلال ثوان في الطوارئ مع إبقاء العمق الخاص منفصلاً.'
+            )
+        },
+        {
+            icon: LogIn,
+            title: t('Simplified Digital Access', 'Acces numerique simplifie', 'وصول رقمي مبسط'),
+            body: t(
+                'Users move from card interaction to login and account actions through a clear, guided flow.',
+                'Les utilisateurs passent de la carte a la connexion via un parcours clair et guide.',
+                'ينتقل المستخدم من تفاعل البطاقة إلى تسجيل الدخول عبر مسار واضح وموجه.'
             )
         },
         {
             icon: Users,
-            title: t('Family and Contact Readiness', 'Preparation famille et contacts', 'جاهزية العائلة وجهات الاتصال'),
+            title: t('Support and Onboarding', 'Support et onboarding', 'الدعم والتهيئة'),
             body: t(
-                'Structured emergency notes and contact points for rapid intervention.',
-                'Notes d\'urgence structurees et contacts disponibles pour intervention rapide.',
-                'ملاحظات طوارئ منظمة ونقاط اتصال للتدخل السريع.'
+                '2ks provides a startup-ready onboarding path for future clients, partners, and field demonstrations.',
+                '2ks fournit un parcours d\'onboarding startup-ready pour clients, partenaires et demos terrain.',
+                'توفر 2ks مسار تهيئة جاهزاً للشركات الناشئة للعملاء والشركاء والعروض الميدانية.'
             )
         },
         {
             icon: Building2,
-            title: t('Partner Enablement', 'Activation partenaires', 'تمكين الشركاء'),
+            title: t('Partner-Ready Model', 'Modele pret pour partenaires', 'نموذج جاهز للشركاء'),
             body: t(
-                'A presentation-ready framework for clinics, pharmacies, and strategic partners.',
-                'Un cadre pret pour presentation aux cliniques, pharmacies et partenaires stratégiques.',
-                'إطار جاهز للعرض أمام العيادات والصيدليات والشركاء الاستراتيجيين.'
+                'The platform concept is structured for clinics, pharmacies, and ecosystem collaboration.',
+                'Le concept est structure pour cliniques, pharmacies et collaboration ecosysteme.',
+                'تمت هيكلة المفهوم ليتناسب مع العيادات والصيدليات والتعاون داخل المنظومة.'
             )
         }
     ];
@@ -77,7 +86,7 @@ export function ServicesPage() {
                     </h1>
                 </div>
 
-                <div className="mt-10 grid gap-5 md:grid-cols-2">
+                <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
                     {services.map((service) => {
                         const Icon = service.icon;
 

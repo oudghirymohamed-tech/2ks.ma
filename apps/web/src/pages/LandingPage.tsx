@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, HeartPulse, Languages, Phone, ShieldCheck, Smartphone, Siren, WalletCards } from 'lucide-react';
+import { ArrowRight, HeartPulse, Languages, Mail, MessageCircle, Phone, ShieldCheck, Smartphone, Siren, WalletCards } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PageMeta } from '../components/PageMeta';
+import { siteConfig } from '../config/site';
 import { useLanguage } from '../context/LanguageContext';
 import { MarketingLayout } from '../layouts/MarketingLayout';
 
@@ -144,36 +145,49 @@ export function LandingPage() {
                             <div className="mt-6 flex flex-wrap items-center gap-3">
                                 <Link
                                     to="/contact"
-                                    className="inline-flex items-center gap-2 rounded-full bg-sapphire px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0C43A0]"
+                                    className="inline-flex items-center gap-2 rounded-full bg-[linear-gradient(180deg,#0F52BA_0%,#0C43A0_100%)] px-7 py-3.5 text-sm font-semibold text-white shadow-panel transition hover:-translate-y-0.5"
                                 >
-                                    {content.primaryCta}
+                                    Devenir un client
+                                    <ArrowRight className={`h-4 w-4 ${isArabic ? 'rotate-180' : ''}`} />
                                 </Link>
+                            </div>
+
+                            <div className={`mt-4 grid gap-3 rounded-[1.5rem] border border-sapphire/15 bg-white/70 p-4 shadow-soft sm:grid-cols-3 ${isArabic ? 'font-arabic text-right' : ''}`}>
                                 <a
-                                    href="tel:+212600000000"
-                                    className="inline-flex items-center gap-2 rounded-full border border-sapphire/20 bg-white/80 px-4 py-2.5 text-xs font-semibold text-navy sm:text-sm"
+                                    href={siteConfig.contact.phoneHref}
+                                    className="rounded-2xl border border-sapphire/15 bg-white/80 px-4 py-3 text-navy transition hover:border-sapphire/35"
                                 >
-                                    <Phone className="h-4 w-4 text-sapphire" />
-                                    +212 6XX XXX XXX
+                                    <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-sapphire/80">
+                                        <Phone className="h-4 w-4" />
+                                        {t('Phone', 'Telephone', 'الهاتف')}
+                                    </span>
+                                    <span className="mt-2 block text-sm font-semibold">{siteConfig.contact.phoneDisplay}</span>
                                 </a>
                                 <a
-                                    href="https://wa.me/212600000000"
-                                    className="inline-flex items-center gap-2 rounded-full border border-sapphire/20 bg-white/80 px-4 py-2.5 text-xs font-semibold text-navy sm:text-sm"
+                                    href={siteConfig.contact.whatsappHref}
+                                    className="rounded-2xl border border-sapphire/15 bg-white/80 px-4 py-3 text-navy transition hover:border-sapphire/35"
                                 >
-                                    <Phone className="h-4 w-4 text-sapphire" />
-                                    WhatsApp: +212 6XX XXX XXX
+                                    <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-sapphire/80">
+                                        <MessageCircle className="h-4 w-4" />
+                                        WhatsApp
+                                    </span>
+                                    <span className="mt-2 block text-sm font-semibold">{siteConfig.contact.whatsappDisplay}</span>
                                 </a>
                                 <a
-                                    href="mailto:contact@2ks.ma"
-                                    className="inline-flex items-center gap-2 rounded-full border border-sapphire/20 bg-white/80 px-4 py-2.5 text-xs font-semibold text-navy sm:text-sm"
+                                    href={siteConfig.contact.emailHref}
+                                    className="rounded-2xl border border-sapphire/15 bg-white/80 px-4 py-3 text-navy transition hover:border-sapphire/35"
                                 >
-                                    <Phone className="h-4 w-4 text-sapphire" />
-                                    contact@2ks.ma
+                                    <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-sapphire/80">
+                                        <Mail className="h-4 w-4" />
+                                        Email
+                                    </span>
+                                    <span className="mt-2 block text-sm font-semibold">{siteConfig.contact.emailDisplay}</span>
                                 </a>
                             </div>
 
                             <div className="mt-8 grid gap-3 sm:grid-cols-2">
                                 <Link
-                                    to="/u/demo-token"
+                                    to="/card/demo-token"
                                     className="group rounded-[1.75rem] border border-emergency/20 bg-[linear-gradient(180deg,#D74A3C_0%,#C0392B_100%)] p-5 text-white shadow-panel transition hover:-translate-y-0.5"
                                 >
                                     <div className="flex items-start justify-between gap-4">

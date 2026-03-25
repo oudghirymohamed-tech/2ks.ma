@@ -1,10 +1,9 @@
-import { AlertTriangle, LockKeyhole, PhoneCall, ShieldAlert } from 'lucide-react';
+import { AlertTriangle, PhoneCall, ShieldAlert } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { OtpPanel } from '../components/OtpPanel';
 import { PageMeta } from '../components/PageMeta';
 import { useLanguage } from '../context/LanguageContext';
-import { getPublicEmergencyProfile, requestProfessionalOtp, verifyProfessionalOtp } from '../services/api';
+import { getPublicEmergencyProfile } from '../services/api';
 import type { PublicEmergencyResponse } from '../types/demo';
 
 export function EmergencyDemoPage() {
@@ -13,7 +12,6 @@ export function EmergencyDemoPage() {
     const isArabic = language === 'ar';
 
     const [profile, setProfile] = useState<PublicEmergencyResponse | null>(null);
-    const [levelOneOpen, setLevelOneOpen] = useState(false);
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -23,12 +21,6 @@ export function EmergencyDemoPage() {
                 setError(requestError instanceof Error ? requestError.message : 'Unable to load emergency profile.');
             });
     }, [token]);
-
-    async function handleVerify(otp: string) {
-        const result = await verifyProfessionalOtp(otp, 'pro-demo-1', token);
-        setLevelOneOpen(result.status === 'verified');
-        return { status: result.status };
-    }
 
     if (error) {
         return <div className="min-h-screen bg-navy px-6 py-20 text-white">{error}</div>;
@@ -66,20 +58,6 @@ export function EmergencyDemoPage() {
                         </p>
                     </div>
                 </section>
-
-                {patient.isMinor && patient.guardianRelationship ? (
-                    <section className="mt-4 rounded-[1.6rem] border border-sapphire/30 bg-sapphire/45 p-4">
-                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/75">
-                            {isArabic ? 'مريض قاصر' : 'Minor patient'}
-                        </p>
-                        <p className="mt-2 text-base font-semibold">
-                            {isArabic ? 'تواصل مع ولي الأمر:' : 'Contact legal guardian:'} {patient.guardianRelationship.guardianName}
-                        </p>
-                        <p className="mt-1 text-sm text-white/80">
-                            {patient.guardianRelationship.relation} · {patient.guardianRelationship.phone}
-                        </p>
-                    </section>
-                ) : null}
 
                 <section className="mt-4 rounded-[2rem] border border-emergency/45 bg-emergency/15 p-5">
                     <p className="text-xs uppercase tracking-[0.22em] text-emergency">{isArabic ? 'فصيلة الدم' : 'Blood type'}</p>
@@ -128,44 +106,9 @@ export function EmergencyDemoPage() {
                     </ul>
                 </section>
 
-                <section className="mt-4 rounded-[2rem] border border-sapphire/20 bg-[#011238] p-5">
-                    <p className="text-xs uppercase tracking-[0.22em] text-powder/85">{isArabic ? 'جهة اتصال الطوارئ' : 'Emergency contact'}</p>
-                    <p className="mt-3 text-xl font-semibold">{patient.emergencyContact.name}</p>
-                    <p className="mt-1 text-sm text-white/70">{patient.emergencyContact.relation}</p>
-                    <a href={`tel:${patient.emergencyContact.phone.replace(/\s/g, '')}`} className="mt-3 inline-flex rounded-full border border-call/30 bg-call/20 px-4 py-2 text-sm font-semibold text-white">
-                        {patient.emergencyContact.phone}
-                    </a>
-                </section>
-
-                <section className="mt-4 rounded-[2rem] border border-sapphire/20 bg-[#00133A] p-5">
-                    <button
-                        type="button"
-                        onClick={() => setLevelOneOpen((current) => !current)}
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-powder"
-                    >
-                        <LockKeyhole className="h-4 w-4" />
-                        {isArabic ? 'وصول الطبيب' : 'Professional access'}
-                    </button>
-                    <p className="mt-2 text-sm leading-6 text-ice/75">
-                        {isArabic
-                            ? 'مستوى إضافي للطبيب بعد OTP، لا يظهر بشكل افتراضي في المسار العام.'
-                            : 'Secondary clinician level unlocked only after OTP verification.'}
-                    </p>
-                    <div className="mt-4">
-                        <OtpPanel patientToken={token} onRequestOtp={requestProfessionalOtp} onVerifyOtp={handleVerify} />
-                    </div>
-                    {levelOneOpen ? (
-                        <div className="mt-4 rounded-3xl border border-sapphire/30 bg-sapphire/20 p-4 text-sm leading-7 text-ice">
-                            {isArabic
-                                ? 'تم فتح المستوى المهني. البيانات الموسعة يجب أن تأتي من واجهة خلفية موثقة.'
-                                : 'Level 1 unlocked. Extended details should only be delivered through verified backend access.'}
-                        </div>
-                    ) : null}
-                </section>
-
-                <Link to="/demo" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-powder/90">
+                <Link to={`/card/${encodeURIComponent(profile.token)}`} className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-powder/90">
                     <AlertTriangle className="h-4 w-4" />
-                    {isArabic ? 'العودة إلى مركز العرض' : 'Back to demo hub'}
+                    {isArabic ? 'العودة إلى البطاقة' : 'Back to card page'}
                 </Link>
             </main>
 

@@ -13,6 +13,7 @@ import { FaqPage } from './pages/FaqPage';
 import { HowItWorksPage } from './pages/HowItWorksPage';
 import { LandingPage } from './pages/LandingPage';
 import { LoginPage } from './pages/LoginPage';
+import { NfcCardDemoPage } from './pages/NfcCardDemoPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { ProfessionalDashboardPage } from './pages/ProfessionalDashboardPage';
 import { ProfessionalLandingPage } from './pages/ProfessionalLandingPage';
@@ -46,6 +47,7 @@ export default function App() {
                                 </ProtectedRoute>
                             }
                         />
+                        <Route path="/card/:token" element={<NfcCardDemoPage />} />
                         <Route path="/u/:token" element={<EmergencyDemoPage />} />
                         <Route path="/pro" element={<ProfessionalLandingPage />} />
                         <Route

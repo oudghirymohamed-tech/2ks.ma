@@ -79,6 +79,14 @@ export function TermsPage() {
                         </article>
                     ))}
                 </div>
+
+                <div className={`mt-6 rounded-3xl border border-sapphire/15 bg-powder/25 p-4 text-sm text-navy/78 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                    {t(
+                        'Last updated: March 2026. This legal text is a professional placeholder for the public demo website.',
+                        'Derniere mise a jour : mars 2026. Ce texte legal est un placeholder professionnel pour le site de demo public.',
+                        'آخر تحديث: مارس 2026. هذا النص القانوني عبارة عن محتوى احترافي مؤقت لموقع العرض العام.'
+                    )}
+                </div>
             </section>
         </MarketingLayout>
     );

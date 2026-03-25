@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { AlertCircle, CheckCircle2, ChevronLeft, ChevronRight, CreditCard, Phone, ShieldCheck } from 'lucide-react';
+import { AlertCircle, CheckCircle2, ChevronLeft, ChevronRight, CreditCard, KeyRound, Phone, Smartphone, ShieldCheck } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { PageMeta } from '../components/PageMeta';
@@ -9,6 +9,7 @@ import { MarketingLayout } from '../layouts/MarketingLayout';
 import { registerPatient, requestOtp, verifyCard, verifyOtp, type ApiError } from '../services/api';
 
 type StepKey = 'card' | 'identity' | 'medical' | 'consent';
+type DemoVerificationMethod = 'phone-link' | 'device-key' | 'ownership';
 
 const WHATSAPP_URL =
     'https://wa.me/212600000000?text=Bonjour%2C%20je%20souhaite%20commander%20une%20carte%20NFC%202KS';
@@ -32,10 +33,20 @@ const registrationCopy = {
         loading: 'Processing...',
         accountBlocked: 'Account creation requires card activation, OTP verification, and consent.',
         cardStepTitle: 'Activate NFC card first',
-        cardStepBody: 'Use your card serial and activation code to unlock registration.',
+        cardStepBody: 'Complete one demo verification method to unlock onboarding and continue.',
+        demoTag: 'Demo / Staging flow',
+        verificationMethod: 'Verification method',
+        methodPhoneLink: 'Connect phone to card',
+        methodDeviceKey: 'Enter Device Key',
+        methodOwnership: 'Verify card ownership',
+        phoneLinkCode: 'Phone-to-card code',
+        phoneLinkHint: 'Use a short demo code to simulate phone-card pairing.',
+        deviceKey: 'Device Key',
+        deviceKeyHint: 'Enter the demo Device Key issued for booth onboarding.',
         serial: 'Card serial',
         activationCode: 'Activation code',
-        verifyCard: 'Verify card',
+        verifyCard: 'Verify and continue',
+        verifyDemo: 'Simulate verification and continue',
         cardVerified: 'Card verified. You can continue registration.',
         cardNotVerified: 'Card verification is required.',
         orderCard: 'Order NFC card',
@@ -89,10 +100,20 @@ const registrationCopy = {
         loading: 'جارٍ المعالجة...',
         accountBlocked: 'إنشاء الحساب يتطلب تفعيل البطاقة والتحقق عبر OTP والموافقة.',
         cardStepTitle: 'فعّل بطاقة NFC أولاً',
-        cardStepBody: 'أدخل الرقم التسلسلي ورمز التفعيل لفتح التسجيل.',
+        cardStepBody: 'أكمل إحدى طرق التحقق التجريبية لفتح التهيئة والمتابعة.',
+        demoTag: 'تدفق تجريبي / مرحلي',
+        verificationMethod: 'طريقة التحقق',
+        methodPhoneLink: 'ربط الهاتف بالبطاقة',
+        methodDeviceKey: 'إدخال مفتاح الجهاز',
+        methodOwnership: 'التحقق من ملكية البطاقة',
+        phoneLinkCode: 'رمز ربط الهاتف بالبطاقة',
+        phoneLinkHint: 'استخدم رمزاً تجريبياً قصيراً لمحاكاة ربط الهاتف بالبطاقة.',
+        deviceKey: 'مفتاح الجهاز',
+        deviceKeyHint: 'أدخل مفتاح الجهاز التجريبي المخصص لتهيئة العرض.',
         serial: 'الرقم التسلسلي للبطاقة',
         activationCode: 'رمز التفعيل',
-        verifyCard: 'تحقق من البطاقة',
+        verifyCard: 'تحقق وتابع',
+        verifyDemo: 'محاكاة التحقق والمتابعة',
         cardVerified: 'تم التحقق من البطاقة ويمكنك متابعة التسجيل.',
         cardNotVerified: 'التحقق من البطاقة إلزامي.',
         orderCard: 'طلب بطاقة NFC',
@@ -142,6 +163,9 @@ export function RegistrationPage() {
 
     const [step, setStep] = useState(0);
     const [cardId, setCardId] = useState('');
+    const [verificationMethod, setVerificationMethod] = useState<DemoVerificationMethod>('phone-link');
+    const [phoneLinkCode, setPhoneLinkCode] = useState('');
+    const [deviceKey, setDeviceKey] = useState('');
     const [otpId, setOtpId] = useState('');
     const [otpCode, setOtpCode] = useState('');
     const [isCardVerified, setIsCardVerified] = useState(false);
@@ -214,12 +238,65 @@ export function RegistrationPage() {
             setCardId(result.cardId);
             setIsCardVerified(true);
             setStatusMessage(copy.cardVerified);
+            setStep((current) => Math.min(stepKeys.length - 1, current + 1));
         } catch (error) {
             setIsCardVerified(false);
             setErrorMessage(readApiError(error));
         } finally {
             setIsSubmitting(false);
         }
+    }
+
+    async function handleDemoVerification() {
+        setErrorMessage('');
+        setStatusMessage('');
+
+        // DEMO/STAGING ONLY: simulate onboarding verification without production-grade auth checks.
+        if (verificationMethod === 'phone-link') {
+            if (phoneLinkCode.trim().length < 4) {
+                setErrorMessage(isArabic ? 'أدخل رمز ربط صالحاً.' : 'Enter a valid phone-link code.');
+                return;
+            }
+
+            setIsSubmitting(true);
+            try {
+                const result = await verifyCard('2KS-BETA-NEW', 'ACT-2026');
+                setCardId(result.cardId);
+                setIsCardVerified(true);
+                setStatusMessage(copy.cardVerified);
+                setStep((current) => Math.min(stepKeys.length - 1, current + 1));
+            } catch (error) {
+                setErrorMessage(readApiError(error));
+            } finally {
+                setIsSubmitting(false);
+            }
+
+            return;
+        }
+
+        if (verificationMethod === 'device-key') {
+            if (deviceKey.trim().length < 6) {
+                setErrorMessage(isArabic ? 'أدخل مفتاح جهاز صالحاً.' : 'Enter a valid Device Key.');
+                return;
+            }
+
+            setIsSubmitting(true);
+            try {
+                const result = await verifyCard('2KS-BETA-NEW', 'ACT-2026');
+                setCardId(result.cardId);
+                setIsCardVerified(true);
+                setStatusMessage(copy.cardVerified);
+                setStep((current) => Math.min(stepKeys.length - 1, current + 1));
+            } catch (error) {
+                setErrorMessage(readApiError(error));
+            } finally {
+                setIsSubmitting(false);
+            }
+
+            return;
+        }
+
+        await handleVerifyCard();
     }
 
     async function handleRequestOtp() {
@@ -352,36 +429,97 @@ export function RegistrationPage() {
                                     {currentStep === 'card' ? (
                                         <>
                                             <div className="rounded-3xl border border-sapphire/20 bg-powder/20 p-5">
+                                                <div className="inline-flex rounded-full border border-sapphire/20 bg-white/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-sapphire">
+                                                    {copy.demoTag}
+                                                </div>
                                                 <p className="text-lg font-semibold text-navy">{copy.cardStepTitle}</p>
                                                 <p className="mt-2 text-sm leading-7 text-navy/72">{copy.cardStepBody}</p>
+
+                                                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.16em] text-sapphire/80">
+                                                    {copy.verificationMethod}
+                                                </p>
+                                                <div className="mt-3 grid gap-2 sm:grid-cols-3">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setVerificationMethod('phone-link')}
+                                                        className={`rounded-2xl border px-3 py-2 text-sm font-semibold transition ${verificationMethod === 'phone-link' ? 'border-sapphire bg-sapphire/10 text-sapphire' : 'border-slate-200 bg-white text-navy/80 hover:border-sapphire/30'}`}
+                                                    >
+                                                        {copy.methodPhoneLink}
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setVerificationMethod('device-key')}
+                                                        className={`rounded-2xl border px-3 py-2 text-sm font-semibold transition ${verificationMethod === 'device-key' ? 'border-sapphire bg-sapphire/10 text-sapphire' : 'border-slate-200 bg-white text-navy/80 hover:border-sapphire/30'}`}
+                                                    >
+                                                        {copy.methodDeviceKey}
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setVerificationMethod('ownership')}
+                                                        className={`rounded-2xl border px-3 py-2 text-sm font-semibold transition ${verificationMethod === 'ownership' ? 'border-sapphire bg-sapphire/10 text-sapphire' : 'border-slate-200 bg-white text-navy/80 hover:border-sapphire/30'}`}
+                                                    >
+                                                        {copy.methodOwnership}
+                                                    </button>
+                                                </div>
+
                                                 <div className="mt-4 grid gap-4">
-                                                    <label className="block">
-                                                        <span className="mb-2 block text-sm font-medium text-slate-700">{copy.serial}</span>
-                                                        <input
-                                                            value={form.serial}
-                                                            onChange={(event) => setForm({ ...form, serial: event.target.value })}
-                                                            className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900"
-                                                        />
-                                                    </label>
-                                                    <label className="block">
-                                                        <span className="mb-2 block text-sm font-medium text-slate-700">{copy.activationCode}</span>
-                                                        <input
-                                                            value={form.activationCode}
-                                                            onChange={(event) =>
-                                                                setForm({ ...form, activationCode: event.target.value })
-                                                            }
-                                                            className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900"
-                                                        />
-                                                    </label>
+                                                    {verificationMethod === 'phone-link' ? (
+                                                        <label className="block">
+                                                            <span className="mb-2 block text-sm font-medium text-slate-700">{copy.phoneLinkCode}</span>
+                                                            <input
+                                                                value={phoneLinkCode}
+                                                                onChange={(event) => setPhoneLinkCode(event.target.value)}
+                                                                className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900"
+                                                            />
+                                                            <span className="mt-2 block text-xs text-navy/60">{copy.phoneLinkHint}</span>
+                                                        </label>
+                                                    ) : null}
+
+                                                    {verificationMethod === 'device-key' ? (
+                                                        <label className="block">
+                                                            <span className="mb-2 block text-sm font-medium text-slate-700">{copy.deviceKey}</span>
+                                                            <input
+                                                                value={deviceKey}
+                                                                onChange={(event) => setDeviceKey(event.target.value)}
+                                                                className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900"
+                                                            />
+                                                            <span className="mt-2 block text-xs text-navy/60">{copy.deviceKeyHint}</span>
+                                                        </label>
+                                                    ) : null}
+
+                                                    {verificationMethod === 'ownership' ? (
+                                                        <>
+                                                            <label className="block">
+                                                                <span className="mb-2 block text-sm font-medium text-slate-700">{copy.serial}</span>
+                                                                <input
+                                                                    value={form.serial}
+                                                                    onChange={(event) => setForm({ ...form, serial: event.target.value })}
+                                                                    className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900"
+                                                                />
+                                                            </label>
+                                                            <label className="block">
+                                                                <span className="mb-2 block text-sm font-medium text-slate-700">{copy.activationCode}</span>
+                                                                <input
+                                                                    value={form.activationCode}
+                                                                    onChange={(event) =>
+                                                                        setForm({ ...form, activationCode: event.target.value })
+                                                                    }
+                                                                    className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-900"
+                                                                />
+                                                            </label>
+                                                        </>
+                                                    ) : null}
 
                                                     <button
                                                         type="button"
-                                                        onClick={handleVerifyCard}
+                                                        onClick={handleDemoVerification}
                                                         disabled={isSubmitting}
                                                         className="inline-flex items-center justify-center gap-2 rounded-2xl bg-sapphire px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#0C43A0] disabled:opacity-60"
                                                     >
-                                                        <ShieldCheck className="h-4 w-4" />
-                                                        {isSubmitting ? copy.loading : copy.verifyCard}
+                                                        {verificationMethod === 'phone-link' ? <Smartphone className="h-4 w-4" /> : null}
+                                                        {verificationMethod === 'device-key' ? <KeyRound className="h-4 w-4" /> : null}
+                                                        {verificationMethod === 'ownership' ? <ShieldCheck className="h-4 w-4" /> : null}
+                                                        {isSubmitting ? copy.loading : verificationMethod === 'ownership' ? copy.verifyCard : copy.verifyDemo}
                                                     </button>
                                                 </div>
                                                 <div className="mt-4 flex flex-wrap gap-3">

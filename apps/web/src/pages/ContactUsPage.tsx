@@ -1,12 +1,9 @@
 import { Mail, MessageCircle, Phone } from 'lucide-react';
 import { useState } from 'react';
 import { PageMeta } from '../components/PageMeta';
+import { siteConfig } from '../config/site';
 import { useLanguage } from '../context/LanguageContext';
 import { MarketingLayout } from '../layouts/MarketingLayout';
-
-const CONTACT_PHONE = '+212 6XX XXX XXX';
-const CONTACT_WHATSAPP = '+212 6XX XXX XXX';
-const CONTACT_EMAIL = 'contact@2ks.ma';
 
 export function ContactUsPage() {
     const { language } = useLanguage();
@@ -28,20 +25,20 @@ export function ContactUsPage() {
         {
             icon: Phone,
             label: t('Phone', 'Telephone', 'الهاتف'),
-            value: CONTACT_PHONE,
-            href: 'tel:+212600000000'
+            value: siteConfig.contact.phoneDisplay,
+            href: siteConfig.contact.phoneHref
         },
         {
             icon: MessageCircle,
             label: t('WhatsApp', 'WhatsApp', 'واتساب'),
-            value: CONTACT_WHATSAPP,
-            href: 'https://wa.me/212600000000'
+            value: siteConfig.contact.whatsappDisplay,
+            href: siteConfig.contact.whatsappHref
         },
         {
             icon: Mail,
             label: t('Email', 'Email', 'البريد الإلكتروني'),
-            value: CONTACT_EMAIL,
-            href: 'mailto:contact@2ks.ma'
+            value: siteConfig.contact.emailDisplay,
+            href: siteConfig.contact.emailHref
         }
     ];
 
