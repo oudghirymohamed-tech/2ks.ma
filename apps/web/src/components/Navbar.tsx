@@ -37,7 +37,7 @@ export function Navbar() {
                     </div>
                     <div>
                         <p className="text-lg font-semibold tracking-tight">{copy.brand}</p>
-                        <p className="text-xs uppercase tracking-[0.2em] text-navy/65">2KS emergency platform</p>
+                        <p className="text-xs uppercase tracking-[0.2em] text-navy/65">SMART MEDICAL IDENTITY PLATFORM</p>
                     </div>
                 </Link>
 

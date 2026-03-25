@@ -11,10 +11,7 @@ export function Footer() {
             <div className={`mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.6fr_1fr_1fr] lg:px-8 lg:py-16 ${isArabic ? 'font-arabic text-right' : ''}`}>
                 {/* Brand column */}
                 <div>
-                    <p className="text-xl font-bold tracking-tight text-white">
-                        HayatID
-                        <span className="ml-2 text-sm font-medium text-powder/60">by 2ks</span>
-                    </p>
+                    <p className="text-xl font-bold tracking-tight text-white">HayatID — Smart medical identity powered by 2ks</p>
                     <p className="mt-4 max-w-sm text-sm leading-7 text-white/60">
                         HayatID is building a more connected healthcare experience through secure digital identity and NFC technology.
                     </p>
