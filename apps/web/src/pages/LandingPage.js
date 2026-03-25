@@ -185,7 +185,7 @@ export function LandingPage() {
                         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className={isArabic ? 'font-arabic text-right' : ''}>
                             <div className="inline-flex items-center gap-2 rounded-full border border-sapphire/20 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-sapphire shadow-sm sm:text-sm">
                                 <Smartphone className="h-4 w-4" />
-                                {content.eyebrow}
+                                <p>{content.eyebrow}</p>
                             </div>
                             <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-navy sm:text-5xl lg:text-6xl">
                                 {content.title}
