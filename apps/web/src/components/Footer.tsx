@@ -4,44 +4,77 @@ import { useLanguage } from '../context/LanguageContext';
 export function Footer() {
     const { language } = useLanguage();
     const isArabic = language === 'ar';
-    const isFrench = language === 'fr';
-
-    const t = (en: string, fr: string, ar: string) => {
-        if (language === 'ar') return ar;
-        if (language === 'fr') return fr;
-        return en;
-    };
 
     return (
-        <footer className="border-t border-sapphire/20 bg-navy text-white">
-            <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 text-sm text-white sm:px-6 lg:grid-cols-[1.3fr_1fr_1fr] lg:px-8">
+        <footer className="border-t border-white/10 bg-navy text-white">
+            {/* Main footer grid */}
+            <div className={`mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.6fr_1fr_1fr] lg:px-8 lg:py-16 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                {/* Brand column */}
                 <div>
-                    <p className="text-lg font-semibold text-white">HayatID by 2KS</p>
-                    <p className="mt-3 max-w-md leading-7 text-white/75">
-                        {isArabic
-                            ? 'تجربة عرض احترافية لـ GITEX. البيانات المعروضة تجريبية فقط ولا يتم كشف أي معلومات طبية محمية من الواجهة.'
-                            : isFrench
-                                ? 'Experience professionnelle pour GITEX. Donnees demo uniquement. Aucune donnee medicale protegee n\'est exposee depuis le frontend.'
-                                : 'Professional GITEX demo experience. Mock data only. No protected medical data is exposed from the frontend.'}
+                    <p className="text-xl font-bold tracking-tight text-white">
+                        HayatID
+                        <span className="ml-2 text-sm font-medium text-powder/60">by 2ks</span>
                     </p>
-                </div>
-                <div>
-                    <p className="font-semibold text-white">{t('Navigation', 'Navigation', 'التنقل')}</p>
-                    <div className="mt-3 flex flex-col gap-2">
-                        <Link to="/" className="text-white/80 hover:text-powder">{t('Home', 'Accueil', 'الرئيسية')}</Link>
-                        <Link to="/about" className="text-white/80 hover:text-powder">{t('About Us', 'A propos', 'من نحن')}</Link>
-                        <Link to="/how-it-works" className="text-white/80 hover:text-powder">{t('How It Works', 'Comment ca marche', 'كيف يعمل')}</Link>
-                        <Link to="/services" className="text-white/80 hover:text-powder">{t('Services', 'Services', 'الخدمات')}</Link>
+                    <p className="mt-4 max-w-sm text-sm leading-7 text-white/60">
+                        HayatID is building a more connected healthcare experience through secure digital identity and NFC technology.
+                    </p>
+                    <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-powder/70">
+                        Smart Medical Identity Platform
                     </div>
                 </div>
+
+                {/* Navigation column */}
                 <div>
-                    <p className="font-semibold text-white">{t('Legal and Support', 'Legal et support', 'الدعم والقانون')}</p>
-                    <div className="mt-3 flex flex-col gap-2">
-                        <Link to="/terms" className="text-white/80 hover:text-powder">{t('Terms of Service', 'Conditions d\'utilisation', 'شروط الاستخدام')}</Link>
-                        <Link to="/privacy" className="text-white/80 hover:text-powder">{t('Privacy Policy', 'Politique de confidentialite', 'سياسة الخصوصية')}</Link>
-                        <Link to="/faq" className="text-white/80 hover:text-powder">FAQ</Link>
-                        <Link to="/contact" className="text-white/80 hover:text-powder">{t('Contact Us', 'Contact', 'تواصل معنا')}</Link>
+                    <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/40">
+                        {isArabic ? 'التنقل' : 'Navigation'}
+                    </p>
+                    <div className="mt-4 flex flex-col gap-3">
+                        <Link to="/" className="text-sm text-white/70 transition hover:text-powder">
+                            {isArabic ? 'الرئيسية' : 'Home'}
+                        </Link>
+                        <Link to="/about" className="text-sm text-white/70 transition hover:text-powder">
+                            {isArabic ? 'من نحن' : 'About'}
+                        </Link>
+                        <Link to="/how-it-works" className="text-sm text-white/70 transition hover:text-powder">
+                            {isArabic ? 'كيف يعمل' : 'How It Works'}
+                        </Link>
+                        <Link to="/contact" className="text-sm text-white/70 transition hover:text-powder">
+                            {isArabic ? 'تواصل معنا' : 'Contact'}
+                        </Link>
                     </div>
+                </div>
+
+                {/* Account column */}
+                <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/40">
+                        {isArabic ? 'الحساب' : 'Account'}
+                    </p>
+                    <div className="mt-4 flex flex-col gap-3">
+                        <Link to="/login" className="text-sm text-white/70 transition hover:text-powder">
+                            {isArabic ? 'تسجيل الدخول' : 'Login'}
+                        </Link>
+                        <Link to="/register" className="text-sm text-white/70 transition hover:text-powder">
+                            {isArabic ? 'إنشاء حساب' : 'Create Account'}
+                        </Link>
+                        <Link to="/terms" className="text-sm text-white/70 transition hover:text-powder">
+                            {isArabic ? 'شروط الاستخدام' : 'Terms of Service'}
+                        </Link>
+                        <Link to="/privacy" className="text-sm text-white/70 transition hover:text-powder">
+                            {isArabic ? 'سياسة الخصوصية' : 'Privacy Policy'}
+                        </Link>
+                    </div>
+                </div>
+            </div>
+
+            {/* Bottom bar */}
+            <div className="border-t border-white/8">
+                <div className={`mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 sm:flex-row sm:px-6 lg:px-8 ${isArabic ? 'font-arabic' : ''}`}>
+                    <p className="text-xs text-white/40">
+                        © 2026 HayatID. All rights reserved.
+                    </p>
+                    <p className="text-xs text-white/30">
+                        Powered by 2ks Technology
+                    </p>
                 </div>
             </div>
         </footer>
