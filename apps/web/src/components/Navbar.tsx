@@ -20,12 +20,9 @@ export function Navbar() {
 
     const links = [
         { to: '/', label: t('Home', 'Accueil', 'الرئيسية') },
-        { to: '/about', label: t('About Us', 'A propos', 'من نحن') },
-        { to: '/how-it-works', label: t('How It Works', 'Comment ca marche', 'كيف يعمل') },
-        { to: '/services', label: t('Services', 'Services', 'الخدمات') },
+        { to: '/about', label: t('About Us', 'À propos', 'من نحن') },
+        { to: '/how-it-works', label: t('How It Works', 'Comment ça marche', 'كيف يعمل') },
         { to: '/contact', label: t('Contact Us', 'Contact', 'تواصل معنا') },
-        { to: '/register', label: t('Create Account', 'Creer un compte', 'إنشاء حساب') },
-        { to: '/login', label: t('Login', 'Connexion', 'تسجيل الدخول') }
     ];
 
     return (
