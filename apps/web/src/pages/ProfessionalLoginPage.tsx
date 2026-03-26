@@ -51,10 +51,10 @@ export function ProfessionalLoginPage() {
                 description={t('Separate secure login for doctors and pharmacists.', 'Connexion separee et securisee pour medecins et pharmaciens.', 'تسجيل دخول منفصل وآمن للأطباء والصيادلة.')}
             />
 
-            <section className="mx-auto max-w-xl px-4 py-14 sm:px-6 lg:px-8">
-                <div className={`premium-card p-7 sm:p-9 ${isArabic ? 'font-arabic text-right' : ''}`}>
+            <section className="mx-auto max-w-xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+                <div className={`premium-card p-6 sm:p-9 ${isArabic ? 'font-arabic text-right' : ''}`}>
                     <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sapphire">{t('Professional Login', 'Connexion professionnelle', 'دخول مهني')}</p>
-                    <h1 className="mt-3 text-3xl font-semibold text-navy">{role === 'doctor' ? t('Doctor Space', 'Espace medecin', 'مساحة الطبيب') : t('Pharmacist Space', 'Espace pharmacien', 'مساحة الصيدلي')}</h1>
+                    <h1 className="mt-3 text-2xl font-semibold text-navy sm:text-3xl">{role === 'doctor' ? t('Doctor Space', 'Espace medecin', 'مساحة الطبيب') : t('Pharmacist Space', 'Espace pharmacien', 'مساحة الصيدلي')}</h1>
                     <p className="mt-3 text-sm leading-7 text-navy/70">{t('This login flow is separate from patient accounts and card purchase.', 'Ce flux est separe des comptes patients et de l achat de carte.', 'هذا المسار منفصل عن حسابات المرضى وشراء البطاقة.')}</p>
 
                     <div className="mt-4 grid grid-cols-2 gap-3">
@@ -84,7 +84,7 @@ export function ProfessionalLoginPage() {
                                 onChange={(event) => setLoginValue(event.target.value)}
                                 required
                                 className="premium-input"
-                                placeholder={role === 'doctor' ? 'doctor.demo@hayatid.info' : 'pharmacist.demo@hayatid.info'}
+                                placeholder={role === 'doctor' ? 'doctor@hayatid.info' : 'pharmacist@hayatid.info'}
                             />
                         </label>
                         <label className="block">
@@ -95,7 +95,7 @@ export function ProfessionalLoginPage() {
                                 onChange={(event) => setPassword(event.target.value)}
                                 required
                                 className="premium-input"
-                                placeholder={role === 'doctor' ? 'DoctorDemo123' : 'PharmaDemo123'}
+                                placeholder={role === 'doctor' ? 'DoctorAccess123' : 'PharmaAccess123'}
                             />
                         </label>
 

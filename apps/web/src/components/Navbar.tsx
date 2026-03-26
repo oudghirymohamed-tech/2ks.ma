@@ -20,6 +20,21 @@ export function Navbar() {
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
+    useEffect(() => {
+        if (!isMobileMenuOpen) {
+            return;
+        }
+
+        const closeOnResize = () => {
+            if (window.innerWidth >= 1024) {
+                setIsMobileMenuOpen(false);
+            }
+        };
+
+        window.addEventListener('resize', closeOnResize, { passive: true });
+        return () => window.removeEventListener('resize', closeOnResize);
+    }, [isMobileMenuOpen]);
+
     const t = (en: string, fr: string, ar: string) => {
         if (language === 'ar') return ar;
         if (language === 'fr') return fr;
@@ -55,14 +70,14 @@ export function Navbar() {
 
     return (
         <header className={`sticky top-0 z-40 border-b backdrop-blur-xl transition-all duration-300 ${isScrolled ? 'border-sapphire/25 bg-ice/85 shadow-[0_10px_28px_rgba(0,9,38,0.11)]' : 'border-sapphire/15 bg-ice/70'}`}>
-            <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-                <Link to="/" className="inline-flex items-center gap-3 text-navy transition hover:opacity-95">
-                    <div className="rounded-2xl bg-navy p-2 text-white shadow-[0_8px_20px_rgba(0,9,38,0.24)]">
+            <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:gap-4 sm:px-6 sm:py-4 lg:px-8">
+                <Link to="/" className="inline-flex min-w-0 items-center gap-2.5 text-navy transition hover:opacity-95 sm:gap-3">
+                    <div className="rounded-2xl bg-navy p-2 text-white shadow-[0_8px_20px_rgba(0,9,38,0.24)] sm:p-2.5">
                         <HeartPulse className="h-5 w-5" />
                     </div>
-                    <div>
-                        <p className="text-lg font-semibold tracking-tight">{copy.brand}</p>
-                        <p className="text-xs uppercase tracking-[0.2em] text-navy/65">
+                    <div className="min-w-0">
+                        <p className="truncate text-base font-semibold tracking-tight sm:text-lg">{copy.brand}</p>
+                        <p className="hidden text-[10px] uppercase tracking-[0.16em] text-navy/65 sm:block lg:text-xs lg:tracking-[0.2em]">
                             {t('Powered by 2ks Technology', 'Propulse par 2ks Technology', 'مدعوم بتقنية 2ks')}
                         </p>
                     </div>
@@ -87,7 +102,7 @@ export function Navbar() {
                     ))}
                 </nav>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                     <LanguageSwitcher />
                     {isAuthenticated ? (
                         <button
@@ -104,7 +119,7 @@ export function Navbar() {
                     )}
                     <Link
                         to={dashboardHref}
-                        className="premium-btn-primary hidden px-4 py-2.5 sm:inline-flex"
+                        className="premium-btn-primary hidden px-4 py-2.5 md:inline-flex"
                     >
                         {dashboardLabel}
                     </Link>
@@ -120,22 +135,42 @@ export function Navbar() {
             </div>
 
             {isMobileMenuOpen ? (
-                <nav className="border-t border-sapphire/20 bg-white/85 px-4 py-4 backdrop-blur lg:hidden sm:px-6">
-                    <div className="flex flex-col gap-3">
+                <nav className="border-t border-sapphire/20 bg-white/90 px-4 py-4 backdrop-blur lg:hidden sm:px-6">
+                    <div className="flex flex-col gap-2.5">
                         <Link
                             to={dashboardHref}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="premium-btn-primary"
+                            className="premium-btn-primary w-full"
                         >
                             {dashboardLabel}
                         </Link>
+                        {isAuthenticated ? (
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    logout();
+                                    setIsMobileMenuOpen(false);
+                                }}
+                                className="inline-flex w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-navy"
+                            >
+                                {t('Logout', 'Deconnexion', 'تسجيل الخروج')}
+                            </button>
+                        ) : (
+                            <Link
+                                to="/login"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="inline-flex w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-navy"
+                            >
+                                {t('Login', 'Connexion', 'تسجيل الدخول')}
+                            </Link>
+                        )}
                         {links.map((link) => (
                             <NavLink
                                 key={`mobile-${link.to}`}
                                 to={link.to}
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 className={({ isActive }) =>
-                                    `rounded-xl px-3 py-2 text-sm font-medium ${isActive ? 'bg-sapphire/10 text-sapphire' : 'text-navy/85 hover:bg-sapphire/5'}`
+                                    `rounded-xl px-3 py-2.5 text-sm font-medium ${isActive ? 'bg-sapphire/10 text-sapphire' : 'text-navy/85 hover:bg-sapphire/5'}`
                                 }
                             >
                                 {link.label}

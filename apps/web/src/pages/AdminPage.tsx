@@ -41,13 +41,13 @@ export function AdminPage() {
     return (
         <MarketingLayout>
             <PageMeta
-                title="HayatID | Admin demo"
-                description="Mock admin interface with pending KYC validation queue, patient access request form, and suspicious recent access monitoring."
+                title="HayatID | Admin operations"
+                description="Admin interface with pending KYC validation queue, patient access request form, and suspicious recent access monitoring."
             />
             <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
                 <div className="mb-8 flex items-end justify-between gap-4">
                     <div>
-                        <p className="text-sm font-semibold uppercase tracking-[0.24em] text-emerald-700">Admin demo</p>
+                        <p className="text-sm font-semibold uppercase tracking-[0.24em] text-emerald-700">Admin operations</p>
                         <h1 className="mt-3 text-4xl font-semibold tracking-tight text-slate-950">Operational trust layer</h1>
                     </div>
                     {statusMessage ? <div className="rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700">{statusMessage}</div> : null}
@@ -126,7 +126,7 @@ export function AdminPage() {
                         <article className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-soft">
                             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Internal posture</p>
                             <div className="mt-5 space-y-4 text-sm leading-7 text-slate-600">
-                                <div className="rounded-3xl bg-canvas p-4">Admin view is demo-only and intentionally avoids real credential or patient-level privileged actions.</div>
+                                <div className="rounded-3xl bg-canvas p-4">Admin view is intentionally scoped and avoids direct credential or patient-level privileged actions from the frontend.</div>
                                 <div className="rounded-3xl bg-canvas p-4">Real production escalation would require audited actions, role policy enforcement, and backend-only access to protected records.</div>
                             </div>
                         </article>

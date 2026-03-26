@@ -79,11 +79,11 @@ export function ProfessionalRegisterPage() {
                 )}
             />
 
-            <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+            <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
                 <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
                     <div className={`rounded-[2rem] bg-navy p-7 text-white shadow-panel sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
                         <p className="text-sm font-semibold uppercase tracking-[0.24em] text-powder/80">{t('Professional Portal', 'Portail professionnel', 'البوابة المهنية')}</p>
-                        <h1 className="mt-4 text-4xl font-semibold tracking-tight">{t('Official registration for doctors and pharmacists', 'Inscription officielle pour medecins et pharmaciens', 'تسجيل رسمي للأطباء والصيادلة')}</h1>
+                        <h1 className="mt-4 text-[clamp(1.85rem,7vw,2.6rem)] font-semibold tracking-tight">{t('Official registration for doctors and pharmacists', 'Inscription officielle pour medecins et pharmaciens', 'تسجيل رسمي للأطباء والصيادلة')}</h1>
                         <p className="mt-4 text-sm leading-7 text-white/75 sm:text-base">
                             {t(
                                 'Create your professional account independently from patient card purchase. Access only the patients linked to your work sessions.',
@@ -96,11 +96,11 @@ export function ProfessionalRegisterPage() {
                             <p className="mt-2 text-2xl font-semibold">{roleTitle}</p>
                             <p className="mt-2 text-sm text-white/70">{t('No NFC card purchase required.', 'Aucun achat de carte NFC requis.', 'لا يتطلب شراء بطاقة NFC.')}</p>
                         </div>
-                        <div className="mt-6 flex flex-wrap gap-3">
-                            <Link to="/register" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15">
+                        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                            <Link to="/register" className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15 sm:w-auto">
                                 {t('Patient Space', 'Espace patient', 'مساحة المريض')}
                             </Link>
-                            <Link to="/pro/login" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-navy transition hover:bg-slate-100">
+                            <Link to="/pro/login" className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-navy transition hover:bg-slate-100 sm:w-auto">
                                 {t('Professional Login', 'Connexion professionnelle', 'دخول مهني')}
                             </Link>
                         </div>

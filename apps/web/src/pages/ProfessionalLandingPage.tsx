@@ -79,11 +79,11 @@ export function ProfessionalLandingPage() {
                     'مساحة عمل رقمية احترافية للأطباء والصيادلة لتتبع الزيارات ومراجعة البيانات المشتركة وإدارة السجل المهني.'
                 )}
             />
-            <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
                 <div className="grid gap-8 lg:grid-cols-[1fr_0.95fr]">
                     <div className={isArabic ? 'font-arabic text-right' : ''}>
                         <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sapphire">{t('Professional Portal', 'Portail professionnel', 'البوابة المهنية')}</p>
-                        <h1 className="mt-4 text-5xl font-semibold tracking-tight text-slate-950">
+                        <h1 className="mt-4 text-[clamp(2rem,8vw,3.2rem)] font-semibold tracking-tight text-slate-950">
                             {t(
                                 'A trusted workspace for doctors and pharmacists',
                                 'Un espace fiable pour medecins et pharmaciens',
@@ -97,28 +97,28 @@ export function ProfessionalLandingPage() {
                                 'مصممة لاستمرارية الرعاية، تمنح هذه البوابة لكل دور مهني مساحة واضحة وآمنة ومحددة لتفاعلات المرضى.'
                             )}
                         </p>
-                        <div className="mt-8 flex flex-wrap gap-3">
+                        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                             <Link
                                 to={canOpenWorkspace ? '/pro/dashboard' : '/pro/login'}
-                                className="inline-flex items-center gap-2 rounded-full bg-sapphire px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0C43A0]"
+                                className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full bg-sapphire px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0C43A0] sm:w-auto"
                             >
                                 {canOpenWorkspace
                                     ? t('Open workspace', 'Ouvrir l espace', 'فتح مساحة العمل')
                                     : t('Professional login', 'Connexion professionnelle', 'دخول مهني')}
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
-                            <Link to="/pro/register?role=doctor" className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-sapphire/60">
+                            <Link to="/pro/register?role=doctor" className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-sapphire/60 sm:w-auto">
                                 <Stethoscope className="h-4 w-4" />
                                 {t('Doctor registration', 'Inscription medecin', 'تسجيل طبيب')}
                             </Link>
-                            <Link to="/pro/register?role=pharmacist" className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-sapphire/60">
+                            <Link to="/pro/register?role=pharmacist" className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-sapphire/60 sm:w-auto">
                                 <Building2 className="h-4 w-4" />
                                 {t('Pharmacist registration', 'Inscription pharmacien', 'تسجيل صيدلي')}
                             </Link>
                         </div>
                     </div>
 
-                    <div className="rounded-[2rem] bg-navy p-8 text-white shadow-panel">
+                    <div className="rounded-[2rem] bg-navy p-6 text-white shadow-panel sm:p-8">
                         <div className="grid gap-4">
                             {capabilityCards.map((card) => (
                                 <div key={card.key} className="rounded-3xl border border-white/10 bg-white/5 p-5">

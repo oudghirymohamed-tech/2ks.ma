@@ -5,30 +5,30 @@ import { MarketingLayout } from '../layouts/MarketingLayout';
 
 const flows = [
     { title: 'Landing page', body: 'Investor and booth storytelling entry point.', to: '/', icon: HeartPulse },
-    { title: 'Patient registration', body: 'Multi-step onboarding with emergency preview.', to: '/register', icon: HeartPulse },
+    { title: 'Patient registration', body: 'Multi-step onboarding with emergency overview.', to: '/register', icon: HeartPulse },
     { title: 'Patient dashboard', body: 'QR card, access history and privacy actions.', to: '/dashboard', icon: ShieldCheck },
-    { title: 'Emergency scan', body: 'Adult NFC card page then urgent access demo.', to: '/card/demo-token', icon: Stethoscope },
-    { title: 'Minor emergency scan', body: 'Minor NFC card page then urgent access demo.', to: '/card/demo-minor', icon: Stethoscope },
+    { title: 'Emergency scan', body: 'Adult NFC card page then urgent access.', to: '/card/demo-token', icon: Stethoscope },
+    { title: 'Minor emergency scan', body: 'Minor NFC card page then urgent access.', to: '/card/demo-minor', icon: Stethoscope },
     { title: 'Professional landing', body: 'Level 0 vs level 1 explanation.', to: '/pro', icon: UserCog },
     { title: 'Professional dashboard', body: 'KYC, delegations and audit history.', to: '/pro/dashboard', icon: UserCog },
     { title: 'B2B partners', body: 'Founder offers for clinics and pharmacies.', to: '/b2b', icon: Building2 },
-    { title: 'Admin demo', body: 'Mock KYC queue and suspicious activity panel.', to: '/admin', icon: UserCog }
+    { title: 'Admin operations', body: 'KYC queue and suspicious activity panel.', to: '/admin', icon: UserCog }
 ];
 
 export function DemoHubPage() {
     return (
         <MarketingLayout>
             <PageMeta
-                title="HayatID | Demo hub"
-                description="Presentation hub with links to every HayatID startup demo flow for Gitex Africa 2026."
+                title="HayatID | Operations hub"
+                description="Presentation hub with links to core HayatID flows for Gitex Africa 2026."
             />
-            <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
                 <div className="max-w-3xl">
                     <p className="text-sm font-semibold uppercase tracking-[0.24em] text-emerald-700">Presentation page</p>
-                    <h1 className="mt-4 text-5xl font-semibold tracking-tight text-slate-950">Demo hub for booth flow and live storytelling.</h1>
-                    <p className="mt-5 text-lg leading-8 text-slate-600">Chaque carte ouvre un parcours concret pour accélérer une démo investisseur, incubateur ou partenaire terrain.</p>
+                    <h1 className="mt-4 text-[clamp(2rem,8vw,3.1rem)] font-semibold tracking-tight text-slate-950">Operations hub for booth flow and live storytelling.</h1>
+                    <p className="mt-4 text-base leading-7 text-slate-600 sm:mt-5 sm:text-lg sm:leading-8">Chaque carte ouvre un parcours concret pour accelerer une presentation investisseur, incubateur ou partenaire terrain.</p>
                 </div>
-                <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                <div className="mt-8 grid gap-4 sm:mt-10 md:grid-cols-2 xl:grid-cols-3">
                     {flows.map((flow) => {
                         const Icon = flow.icon;
                         return (

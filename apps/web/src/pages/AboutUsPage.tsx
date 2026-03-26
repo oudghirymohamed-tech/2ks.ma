@@ -133,9 +133,9 @@ export function AboutUsPage() {
                         </h2>
                         <p className="mt-4 text-sm leading-7 text-navy/75 sm:text-base">
                             {t(
-                                'The concept has already been tested with healthcare professionals in real-world conditions, showing strong problem validation and adoption interest.',
-                                'Le concept a deja ete teste avec des professionnels de sante en conditions reelles, montrant une forte validation du probleme et un reel interet d adoption.',
-                                'تم اختبار المفهوم بالفعل مع مهنيي الرعاية الصحية في ظروف واقعية، وأظهر ذلك تحققاً قوياً للمشكلة واهتماماً واضحاً بالتبني.'
+                                'The product has already been validated with healthcare professionals in real-world conditions, showing strong adoption interest.',
+                                'Le produit a deja ete valide avec des professionnels de sante en conditions reelles, montrant un fort interet d adoption.',
+                                'تم التحقق من المنتج بالفعل مع مهنيي الرعاية الصحية في ظروف واقعية، مع اهتمام قوي بالتبني.'
                             )}
                         </p>
                     </article>

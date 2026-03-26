@@ -52,16 +52,16 @@ export function CheckoutPage() {
                 description="Commandez votre carte NFC médicale HayatID pour un accès d'urgence rapide et sécurisé à vos informations de santé."
             />
 
-            <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
                 {/* Page header */}
                 <div className="mb-10 text-center">
                     <span className="inline-flex rounded-full border border-sapphire/30 bg-powder/45 px-4 py-2 text-sm font-semibold text-sapphire shadow-sm">
                         Commande
                     </span>
-                    <h1 className="mt-4 text-4xl font-semibold tracking-tight text-navy sm:text-5xl">
+                    <h1 className="mt-4 text-[clamp(2rem,8vw,3.2rem)] font-semibold tracking-tight text-navy">
                         Commander ma carte NFC
                     </h1>
-                    <p className="mt-3 text-lg text-navy/70">
+                    <p className="mt-3 text-base text-navy/70 sm:text-lg">
                         Choisissez votre méthode de commande préférée
                     </p>
                 </div>
@@ -71,7 +71,7 @@ export function CheckoutPage() {
                     <motion.div
                         initial={{ opacity: 0, y: 12 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="self-start rounded-[2rem] border border-sapphire/20 bg-powder/40 p-7 shadow-soft"
+                        className="self-start rounded-[2rem] border border-sapphire/20 bg-powder/40 p-6 shadow-soft sm:p-7"
                     >
                         <div className="inline-flex rounded-2xl bg-sapphire/10 p-4">
                             <ShieldCheck className="h-7 w-7 text-sapphire" />
@@ -112,7 +112,7 @@ export function CheckoutPage() {
                             initial={{ opacity: 0, y: 14 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.08 }}
-                            className="rounded-[2rem] border border-sapphire/20 bg-white/60 p-7 shadow-soft backdrop-blur"
+                            className="rounded-[2rem] border border-sapphire/20 bg-white/60 p-5 shadow-soft backdrop-blur sm:p-7"
                         >
                             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sapphire">
                                 Paiement en ligne
@@ -136,7 +136,7 @@ export function CheckoutPage() {
                                                     key={id}
                                                     onClick={() => setSelectedMethod(id)}
                                                     className={[
-                                                        'flex items-center gap-4 rounded-2xl border px-5 py-4 text-left transition',
+                                                        'flex min-h-[52px] items-center gap-4 rounded-2xl border px-4 py-3 text-left transition sm:px-5 sm:py-4',
                                                         selectedMethod === id
                                                             ? 'border-sapphire bg-sapphire/8 shadow-md'
                                                             : 'border-sapphire/20 bg-powder/20 hover:border-sapphire/50',
@@ -173,7 +173,7 @@ export function CheckoutPage() {
                                         <button
                                             onClick={handlePay}
                                             disabled={payState === 'loading'}
-                                            className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-sapphire px-6 py-4 text-sm font-semibold text-white transition hover:bg-[#0C43A0] disabled:cursor-not-allowed disabled:opacity-70"
+                                            className="mt-6 flex min-h-[52px] w-full items-center justify-center gap-2 rounded-2xl bg-sapphire px-6 py-4 text-sm font-semibold text-white transition hover:bg-[#0C43A0] disabled:cursor-not-allowed disabled:opacity-70"
                                         >
                                             {payState === 'loading' ? (
                                                 <>
@@ -228,7 +228,7 @@ export function CheckoutPage() {
                             initial={{ opacity: 0, y: 14 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.16 }}
-                            className="rounded-[2rem] border border-sapphire/20 bg-white/60 p-7 shadow-soft backdrop-blur"
+                            className="rounded-[2rem] border border-sapphire/20 bg-white/60 p-5 shadow-soft backdrop-blur sm:p-7"
                         >
                             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sapphire">
                                 Commander via contact

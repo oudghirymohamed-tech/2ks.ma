@@ -13,10 +13,10 @@ export function Footer() {
     return (
         <footer className="border-t border-white/10 bg-[linear-gradient(180deg,#000926_0%,#03103A_100%)] text-white">
             {/* Main footer grid */}
-            <div className={`mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.6fr_1fr_1fr] lg:px-8 lg:py-16 ${isArabic ? 'font-arabic text-right' : ''}`}>
+            <div className={`mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 sm:py-14 lg:grid-cols-[1.6fr_1fr_1fr] lg:gap-10 lg:px-8 lg:py-16 ${isArabic ? 'font-arabic text-right' : ''}`}>
                 {/* Brand column */}
                 <div>
-                    <p className="text-xl font-bold tracking-tight text-white">{t('HayatID — Smart medical identity powered by 2ks', 'HayatID — Identite medicale intelligente propulsee par 2ks', 'HayatID — هوية طبية ذكية مدعومة بتقنية 2ks')}</p>
+                    <p className="text-lg font-bold tracking-tight text-white sm:text-xl">{t('HayatID — Smart medical identity powered by 2ks', 'HayatID — Identite medicale intelligente propulsee par 2ks', 'HayatID — هوية طبية ذكية مدعومة بتقنية 2ks')}</p>
                     <p className="mt-4 max-w-sm text-sm leading-7 text-white/60">
                         {t(
                             '2ks Technology powers the connected healthcare experience behind HayatID.',
@@ -34,7 +34,7 @@ export function Footer() {
                     <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/40">
                         {t('Navigation', 'Navigation', 'التنقل')}
                     </p>
-                    <div className="mt-4 flex flex-col gap-3">
+                    <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                         <Link to="/" className="text-sm text-white/70 transition hover:translate-x-0.5 hover:text-powder">
                             {t('Home', 'Accueil', 'الرئيسية')}
                         </Link>
@@ -55,7 +55,7 @@ export function Footer() {
                     <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/40">
                         {t('Contact', 'Contact', 'التواصل')}
                     </p>
-                    <div className="mt-4 flex flex-col gap-3">
+                    <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                         <span className="text-sm text-white/70">contact@hayatid.info</span>
                         <span className="text-sm text-white/70">+212 XX XX XX XX XX</span>
                         <span className="text-sm text-white/70">Marrakech, Morocco</span>

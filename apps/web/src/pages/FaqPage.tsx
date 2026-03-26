@@ -20,9 +20,9 @@ export function FaqPage() {
                 'هل HayatID منصة طبية إنتاجية كاملة الآن؟'
             ),
             a: t(
-                'Not yet. The current website is a polished public showcase for GITEX with controlled demo flows.',
-                'Pas encore. Le site actuel est une vitrine publique premium pour GITEX avec des flux demo controles.',
-                'ليس بعد. الموقع الحالي عرض عام احترافي لـ GITEX مع مسارات تجريبية مضبوطة.'
+                'The platform is in active rollout and currently focuses on core emergency and identity journeys.',
+                'La plateforme est en deploiement actif et se concentre actuellement sur les parcours essentiels d urgence et d identite.',
+                'المنصة في مرحلة إطلاق نشطة وتركز حالياً على مسارات الطوارئ والهوية الأساسية.'
             )
         },
         {
@@ -68,9 +68,9 @@ export function FaqPage() {
                 'كيف يمكن التواصل مع فريق 2ks؟'
             ),
             a: t(
-                'Use the Contact Us page to reach us by phone, WhatsApp, or email and request a demo discussion.',
-                'Utilisez la page Contact pour nous joindre par telephone, WhatsApp ou email et demander une discussion demo.',
-                'استخدم صفحة تواصل معنا للوصول إلينا عبر الهاتف أو واتساب أو البريد الإلكتروني وطلب نقاش حول العرض.'
+                'Use the Contact Us page to reach us by phone, WhatsApp, or email and request a product discussion.',
+                'Utilisez la page Contact pour nous joindre par telephone, WhatsApp ou email et demander un echange produit.',
+                'استخدم صفحة تواصل معنا للوصول إلينا عبر الهاتف أو واتساب أو البريد الإلكتروني وطلب نقاش حول المنتج.'
             )
         }
     ];
@@ -80,9 +80,9 @@ export function FaqPage() {
             <PageMeta
                 title={t('HayatID | FAQ', 'HayatID | FAQ', 'HayatID | الأسئلة الشائعة')}
                 description={t(
-                    'Frequently asked questions about HayatID emergency identity and demo scope.',
-                    'Questions frequentes sur HayatID et le perimetre demo.',
-                    'أسئلة شائعة حول HayatID ونطاق العرض التجريبي.'
+                    'Frequently asked questions about HayatID emergency identity and platform scope.',
+                    'Questions frequentes sur HayatID et le perimetre de la plateforme.',
+                    'أسئلة شائعة حول هوية الطوارئ في HayatID ونطاق المنصة.'
                 )}
             />
 

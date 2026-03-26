@@ -19,7 +19,7 @@ export function LanguageSwitcher() {
                     type="button"
                     onClick={() => setLanguage(item.value)}
                     className={cn(
-                        'rounded-full px-3 py-1.5 text-sm font-semibold transition-all duration-200',
+                        'min-h-[36px] rounded-full px-2.5 py-1 text-xs font-semibold transition-all duration-200 sm:px-3 sm:py-1.5 sm:text-sm',
                         language === item.value ? 'scale-[1.02] bg-sapphire text-white shadow-[0_8px_18px_rgba(15,82,186,0.28)]' : 'text-navy/80 hover:bg-white/70 hover:text-sapphire'
                     )}
                     aria-pressed={language === item.value}

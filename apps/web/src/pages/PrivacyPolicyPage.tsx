@@ -16,9 +16,9 @@ export function PrivacyPolicyPage() {
         {
             title: t('1. Data posture', '1. Positionnement des donnees', '1. نهج البيانات'),
             body: t(
-                'The public website is presentation-oriented. Demonstration data is used to explain product behavior.',
-                'Le site public est oriente presentation. Des donnees de demonstration sont utilisees pour expliquer le fonctionnement.',
-                'الموقع العام مخصص للعرض، ويتم استخدام بيانات تجريبية لشرح سلوك المنتج.'
+                'The public website is product-oriented. Controlled data is used to explain platform behavior clearly and safely.',
+                'Le site public est oriente produit. Des donnees controlees sont utilisees pour expliquer le fonctionnement de la plateforme clairement et en securite.',
+                'الموقع العام موجّه للمنتج، ويتم استخدام بيانات مضبوطة لشرح سلوك المنصة بوضوح وأمان.'
             )
         },
         {
@@ -32,9 +32,9 @@ export function PrivacyPolicyPage() {
         {
             title: t('3. Contact requests', '3. Demandes de contact', '3. طلبات التواصل'),
             body: t(
-                'Contact form submissions in this phase are for demo and pre-sales coordination with 2ks Digital Solutions.',
-                'Les soumissions de contact a ce stade sont destinees a la coordination demo et pre-vente avec 2ks Digital Solutions.',
-                'إرسالات نموذج التواصل في هذه المرحلة مخصصة للتنسيق التجريبي وما قبل البيع مع 2ks Digital Solutions.'
+                'Contact form submissions in this phase are for product and pre-sales coordination with 2ks Digital Solutions.',
+                'Les soumissions de contact a ce stade sont destinees a la coordination produit et pre-vente avec 2ks Digital Solutions.',
+                'إرسالات نموذج التواصل في هذه المرحلة مخصصة للتنسيق حول المنتج وما قبل البيع مع 2ks Digital Solutions.'
             )
         },
         {
@@ -52,9 +52,9 @@ export function PrivacyPolicyPage() {
             <PageMeta
                 title={t('HayatID | Privacy Policy', 'HayatID | Politique de confidentialite', 'HayatID | سياسة الخصوصية')}
                 description={t(
-                    'Privacy policy for HayatID website and demonstration environment.',
-                    'Politique de confidentialite du site HayatID et de l\'environnement de demonstration.',
-                    'سياسة الخصوصية لموقع HayatID وبيئة العرض التجريبي.'
+                    'Privacy policy for HayatID website and platform services.',
+                    'Politique de confidentialite du site HayatID et des services de la plateforme.',
+                    'سياسة الخصوصية لموقع HayatID وخدمات المنصة.'
                 )}
             />
 
@@ -82,9 +82,9 @@ export function PrivacyPolicyPage() {
 
                 <div className={`mt-6 rounded-3xl border border-sapphire/15 bg-powder/25 p-4 text-sm text-navy/78 ${isArabic ? 'font-arabic text-right' : ''}`}>
                     {t(
-                        'Last updated: March 2026. This policy is intended for a polished public demo and will evolve with production deployment.',
-                        'Derniere mise a jour : mars 2026. Cette politique est prevue pour une demo publique soignee et evoluera avec la production.',
-                        'آخر تحديث: مارس 2026. هذه السياسة مخصصة لعرض عام احترافي وستتطور مع الإطلاق الإنتاجي.'
+                        'Last updated: March 2026. This policy applies to the public platform and will evolve with service expansion.',
+                        'Derniere mise a jour : mars 2026. Cette politique s applique a la plateforme publique et evoluera avec l extension du service.',
+                        'آخر تحديث: مارس 2026. تنطبق هذه السياسة على المنصة العامة وستتطور مع توسع الخدمة.'
                     )}
                 </div>
             </section>

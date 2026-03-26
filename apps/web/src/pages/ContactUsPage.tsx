@@ -139,9 +139,9 @@ export function ContactUsPage() {
                             {submitted ? (
                                 <p className="inline-flex rounded-full border border-call/30 bg-call/10 px-4 py-2 text-sm font-medium text-call">
                                     {t(
-                                        'Thank you. Your message has been captured for demo purposes.',
-                                        'Merci. Votre message a ete capture a des fins de demonstration.',
-                                        'شكراً. تم تسجيل رسالتك لأغراض العرض التجريبي.'
+                                        'Thank you. Your message has been received successfully.',
+                                        'Merci. Votre message a ete recu avec succes.',
+                                        'شكراً. تم استلام رسالتك بنجاح.'
                                     )}
                                 </p>
                             ) : null}

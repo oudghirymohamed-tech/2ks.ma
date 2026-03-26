@@ -80,23 +80,23 @@ export function NfcCardDemoPage() {
     return (
         <div className={`min-h-screen bg-[radial-gradient(circle_at_top,_rgba(15,82,186,0.2),_transparent_32%),linear-gradient(180deg,#000926_0%,#00184A_100%)] text-white ${isArabic ? 'font-arabic text-right' : ''}`}>
             <PageMeta
-                title="2ks | NFC card demo"
-                description="Demo NFC card experience with card-linked login and urgent emergency access."
+                title="2ks | NFC card access"
+                description="NFC card experience with card-linked login and urgent emergency access."
             />
 
             <main className="mx-auto grid max-w-6xl gap-6 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_0.95fr] lg:px-8 lg:py-16">
                 <section className="rounded-[2rem] border border-sapphire/25 bg-white/5 p-6 shadow-panel sm:p-8">
                     <div className="inline-flex rounded-full border border-powder/30 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-powder">
-                        {t('Demo / Staging scan', 'Scan demo / staging', 'مسح تجريبي / مرحلي')}
+                        {t('Secure card scan', 'Scan carte securise', 'مسح بطاقة آمن')}
                     </div>
                     <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
                         {t('NFC Card Identity', 'Identite de carte NFC', 'هوية بطاقة NFC')}
                     </h1>
                     <p className="mt-3 max-w-2xl text-sm leading-7 text-white/75 sm:text-base">
                         {t(
-                            'This page simulates a scanned medical card and connects identity, login, and urgent emergency access in one flow.',
-                            'Cette page simule une carte medicale scannee et relie identite, connexion et acces urgent dans un seul flux.',
-                            'تحاكي هذه الصفحة بطاقة طبية ممسوحة وتربط الهوية وتسجيل الدخول والوصول العاجل في مسار واحد.'
+                            'This page presents a scanned medical card and connects identity, login, and urgent emergency access in one flow.',
+                            'Cette page presente une carte medicale scannee et relie identite, connexion et acces urgent dans un seul flux.',
+                            'تعرض هذه الصفحة بطاقة طبية ممسوحة وتربط الهوية وتسجيل الدخول والوصول العاجل في مسار واحد.'
                         )}
                     </p>
 

@@ -13,22 +13,22 @@ const DEMO_OTP_CODE = '123456';
 const registrationCopy = {
     en: {
         metaTitle: 'Create your smart medical identity',
-        metaDescription: 'Try the HayatID registration experience in demo mode without a physical card.',
-        badge: 'Demo registration',
+        metaDescription: 'Start your HayatID registration journey and secure your medical identity.',
+        badge: 'Registration',
         title: 'Create your smart medical identity',
-        intro: 'Try the HayatID registration experience in demo mode without a physical card.',
-        note: 'This is a demonstration experience. No real card is required.',
+        intro: 'Start your HayatID registration journey with a guided, secure onboarding flow.',
+        note: 'Card verification is handled in-app so you can complete setup smoothly.',
         active: 'Active step',
         done: 'Completed',
         pending: 'Upcoming',
         back: 'Back',
         next: 'Continue',
-        finish: 'Create demo account',
+        finish: 'Create account',
         loading: 'Processing...',
         cardStepTitle: 'Verify Card',
         cardStepBody: 'Use the button below to simulate successful card verification and continue to the next step.',
         verifyCard: 'Verify Card',
-        cardVerified: 'Demo card verified successfully',
+        cardVerified: 'Card verified successfully',
         personalStepTitle: 'Personal Information',
         dob: 'Date of Birth (optional)',
         gender: 'Gender (optional)',
@@ -49,13 +49,13 @@ const registrationCopy = {
         verifyCode: 'Verify Code',
         resendCode: 'Resend Code',
         changePhone: 'Change Phone Number',
-        otpSent: 'Demo OTP sent successfully',
+        otpSent: 'OTP sent successfully',
         otpVerified: 'Phone number verified successfully',
-        otpInvalid: 'Invalid OTP code. Try 123456 in demo mode.',
+        otpInvalid: 'Invalid OTP code. Please check and try again.',
         otpMissing: 'Please send and verify the OTP code before continuing.',
         accountStepTitle: 'Account Setup',
         reviewStepTitle: 'Review',
-        reviewHint: 'Please confirm your details before creating your demo account.',
+        reviewHint: 'Please confirm your details before creating your account.',
         successStepTitle: 'Success',
         fullName: 'Full Name',
         phone: 'Phone Number',
@@ -63,32 +63,32 @@ const registrationCopy = {
         password: 'Password',
         confirmPassword: 'Confirm Password',
         editHint: 'Use Back if you need to edit any information.',
-        accountSuccess: 'Demo account created successfully',
+        accountSuccess: 'Account created successfully',
         mismatch: 'Password and confirmation must match.',
         invalid: 'Please complete all required fields correctly.',
         invalidEmail: 'Please enter a valid email address.',
         invalidPhone: 'Please enter a valid phone number.',
-        openDemo: 'Open demo hub',
+        openDemo: 'Open operations hub',
         stepTitles: ['Verify card', 'Personal information', 'Urgent information', 'OTP verification', 'Account setup', 'Review', 'Success'] as string[]
     },
     fr: {
         metaTitle: 'Creez votre identite medicale intelligente',
-        metaDescription: 'Essayez l experience d inscription HayatID en mode demo sans carte physique.',
-        badge: 'Inscription demo',
+        metaDescription: 'Demarrez votre inscription HayatID et securisez votre identite medicale.',
+        badge: 'Inscription',
         title: 'Creez votre identite medicale intelligente',
-        intro: 'Essayez l experience d inscription HayatID en mode demo sans carte physique.',
-        note: 'Ceci est une experience de demonstration. Aucune carte reelle n est requise.',
+        intro: 'Demarrez votre inscription HayatID avec un parcours guide et securise.',
+        note: 'La verification de carte est integree pour finaliser l inscription simplement.',
         active: 'Etape active',
         done: 'Terminee',
         pending: 'A venir',
         back: 'Retour',
         next: 'Continuer',
-        finish: 'Creer un compte demo',
+        finish: 'Creer un compte',
         loading: 'Traitement...',
         cardStepTitle: 'Verifier la carte',
         cardStepBody: 'Utilisez le bouton ci-dessous pour simuler une verification reussie puis continuer.',
         verifyCard: 'Verifier la carte',
-        cardVerified: 'Carte demo verifiee avec succes',
+        cardVerified: 'Carte verifiee avec succes',
         personalStepTitle: 'Informations personnelles',
         dob: 'Date de naissance (optionnel)',
         gender: 'Genre (optionnel)',
@@ -109,13 +109,13 @@ const registrationCopy = {
         verifyCode: 'Verifier le code',
         resendCode: 'Renvoyer le code',
         changePhone: 'Changer le numero',
-        otpSent: 'OTP demo envoye avec succes',
+        otpSent: 'OTP envoye avec succes',
         otpVerified: 'Numero de telephone verifie avec succes',
-        otpInvalid: 'Code OTP invalide. Essayez 123456 en mode demo.',
+        otpInvalid: 'Code OTP invalide. Veuillez verifier puis reessayer.',
         otpMissing: 'Veuillez envoyer et verifier le code OTP avant de continuer.',
         accountStepTitle: 'Configuration du compte',
         reviewStepTitle: 'Revue',
-        reviewHint: 'Veuillez confirmer vos informations avant de creer le compte demo.',
+        reviewHint: 'Veuillez confirmer vos informations avant de creer le compte.',
         successStepTitle: 'Succes',
         fullName: 'Nom complet',
         phone: 'Numero de telephone',
@@ -123,32 +123,32 @@ const registrationCopy = {
         password: 'Mot de passe',
         confirmPassword: 'Confirmer le mot de passe',
         editHint: 'Utilisez Retour si vous voulez modifier des informations.',
-        accountSuccess: 'Compte demo cree avec succes',
+        accountSuccess: 'Compte cree avec succes',
         mismatch: 'Le mot de passe et la confirmation doivent correspondre.',
         invalid: 'Veuillez remplir correctement tous les champs obligatoires.',
         invalidEmail: 'Veuillez saisir une adresse email valide.',
         invalidPhone: 'Veuillez saisir un numero de telephone valide.',
-        openDemo: 'Ouvrir le hub demo',
+        openDemo: 'Ouvrir le hub central',
         stepTitles: ['Verification carte', 'Informations personnelles', 'Informations urgentes', 'Verification OTP', 'Configuration compte', 'Revue', 'Succes'] as string[]
     },
     ar: {
         metaTitle: 'انشئ هويتك الطبية الذكية',
-        metaDescription: 'جرب تجربة التسجيل في HayatID بوضع العرض دون الحاجة الى بطاقة فعلية.',
-        badge: 'تسجيل تجريبي',
+        metaDescription: 'ابدأ رحلة التسجيل في HayatID لتأمين هويتك الطبية.',
+        badge: 'التسجيل',
         title: 'انشئ هويتك الطبية الذكية',
-        intro: 'جرب تجربة التسجيل في HayatID بوضع العرض دون الحاجة الى بطاقة فعلية.',
-        note: 'هذه تجربة عرض توضيحية. لا حاجة الى بطاقة حقيقية.',
+        intro: 'ابدأ التسجيل في HayatID عبر مسار إرشادي آمن وواضح.',
+        note: 'يتم التحقق من البطاقة داخل المسار لإكمال الإعداد بسلاسة.',
         active: 'الخطوة الحالية',
         done: 'مكتملة',
         pending: 'قادمة',
         back: 'رجوع',
         next: 'متابعة',
-        finish: 'انشاء حساب تجريبي',
+        finish: 'انشاء حساب',
         loading: 'جار المعالجة...',
         cardStepTitle: 'التحقق من البطاقة',
         cardStepBody: 'استخدم الزر ادناه لمحاكاة تحقق ناجح من البطاقة ثم تابع.',
         verifyCard: 'تحقق من البطاقة',
-        cardVerified: 'تم التحقق من البطاقة التجريبية بنجاح',
+        cardVerified: 'تم التحقق من البطاقة بنجاح',
         personalStepTitle: 'المعلومات الشخصية',
         dob: 'تاريخ الميلاد (اختياري)',
         gender: 'الجنس (اختياري)',
@@ -169,13 +169,13 @@ const registrationCopy = {
         verifyCode: 'تحقق من الرمز',
         resendCode: 'اعادة ارسال الرمز',
         changePhone: 'تغيير رقم الهاتف',
-        otpSent: 'تم ارسال رمز OTP التجريبي بنجاح',
+        otpSent: 'تم ارسال رمز OTP بنجاح',
         otpVerified: 'تم التحقق من رقم الهاتف بنجاح',
-        otpInvalid: 'رمز OTP غير صحيح. جرب 123456 في الوضع التجريبي.',
+        otpInvalid: 'رمز OTP غير صحيح. يرجى التحقق ثم المحاولة مجدداً.',
         otpMissing: 'يرجى ارسال والتحقق من رمز OTP قبل المتابعة.',
         accountStepTitle: 'اعداد الحساب',
         reviewStepTitle: 'المراجعة',
-        reviewHint: 'يرجى تأكيد البيانات قبل انشاء الحساب التجريبي.',
+        reviewHint: 'يرجى تأكيد البيانات قبل انشاء الحساب.',
         successStepTitle: 'نجاح',
         fullName: 'الاسم الكامل',
         phone: 'رقم الهاتف',
@@ -183,12 +183,12 @@ const registrationCopy = {
         password: 'كلمة المرور',
         confirmPassword: 'تأكيد كلمة المرور',
         editHint: 'استخدم زر الرجوع اذا كنت تريد تعديل اي بيانات.',
-        accountSuccess: 'تم انشاء الحساب التجريبي بنجاح',
+        accountSuccess: 'تم انشاء الحساب بنجاح',
         mismatch: 'يجب ان تتطابق كلمة المرور مع التأكيد.',
         invalid: 'يرجى اكمال جميع الحقول المطلوبة بشكل صحيح.',
         invalidEmail: 'يرجى ادخال بريد الكتروني صحيح.',
         invalidPhone: 'يرجى ادخال رقم هاتف صحيح.',
-        openDemo: 'فتح مركز العرض',
+        openDemo: 'فتح المركز',
         stepTitles: ['التحقق من البطاقة', 'المعلومات الشخصية', 'المعلومات العاجلة', 'التحقق عبر OTP', 'اعداد الحساب', 'المراجعة', 'نجاح'] as string[]
     }
 } as const;
@@ -209,9 +209,9 @@ export function RegistrationPage() {
     const [errorMessage, setErrorMessage] = useState('');
 
     const [form, setForm] = useState({
-        fullName: isArabic ? 'مستخدم تجريبي' : 'Demo User',
+        fullName: isArabic ? 'مستخدم جديد' : 'New User',
         phone: '+212600112233',
-        email: 'demo@hayatid.info',
+        email: 'user@hayatid.info',
         dateOfBirth: '',
         gender: '',
         bloodType: '',
@@ -399,15 +399,15 @@ export function RegistrationPage() {
         <MarketingLayout>
             <PageMeta title={copy.metaTitle} description={copy.metaDescription} />
 
-            <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-                <div className="grid gap-8 lg:grid-cols-[0.86fr_1.14fr]">
+            <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
+                <div className="grid gap-6 xl:grid-cols-[0.86fr_1.14fr] xl:gap-8">
                     <div className={`rounded-[2rem] bg-navy p-7 text-white shadow-panel ${isArabic ? 'font-arabic text-right' : ''}`}>
                         <p className="text-sm font-semibold uppercase tracking-[0.24em] text-emerald-200">{copy.badge}</p>
-                        <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">{copy.title}</h1>
+                        <h1 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl lg:text-4xl">{copy.title}</h1>
                         <p className="mt-4 text-sm leading-7 text-white/75 sm:text-base">{copy.intro}</p>
                         <p className="mt-4 rounded-2xl border border-emerald-200/25 bg-emerald-200/10 px-4 py-3 text-sm text-emerald-100">{copy.note}</p>
 
-                        <div className="mt-7 space-y-3">
+                        <div className="mt-7 space-y-3 hidden xl:block">
                             {copy.stepTitles.map((title, index) => (
                                 <div key={title} className="flex items-center gap-3 rounded-3xl border border-white/10 bg-white/5 p-4">
                                     <div
@@ -435,7 +435,26 @@ export function RegistrationPage() {
                                 <h2 className="mt-2 text-2xl font-semibold text-navy">{copy.stepTitles[step]}</h2>
                             </div>
                             <div className="text-xs font-semibold uppercase tracking-[0.18em] text-sapphire/70">
-                                {isDemoMode ? 'Demo Mode' : 'Live'}
+                                {isDemoMode ? 'Guided Mode' : 'Live'}
+                            </div>
+                        </div>
+
+                        <div className="mb-6 xl:hidden">
+                            <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.12em] text-sapphire/80">
+                                <span>{copy.active}</span>
+                                <span>{step + 1}/{steps.length}</span>
+                            </div>
+                            <div className="mt-2 h-2 rounded-full bg-sapphire/10">
+                                <div className="h-2 rounded-full bg-gradient-to-r from-sapphire to-[#0C43A0]" style={{ width: `${((step + 1) / steps.length) * 100}%` }} />
+                            </div>
+                            <div className="mt-3 grid grid-cols-7 gap-1.5">
+                                {steps.map((stepKey, index) => (
+                                    <div
+                                        key={stepKey}
+                                        className={`h-1.5 rounded-full ${index <= step ? 'bg-sapphire' : 'bg-slate-200'}`}
+                                        aria-hidden
+                                    />
+                                ))}
                             </div>
                         </div>
 
@@ -638,7 +657,7 @@ export function RegistrationPage() {
                                                     type="button"
                                                     onClick={handleSendOtp}
                                                     disabled={isSubmitting}
-                                                    className="premium-btn-secondary"
+                                                    className="premium-btn-secondary w-full sm:w-auto"
                                                 >
                                                     {copy.sendCode}
                                                 </button>
@@ -646,7 +665,7 @@ export function RegistrationPage() {
                                                     type="button"
                                                     onClick={handleVerifyOtp}
                                                     disabled={isSubmitting || !otpCode}
-                                                    className="premium-btn-primary"
+                                                    className="premium-btn-primary w-full sm:w-auto"
                                                 >
                                                     {copy.verifyCode}
                                                 </button>
@@ -654,14 +673,14 @@ export function RegistrationPage() {
                                                     type="button"
                                                     onClick={handleSendOtp}
                                                     disabled={isSubmitting}
-                                                    className="inline-flex items-center justify-center rounded-full border border-sapphire/20 bg-white px-5 py-3 text-sm font-semibold text-sapphire transition hover:border-sapphire"
+                                                    className="inline-flex min-h-[46px] w-full items-center justify-center rounded-full border border-sapphire/20 bg-white px-5 py-3 text-sm font-semibold text-sapphire transition hover:border-sapphire sm:w-auto"
                                                 >
                                                     {copy.resendCode}
                                                 </button>
                                                 <button
                                                     type="button"
                                                     onClick={handleChangePhoneNumber}
-                                                    className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-navy transition hover:border-slate-400"
+                                                    className="inline-flex min-h-[46px] w-full items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-navy transition hover:border-slate-400 sm:w-auto"
                                                 >
                                                     {copy.changePhone}
                                                 </button>
@@ -773,7 +792,7 @@ export function RegistrationPage() {
                                 type="button"
                                 onClick={() => setStep((current) => Math.max(0, current - 1))}
                                 disabled={!canGoBack || isSubmitting || currentStep === 'success'}
-                                className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 disabled:cursor-not-allowed disabled:opacity-40"
+                                className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 disabled:cursor-not-allowed disabled:opacity-40"
                             >
                                 <ChevronLeft className={`h-4 w-4 ${isArabic ? 'rotate-180' : ''}`} />
                                 {copy.back}
@@ -784,7 +803,7 @@ export function RegistrationPage() {
                                     type="button"
                                     onClick={handleNext}
                                     disabled={!canGoNext || isSubmitting}
-                                    className="premium-btn-primary gap-2 bg-navy disabled:cursor-not-allowed disabled:opacity-50"
+                                    className="premium-btn-primary w-full gap-2 bg-navy disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
                                 >
                                     {copy.next}
                                     <ChevronRight className={`h-4 w-4 ${isArabic ? 'rotate-180' : ''}`} />
@@ -794,7 +813,7 @@ export function RegistrationPage() {
                                     type="button"
                                     onClick={handleCreateDemoAccount}
                                     disabled={isSubmitting}
-                                    className="inline-flex items-center gap-2 rounded-full bg-call px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#166D2F] disabled:cursor-not-allowed disabled:opacity-50"
+                                    className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-call px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#166D2F] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
                                 >
                                     {isSubmitting ? copy.loading : copy.finish}
                                     <CheckCircle2 className="h-4 w-4" />

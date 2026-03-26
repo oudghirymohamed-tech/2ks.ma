@@ -700,7 +700,7 @@ export async function verifyCard(serial: string, activationCode: string) {
 export async function requestOtp(phone: string, profileId: string, scope: 'patient-registration' | 'doctor-onboarding') {
     // DEMO/STAGING ONLY: skip OTP API when a demo registration is in progress.
     if (_demoRegistrationActive) {
-        return { otpId: DEMO_OTP_ID, expiresAt: '', message: 'Demo OTP sent.', debugCode: '123456' };
+        return { otpId: DEMO_OTP_ID, expiresAt: '', message: 'OTP sent.', debugCode: '123456' };
     }
 
     return request<{ otpId: string; expiresAt: string; message: string; debugCode?: string }>('/otp/request', {

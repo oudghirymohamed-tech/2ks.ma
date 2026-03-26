@@ -43,11 +43,11 @@ export function B2BPage() {
                 title="2ks | B2B onboarding"
                 description="B2B onboarding flow for clinics and pharmacies with separate partner intake."
             />
-            <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
                 <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr]">
                     <div className={isArabic ? 'font-arabic text-right' : ''}>
                         <p className="text-sm font-semibold uppercase tracking-[0.24em] text-emerald-700">Partners / B2B</p>
-                        <h1 className="mt-4 text-5xl font-semibold tracking-tight text-slate-950">
+                        <h1 className="mt-4 text-[clamp(2rem,8vw,3.2rem)] font-semibold tracking-tight text-slate-950">
                             {isArabic
                                 ? 'تهيئة شركاء B2B منفصلة عن المرضى والأطباء.'
                                 : 'Separate B2B onboarding for clinics and pharmacies.'}
@@ -63,7 +63,7 @@ export function B2BPage() {
                                 ['Adoption', 'Simple front-office activation for pilot teams.'],
                                 ['Trust layer', 'Professional verification and access traceability.'],
                                 ['Pilot-ready', 'Designed for staged regional rollout.'],
-                                ['Narrative', 'Strong partner narrative for live demos.']
+                                ['Narrative', 'Strong partner narrative for live product journeys.']
                             ].map(([title, body]) => (
                                 <div key={title} className="rounded-3xl border border-slate-200 bg-white p-5 shadow-soft">
                                     <ShieldCheck className="h-5 w-5 text-emerald-600" />
@@ -169,14 +169,14 @@ export function B2BPage() {
                     <p className="mt-3 max-w-3xl text-base leading-7 text-slate-600">
                         {isArabic
                             ? 'ابدأ بمسار الطوارئ ثم فعّل مسار الشراكة عبر نموذج B2B.'
-                            : 'Start with emergency flow demonstration, then activate partner onboarding through the B2B intake.'}
+                            : 'Start with the emergency flow, then activate partner onboarding through the B2B intake.'}
                     </p>
-                    <div className="mt-6 flex flex-wrap gap-3">
-                        <Link to="/demo" className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white">
-                            {isArabic ? 'فتح مركز العرض' : 'Open demo hub'}
+                    <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                        <Link to="/demo" className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white sm:w-auto">
+                            {isArabic ? 'فتح المركز' : 'Open operations hub'}
                             <ArrowRight className="h-4 w-4" />
                         </Link>
-                        <Link to="/card/demo-token" className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700">
+                        <Link to="/card/demo-token" className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 sm:w-auto">
                             {isArabic ? 'عرض مسار الطوارئ' : 'View emergency scan'}
                         </Link>
                     </div>

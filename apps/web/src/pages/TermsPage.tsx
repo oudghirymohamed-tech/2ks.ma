@@ -16,17 +16,17 @@ export function TermsPage() {
         {
             title: t('1. Purpose of this website', '1. Objet du site', '1. غرض الموقع'),
             body: t(
-                'This website is a public-facing startup showcase for HayatID by 2ks Digital Solutions, prepared for presentation and concept validation.',
-                'Ce site est une vitrine startup publique pour HayatID par 2ks Digital Solutions, preparee pour presentation et validation de concept.',
-                'هذا الموقع عرض شركة ناشئة موجه للجمهور لـ HayatID من 2ks Digital Solutions، ومجهز للعرض والتحقق من المفهوم.'
+                'This website is the public platform for HayatID by 2ks Digital Solutions, designed to present core product journeys and services.',
+                'Ce site est la plateforme publique de HayatID par 2ks Digital Solutions, concue pour presenter les parcours et services essentiels du produit.',
+                'هذا الموقع هو المنصة العامة لـ HayatID من 2ks Digital Solutions، ومصمم لعرض المسارات والخدمات الأساسية للمنتج.'
             )
         },
         {
-            title: t('2. Demo/staging limitation', '2. Limitation demo/staging', '2. حدود العرض التجريبي/المرحلي'),
+            title: t('2. Current service scope', '2. Portee actuelle du service', '2. النطاق الحالي للخدمة'),
             body: t(
-                'Some workflows are demonstration-only and do not represent final production medical operations.',
-                'Certains workflows sont uniquement de demonstration et ne representent pas les operations medicales finales.',
-                'بعض المسارات مخصصة للعرض فقط ولا تمثل التشغيل الطبي الإنتاجي النهائي.'
+                'Some workflows are limited to current rollout scope and will continue to evolve with production operations.',
+                'Certains workflows sont limites au perimetre actuel de deploiement et continueront d evoluer avec les operations de production.',
+                'بعض المسارات ضمن نطاق الإطلاق الحالي وستواصل التطور مع التشغيل الإنتاجي.'
             )
         },
         {
@@ -52,9 +52,9 @@ export function TermsPage() {
             <PageMeta
                 title={t('HayatID | Terms of Service', 'HayatID | Conditions d\'utilisation', 'HayatID | شروط الاستخدام')}
                 description={t(
-                    'Terms of service for HayatID public website and demonstration environment.',
-                    'Conditions d\'utilisation du site public et de l\'environnement de demonstration HayatID.',
-                    'شروط استخدام الموقع العام وبيئة العرض التجريبي لـ HayatID.'
+                    'Terms of service for HayatID public website and platform services.',
+                    'Conditions d\'utilisation du site public et des services de la plateforme HayatID.',
+                    'شروط استخدام الموقع العام وخدمات منصة HayatID.'
                 )}
             />
 
@@ -82,9 +82,9 @@ export function TermsPage() {
 
                 <div className={`mt-6 rounded-3xl border border-sapphire/15 bg-powder/25 p-4 text-sm text-navy/78 ${isArabic ? 'font-arabic text-right' : ''}`}>
                     {t(
-                        'Last updated: March 2026. This legal text is a professional placeholder for the public demo website.',
-                        'Derniere mise a jour : mars 2026. Ce texte legal est un placeholder professionnel pour le site de demo public.',
-                        'آخر تحديث: مارس 2026. هذا النص القانوني عبارة عن محتوى احترافي مؤقت لموقع العرض العام.'
+                        'Last updated: March 2026. This legal text applies to the current public platform and is updated as services evolve.',
+                        'Derniere mise a jour : mars 2026. Ce texte legal s applique a la plateforme publique actuelle et est mis a jour avec l evolution des services.',
+                        'آخر تحديث: مارس 2026. ينطبق هذا النص القانوني على المنصة العامة الحالية ويتم تحديثه مع تطور الخدمات.'
                     )}
                 </div>
             </section>

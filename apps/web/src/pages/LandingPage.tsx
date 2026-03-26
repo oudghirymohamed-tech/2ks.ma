@@ -234,43 +234,43 @@ export function LandingPage() {
                     animate={{ y: [0, 12, 0], opacity: [0.45, 0.7, 0.45] }}
                     transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
                 />
-                <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
+                <div className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-24">
                     <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
                         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className={isArabic ? 'font-arabic text-right' : ''}>
-                            <div className="inline-flex items-center gap-2 rounded-full border border-sapphire/20 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-sapphire shadow-sm sm:text-sm">
+                            <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-sapphire/20 bg-white/70 px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-sapphire shadow-sm sm:px-4 sm:text-sm sm:tracking-[0.22em]">
                                 <Smartphone className="h-4 w-4" />
-                                <p>{content.eyebrow}</p>
+                                <p className="truncate">{content.eyebrow}</p>
                             </div>
-                            <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-navy sm:text-5xl lg:text-6xl">
+                            <h1 className="mt-5 max-w-4xl text-[clamp(1.95rem,8vw,3.8rem)] font-semibold leading-[1.08] tracking-tight text-navy">
                                 {content.title}
                             </h1>
-                            <p className="mt-5 max-w-2xl text-base leading-7 text-navy/75 sm:text-lg sm:leading-8">
+                            <p className="mt-4 max-w-2xl text-[15px] leading-7 text-navy/75 sm:mt-5 sm:text-lg sm:leading-8">
                                 {content.body}
                             </p>
 
-                            <div className="mt-8 flex flex-wrap items-center gap-3">
+                            <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center">
                                 <Link
                                     to="/how-it-works"
-                                    className="premium-btn-primary gap-2 px-7 py-3.5"
+                                    className="premium-btn-primary w-full gap-2 px-7 py-3.5 sm:w-auto"
                                 >
                                     {content.primaryCta}
                                     <ArrowRight className={`h-4 w-4 ${isArabic ? 'rotate-180' : ''}`} />
                                 </Link>
                                 <Link
                                     to="/register"
-                                    className="premium-btn-secondary gap-2 px-7 py-3.5"
+                                    className="premium-btn-secondary w-full gap-2 px-7 py-3.5 sm:w-auto"
                                 >
                                     {content.secondaryCta}
                                     <ArrowRight className={`h-4 w-4 text-sapphire ${isArabic ? 'rotate-180' : ''}`} />
                                 </Link>
                             </div>
 
-                            <div className="mt-6 flex flex-wrap gap-3">
-                                <Link to="/checkout" className="premium-btn-secondary gap-2 border-sapphire/20 bg-white/70 px-5 py-3">
+                            <div className="mt-5 flex flex-col gap-3 sm:mt-6 sm:flex-row sm:flex-wrap">
+                                <Link to="/checkout" className="premium-btn-secondary w-full gap-2 border-sapphire/20 bg-white/70 px-5 py-3 sm:w-auto">
                                     <WalletCards className="h-4 w-4 text-sapphire" />
                                     {content.getCard}
                                 </Link>
-                                <Link to="/pro" className="inline-flex items-center gap-2 rounded-full border border-sapphire/15 bg-sapphire/5 px-5 py-3 text-sm font-semibold text-navy/80 transition hover:border-sapphire/35 hover:text-sapphire">
+                                <Link to="/pro" className="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full border border-sapphire/15 bg-sapphire/5 px-5 py-3 text-sm font-semibold text-navy/80 transition hover:border-sapphire/35 hover:text-sapphire sm:w-auto">
                                     <ShieldCheck className="h-4 w-4" />
                                     {content.proAccess}
                                 </Link>
@@ -281,7 +281,7 @@ export function LandingPage() {
                             initial={{ opacity: 0, y: 18 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.08 }}
-                            className={`rounded-[2rem] border border-sapphire/20 bg-navy p-4 text-white shadow-panel sm:p-6 ${isArabic ? 'font-arabic' : ''}`}
+                            className={`rounded-[1.6rem] border border-sapphire/20 bg-navy p-3 text-white shadow-panel sm:rounded-[2rem] sm:p-6 ${isArabic ? 'font-arabic' : ''}`}
                         >
                             <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-4 transition-transform duration-300 hover:-translate-y-1 sm:p-5">
                                 <div className="flex items-center justify-between gap-4">
@@ -294,9 +294,9 @@ export function LandingPage() {
                                     </div>
                                 </div>
 
-                                <div className="mt-5 rounded-[1.4rem] bg-white p-4 text-navy sm:p-5">
+                                <div className="mt-4 rounded-[1.2rem] bg-white p-4 text-navy sm:mt-5 sm:rounded-[1.4rem] sm:p-5">
                                     <p className="text-sm font-semibold text-sapphire">{content.platformHighlights}</p>
-                                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                                    <div className="mt-4 grid gap-3 min-[430px]:grid-cols-2">
                                         {content.panelItems.map((item) => (
                                             <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
                                                 <p className="text-sm font-semibold">{item}</p>
@@ -309,7 +309,7 @@ export function LandingPage() {
                                     </div>
                                 </div>
 
-                                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                                <div className="mt-4 grid gap-3 min-[430px]:grid-cols-2">
                                     <div className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
                                         <ShieldCheck className="h-5 w-5 text-powder" />
                                         <p className="mt-3 text-sm font-semibold text-white">{content.panelStatOne}</p>
@@ -327,7 +327,7 @@ export function LandingPage() {
                 </div>
             </section>
 
-            <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+            <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
                 <div className="grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
                     <div className={`rounded-[2rem] border border-sapphire/15 bg-white/80 p-6 shadow-soft sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
                         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sapphire/75">{content.statLabel}</p>
@@ -335,7 +335,7 @@ export function LandingPage() {
                         <p className="mt-4 text-base leading-7 text-navy/72">{content.statBody}</p>
                     </div>
 
-                    <div className="grid gap-4 sm:grid-cols-3">
+                    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                         {content.highlights.map((item, index) => (
                             <motion.div
                                 key={item.title}
@@ -360,7 +360,7 @@ export function LandingPage() {
                             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sapphire/75">{content.stepsLabel}</p>
                             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-navy sm:text-4xl">{content.stepsTitle}</h2>
                         </div>
-                        <div className="grid max-w-3xl gap-4 lg:grid-cols-3">
+                        <div className="grid max-w-3xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
                             {content.steps.map((step, index) => (
                                 <motion.div
                                     key={step.title}
@@ -410,7 +410,7 @@ export function LandingPage() {
                 </div>
             </section>
 
-            <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+            <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
                 <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
                     <div className={`rounded-[2rem] bg-navy p-6 text-white shadow-panel sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
                         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-powder/80">{content.supportLabel}</p>

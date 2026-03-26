@@ -10,7 +10,7 @@ export function ScanSimulator() {
                 <div className="flex items-center justify-between rounded-3xl border border-sapphire/25 bg-powder/10 p-4">
                     <div>
                         <p className="text-xs uppercase tracking-[0.24em] text-powder">Live scan</p>
-                        <p className="mt-2 text-lg font-semibold">Emergency card preview</p>
+                        <p className="mt-2 text-lg font-semibold">Emergency card overview</p>
                     </div>
                     <QrCode className="h-8 w-8 text-powder" />
                 </div>
@@ -50,7 +50,7 @@ export function ScanSimulator() {
                     to="/card/demo-token"
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-sapphire px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#0C43A0]"
                 >
-                    Open scan demo
+                    Open scan flow
                     <ArrowRight className="h-4 w-4" />
                 </Link>
             </div>

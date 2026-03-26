@@ -10,7 +10,7 @@ interface OtpPanelProps {
 export function OtpPanel({ patientToken, onRequestOtp, onVerifyOtp }: OtpPanelProps) {
     const [phone, setPhone] = useState('+212611223344');
     const [otp, setOtp] = useState('2026');
-    const [status, setStatus] = useState('Envoyer un OTP de démonstration pour ouvrir le niveau 1.');
+    const [status, setStatus] = useState('Envoyer un OTP pour ouvrir le niveau 1.');
     const [isLoading, setIsLoading] = useState(false);
 
     async function handleRequest() {
@@ -35,7 +35,7 @@ export function OtpPanel({ patientToken, onRequestOtp, onVerifyOtp }: OtpPanelPr
                 </div>
                 <div>
                     <p className="text-sm font-semibold">Accès professionnel</p>
-                    <p className="text-sm text-white/75">OTP démo, fallback TOTP et code d’urgence en UI only.</p>
+                    <p className="text-sm text-white/75">OTP, fallback TOTP et code d urgence en UI only.</p>
                 </div>
             </div>
             <div className="mt-5 space-y-3">
@@ -54,7 +54,7 @@ export function OtpPanel({ patientToken, onRequestOtp, onVerifyOtp }: OtpPanelPr
                     className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-sapphire/30 bg-sapphire/15 px-4 py-3 text-sm font-semibold transition hover:bg-sapphire/25 disabled:cursor-not-allowed"
                 >
                     <Smartphone className="h-4 w-4" />
-                    Envoyer OTP demo
+                    Envoyer OTP
                 </button>
                 <label className="block">
                     <span className="mb-2 block text-xs uppercase tracking-[0.2em] text-powder/80">Code OTP</span>

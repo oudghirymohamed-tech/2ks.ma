@@ -185,7 +185,7 @@ export const fallbackProfessional: Professional = {
             id: 'pro-log-2',
             actor: 'Dr. Amal Benali',
             role: 'Urgentiste',
-            location: 'GITEX Africa Booth Demo',
+            location: 'GITEX Africa Booth',
             accessLevel: 'level-1',
             timestamp: '2026-03-01T11:00:00Z',
             status: 'completed'
@@ -247,29 +247,29 @@ export const emergencyResponses: Record<string, PublicEmergencyResponse> = {
 };
 
 export const startupMetrics = [
-    { label: 'Intentions d’adoption', value: '86%', note: 'sur entretiens terrain demo' },
-    { label: 'Temps pour comprendre la valeur', value: '<10 sec', note: 'test booth storytelling' },
-    { label: 'Scans d’essai', value: '240+', note: 'pilotes et maquettes terrain' },
-    { label: 'Note de confiance demo', value: '4.8/5', note: 'feedback partenaires potentiels' }
+    { label: 'Intentions d’adoption', value: '86%', note: 'sur entretiens terrain' },
+    { label: 'Temps pour comprendre la valeur', value: '<10 sec', note: 'parcours booth storytelling' },
+    { label: 'Scans en conditions reelles', value: '240+', note: 'pilotes et maquettes terrain' },
+    { label: 'Note de confiance', value: '4.8/5', note: 'feedback partenaires potentiels' }
 ];
 
 export const partnerOffers: PartnerOffer[] = [
     {
         title: 'Patient starter',
         price: 'Gratuit',
-        description: 'Entrée simple pour créer le profil, générer un QR et recevoir un accès demo.',
-        bullets: ['Profil d’urgence', 'QR de démonstration', 'Historique d’accès']
+        description: 'Entree simple pour creer le profil, generer un QR et recevoir un acces securise.',
+        bullets: ['Profil d urgence', 'QR patient', 'Historique d acces']
     },
     {
         title: 'Founder clinic pack',
         price: 'Sur discussion',
-        description: 'Offre pilote pour cliniques fondatrices et cabinets prêts à tester l’accès urgent.',
+        description: 'Offre pilote pour cliniques fondatrices et cabinets prets a activer l acces urgent.',
         bullets: ['Onboarding équipe', 'Tableau de bord pro', 'Support pilote Marrakech 2026']
     },
     {
         title: 'Founder pharmacy pack',
         price: 'Sur discussion',
         description: 'Pack partenaire pour pharmacies voulant activer la lecture professionnelle assistée.',
-        bullets: ['Badge partenaire', 'Accès niveau 1 demo', 'Formation usage comptoir']
+        bullets: ['Badge partenaire', 'Acces niveau 1', 'Formation usage comptoir']
     }
 ];

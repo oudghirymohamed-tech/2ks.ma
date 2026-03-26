@@ -45,9 +45,9 @@ export function ServicesPage() {
             icon: Users,
             title: t('Support and Onboarding', 'Support et onboarding', 'الدعم والتهيئة'),
             body: t(
-                '2ks provides a startup-ready onboarding path for future clients, partners, and field demonstrations.',
-                '2ks fournit un parcours d\'onboarding startup-ready pour clients, partenaires et demos terrain.',
-                'توفر 2ks مسار تهيئة جاهزاً للشركات الناشئة للعملاء والشركاء والعروض الميدانية.'
+                '2ks provides a startup-ready onboarding path for future clients, partners, and field operations.',
+                '2ks fournit un parcours d\'onboarding startup-ready pour clients, partenaires et operations terrain.',
+                'توفر 2ks مسار تهيئة جاهزاً للشركات الناشئة للعملاء والشركاء والعمليات الميدانية.'
             )
         },
         {

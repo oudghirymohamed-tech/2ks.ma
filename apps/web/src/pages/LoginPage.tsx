@@ -19,7 +19,7 @@ export function LoginPage() {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    // DEMO: GITEX demo account support with exact credentials
+    // Temporary staging account support with exact credentials
     async function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
         setError('');
@@ -54,12 +54,12 @@ export function LoginPage() {
         <MarketingLayout>
             <PageMeta
                 title={getLabel('2ks | Login', '2ks | Connexion', '2ks | تسجيل الدخول')}
-                description={getLabel('Clean login demo flow for HayatID account access.', 'Flux de connexion demo clair pour l acces au compte HayatID.', 'تدفق تسجيل دخول تجريبي واضح للوصول إلى حساب HayatID.')}
+                description={getLabel('Secure login flow for HayatID account access.', 'Flux de connexion securise pour l acces au compte HayatID.', 'تدفق تسجيل دخول آمن للوصول إلى حساب HayatID.')}
             />
             <section className="mx-auto max-w-xl px-4 py-14 sm:px-6 lg:px-8">
                 <div className={`premium-card p-7 sm:p-9 ${isArabic ? 'font-arabic text-right' : ''}`}>
                     <div className="inline-flex rounded-full border border-sapphire/20 bg-sapphire/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-sapphire">
-                        {getLabel('Demo / Staging', 'Demo / Staging', 'تجريبي / مرحلي')}
+                        {getLabel('Secure Access', 'Acces securise', 'وصول آمن')}
                     </div>
                     <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sapphire">
                         {getLabel('Login', 'Connexion', 'تسجيل الدخول')}
