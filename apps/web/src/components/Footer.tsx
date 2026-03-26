@@ -11,7 +11,7 @@ export function Footer() {
     };
 
     return (
-        <footer className="border-t border-white/10 bg-navy text-white">
+        <footer className="border-t border-white/10 bg-[linear-gradient(180deg,#000926_0%,#03103A_100%)] text-white">
             {/* Main footer grid */}
             <div className={`mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.6fr_1fr_1fr] lg:px-8 lg:py-16 ${isArabic ? 'font-arabic text-right' : ''}`}>
                 {/* Brand column */}
@@ -24,7 +24,7 @@ export function Footer() {
                             'نبني تجربة صحية أكثر ترابطاً عبر هوية رقمية آمنة وتقنيات NFC وQR.'
                         )}
                     </p>
-                    <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-powder/70">
+                    <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-powder/70 shadow-[0_8px_18px_rgba(0,0,0,0.2)]">
                         {t('Smart Medical Identity Platform', 'Plateforme d identite medicale intelligente', 'منصة الهوية الطبية الذكية')}
                     </div>
                 </div>
@@ -35,16 +35,16 @@ export function Footer() {
                         {t('Navigation', 'Navigation', 'التنقل')}
                     </p>
                     <div className="mt-4 flex flex-col gap-3">
-                        <Link to="/" className="text-sm text-white/70 transition hover:text-powder">
+                        <Link to="/" className="text-sm text-white/70 transition hover:translate-x-0.5 hover:text-powder">
                             {t('Home', 'Accueil', 'الرئيسية')}
                         </Link>
-                        <Link to="/about" className="text-sm text-white/70 transition hover:text-powder">
+                        <Link to="/about" className="text-sm text-white/70 transition hover:translate-x-0.5 hover:text-powder">
                             {t('About Us', 'A propos', 'من نحن')}
                         </Link>
-                        <Link to="/how-it-works" className="text-sm text-white/70 transition hover:text-powder">
+                        <Link to="/how-it-works" className="text-sm text-white/70 transition hover:translate-x-0.5 hover:text-powder">
                             {t('How It Works', 'Comment ca marche', 'كيف يعمل')}
                         </Link>
-                        <Link to="/contact" className="text-sm text-white/70 transition hover:text-powder">
+                        <Link to="/contact" className="text-sm text-white/70 transition hover:translate-x-0.5 hover:text-powder">
                             {t('Contact Us', 'Contactez-nous', 'تواصل معنا')}
                         </Link>
                     </div>

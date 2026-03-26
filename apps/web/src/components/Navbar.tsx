@@ -1,5 +1,5 @@
 import { HeartPulse, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -11,6 +11,14 @@ export function Navbar() {
     const isArabic = language === 'ar';
     const isFrench = language === 'fr';
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const onScroll = () => setIsScrolled(window.scrollY > 10);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
 
     const t = (en: string, fr: string, ar: string) => {
         if (language === 'ar') return ar;
@@ -25,16 +33,38 @@ export function Navbar() {
         { to: '/contact', label: t('Contact Us', 'Contact', 'تواصل معنا') },
     ];
 
+    const dashboardHref =
+        isAuthenticated && (user?.role === 'doctor' || user?.role === 'pharmacist')
+            ? '/pro/dashboard'
+            : isAuthenticated && user?.role === 'patient'
+                ? '/dashboard'
+                : '/contact';
+
+    const dashboardLabel =
+        isAuthenticated && (user?.role === 'doctor' || user?.role === 'pharmacist')
+            ? t('Professional Space', 'Espace professionnel', 'المساحة المهنية')
+            : isAuthenticated && user?.role === 'patient'
+                ? isArabic
+                    ? 'لوحة المريض'
+                    : 'Dashboard'
+                : isFrench
+                    ? 'Devenir un client'
+                    : isArabic
+                        ? 'كن عميلاً'
+                        : 'Become a client';
+
     return (
-        <header className="sticky top-0 z-40 border-b border-sapphire/25 bg-ice/90 backdrop-blur-xl">
+        <header className={`sticky top-0 z-40 border-b backdrop-blur-xl transition-all duration-300 ${isScrolled ? 'border-sapphire/25 bg-ice/85 shadow-[0_10px_28px_rgba(0,9,38,0.11)]' : 'border-sapphire/15 bg-ice/70'}`}>
             <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-                <Link to="/" className="inline-flex items-center gap-3 text-navy">
-                    <div className="rounded-2xl bg-navy p-2 text-white">
+                <Link to="/" className="inline-flex items-center gap-3 text-navy transition hover:opacity-95">
+                    <div className="rounded-2xl bg-navy p-2 text-white shadow-[0_8px_20px_rgba(0,9,38,0.24)]">
                         <HeartPulse className="h-5 w-5" />
                     </div>
                     <div>
                         <p className="text-lg font-semibold tracking-tight">{copy.brand}</p>
-                        <p className="text-xs uppercase tracking-[0.2em] text-navy/65">SMART MEDICAL IDENTITY PLATFORM</p>
+                        <p className="text-xs uppercase tracking-[0.2em] text-navy/65">
+                            {t('Smart medical identity platform', 'Plateforme d identite medicale intelligente', 'منصة الهوية الطبية الذكية')}
+                        </p>
                     </div>
                 </Link>
 
@@ -44,10 +74,15 @@ export function Navbar() {
                             key={link.to}
                             to={link.to}
                             className={({ isActive }) =>
-                                `text-sm font-medium transition ${isActive ? 'text-sapphire' : 'text-navy/80 hover:text-sapphire'}`
+                                `group relative text-sm font-medium transition ${isActive ? 'text-sapphire' : 'text-navy/80 hover:text-sapphire'}`
                             }
                         >
-                            {link.label}
+                            {({ isActive }) => (
+                                <span className="relative inline-flex flex-col">
+                                    <span>{link.label}</span>
+                                    <span className={`mt-1 h-0.5 rounded-full bg-sapphire transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                                </span>
+                            )}
                         </NavLink>
                     ))}
                 </nav>
@@ -68,23 +103,15 @@ export function Navbar() {
                         </Link>
                     )}
                     <Link
-                        to={isAuthenticated && user?.role === 'patient' ? '/dashboard' : '/contact'}
-                        className="hidden rounded-full bg-sapphire px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#0C43A0] sm:inline-flex"
+                        to={dashboardHref}
+                        className="premium-btn-primary hidden px-4 py-2.5 sm:inline-flex"
                     >
-                        {isAuthenticated && user?.role === 'patient'
-                            ? isArabic
-                                ? 'لوحة المريض'
-                                : 'Dashboard'
-                            : isFrench
-                                ? 'Devenir un client'
-                                : isArabic
-                                    ? 'كن عميلاً'
-                                    : 'Become a client'}
+                        {dashboardLabel}
                     </Link>
                     <button
                         type="button"
                         onClick={() => setIsMobileMenuOpen((current) => !current)}
-                        className="inline-flex rounded-xl border border-sapphire/20 bg-white/70 p-2 text-navy lg:hidden"
+                        className="inline-flex rounded-xl border border-sapphire/20 bg-white/80 p-2 text-navy shadow-sm transition hover:border-sapphire/35 hover:bg-white lg:hidden"
                         aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
                     >
                         {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -93,22 +120,14 @@ export function Navbar() {
             </div>
 
             {isMobileMenuOpen ? (
-                <nav className="border-t border-sapphire/20 bg-white/80 px-4 py-4 lg:hidden sm:px-6">
+                <nav className="border-t border-sapphire/20 bg-white/85 px-4 py-4 backdrop-blur lg:hidden sm:px-6">
                     <div className="flex flex-col gap-3">
                         <Link
-                            to={isAuthenticated && user?.role === 'patient' ? '/dashboard' : '/contact'}
+                            to={dashboardHref}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="inline-flex items-center justify-center rounded-full bg-sapphire px-4 py-2.5 text-sm font-semibold text-white"
+                            className="premium-btn-primary"
                         >
-                            {isAuthenticated && user?.role === 'patient'
-                                ? isArabic
-                                    ? 'لوحة المريض'
-                                    : 'Dashboard'
-                                : isFrench
-                                    ? 'Devenir un client'
-                                    : isArabic
-                                        ? 'كن عميلاً'
-                                        : 'Become a client'}
+                            {dashboardLabel}
                         </Link>
                         {links.map((link) => (
                             <NavLink

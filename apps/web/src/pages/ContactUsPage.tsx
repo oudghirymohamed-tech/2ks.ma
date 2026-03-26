@@ -1,5 +1,6 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { PageMeta } from '../components/PageMeta';
 import { useLanguage } from '../context/LanguageContext';
 import { MarketingLayout } from '../layouts/MarketingLayout';
@@ -33,7 +34,7 @@ export function ContactUsPage() {
 
             <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
                 <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-                    <div className={`rounded-[2rem] bg-navy p-7 text-white sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                    <motion.div initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} className={`rounded-[2rem] bg-navy p-7 text-white shadow-panel sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
                         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-powder/80">
                             {t('Contact Us', 'Contactez-nous', 'تواصل معنا')}
                         </p>
@@ -82,7 +83,7 @@ export function ContactUsPage() {
                             </div>
                         </div>
 
-                        <div className="mt-7 rounded-3xl border border-white/10 bg-white/5 p-5">
+                        <div className="mt-7 rounded-3xl border border-white/10 bg-white/5 p-5 transition hover:border-white/20 hover:bg-white/10">
                             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-powder/80">{t('For partnerships and pilots', 'Pour les partenariats et pilotes', 'للشراكات والتجارب الميدانية')}</p>
                             <p className="mt-3 text-sm leading-7 text-white/75">
                                 {t(
@@ -92,9 +93,9 @@ export function ContactUsPage() {
                                 )}
                             </p>
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <div className={`rounded-[2rem] border border-sapphire/15 bg-white/80 p-7 shadow-soft sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                    <motion.div initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: 0.06 }} className={`premium-card p-7 sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
                         <h2 className="text-2xl font-semibold text-navy">
                             {t('Send Message', 'Envoyer un message', 'إرسال رسالة')}
                         </h2>
@@ -104,39 +105,39 @@ export function ContactUsPage() {
                                 <span className="mb-2 block text-sm font-medium text-navy">
                                     {t('Full Name', 'Nom complet', 'الاسم الكامل')}
                                 </span>
-                                <input required className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-sapphire" />
+                                <input required className="premium-input" />
                             </label>
                             <label className="block">
                                 <span className="mb-2 block text-sm font-medium text-navy">
                                     {t('Email Address', 'Adresse email', 'البريد الإلكتروني')}
                                 </span>
-                                <input type="email" required className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-sapphire" />
+                                <input type="email" required className="premium-input" />
                             </label>
                             <label className="block">
                                 <span className="mb-2 block text-sm font-medium text-navy">
                                     {t('Phone Number', 'Numero de telephone', 'رقم الهاتف')}
                                 </span>
-                                <input type="tel" className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-sapphire" />
+                                <input type="tel" className="premium-input" />
                             </label>
                             <label className="block">
                                 <span className="mb-2 block text-sm font-medium text-navy">
                                     {t('Subject', 'Sujet', 'الموضوع')}
                                 </span>
-                                <input required className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-sapphire" />
+                                <input required className="premium-input" />
                             </label>
                             <label className="block">
                                 <span className="mb-2 block text-sm font-medium text-navy">
                                     {t('Message', 'Message', 'الرسالة')}
                                 </span>
-                                <textarea required rows={5} className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-sapphire" />
+                                <textarea required rows={5} className="premium-input" />
                             </label>
 
-                            <button type="submit" className="inline-flex rounded-full bg-sapphire px-5 py-3 text-sm font-semibold text-white">
+                            <button type="submit" className="premium-btn-primary">
                                 {t('Send Message', 'Envoyer le message', 'إرسال الرسالة')}
                             </button>
 
                             {submitted ? (
-                                <p className="text-sm font-medium text-sapphire">
+                                <p className="inline-flex rounded-full border border-call/30 bg-call/10 px-4 py-2 text-sm font-medium text-call">
                                     {t(
                                         'Thank you. Your message has been captured for demo purposes.',
                                         'Merci. Votre message a ete capture a des fins de demonstration.',
@@ -153,7 +154,7 @@ export function ContactUsPage() {
                                 'نحن نبني تجربة صحية أكثر ذكاءً وترابطاً عبر هوية رقمية آمنة وتقنية NFC.'
                             )}
                         </p>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
         </MarketingLayout>

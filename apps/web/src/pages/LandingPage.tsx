@@ -1,5 +1,5 @@
-﻿import { motion } from 'framer-motion';
-import { Activity, ArrowRight, HeartPulse, ShieldCheck, Smartphone, Stethoscope, UserCheck, WalletCards, Wifi, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Activity, ArrowRight, HeartPulse, ShieldCheck, Smartphone, WalletCards, Wifi } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PageMeta } from '../components/PageMeta';
 import { useLanguage } from '../context/LanguageContext';
@@ -8,400 +8,438 @@ import { MarketingLayout } from '../layouts/MarketingLayout';
 const featureCards = [
     {
         icon: ShieldCheck,
-        title: 'Secure Medical Records',
-        body: 'All patient data is protected with strong encryption and strict access controls, ensuring only authorized users can view sensitive medical information.',
+        title: {
+            en: 'Secure Medical Records',
+            fr: 'Dossiers medicaux securises',
+            ar: 'سجلات طبية آمنة'
+        },
+        body: {
+            en: 'Protected health information, structured access, and a platform designed to support trust across the care journey.',
+            fr: 'Informations de sante protegees, acces structure et plateforme concue pour renforcer la confiance tout au long du parcours de soin.',
+            ar: 'معلومات صحية محمية، وصول منظم، ومنصة مصممة لتعزيز الثقة عبر رحلة الرعاية الصحية.'
+        }
     },
     {
-        icon: Zap,
-        title: 'Instant NFC Access',
-        body: 'A single tap of the HayatID card opens the digital health profile instantly — no delays, no friction, no manual entry required.',
+        icon: WalletCards,
+        title: {
+            en: 'Instant NFC Access',
+            fr: 'Acces NFC instantane',
+            ar: 'وصول فوري عبر NFC'
+        },
+        body: {
+            en: 'A smart NFC card creates a fast connection between physical patient identity and the digital health platform.',
+            fr: 'Une carte NFC intelligente cree un lien rapide entre l identite physique du patient et la plateforme numerique de sante.',
+            ar: 'تُنشئ بطاقة NFC الذكية اتصالاً سريعاً بين الهوية المادية للمريض والمنصة الصحية الرقمية.'
+        }
     },
     {
         icon: HeartPulse,
-        title: 'Better Patient-Doctor Connection',
-        body: 'HayatID bridges the gap between patients and professionals by making medical records easier to access and share in a structured, secure environment.',
+        title: {
+            en: 'Better Patient-Doctor Connection',
+            fr: 'Meilleure connexion patient-medecin',
+            ar: 'تواصل أفضل بين المريض والطبيب'
+        },
+        body: {
+            en: 'Patients and healthcare professionals gain a clearer, more efficient way to access the right information when needed.',
+            fr: 'Patients et professionnels de sante beneficient d un acces plus clair et plus efficace aux bonnes informations au bon moment.',
+            ar: 'يحصل المرضى والمهنيون الصحيون على طريقة أوضح وأكثر كفاءة للوصول إلى المعلومات المناسبة عند الحاجة.'
+        }
     },
     {
         icon: Activity,
-        title: 'Modern Healthcare Experience',
-        body: 'Designed for today\'s expectations — HayatID brings clarity, speed, and reliability to every step of the healthcare journey.',
-    },
+        title: {
+            en: 'Modern Healthcare Experience',
+            fr: 'Experience de sante moderne',
+            ar: 'تجربة رعاية صحية حديثة'
+        },
+        body: {
+            en: 'Built for clarity, usability, and confidence across patient onboarding, access, and ongoing healthcare management.',
+            fr: 'Concue pour la clarte, la simplicite d usage et la confiance dans l onboarding patient, l acces et la gestion continue.',
+            ar: 'مصممة للوضوح وسهولة الاستخدام والثقة عبر تسجيل المرضى والوصول وإدارة الرعاية الصحية المستمرة.'
+        }
+    }
 ];
 
-const howItWorksSteps = [
-    {
-        step: '01',
-        title: 'Tap the NFC Card',
-        body: 'The patient taps or scans the HayatID card, instantly connecting to the secure digital health platform.',
+const landingContent = {
+    en: {
+        metaTitle: 'HayatID | Smart Medical Identity Platform',
+        metaDescription: 'HayatID is a smart medical identity platform powered by 2ks technology, offering secure, modern, and accessible healthcare information management.',
+        eyebrow: 'SMART MEDICAL IDENTITY PLATFORM',
+        title: 'Smart medical identity for faster, safer healthcare access',
+        body: 'HayatID, powered by 2ks technology, connects a smart NFC card to a secure digital health platform, making essential medical information accessible, organized, and ready when it matters most.',
+        primaryCta: 'Discover HayatID',
+        secondaryCta: 'Create Account',
+        panelLabel: '2ks Technology',
+        panelTitle: 'Connected medical identity',
+        panelItems: ['Medical Records', 'NFC Card Access', 'Secure Profile', 'Digital Health Space'],
+        panelBadgeTitle: 'NFC Enabled',
+        panelBadgeBody: 'Fast and seamless access',
+        panelStatOne: 'Trusted Access',
+        panelStatOneBody: 'Secure by design',
+        panelStatTwo: 'Always Connected',
+        panelStatTwoBody: 'Built for modern care',
+        statLabel: 'WHO WE ARE',
+        statTitle: 'Redefining medical access through smart digital identity',
+        statBody: 'HayatID is a next-generation medical identity platform designed to improve the way patients and healthcare professionals access medical information. By combining NFC technology with a secure digital environment, HayatID creates a more connected, efficient, and reliable healthcare experience.',
+        highlights: [
+            { title: 'Secure by architecture', body: 'A platform designed around trusted access, better structure, and professional healthcare usability.' },
+            { title: 'Built for real-world adoption', body: 'Created for patients, doctors, partners, investors, and event visitors who need instant product clarity.' },
+            { title: 'Clear medical-tech positioning', body: 'HayatID presents a premium healthcare identity experience powered by modern NFC-enabled technology.' }
+        ],
+        stepsLabel: 'HOW IT WORKS',
+        stepsTitle: 'A seamless journey from NFC tap to secure medical access',
+        steps: [
+            { title: 'Tap the smart card', body: 'The HayatID NFC card connects the physical card experience to a secure digital health environment.' },
+            { title: 'Access organized records', body: 'Essential medical information can be viewed, managed, and structured in one connected platform.' },
+            { title: 'Continue with confidence', body: 'The experience is simple, modern, and built to make healthcare access clearer and more efficient.' }
+        ],
+        supportLabel: 'POWERED BY 2KS',
+        supportTitle: 'The technology behind a smarter healthcare experience',
+        supportBody: '2ks is the digital technology layer that powers HayatID. It enables secure interaction between the NFC medical card and the online platform, helping transform healthcare access into a smoother, smarter, and more modern experience.',
+        supportPrimary: 'Create Account',
+        supportSecondary: 'Discover HayatID',
+        trustLabel: 'WHY HAYATID',
+        trustTitle: 'Built for clarity, speed, and trust',
+        trustItems: [
+            'Built for clarity, speed, and trust.',
+            'Designed for patients and healthcare professionals.',
+            'Focused on innovation, security, and modern healthcare access.'
+        ],
+        getCard: 'Get the NFC card',
+        proAccess: 'Professional access',
+        platformHighlights: 'Platform highlights',
+        platformValue: 'Platform value'
     },
-    {
-        step: '02',
-        title: 'Access the Health Profile',
-        body: 'Relevant medical records, prescriptions, and documents are organized and available in one structured digital space.',
+    fr: {
+        metaTitle: 'HayatID | Plateforme d identite medicale intelligente',
+        metaDescription: 'HayatID est une plateforme d identite medicale intelligente propulsee par la technologie 2ks, offrant une gestion moderne, securisee et accessible des informations de sante.',
+        eyebrow: 'PLATEFORME D IDENTITE MEDICALE INTELLIGENTE',
+        title: 'Une identite medicale intelligente pour un acces aux soins plus rapide et plus sur',
+        body: 'HayatID, propulsee par la technologie 2ks, relie une carte NFC intelligente a une plateforme de sante numerique securisee, afin de rendre les informations medicales essentielles plus accessibles, mieux organisees et disponibles au bon moment.',
+        primaryCta: 'Decouvrir HayatID',
+        secondaryCta: 'Creer un compte',
+        panelLabel: 'Technologie 2ks',
+        panelTitle: 'Identite medicale connectee',
+        panelItems: ['Dossiers medicaux', 'Acces par carte NFC', 'Profil securise', 'Espace sante numerique'],
+        panelBadgeTitle: 'NFC active',
+        panelBadgeBody: 'Acces rapide et fluide',
+        panelStatOne: 'Acces fiable',
+        panelStatOneBody: 'Securite integree',
+        panelStatTwo: 'Toujours connecte',
+        panelStatTwoBody: 'Concu pour le soin moderne',
+        statLabel: 'QUI SOMMES-NOUS',
+        statTitle: 'Reinventer l acces medical grace a une identite numerique intelligente',
+        statBody: 'HayatID est une plateforme d identite medicale de nouvelle generation concue pour ameliorer la maniere dont les patients et les professionnels de sante accedent aux informations medicales. En combinant la technologie NFC a un environnement numerique securise, HayatID cree une experience de sante plus connectee, plus efficace et plus fiable.',
+        highlights: [
+            { title: 'Securite par conception', body: 'Une plateforme pensee pour un acces fiable, une meilleure structure des donnees et un usage professionnel.' },
+            { title: 'Concue pour l adoption reelle', body: 'Pensee pour les patients, les medecins, les partenaires, les investisseurs et les visiteurs d evenements.' },
+            { title: 'Positionnement medical-tech clair', body: 'HayatID presente une experience premium d identite medicale propulsee par la technologie NFC.' }
+        ],
+        stepsLabel: 'COMMENT CA MARCHE',
+        stepsTitle: 'Un parcours fluide, du scan NFC a un acces medical securise',
+        steps: [
+            { title: 'Touchez la carte intelligente', body: 'La carte NFC HayatID relie l experience physique a un environnement numerique de sante securise.' },
+            { title: 'Accedez a des dossiers organises', body: 'Les informations medicales essentielles peuvent etre consultees, gerees et structurees dans une seule plateforme connectee.' },
+            { title: 'Continuez en toute confiance', body: 'L experience est simple, moderne et concue pour rendre l acces aux soins plus clair et plus efficace.' }
+        ],
+        supportLabel: 'PROPULSE PAR 2KS',
+        supportTitle: 'La technologie derriere une experience de sante plus intelligente',
+        supportBody: '2ks est la couche technologique numerique qui alimente HayatID. Elle permet une interaction securisee entre la carte medicale NFC et la plateforme en ligne, pour transformer l acces aux soins en une experience plus fluide, plus intelligente et plus moderne.',
+        supportPrimary: 'Creer un compte',
+        supportSecondary: 'Decouvrir HayatID',
+        trustLabel: 'POURQUOI HAYATID',
+        trustTitle: 'Concu pour la clarte, la rapidite et la confiance',
+        trustItems: [
+            'Concu pour la clarte, la rapidite et la confiance.',
+            'Pense pour les patients et les professionnels de sante.',
+            'Centre sur l innovation, la securite et l acces moderne aux soins.'
+        ],
+        getCard: 'Obtenir la carte NFC',
+        proAccess: 'Acces professionnel',
+        platformHighlights: 'Points forts de la plateforme',
+        platformValue: 'Valeur plateforme'
     },
-    {
-        step: '03',
-        title: 'Manage and Share Securely',
-        body: 'Patients and healthcare professionals can view and manage health information quickly, reliably, and with full privacy controls.',
-    },
-];
+    ar: {
+        metaTitle: 'HayatID | منصة الهوية الطبية الذكية',
+        metaDescription: 'HayatID هي منصة هوية طبية ذكية مدعومة بتقنية 2ks، توفر إدارة حديثة وآمنة وسهلة الوصول للمعلومات الصحية.',
+        eyebrow: 'منصة الهوية الطبية الذكية',
+        title: 'هوية طبية ذكية لوصول أسرع وأكثر أمانًا إلى الرعاية الصحية',
+        body: 'HayatID، المدعومة بتقنية 2ks، تربط بطاقة NFC ذكية بمنصة صحية رقمية آمنة، مما يجعل المعلومات الطبية الأساسية أكثر سهولة في الوصول وأكثر تنظيماً وجاهزة عندما يكون الأمر مهماً.',
+        primaryCta: 'اكتشف HayatID',
+        secondaryCta: 'إنشاء حساب',
+        panelLabel: 'تقنية 2ks',
+        panelTitle: 'هوية طبية مترابطة',
+        panelItems: ['السجلات الطبية', 'الوصول عبر بطاقة NFC', 'ملف آمن', 'مساحة صحية رقمية'],
+        panelBadgeTitle: 'NFC مفعلة',
+        panelBadgeBody: 'وصول سريع وسلس',
+        panelStatOne: 'وصول موثوق',
+        panelStatOneBody: 'الأمان في التصميم',
+        panelStatTwo: 'اتصال دائم',
+        panelStatTwoBody: 'مصمم للرعاية الحديثة',
+        statLabel: 'من نحن',
+        statTitle: 'نعيد تعريف الوصول إلى المعلومات الطبية عبر هوية رقمية ذكية',
+        statBody: 'HayatID هي منصة هوية طبية من الجيل الجديد مصممة لتحسين طريقة وصول المرضى والمهنيين الصحيين إلى المعلومات الطبية. من خلال الجمع بين تقنية NFC وبيئة رقمية آمنة، تقدم HayatID تجربة صحية أكثر ترابطاً وكفاءة وموثوقية.',
+        highlights: [
+            { title: 'أمان في البنية', body: 'منصة مصممة للوصول الموثوق وتنظيم البيانات والاستخدام الطبي المهني.' },
+            { title: 'مصممة للاستخدام الواقعي', body: 'موجهة للمرضى والأطباء والشركاء والمستثمرين وزوار الفعاليات.' },
+            { title: 'هوية طبية بتوجه حديث', body: 'تقدم HayatID تجربة طبية رقمية راقية مدعومة بتقنية NFC الحديثة.' }
+        ],
+        stepsLabel: 'كيف يعمل',
+        stepsTitle: 'تجربة سلسة من لمس بطاقة NFC إلى الوصول الآمن للمعلومات الطبية',
+        steps: [
+            { title: 'المس البطاقة الذكية', body: 'تربط بطاقة HayatID الذكية بتقنية NFC التجربة المادية بمنصة صحية رقمية آمنة.' },
+            { title: 'الوصول إلى سجلات منظمة', body: 'يمكن عرض المعلومات الطبية الأساسية وإدارتها وتنظيمها داخل منصة واحدة مترابطة.' },
+            { title: 'تابع بثقة', body: 'التجربة بسيطة وحديثة ومصممة لجعل الوصول إلى الرعاية الصحية أكثر وضوحاً وكفاءة.' }
+        ],
+        supportLabel: 'مدعوم بواسطة 2ks',
+        supportTitle: 'التقنية وراء تجربة صحية أكثر ذكاءً',
+        supportBody: '2ks هي الطبقة التقنية الرقمية التي تشغل HayatID. وهي تتيح تفاعلاً آمناً بين البطاقة الطبية NFC والمنصة الرقمية، مما يحول الوصول الصحي إلى تجربة أكثر سلاسة وذكاءً وحداثة.',
+        supportPrimary: 'إنشاء حساب',
+        supportSecondary: 'اكتشف HayatID',
+        trustLabel: 'لماذا HayatID',
+        trustTitle: 'مصمم ليمنحك الوضوح والسرعة والثقة',
+        trustItems: [
+            'مبني على الوضوح والسرعة والثقة.',
+            'مصمم للمرضى والمهنيين الصحيين.',
+            'يركز على الابتكار والأمان والوصول الصحي الحديث.'
+        ],
+        getCard: 'الحصول على بطاقة NFC',
+        proAccess: 'دخول الأطباء',
+        platformHighlights: 'أبرز مميزات المنصة',
+        platformValue: 'قيمة المنصة'
+    }
+} as const;
 
 export function LandingPage() {
     const { language } = useLanguage();
     const isArabic = language === 'ar';
+    const content = landingContent[language === 'fr' ? 'fr' : isArabic ? 'ar' : 'en'];
 
     return (
         <MarketingLayout>
-            <PageMeta
-                title="HayatID | Smart Medical Identity Platform by 2ks"
-                description="HayatID connects a smart NFC card to a secure digital health platform, making essential medical information accessible, organized, and ready when it matters most."
-            />
+            <PageMeta title={content.metaTitle} description={content.metaDescription} />
 
-            {/* ── 1. HERO ───────────────────────────────────────────────────── */}
             <section className="relative overflow-hidden border-b border-sapphire/20 bg-[radial-gradient(circle_at_top_left,_rgba(15,82,186,0.14),_transparent_32%),linear-gradient(180deg,#E9F4FB_0%,#DDECF7_45%,#F8FBFD_100%)]">
                 <div className="absolute inset-0 bg-grid bg-[size:18px_18px] opacity-35" />
                 <div className="absolute inset-x-0 top-0 h-32 bg-[linear-gradient(180deg,rgba(255,255,255,0.5),transparent)]" />
-                <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
-                    <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 24 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                            className={isArabic ? 'font-arabic text-right' : ''}
-                        >
-                            <div className="inline-flex items-center gap-2 rounded-full border border-sapphire/25 bg-white/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-sapphire shadow-sm">
-                                <Smartphone className="h-3.5 w-3.5" />
-                                Smart Medical Identity Platform
+                <motion.div
+                    aria-hidden
+                    className="pointer-events-none absolute -left-16 top-20 h-40 w-40 rounded-full bg-sapphire/10 blur-2xl"
+                    animate={{ y: [0, -10, 0], opacity: [0.55, 0.75, 0.55] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                />
+                <motion.div
+                    aria-hidden
+                    className="pointer-events-none absolute -right-12 top-28 h-44 w-44 rounded-full bg-white/35 blur-3xl"
+                    animate={{ y: [0, 12, 0], opacity: [0.45, 0.7, 0.45] }}
+                    transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+                />
+                <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
+                    <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+                        <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className={isArabic ? 'font-arabic text-right' : ''}>
+                            <div className="inline-flex items-center gap-2 rounded-full border border-sapphire/20 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-sapphire shadow-sm sm:text-sm">
+                                <Smartphone className="h-4 w-4" />
+                                <p>{content.eyebrow}</p>
                             </div>
-
-                            <h1 className="mt-6 max-w-xl text-5xl font-bold leading-[1.08] tracking-tight text-navy sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]">
-                                Smart medical identity for faster, safer healthcare access
+                            <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-navy sm:text-5xl lg:text-6xl">
+                                {content.title}
                             </h1>
-
-                            <p className="mt-6 max-w-lg text-base leading-7 text-navy/68 sm:text-lg sm:leading-8">
-                                HayatID, powered by 2ks technology, connects a smart NFC card to a secure digital health platform — making essential medical information accessible, organized, and ready when it matters most.
+                            <p className="mt-5 max-w-2xl text-base leading-7 text-navy/75 sm:text-lg sm:leading-8">
+                                {content.body}
                             </p>
 
-                            <div className="mt-8 flex flex-wrap items-center gap-4">
+                            <div className="mt-8 flex flex-wrap items-center gap-3">
                                 <Link
                                     to="/how-it-works"
-                                    className="inline-flex items-center gap-2.5 rounded-full bg-[linear-gradient(180deg,#1661D0_0%,#0F52BA_100%)] px-8 py-4 text-sm font-semibold text-white shadow-[0_3px_18px_rgba(15,82,186,0.38)] transition hover:-translate-y-0.5 hover:shadow-[0_6px_24px_rgba(15,82,186,0.45)]"
+                                    className="premium-btn-primary gap-2 px-7 py-3.5"
                                 >
-                                    Discover HayatID
+                                    {content.primaryCta}
                                     <ArrowRight className={`h-4 w-4 ${isArabic ? 'rotate-180' : ''}`} />
                                 </Link>
                                 <Link
                                     to="/register"
-                                    className="inline-flex items-center gap-2.5 rounded-full border border-sapphire/30 bg-white/80 px-8 py-4 text-sm font-semibold text-navy shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-sapphire hover:bg-white"
+                                    className="premium-btn-secondary gap-2 px-7 py-3.5"
                                 >
-                                    Create Account
+                                    {content.secondaryCta}
                                     <ArrowRight className={`h-4 w-4 text-sapphire ${isArabic ? 'rotate-180' : ''}`} />
+                                </Link>
+                            </div>
+
+                            <div className="mt-6 flex flex-wrap gap-3">
+                                <Link to="/checkout" className="premium-btn-secondary gap-2 border-sapphire/20 bg-white/70 px-5 py-3">
+                                    <WalletCards className="h-4 w-4 text-sapphire" />
+                                    {content.getCard}
+                                </Link>
+                                <Link to="/pro" className="inline-flex items-center gap-2 rounded-full border border-sapphire/15 bg-sapphire/5 px-5 py-3 text-sm font-semibold text-navy/80 transition hover:border-sapphire/35 hover:text-sapphire">
+                                    <ShieldCheck className="h-4 w-4" />
+                                    {content.proAccess}
                                 </Link>
                             </div>
                         </motion.div>
 
                         <motion.div
-                            initial={{ opacity: 0, y: 24 }}
+                            initial={{ opacity: 0, y: 18 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.12 }}
-                            className="flex justify-center lg:justify-end"
+                            transition={{ delay: 0.08 }}
+                            className={`rounded-[2rem] border border-sapphire/20 bg-navy p-4 text-white shadow-panel sm:p-6 ${isArabic ? 'font-arabic' : ''}`}
                         >
-                            <div className="relative w-full max-w-sm">
-                                <div className="rounded-3xl border border-sapphire/20 bg-navy p-6 shadow-panel sm:p-8">
-                                    <div className="flex items-center justify-between">
-                                        <div>
-                                            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-powder/60">2ks Technology</p>
-                                            <p className="mt-1.5 text-2xl font-bold text-white">HayatID</p>
-                                        </div>
-                                        <div className="rounded-2xl bg-sapphire/30 p-3">
-                                            <WalletCards className="h-6 w-6 text-powder" />
-                                        </div>
+                            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-4 transition-transform duration-300 hover:-translate-y-1 sm:p-5">
+                                <div className="flex items-center justify-between gap-4">
+                                    <div>
+                                        <p className="text-xs uppercase tracking-[0.2em] text-powder/70">{content.panelLabel}</p>
+                                        <p className="mt-2 text-xl font-semibold">{content.panelTitle}</p>
                                     </div>
-
-                                    <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4">
-                                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-powder/70">Medical Profile</p>
-                                        <div className="mt-3 grid grid-cols-2 gap-2">
-                                            {['Blood Type', 'Allergies', 'Conditions', 'Medications'].map((item) => (
-                                                <div key={item} className="rounded-xl border border-white/8 bg-white/5 px-3 py-2.5">
-                                                    <p className="text-xs text-white/50">• {item}</p>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    <div className="mt-4 flex items-center gap-3 rounded-2xl border border-sapphire/30 bg-sapphire/15 px-4 py-3">
-                                        <Wifi className="h-5 w-5 text-powder" />
-                                        <div>
-                                            <p className="text-xs font-semibold text-white">NFC Ready</p>
-                                            <p className="text-xs text-white/55">Tap to access instantly</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="mt-4 grid grid-cols-2 gap-3">
-                                        <div className="rounded-2xl border border-white/8 bg-white/5 p-3">
-                                            <ShieldCheck className="h-5 w-5 text-emerald-400" />
-                                            <p className="mt-2 text-xs font-semibold text-white">Encrypted</p>
-                                            <p className="mt-0.5 text-xs text-white/50">End-to-end secure</p>
-                                        </div>
-                                        <div className="rounded-2xl border border-white/8 bg-white/5 p-3">
-                                            <HeartPulse className="h-5 w-5 text-red-400" />
-                                            <p className="mt-2 text-xs font-semibold text-white">Always Ready</p>
-                                            <p className="mt-0.5 text-xs text-white/50">24/7 accessible</p>
-                                        </div>
+                                    <div className="rounded-2xl bg-white/10 p-3 text-powder">
+                                        <Smartphone className="h-6 w-6" />
                                     </div>
                                 </div>
 
-                                <div className="absolute -bottom-4 -left-4 rounded-2xl border border-sapphire/20 bg-white px-4 py-3 shadow-soft">
-                                    <p className="text-xs font-semibold uppercase tracking-[0.15em] text-sapphire">Powered by</p>
-                                    <p className="text-base font-bold text-navy">2ks</p>
+                                <div className="mt-5 rounded-[1.4rem] bg-white p-4 text-navy sm:p-5">
+                                    <p className="text-sm font-semibold text-sapphire">{content.platformHighlights}</p>
+                                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                                        {content.panelItems.map((item) => (
+                                            <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                                                <p className="text-sm font-semibold">{item}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="mt-4 rounded-2xl border border-sapphire/15 bg-[#EEF5FF] p-4">
+                                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sapphire/80">{content.panelBadgeTitle}</p>
+                                        <p className="mt-2 text-sm leading-6 text-navy/75">{content.panelBadgeBody}</p>
+                                    </div>
+                                </div>
+
+                                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                                    <div className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
+                                        <ShieldCheck className="h-5 w-5 text-powder" />
+                                        <p className="mt-3 text-sm font-semibold text-white">{content.panelStatOne}</p>
+                                        <p className="mt-2 text-sm leading-6 text-white/70">{content.panelStatOneBody}</p>
+                                    </div>
+                                    <div className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
+                                        <Wifi className="h-5 w-5 text-powder" />
+                                        <p className="mt-3 text-sm font-semibold text-white">{content.panelStatTwo}</p>
+                                        <p className="mt-2 text-sm leading-6 text-white/70">{content.panelStatTwoBody}</p>
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>
-
                     </div>
                 </div>
             </section>
 
-            {/* ── 2. WHO WE ARE ────────────────────────────────────────────── */}
-            <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.55 }}
-                    className="grid gap-12 lg:grid-cols-2 lg:items-center"
-                >
-                    <div className={isArabic ? 'font-arabic text-right' : ''}>
-                        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-sapphire/70">Who We Are</p>
-                        <h2 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-navy sm:text-5xl">
-                            Redefining medical access through smart digital identity
-                        </h2>
-                        <p className="mt-5 text-base leading-7 text-navy/68 sm:text-lg sm:leading-8">
-                            HayatID is a next-generation medical identity platform designed to improve the way patients and healthcare professionals access medical information. By combining NFC technology with a secure digital environment, HayatID creates a more connected, efficient, and reliable healthcare experience.
-                        </p>
-                        <div className="mt-7">
-                            <Link
-                                to="/about"
-                                className="inline-flex items-center gap-2 rounded-full border border-sapphire/25 bg-white px-6 py-3 text-sm font-semibold text-navy shadow-sm transition hover:-translate-y-0.5 hover:border-sapphire"
-                            >
-                                Learn about HayatID
-                                <ArrowRight className={`h-4 w-4 text-sapphire ${isArabic ? 'rotate-180' : ''}`} />
-                            </Link>
-                        </div>
+            <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+                <div className="grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
+                    <div className={`rounded-[2rem] border border-sapphire/15 bg-white/80 p-6 shadow-soft sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sapphire/75">{content.statLabel}</p>
+                        <h2 className="mt-4 text-3xl font-semibold tracking-tight text-navy sm:text-4xl">{content.statTitle}</h2>
+                        <p className="mt-4 text-base leading-7 text-navy/72">{content.statBody}</p>
                     </div>
 
-                    <div className="rounded-3xl border border-sapphire/15 bg-white/80 p-6 shadow-soft sm:p-8">
-                        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sapphire/70">Medical Records</p>
-                        <div className="mt-4 space-y-3">
-                            {['Blood Analysis', 'Radiology Report', 'Prescription', 'Medical History', 'Vaccination Record'].map((item) => (
-                                <div key={item} className="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-slate-50 px-4 py-3">
-                                    <div className="flex items-center gap-3">
-                                        <div className="h-2 w-2 rounded-full bg-sapphire" />
-                                        <p className="text-sm font-medium text-navy">{item}</p>
-                                    </div>
-                                    <span className="text-xs font-medium text-navy/40">Secure ✓</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </motion.div>
-            </section>
-
-            {/* ── 3. HOW IT WORKS ──────────────────────────────────────────── */}
-            <section className="border-y border-sapphire/15 bg-white/60">
-                <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                        className={`max-w-2xl ${isArabic ? 'font-arabic text-right' : ''}`}
-                    >
-                        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-sapphire/70">How It Works</p>
-                        <h2 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-navy sm:text-5xl">
-                            A seamless journey from NFC tap to secure medical access
-                        </h2>
-                        <p className="mt-5 text-base leading-7 text-navy/68 sm:text-lg sm:leading-8">
-                            With a single tap, the HayatID card connects users to a secure digital platform where essential medical information can be viewed, managed, and shared more efficiently. The experience is designed to be simple, fast, and accessible.
-                        </p>
-                    </motion.div>
-
-                    <div className="mt-12 grid gap-5 sm:grid-cols-3">
-                        {howItWorksSteps.map((item, i) => (
+                    <div className="grid gap-4 sm:grid-cols-3">
+                        {content.highlights.map((item, index) => (
                             <motion.div
-                                key={item.step}
-                                initial={{ opacity: 0, y: 20 }}
+                                key={item.title}
+                                initial={{ opacity: 0, y: 18 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.45, delay: i * 0.1 }}
-                                className={`rounded-[1.75rem] border border-sapphire/15 bg-gradient-to-b from-white to-[#F0F7FF] p-6 shadow-soft sm:p-7 ${isArabic ? 'font-arabic text-right' : ''}`}
+                                viewport={{ once: true, amount: 0.25 }}
+                                transition={{ duration: 0.4, delay: index * 0.08 }}
+                                className={`premium-card bg-powder/30 p-5 ${isArabic ? 'font-arabic text-right' : ''}`}
                             >
-                                <p className="text-xs font-bold uppercase tracking-[0.28em] text-sapphire">{item.step}</p>
-                                <h3 className="mt-4 text-xl font-semibold leading-snug text-navy">{item.title}</h3>
-                                <p className="mt-3 text-sm leading-6 text-navy/65">{item.body}</p>
+                                <p className="text-lg font-semibold text-navy">{item.title}</p>
+                                <p className="mt-3 text-sm leading-6 text-navy/72">{item.body}</p>
                             </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* ── 4. WHY HAYATID ───────────────────────────────────────────── */}
-            <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className={`text-center ${isArabic ? 'font-arabic' : ''}`}
-                >
-                    <p className="text-xs font-semibold uppercase tracking-[0.28em] text-sapphire/70">Why HayatID</p>
-                    <h2 className="mt-4 text-4xl font-bold tracking-tight text-navy sm:text-5xl">Built for clarity, speed, and trust</h2>
-                </motion.div>
-
-                <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                    {featureCards.map((card, i) => (
-                        <motion.div
-                            key={card.title}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.45, delay: i * 0.08 }}
-                            className={`rounded-[1.75rem] border border-sapphire/15 bg-gradient-to-b from-white to-[#F0F7FF] p-6 shadow-soft ${isArabic ? 'font-arabic text-right' : ''}`}
-                        >
-                            <div className="inline-flex rounded-2xl bg-sapphire/10 p-3 text-sapphire">
-                                <card.icon className="h-6 w-6" />
-                            </div>
-                            <h3 className="mt-5 text-lg font-semibold text-navy">{card.title}</h3>
-                            <p className="mt-2.5 text-sm leading-6 text-navy/65">{card.body}</p>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
-
-            {/* ── 5. POWERED BY 2KS ────────────────────────────────────────── */}
-            <section className="border-y border-sapphire/15 bg-white/60">
-                <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.55 }}
-                        className="overflow-hidden rounded-3xl bg-navy shadow-panel"
-                    >
-                        <div className="grid lg:grid-cols-2">
-                            <div className={`p-8 sm:p-12 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-powder/60">Powered by 2ks</p>
-                                <h2 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
-                                    The technology behind a smarter healthcare experience
-                                </h2>
-                                <p className="mt-5 text-base leading-7 text-white/65 sm:text-lg sm:leading-8">
-                                    2ks is the digital technology layer that powers HayatID. It enables secure interaction between the NFC medical card and the online platform, helping transform healthcare access into a smoother, smarter, and more modern experience.
-                                </p>
-                                <div className="mt-8 flex flex-wrap gap-4">
-                                    <Link
-                                        to="/register"
-                                        className="inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-navy transition hover:bg-ice"
-                                    >
-                                        Create Account
-                                        <ArrowRight className={`h-4 w-4 ${isArabic ? 'rotate-180' : ''}`} />
-                                    </Link>
-                                    <Link
-                                        to="/how-it-works"
-                                        className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-white/15"
-                                    >
-                                        How It Works
-                                    </Link>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center justify-center bg-white/[0.04] p-8 sm:p-12">
-                                <div className="w-full max-w-xs space-y-4">
-                                    {[
-                                        { icon: WalletCards, label: 'NFC Smart Card', value: 'Physical + Digital' },
-                                        { icon: ShieldCheck, label: 'Data Security', value: 'End-to-End Encrypted' },
-                                        { icon: Activity, label: 'Platform Speed', value: 'Instant Access' },
-                                    ].map((stat) => (
-                                        <div key={stat.label} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-5 py-4">
-                                            <div className="rounded-xl bg-sapphire/30 p-2.5 text-powder">
-                                                <stat.icon className="h-5 w-5" />
-                                            </div>
-                                            <div>
-                                                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/50">{stat.label}</p>
-                                                <p className="mt-0.5 text-sm font-semibold text-white">{stat.value}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
+            <section className="border-y border-sapphire/15 bg-white/75">
+                <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+                    <div className={`flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between ${isArabic ? 'font-arabic text-right' : ''}`}>
+                        <div className="max-w-2xl">
+                            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sapphire/75">{content.stepsLabel}</p>
+                            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-navy sm:text-4xl">{content.stepsTitle}</h2>
                         </div>
-                    </motion.div>
+                        <div className="grid max-w-3xl gap-4 lg:grid-cols-3">
+                            {content.steps.map((step, index) => (
+                                <motion.div
+                                    key={step.title}
+                                    initial={{ opacity: 0, y: 14 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, amount: 0.2 }}
+                                    transition={{ duration: 0.4, delay: index * 0.08 }}
+                                    className="premium-card bg-slate-50 p-5"
+                                >
+                                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sapphire">0{index + 1}</p>
+                                    <h3 className="mt-3 text-xl font-semibold text-navy">{step.title}</h3>
+                                    <p className="mt-3 text-sm leading-6 text-navy/72">{step.body}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            {/* ── 6. WHO IT SERVES ─────────────────────────────────────────── */}
-            <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.55 }}
-                    className="grid gap-10 lg:grid-cols-2 lg:items-center"
-                >
-                    <div className={isArabic ? 'font-arabic text-right' : ''}>
-                        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-sapphire/70">Who It Serves</p>
-                        <h2 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-navy sm:text-5xl">
-                            Designed for patients and healthcare professionals
-                        </h2>
-                        <p className="mt-5 text-base leading-7 text-navy/68 sm:text-lg sm:leading-8">
-                            HayatID helps patients keep their medical information organized and accessible, while giving healthcare professionals a more efficient way to view relevant health records in a secure and structured environment.
-                        </p>
-                        <div className="mt-7 flex flex-wrap gap-4">
-                            <Link
-                                to="/register"
-                                className="inline-flex items-center gap-2.5 rounded-full bg-[linear-gradient(180deg,#1661D0_0%,#0F52BA_100%)] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_2px_14px_rgba(15,82,186,0.32)] transition hover:-translate-y-0.5"
+            <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+                <div className={`mb-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                    <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sapphire/75">{content.trustLabel}</p>
+                    <h2 className="mt-4 text-3xl font-semibold tracking-tight text-navy sm:text-4xl">{content.trustTitle}</h2>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                    {featureCards.map((card, index) => {
+                        const Icon = card.icon;
+                        const label = card.title[language === 'fr' ? 'fr' : isArabic ? 'ar' : 'en'];
+                        const body = card.body[language === 'fr' ? 'fr' : isArabic ? 'ar' : 'en'];
+                        return (
+                            <motion.div
+                                key={label}
+                                initial={{ opacity: 0, y: 14 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.2 }}
+                                transition={{ duration: 0.4, delay: index * 0.07 }}
+                                className={`premium-card p-5 ${isArabic ? 'font-arabic text-right' : ''}`}
                             >
-                                Create Account
+                                <div className="inline-flex rounded-2xl bg-sapphire/10 p-3 text-sapphire">
+                                    <Icon className="h-6 w-6" />
+                                </div>
+                                <p className="mt-4 text-lg font-semibold text-navy">{label}</p>
+                                <p className="mt-3 text-sm leading-6 text-navy/72">{body}</p>
+                            </motion.div>
+                        );
+                    })}
+                </div>
+            </section>
+
+            <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+                <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
+                    <div className={`rounded-[2rem] bg-navy p-6 text-white shadow-panel sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-powder/80">{content.supportLabel}</p>
+                        <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">{content.supportTitle}</h2>
+                        <p className="mt-4 max-w-2xl text-base leading-7 text-white/75">{content.supportBody}</p>
+                        <div className="mt-6 flex flex-wrap gap-3">
+                            <Link to="/register" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-navy transition hover:bg-slate-100">
+                                <WalletCards className="h-4 w-4" />
+                                {content.supportPrimary}
+                            </Link>
+                            <Link to="/how-it-works" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15">
                                 <ArrowRight className={`h-4 w-4 ${isArabic ? 'rotate-180' : ''}`} />
-                            </Link>
-                            <Link
-                                to="/pro"
-                                className="inline-flex items-center gap-2.5 rounded-full border border-sapphire/25 bg-white px-7 py-3.5 text-sm font-semibold text-navy shadow-sm transition hover:-translate-y-0.5 hover:border-sapphire"
-                            >
-                                Professional Access
+                                {content.supportSecondary}
                             </Link>
                         </div>
                     </div>
 
-                    <div className="grid gap-4 sm:grid-cols-2">
-                        <div className="rounded-[1.75rem] border border-sapphire/15 bg-gradient-to-b from-white to-[#F0F7FF] p-6 shadow-soft">
-                            <div className="inline-flex rounded-2xl bg-sapphire/10 p-3 text-sapphire">
-                                <UserCheck className="h-6 w-6" />
-                            </div>
-                            <h3 className="mt-5 text-lg font-semibold text-navy">For Patients</h3>
-                            <p className="mt-2.5 text-sm leading-6 text-navy/65">
-                                One secure place for all medical records — accessible with a single tap whenever needed, by you or your care team.
-                            </p>
-                        </div>
-                        <div className="rounded-[1.75rem] border border-sapphire/15 bg-gradient-to-b from-white to-[#F0F7FF] p-6 shadow-soft">
-                            <div className="inline-flex rounded-2xl bg-sapphire/10 p-3 text-sapphire">
-                                <Stethoscope className="h-6 w-6" />
-                            </div>
-                            <h3 className="mt-5 text-lg font-semibold text-navy">For Professionals</h3>
-                            <p className="mt-2.5 text-sm leading-6 text-navy/65">
-                                Fast, structured access to relevant patient data — reducing time spent on paperwork and improving the quality of care.
-                            </p>
-                        </div>
-                        <div className="col-span-full rounded-[1.75rem] border border-sapphire/20 bg-navy p-6 text-white shadow-panel">
-                            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-powder/70">Built for everyone in the care journey</p>
-                            <p className="mt-3 text-sm leading-6 text-white/70">
-                                From first-time patients to seasoned clinicians — HayatID is designed to be intuitive, secure, and immediately useful at every level of the healthcare system.
-                            </p>
+                    <div className={`rounded-[2rem] border border-sapphire/15 bg-white/80 p-6 shadow-soft sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sapphire/75">{content.platformValue}</p>
+                        <div className="mt-5 space-y-4">
+                            {content.trustItems.map((item) => (
+                                <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-navy/78">
+                                    {item}
+                                </div>
+                            ))}
                         </div>
                     </div>
-                </motion.div>
+                </div>
             </section>
-
         </MarketingLayout>
     );
 }

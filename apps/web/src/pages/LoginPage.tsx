@@ -54,10 +54,10 @@ export function LoginPage() {
         <MarketingLayout>
             <PageMeta
                 title={getLabel('2ks | Login', '2ks | Connexion', '2ks | تسجيل الدخول')}
-                description={getLabel('Clean login demo flow for HayatID account access.', 'Flux de connexion demo propre pour l\'acces compte HayatID.', 'تدفق تسجيل دخول تجريبي واضح للوصول إلى حساب HayatID.')}
+                description={getLabel('Clean login demo flow for HayatID account access.', 'Flux de connexion demo clair pour l acces au compte HayatID.', 'تدفق تسجيل دخول تجريبي واضح للوصول إلى حساب HayatID.')}
             />
             <section className="mx-auto max-w-xl px-4 py-14 sm:px-6 lg:px-8">
-                <div className={`rounded-[2rem] border border-slate-200 bg-white p-7 shadow-soft sm:p-9 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                <div className={`premium-card p-7 sm:p-9 ${isArabic ? 'font-arabic text-right' : ''}`}>
                     <div className="inline-flex rounded-full border border-sapphire/20 bg-sapphire/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-sapphire">
                         {getLabel('Demo / Staging', 'Demo / Staging', 'تجريبي / مرحلي')}
                     </div>
@@ -74,14 +74,14 @@ export function LoginPage() {
                     <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                         <label className="block">
                             <span className="mb-2 block text-sm font-medium text-navy">
-                                {getLabel('Phone or email', 'Email', 'الهاتف أو البريد')}
+                                {getLabel('Phone or email', 'Telephone ou email', 'الهاتف أو البريد الإلكتروني')}
                             </span>
                             <input
                                 value={loginValue}
                                 onChange={(event) => setLoginValue(event.target.value)}
                                 required
                                 placeholder={getLabel('you@example.com or +212...', 'email@exemple.com ou +212...', 'you@example.com أو +212...')}
-                                className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-sapphire"
+                                className="premium-input"
                             />
                         </label>
 
@@ -95,8 +95,8 @@ export function LoginPage() {
                                 onChange={(event) => setPassword(event.target.value)}
                                 required
                                 minLength={8}
-                                placeholder="********"
-                                className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-sapphire"
+                                placeholder={getLabel('Enter your password', 'Saisissez votre mot de passe', 'أدخل كلمة المرور')}
+                                className="premium-input"
                             />
                         </label>
 
@@ -110,7 +110,7 @@ export function LoginPage() {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-sapphire px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#0C43A0] disabled:cursor-not-allowed disabled:opacity-60"
+                            className="premium-btn-primary w-full rounded-2xl disabled:cursor-not-allowed disabled:opacity-60"
                         >
                             <LogIn className="h-4 w-4" />
                             {isLoading

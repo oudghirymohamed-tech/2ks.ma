@@ -198,9 +198,73 @@ const DEMO_PUBLIC_EMERGENCY_MINOR: PublicEmergencyResponse = {
 
 export interface ApiUser {
     id: string;
-    role: 'patient' | 'doctor' | 'b2b' | 'admin';
+    role: 'patient' | 'doctor' | 'pharmacist' | 'b2b' | 'admin';
     patientId?: string;
     profileId?: string;
+}
+
+export type ProfessionalRole = 'doctor' | 'pharmacist';
+
+export interface ProfessionalRegistrationPayload {
+    fullName: string;
+    professionType: ProfessionalRole;
+    phone: string;
+    email: string;
+    password: string;
+    workplaceName: string;
+    professionalAddress: string;
+    specialty?: string;
+    licenseNumber: string;
+    profilePhotoUrl?: string;
+}
+
+export interface ProfessionalPortalProfile {
+    id: string;
+    fullName: string;
+    professionType: ProfessionalRole;
+    phone: string;
+    email: string;
+    workplaceName: string;
+    professionalAddress: string;
+    specialty?: string;
+    licenseNumber: string;
+    profilePhotoUrl?: string;
+}
+
+export interface ProfessionalVisitNote {
+    id: string;
+    text: string;
+    createdAt: string;
+}
+
+export interface ProfessionalAssignedDocument {
+    id: string;
+    title: string;
+    type: 'prescription' | 'recommendation' | 'care-instruction' | 'report' | 'other';
+    createdAt: string;
+}
+
+export interface ProfessionalVisit {
+    id: string;
+    professionalId: string;
+    patientName: string;
+    visitAt: string;
+    sharedMedicalIdentity: {
+        bloodType: string;
+        allergies: string[];
+        conditions: string[];
+        emergencyContact: string;
+    };
+    sharedFiles: string[];
+    professionalNotes: ProfessionalVisitNote[];
+    assignedDocuments: ProfessionalAssignedDocument[];
+}
+
+const PROFESSIONAL_ACCOUNTS_KEY = 'twoKS_professional_accounts';
+const PROFESSIONAL_VISITS_KEY = 'twoKS_professional_visits';
+
+interface ProfessionalAccountStore extends ProfessionalPortalProfile {
+    password: string;
 }
 
 export interface ApiErrorPayload {
@@ -218,6 +282,152 @@ export class ApiError extends Error {
 
 function isDemoCredentials(loginValue: string, password: string) {
     return loginValue.trim().toLowerCase() === DEMO_LOGIN_EMAIL && password === DEMO_LOGIN_PASSWORD;
+}
+
+function readJsonArray<T>(key: string): T[] {
+    const raw = localStorage.getItem(key);
+    if (!raw) {
+        return [];
+    }
+
+    try {
+        return JSON.parse(raw) as T[];
+    } catch {
+        return [];
+    }
+}
+
+function writeJsonArray<T>(key: string, data: T[]) {
+    localStorage.setItem(key, JSON.stringify(data));
+}
+
+function seedProfessionalAccounts(): ProfessionalAccountStore[] {
+    return [
+        {
+            id: 'pro-doctor-demo',
+            fullName: 'Dr. Amal Benali',
+            professionType: 'doctor',
+            phone: '+212611223344',
+            email: 'doctor.demo@hayatid.info',
+            password: 'DoctorDemo123',
+            workplaceName: 'Clinique Atlas',
+            professionalAddress: 'Marrakech, Morocco',
+            specialty: 'General Medicine',
+            licenseNumber: 'DOC-MAR-2026-001'
+        },
+        {
+            id: 'pro-pharmacist-demo',
+            fullName: 'Sara El Idrissi',
+            professionType: 'pharmacist',
+            phone: '+212622334455',
+            email: 'pharmacist.demo@hayatid.info',
+            password: 'PharmaDemo123',
+            workplaceName: 'Pharmacie Al Amal',
+            professionalAddress: 'Marrakech, Morocco',
+            licenseNumber: 'PHA-MAR-2026-001'
+        }
+    ];
+}
+
+function seedProfessionalVisits(): ProfessionalVisit[] {
+    return [
+        {
+            id: 'visit-doctor-001',
+            professionalId: 'pro-doctor-demo',
+            patientName: 'Mohammed Oudghir',
+            visitAt: '2026-03-24T10:15:00Z',
+            sharedMedicalIdentity: {
+                bloodType: 'A+',
+                allergies: ['Latex', 'Aspirin'],
+                conditions: ['Hypertension'],
+                emergencyContact: 'Fatima Oudghir (+212600778899)'
+            },
+            sharedFiles: ['Radiology_Chest_2026-03-10.pdf', 'ECG_Report_2026-03-09.pdf'],
+            professionalNotes: [
+                {
+                    id: 'note-doctor-001',
+                    text: 'Patient advised to monitor blood pressure twice daily.',
+                    createdAt: '2026-03-24T10:30:00Z'
+                }
+            ],
+            assignedDocuments: [
+                {
+                    id: 'doc-doctor-001',
+                    title: 'Hypertension follow-up recommendation',
+                    type: 'recommendation',
+                    createdAt: '2026-03-24T10:32:00Z'
+                }
+            ]
+        },
+        {
+            id: 'visit-pharma-001',
+            professionalId: 'pro-pharmacist-demo',
+            patientName: 'Adam Lahlou',
+            visitAt: '2026-03-25T16:40:00Z',
+            sharedMedicalIdentity: {
+                bloodType: 'A+',
+                allergies: ['Latex'],
+                conditions: ['Intermittent asthma'],
+                emergencyContact: 'Nadia Lahlou (+212603551987)'
+            },
+            sharedFiles: ['Prescription_Cardiologie.pdf'],
+            professionalNotes: [],
+            assignedDocuments: []
+        }
+    ];
+}
+
+function getProfessionalAccounts(): ProfessionalAccountStore[] {
+    const existing = readJsonArray<ProfessionalAccountStore>(PROFESSIONAL_ACCOUNTS_KEY);
+    if (existing.length > 0) {
+        return existing;
+    }
+
+    const seeded = seedProfessionalAccounts();
+    writeJsonArray(PROFESSIONAL_ACCOUNTS_KEY, seeded);
+    return seeded;
+}
+
+function saveProfessionalAccounts(accounts: ProfessionalAccountStore[]) {
+    writeJsonArray(PROFESSIONAL_ACCOUNTS_KEY, accounts);
+}
+
+function getProfessionalVisitsStore(): ProfessionalVisit[] {
+    const existing = readJsonArray<ProfessionalVisit>(PROFESSIONAL_VISITS_KEY);
+    if (existing.length > 0) {
+        return existing;
+    }
+
+    const seeded = seedProfessionalVisits();
+    writeJsonArray(PROFESSIONAL_VISITS_KEY, seeded);
+    return seeded;
+}
+
+function saveProfessionalVisitsStore(visits: ProfessionalVisit[]) {
+    writeJsonArray(PROFESSIONAL_VISITS_KEY, visits);
+}
+
+function createProfessionalToken(professionType: ProfessionalRole, profileId: string) {
+    return `demo-prof-${professionType}-${profileId}`;
+}
+
+function getProfessionalSessionFromToken(token: string): { role: ProfessionalRole; profileId: string } | null {
+    if (!token.startsWith('demo-prof-')) {
+        return null;
+    }
+
+    const parts = token.split('-');
+    if (parts.length < 4) {
+        return null;
+    }
+
+    const role = parts[2];
+    const profileId = parts.slice(3).join('-');
+    if ((role !== 'doctor' && role !== 'pharmacist') || !profileId) {
+        return null;
+    }
+
+    return { role, profileId };
 }
 
 function isDemoSession() {
@@ -272,11 +482,205 @@ export async function login(loginValue: string, password: string) {
 }
 
 export async function getAuthMe() {
+    const token = readAuthToken();
+
     if (isDemoSession()) {
         return { user: DEMO_USER };
     }
 
+    const professionalSession = getProfessionalSessionFromToken(token);
+    if (professionalSession) {
+        return {
+            user: {
+                id: `user-${professionalSession.profileId}`,
+                role: professionalSession.role,
+                profileId: professionalSession.profileId
+            } as ApiUser
+        };
+    }
+
     return request<{ user: ApiUser }>('/auth/me');
+}
+
+export async function registerProfessionalAccount(payload: ProfessionalRegistrationPayload) {
+    const accounts = getProfessionalAccounts();
+    const email = payload.email.trim().toLowerCase();
+    const exists = accounts.some((account) => account.email.toLowerCase() === email);
+
+    if (exists) {
+        throw new ApiError('An account already exists with this email.', 409);
+    }
+
+    const profileId = `pro-${Date.now()}`;
+    const newAccount: ProfessionalAccountStore = {
+        id: profileId,
+        fullName: payload.fullName.trim(),
+        professionType: payload.professionType,
+        phone: payload.phone.trim(),
+        email,
+        password: payload.password,
+        workplaceName: payload.workplaceName.trim(),
+        professionalAddress: payload.professionalAddress.trim(),
+        specialty: payload.specialty?.trim() || undefined,
+        licenseNumber: payload.licenseNumber.trim(),
+        profilePhotoUrl: payload.profilePhotoUrl
+    };
+
+    saveProfessionalAccounts([...accounts, newAccount]);
+
+    return {
+        token: createProfessionalToken(newAccount.professionType, newAccount.id),
+        user: {
+            id: `user-${newAccount.id}`,
+            role: newAccount.professionType,
+            profileId: newAccount.id
+        } as ApiUser
+    };
+}
+
+export async function loginProfessionalAccount(loginValue: string, password: string, role: ProfessionalRole) {
+    const normalized = loginValue.trim().toLowerCase();
+    const account = getProfessionalAccounts().find(
+        (item) => item.professionType === role && item.email.toLowerCase() === normalized
+    );
+
+    if (!account || account.password !== password) {
+        throw new ApiError('Invalid professional credentials.', 401);
+    }
+
+    return {
+        token: createProfessionalToken(account.professionType, account.id),
+        user: {
+            id: `user-${account.id}`,
+            role: account.professionType,
+            profileId: account.id
+        } as ApiUser
+    };
+}
+
+function getCurrentProfessionalAccount(): ProfessionalAccountStore | null {
+    const token = readAuthToken();
+    const session = getProfessionalSessionFromToken(token);
+
+    if (!session) {
+        return null;
+    }
+
+    return getProfessionalAccounts().find((account) => account.id === session.profileId) ?? null;
+}
+
+export async function getProfessionalWorkspace() {
+    const account = getCurrentProfessionalAccount();
+
+    if (!account) {
+        throw new ApiError('Professional session not found.', 401);
+    }
+
+    const visits = getProfessionalVisitsStore().filter((visit) => visit.professionalId === account.id);
+
+    return {
+        profile: {
+            id: account.id,
+            fullName: account.fullName,
+            professionType: account.professionType,
+            phone: account.phone,
+            email: account.email,
+            workplaceName: account.workplaceName,
+            professionalAddress: account.professionalAddress,
+            specialty: account.specialty,
+            licenseNumber: account.licenseNumber,
+            profilePhotoUrl: account.profilePhotoUrl
+        } as ProfessionalPortalProfile,
+        visits
+    };
+}
+
+export async function addProfessionalVisitNote(visitId: string, text: string) {
+    const account = getCurrentProfessionalAccount();
+    if (!account) {
+        throw new ApiError('Professional session not found.', 401);
+    }
+
+    const visits = getProfessionalVisitsStore();
+    const visit = visits.find((item) => item.id === visitId && item.professionalId === account.id);
+    if (!visit) {
+        throw new ApiError('Visit not found for this professional.', 404);
+    }
+
+    const nextNote: ProfessionalVisitNote = {
+        id: `note-${Date.now()}`,
+        text: text.trim(),
+        createdAt: new Date().toISOString()
+    };
+
+    visit.professionalNotes = [nextNote, ...visit.professionalNotes];
+    saveProfessionalVisitsStore(visits);
+    return nextNote;
+}
+
+export async function assignProfessionalDocument(
+    visitId: string,
+    payload: { title: string; type: ProfessionalAssignedDocument['type'] }
+) {
+    const account = getCurrentProfessionalAccount();
+    if (!account) {
+        throw new ApiError('Professional session not found.', 401);
+    }
+
+    const visits = getProfessionalVisitsStore();
+    const visit = visits.find((item) => item.id === visitId && item.professionalId === account.id);
+    if (!visit) {
+        throw new ApiError('Visit not found for this professional.', 404);
+    }
+
+    const nextDoc: ProfessionalAssignedDocument = {
+        id: `assignment-${Date.now()}`,
+        title: payload.title.trim(),
+        type: payload.type,
+        createdAt: new Date().toISOString()
+    };
+
+    visit.assignedDocuments = [nextDoc, ...visit.assignedDocuments];
+    saveProfessionalVisitsStore(visits);
+    return nextDoc;
+}
+
+export async function updateProfessionalProfileInfo(payload: Partial<ProfessionalPortalProfile>) {
+    const account = getCurrentProfessionalAccount();
+    if (!account) {
+        throw new ApiError('Professional session not found.', 401);
+    }
+
+    const accounts = getProfessionalAccounts();
+    const idx = accounts.findIndex((item) => item.id === account.id);
+    if (idx < 0) {
+        throw new ApiError('Professional profile not found.', 404);
+    }
+
+    accounts[idx] = {
+        ...accounts[idx],
+        fullName: payload.fullName?.trim() || accounts[idx].fullName,
+        phone: payload.phone?.trim() || accounts[idx].phone,
+        workplaceName: payload.workplaceName?.trim() || accounts[idx].workplaceName,
+        professionalAddress: payload.professionalAddress?.trim() || accounts[idx].professionalAddress,
+        specialty: payload.specialty?.trim() || accounts[idx].specialty,
+        profilePhotoUrl: payload.profilePhotoUrl ?? accounts[idx].profilePhotoUrl
+    };
+
+    saveProfessionalAccounts(accounts);
+
+    return {
+        id: accounts[idx].id,
+        fullName: accounts[idx].fullName,
+        professionType: accounts[idx].professionType,
+        phone: accounts[idx].phone,
+        email: accounts[idx].email,
+        workplaceName: accounts[idx].workplaceName,
+        professionalAddress: accounts[idx].professionalAddress,
+        specialty: accounts[idx].specialty,
+        licenseNumber: accounts[idx].licenseNumber,
+        profilePhotoUrl: accounts[idx].profilePhotoUrl
+    } as ProfessionalPortalProfile;
 }
 
 export async function verifyCard(serial: string, activationCode: string) {
@@ -502,14 +906,56 @@ export async function deletePatientDocument(patientId: string, docId: string) {
 }
 
 export async function getProfessionalMe(): Promise<Professional> {
+    const account = getCurrentProfessionalAccount();
+    if (account) {
+        return {
+            id: account.id,
+            fullName: account.fullName,
+            profession: account.professionType === 'doctor' ? 'Doctor' : 'Pharmacist',
+            licenseRegion: account.professionalAddress,
+            phone: account.phone,
+            kycStatus: 'verified',
+            accessHistory: [],
+            activeDelegations: []
+        };
+    }
+
     return request<Professional>('/professional/me');
 }
 
 export async function getProfessionalAccessHistory(): Promise<AccessLog[]> {
+    const account = getCurrentProfessionalAccount();
+    if (account) {
+        return getProfessionalVisitsStore()
+            .filter((visit) => visit.professionalId === account.id)
+            .map((visit) => ({
+                id: `access-${visit.id}`,
+                actor: visit.patientName,
+                role: 'Patient',
+                location: account.workplaceName,
+                accessLevel: 'level-1',
+                timestamp: visit.visitAt,
+                status: 'completed'
+            }));
+    }
+
     return request<AccessLog[]>('/professional/access-history');
 }
 
 export async function getActiveDelegations(): Promise<Professional['activeDelegations']> {
+    const account = getCurrentProfessionalAccount();
+    if (account) {
+        return getProfessionalVisitsStore()
+            .filter((visit) => visit.professionalId === account.id)
+            .slice(0, 3)
+            .map((visit) => ({
+                id: `delegation-${visit.id}`,
+                patientName: visit.patientName,
+                expiresAt: new Date(new Date(visit.visitAt).getTime() + 1000 * 60 * 60 * 12).toISOString(),
+                scope: 'Shared medical identity and assigned records'
+            }));
+    }
+
     return request<Professional['activeDelegations']>('/professional/delegations');
 }
 

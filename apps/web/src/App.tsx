@@ -17,6 +17,8 @@ import { NfcCardDemoPage } from './pages/NfcCardDemoPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { ProfessionalDashboardPage } from './pages/ProfessionalDashboardPage';
 import { ProfessionalLandingPage } from './pages/ProfessionalLandingPage';
+import { ProfessionalLoginPage } from './pages/ProfessionalLoginPage';
+import { ProfessionalRegisterPage } from './pages/ProfessionalRegisterPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import { RegistrationPage } from './pages/RegistrationPage';
 import { ServicesPage } from './pages/ServicesPage';
@@ -50,10 +52,12 @@ export default function App() {
                         <Route path="/card/:token" element={<NfcCardDemoPage />} />
                         <Route path="/u/:token" element={<EmergencyDemoPage />} />
                         <Route path="/pro" element={<ProfessionalLandingPage />} />
+                        <Route path="/pro/register" element={<ProfessionalRegisterPage />} />
+                        <Route path="/pro/login" element={<ProfessionalLoginPage />} />
                         <Route
                             path="/pro/dashboard"
                             element={
-                                <ProtectedRoute allowedRoles={['doctor', 'admin']}>
+                                <ProtectedRoute allowedRoles={['doctor', 'pharmacist', 'admin']}>
                                     <ProfessionalDashboardPage />
                                 </ProtectedRoute>
                             }
