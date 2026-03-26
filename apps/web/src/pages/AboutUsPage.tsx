@@ -1,4 +1,4 @@
-import { Building2, ShieldCheck, Target, Users } from 'lucide-react';
+import { CheckCircle2, Lightbulb, ShieldCheck, Stethoscope, Target } from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
 import { useLanguage } from '../context/LanguageContext';
 import { MarketingLayout } from '../layouts/MarketingLayout';
@@ -13,41 +13,41 @@ export function AboutUsPage() {
         return en;
     };
 
-    const pillars = [
+    const highlights = [
         {
-            icon: Building2,
-            title: t('Who We Are', 'Qui nous sommes', 'من نحن'),
+            icon: CheckCircle2,
+            title: t('Faster emergency access', 'Acces d urgence plus rapide', 'وصول أسرع في حالات الطوارئ'),
             body: t(
-                '2ks Digital Solutions is building HayatID as a medical-tech concept focused on practical emergency readiness for patients and care teams.',
-                '2ks Digital Solutions developpe HayatID comme un concept medical-tech axe sur une preparedness d\'urgence pratique pour patients et soignants.',
-                'تطور 2ks Digital Solutions مشروع HayatID كمفهوم طبي تقني يركز على جاهزية طوارئ عملية للمرضى وفرق الرعاية.'
+                'Faster access to essential emergency medical information.',
+                'Acces plus rapide aux informations medicales essentielles en urgence.',
+                'وصول أسرع إلى المعلومات الطبية الأساسية في حالات الطوارئ.'
             )
         },
         {
-            icon: Target,
-            title: t('Mission', 'Mission', 'المهمة'),
+            icon: Stethoscope,
+            title: t('No app required', 'Sans application requise', 'بدون تطبيق للطرف القارئ'),
             body: t(
-                'Our mission is to make emergency medical identity fast, understandable, and trustworthy using NFC-enabled card experiences.',
-                'Notre mission est de rendre l\'identite medicale d\'urgence rapide, comprehensible et fiable via des experiences carte NFC.',
-                'مهمتنا هي جعل الهوية الطبية للطوارئ سريعة ومفهومة وموثوقة عبر تجارب بطاقات NFC.'
+                'No app required for the reader in emergency situations.',
+                'Aucune application n est requise pour la personne qui consulte les informations.',
+                'لا حاجة لتثبيت تطبيق لدى الشخص الذي يقوم بالقراءة في الطوارئ.'
             )
         },
         {
             icon: ShieldCheck,
-            title: t('Vision', 'Vision', 'الرؤية'),
+            title: t('Structured and secure', 'Structure et securite', 'هوية منظمة وآمنة'),
             body: t(
-                'We aim to become a trusted digital health identity layer where urgent data is instantly available and private medical depth stays protected.',
-                'Nous visons une couche d\'identite sante de confiance ou les donnees urgentes sont immediates et les donnees privees restent protegees.',
-                'نطمح لأن نصبح طبقة موثوقة للهوية الصحية الرقمية حيث تتوفر بيانات الطوارئ فوراً وتبقى الخصوصية محمية.'
+                'Structured and secure medical identity experience.',
+                'Experience d identite medicale structuree et securisee.',
+                'تجربة هوية طبية منظمة وآمنة.'
             )
         },
         {
-            icon: Users,
-            title: t('Startup Focus', 'Orientation startup', 'توجه الشركة الناشئة'),
+            icon: Target,
+            title: t('Better continuity of care', 'Continuite de soin amelioree', 'استمرارية أفضل بين المريض والمهني الصحي'),
             body: t(
-                'HayatID is presented as a premium startup showcase for GITEX to validate market demand, build trust, and accelerate partnerships.',
-                'HayatID est presente comme vitrine startup premium pour GITEX afin de valider la demande, renforcer la confiance et accelerer les partenariats.',
-                'يتم تقديم HayatID كعرض شركة ناشئة متميز لـ GITEX للتحقق من الطلب وبناء الثقة وتسريع الشراكات.'
+                'Better continuity between patients and healthcare professionals.',
+                'Meilleure continuite entre patients et professionnels de sante.',
+                'استمرارية أفضل بين المرضى والمهنيين الصحيين.'
             )
         }
     ];
@@ -55,52 +55,101 @@ export function AboutUsPage() {
     return (
         <MarketingLayout>
             <PageMeta
-                title={t('HayatID | About Us', 'HayatID | A propos', 'HayatID | من نحن')}
+                title={t('About Us', 'A propos', 'من نحن')}
                 description={t(
-                    'About HayatID by 2ks Digital Solutions and our mission for trusted emergency identity.',
-                    'Presentation de HayatID par 2ks Digital Solutions et de notre mission.',
-                    'تعرف على HayatID من 2ks Digital Solutions ورسالتنا لهوية طوارئ موثوقة.'
+                    'Learn how HayatID combines NFC and QR with secure medical identity access.',
+                    'Decouvrez comment HayatID combine NFC et QR avec un acces medical securise.',
+                    'اكتشف كيف يجمع HayatID بين NFC وQR مع وصول طبي آمن.'
                 )}
             />
 
             <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
                 <div className={isArabic ? 'font-arabic text-right' : ''}>
-                    <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sapphire">
-                        {t('About HayatID', 'A propos de HayatID', 'عن HayatID')}
-                    </p>
+                    <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sapphire">{t('About Us', 'A propos', 'من نحن')}</p>
                     <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-navy sm:text-5xl">
                         {t(
-                            'The startup behind a smarter medical NFC card experience.',
-                            'La startup derriere une experience carte NFC medicale plus intelligente.',
-                            'الشركة الناشئة وراء تجربة بطاقة NFC طبية أكثر ذكاءً.'
+                            'Redefining medical access through smart digital identity',
+                            'Redefinir l acces medical grace a une identite numerique intelligente',
+                            'إعادة تعريف الوصول الطبي عبر هوية رقمية ذكية'
                         )}
                     </h1>
                     <p className="mt-5 max-w-3xl text-base leading-8 text-navy/75 sm:text-lg">
                         {t(
-                            'HayatID is a public-facing startup showcase, not yet a full production medical platform. The objective is to present the model professionally, explain the product logic clearly, and open collaboration with partners and potential clients.',
-                            'HayatID est une vitrine startup publique, pas encore une plateforme medicale de production complete. L\'objectif est de presenter le modele de facon professionnelle, expliquer le produit clairement et ouvrir la collaboration avec partenaires et clients potentiels.',
-                            'HayatID هو عرض شركة ناشئة موجه للجمهور، وليس بعد منصة طبية إنتاجية كاملة. الهدف هو تقديم النموذج باحترافية، وشرح منطق المنتج بوضوح، وفتح باب التعاون مع الشركاء والعملاء المحتملين.'
+                            'HayatID is a smart medical identity platform powered by 2KS technology. It combines an NFC card and QR access with a secure digital experience to make essential medical information more accessible, structured, and useful in critical moments.',
+                            'HayatID est une plateforme d identite medicale intelligente propulsee par 2KS. Elle combine une carte NFC et un acces QR avec une experience numerique securisee pour rendre les informations medicales essentielles plus accessibles, structurees et utiles dans les moments critiques.',
+                            'HayatID منصة هوية طبية ذكية مدعومة بتقنية 2KS، تجمع بين بطاقة NFC والوصول عبر QR ضمن تجربة رقمية آمنة لجعل المعلومات الطبية الأساسية أكثر سهولة وتنظيماً وفائدة في اللحظات الحرجة.'
                         )}
                     </p>
                 </div>
 
-                <div className="mt-10 grid gap-5 md:grid-cols-2">
-                    {pillars.map((pillar) => {
-                        const Icon = pillar.icon;
+                <div className="mt-10 grid gap-5 lg:grid-cols-2">
+                    <article className={`rounded-[1.8rem] border border-sapphire/15 bg-white/80 p-6 shadow-soft sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                        <h2 className="text-2xl font-semibold text-navy sm:text-3xl">{t('The Problem', 'Le probleme', 'المشكلة')}</h2>
+                        <p className="mt-4 text-sm leading-7 text-navy/75 sm:text-base">
+                            {t(
+                                'In emergency situations, essential medical information is often unavailable when it matters most. Blood type, allergies, implants, medications, and emergency contacts may exist, but remain inaccessible in the first crucial seconds.',
+                                'En situation d urgence, les informations medicales essentielles ne sont souvent pas disponibles au moment critique. Groupe sanguin, allergies, implants, traitements et contacts d urgence peuvent exister, mais restent inaccessibles durant les premieres secondes decisives.',
+                                'في حالات الطوارئ، غالباً لا تكون المعلومات الطبية الأساسية متاحة عند الحاجة القصوى. فصيلة الدم والحساسيات والزرعات والأدوية وجهات الاتصال الطارئة قد تكون موجودة، لكنها تبقى غير متاحة في الثواني الأولى الحاسمة.'
+                            )}
+                        </p>
+                    </article>
 
-                        return (
-                            <article
-                                key={pillar.title}
-                                className={`rounded-[1.8rem] border border-sapphire/15 bg-white/75 p-6 shadow-soft ${isArabic ? 'font-arabic text-right' : ''}`}
-                            >
-                                <div className="inline-flex rounded-2xl bg-sapphire/10 p-3 text-sapphire">
-                                    <Icon className="h-5 w-5" />
+                    <article className={`rounded-[1.8rem] border border-sapphire/15 bg-powder/25 p-6 shadow-soft sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                        <h2 className="text-2xl font-semibold text-navy sm:text-3xl">{t('The Solution', 'La solution', 'الحل')}</h2>
+                        <p className="mt-4 text-sm leading-7 text-navy/75 sm:text-base">
+                            {t(
+                                'HayatID provides a portable medical identity through an NFC card and QR code. With a simple scan, essential medical information can be accessed quickly through a browser, without requiring a dedicated app on the reader side.',
+                                'HayatID fournit une identite medicale portable via une carte NFC et un code QR. Avec un simple scan, les informations medicales essentielles sont accessibles rapidement depuis un navigateur, sans application dediee cote lecteur.',
+                                'يوفر HayatID هوية طبية محمولة عبر بطاقة NFC ورمز QR. وبمجرد مسح بسيط، يمكن الوصول السريع إلى المعلومات الطبية الأساسية عبر المتصفح دون الحاجة إلى تطبيق مخصص لدى القارئ.'
+                            )}
+                        </p>
+                    </article>
+                </div>
+
+                <article className={`mt-5 rounded-[1.8rem] border border-sapphire/15 bg-white/80 p-6 shadow-soft sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                    <h2 className="text-2xl font-semibold text-navy sm:text-3xl">{t('Why HayatID Matters', 'Pourquoi HayatID compte', 'لماذا HayatID مهم')}</h2>
+                    <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                        {highlights.map((item) => {
+                            const Icon = item.icon;
+
+                            return (
+                                <div key={item.title} className="rounded-2xl border border-sapphire/15 bg-slate-50 p-4">
+                                    <div className="inline-flex rounded-2xl bg-sapphire/10 p-3 text-sapphire">
+                                        <Icon className="h-5 w-5" />
+                                    </div>
+                                    <p className="mt-3 text-sm font-semibold text-navy">{item.title}</p>
+                                    <p className="mt-2 text-sm leading-6 text-navy/75">{item.body}</p>
                                 </div>
-                                <h2 className="mt-4 text-2xl font-semibold text-navy">{pillar.title}</h2>
-                                <p className="mt-3 text-sm leading-7 text-navy/75 sm:text-base">{pillar.body}</p>
-                            </article>
-                        );
-                    })}
+                            );
+                        })}
+                    </div>
+                </article>
+
+                <div className="mt-5 grid gap-5 lg:grid-cols-2">
+                    <article className={`rounded-[1.8rem] border border-sapphire/15 bg-white/80 p-6 shadow-soft sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                        <h2 className="inline-flex items-center gap-2 text-2xl font-semibold text-navy sm:text-3xl">
+                            <Lightbulb className="h-5 w-5 text-sapphire" />
+                            {t('Field Validation', 'Validation terrain', 'التحقق الميداني')}
+                        </h2>
+                        <p className="mt-4 text-sm leading-7 text-navy/75 sm:text-base">
+                            {t(
+                                'The concept has already been tested with healthcare professionals in real-world conditions, showing strong problem validation and adoption interest.',
+                                'Le concept a deja ete teste avec des professionnels de sante en conditions reelles, montrant une forte validation du probleme et un reel interet d adoption.',
+                                'تم اختبار المفهوم بالفعل مع مهنيي الرعاية الصحية في ظروف واقعية، وأظهر ذلك تحققاً قوياً للمشكلة واهتماماً واضحاً بالتبني.'
+                            )}
+                        </p>
+                    </article>
+
+                    <article className={`rounded-[1.8rem] border border-sapphire/15 bg-navy p-6 text-white shadow-soft sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                        <h2 className="text-2xl font-semibold sm:text-3xl">{t('Our Vision', 'Notre vision', 'رؤيتنا')}</h2>
+                        <p className="mt-4 text-sm leading-7 text-white/80 sm:text-base">
+                            {t(
+                                'HayatID aims to help build a more connected healthcare experience where critical medical information is available quickly, clearly, and responsibly.',
+                                'HayatID vise a construire une experience de sante plus connectee ou les informations medicales critiques sont disponibles rapidement, clairement et de maniere responsable.',
+                                'يهدف HayatID إلى المساهمة في بناء تجربة صحية أكثر ترابطاً، بحيث تتوفر المعلومات الطبية الحرجة بسرعة ووضوح وبشكل مسؤول.'
+                            )}
+                        </p>
+                    </article>
                 </div>
             </section>
         </MarketingLayout>

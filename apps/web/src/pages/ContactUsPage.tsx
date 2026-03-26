@@ -1,7 +1,6 @@
-import { Mail, MessageCircle, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 import { useState } from 'react';
 import { PageMeta } from '../components/PageMeta';
-import { siteConfig } from '../config/site';
 import { useLanguage } from '../context/LanguageContext';
 import { MarketingLayout } from '../layouts/MarketingLayout';
 
@@ -21,35 +20,14 @@ export function ContactUsPage() {
         setSubmitted(true);
     }
 
-    const channels = [
-        {
-            icon: Phone,
-            label: t('Phone', 'Telephone', 'الهاتف'),
-            value: siteConfig.contact.phoneDisplay,
-            href: siteConfig.contact.phoneHref
-        },
-        {
-            icon: MessageCircle,
-            label: t('WhatsApp', 'WhatsApp', 'واتساب'),
-            value: siteConfig.contact.whatsappDisplay,
-            href: siteConfig.contact.whatsappHref
-        },
-        {
-            icon: Mail,
-            label: t('Email', 'Email', 'البريد الإلكتروني'),
-            value: siteConfig.contact.emailDisplay,
-            href: siteConfig.contact.emailHref
-        }
-    ];
-
     return (
         <MarketingLayout>
             <PageMeta
-                title={t('HayatID | Contact Us', 'HayatID | Contact', 'HayatID | تواصل معنا')}
+                title={t('Contact Us', 'Contactez-nous', 'تواصل معنا')}
                 description={t(
-                    'Contact 2ks Digital Solutions about HayatID partnerships, demos, and client onboarding.',
-                    'Contactez 2ks Digital Solutions pour les partenariats, demos et onboarding clients HayatID.',
-                    'تواصل مع 2ks Digital Solutions بشأن الشراكات والعروض وتعريف العملاء في HayatID.'
+                    'Contact the HayatID team for healthcare partnerships, pilots, and product questions.',
+                    'Contactez l equipe HayatID pour les partenariats sante, pilotes et questions produit.',
+                    'تواصل مع فريق HayatID بخصوص الشراكات الصحية والتجارب والأسئلة المتعلقة بالمنتج.'
                 )}
             />
 
@@ -61,66 +39,90 @@ export function ContactUsPage() {
                         </p>
                         <h1 className="mt-4 text-4xl font-semibold tracking-tight">
                             {t(
-                                'Talk to the team behind HayatID.',
-                                'Echangez avec l\'equipe derriere HayatID.',
-                                'تواصل مع الفريق المطور لـ HayatID.'
+                                'Let’s connect around smarter healthcare access',
+                                'Connectons-nous autour d un acces aux soins plus intelligent',
+                                'لنتواصل حول وصول صحي أكثر ذكاءً'
                             )}
                         </h1>
                         <p className="mt-4 text-sm leading-7 text-white/75 sm:text-base">
                             {t(
-                                'For GITEX presentations, partnerships, or early client onboarding, use one of the channels below.',
-                                'Pour les presentations GITEX, partenariats ou onboarding client initial, utilisez un canal ci-dessous.',
-                                'لعروض GITEX أو الشراكات أو بدء تأهيل العملاء، استخدم إحدى القنوات أدناه.'
+                                'Whether you are a patient, healthcare professional, pharmacy, clinic, or partner interested in HayatID, we would be glad to hear from you.',
+                                'Que vous soyez patient, professionnel de sante, pharmacie, clinique ou partenaire interesse par HayatID, nous serions ravis d echanger avec vous.',
+                                'سواء كنت مريضاً أو مهنياً صحياً أو صيدلية أو عيادة أو شريكاً مهتماً بـ HayatID، يسعدنا التواصل معك.'
                             )}
                         </p>
 
                         <div className="mt-7 space-y-3">
-                            {channels.map((channel) => {
-                                const Icon = channel.icon;
+                            <div className="flex items-center gap-3 rounded-3xl border border-white/10 bg-white/5 p-4">
+                                <span className="rounded-2xl bg-white/10 p-2 text-powder">
+                                    <Mail className="h-4 w-4" />
+                                </span>
+                                <span>
+                                    <span className="block text-xs uppercase tracking-[0.2em] text-white/70">{t('Email', 'Email', 'البريد الإلكتروني')}</span>
+                                    <span className="mt-1 block text-sm font-semibold text-white">contact@hayatid.info</span>
+                                </span>
+                            </div>
+                            <div className="flex items-center gap-3 rounded-3xl border border-white/10 bg-white/5 p-4">
+                                <span className="rounded-2xl bg-white/10 p-2 text-powder">
+                                    <Phone className="h-4 w-4" />
+                                </span>
+                                <span>
+                                    <span className="block text-xs uppercase tracking-[0.2em] text-white/70">{t('Phone', 'Telephone', 'الهاتف')}</span>
+                                    <span className="mt-1 block text-sm font-semibold text-white">+212 XX XX XX XX XX</span>
+                                </span>
+                            </div>
+                            <div className="flex items-center gap-3 rounded-3xl border border-white/10 bg-white/5 p-4">
+                                <span className="rounded-2xl bg-white/10 p-2 text-powder">
+                                    <MapPin className="h-4 w-4" />
+                                </span>
+                                <span>
+                                    <span className="block text-xs uppercase tracking-[0.2em] text-white/70">{t('Location', 'Localisation', 'الموقع')}</span>
+                                    <span className="mt-1 block text-sm font-semibold text-white">Marrakech, Morocco</span>
+                                </span>
+                            </div>
+                        </div>
 
-                                return (
-                                    <a
-                                        key={channel.label}
-                                        href={channel.href}
-                                        className="flex items-center gap-3 rounded-3xl border border-white/10 bg-white/5 p-4 hover:bg-white/10"
-                                    >
-                                        <span className="rounded-2xl bg-white/10 p-2 text-powder">
-                                            <Icon className="h-4 w-4" />
-                                        </span>
-                                        <span>
-                                            <span className="block text-xs uppercase tracking-[0.2em] text-white/70">{channel.label}</span>
-                                            <span className="mt-1 block text-sm font-semibold text-white">{channel.value}</span>
-                                        </span>
-                                    </a>
-                                );
-                            })}
+                        <div className="mt-7 rounded-3xl border border-white/10 bg-white/5 p-5">
+                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-powder/80">{t('For partnerships and pilots', 'Pour les partenariats et pilotes', 'للشراكات والتجارب الميدانية')}</p>
+                            <p className="mt-3 text-sm leading-7 text-white/75">
+                                {t(
+                                    'HayatID is open to collaboration with healthcare professionals, pharmacies, clinics, and strategic partners interested in improving access to critical medical information.',
+                                    'HayatID est ouvert a la collaboration avec les professionnels de sante, pharmacies, cliniques et partenaires strategiques souhaitant ameliorer l acces aux informations medicales critiques.',
+                                    'HayatID منفتح على التعاون مع المهنيين الصحيين والصيدليات والعيادات والشركاء الاستراتيجيين المهتمين بتحسين الوصول إلى المعلومات الطبية الحرجة.'
+                                )}
+                            </p>
                         </div>
                     </div>
 
                     <div className={`rounded-[2rem] border border-sapphire/15 bg-white/80 p-7 shadow-soft sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
                         <h2 className="text-2xl font-semibold text-navy">
-                            {t('Send a request', 'Envoyer une demande', 'إرسال طلب')}
+                            {t('Send Message', 'Envoyer un message', 'إرسال رسالة')}
                         </h2>
-                        <p className="mt-3 text-sm leading-7 text-navy/75">
-                            {t(
-                                'This form is for presentation and pre-sales contact.',
-                                'Ce formulaire est destine au contact presentation et pre-vente.',
-                                'هذا النموذج مخصص للتواصل الخاص بالعرض وما قبل البيع.'
-                            )}
-                        </p>
 
                         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                             <label className="block">
                                 <span className="mb-2 block text-sm font-medium text-navy">
-                                    {t('Full name', 'Nom complet', 'الاسم الكامل')}
+                                    {t('Full Name', 'Nom complet', 'الاسم الكامل')}
                                 </span>
                                 <input required className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-sapphire" />
                             </label>
                             <label className="block">
                                 <span className="mb-2 block text-sm font-medium text-navy">
-                                    {t('Email', 'Email', 'البريد الإلكتروني')}
+                                    {t('Email Address', 'Adresse email', 'البريد الإلكتروني')}
                                 </span>
                                 <input type="email" required className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-sapphire" />
+                            </label>
+                            <label className="block">
+                                <span className="mb-2 block text-sm font-medium text-navy">
+                                    {t('Phone Number', 'Numero de telephone', 'رقم الهاتف')}
+                                </span>
+                                <input type="tel" className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-sapphire" />
+                            </label>
+                            <label className="block">
+                                <span className="mb-2 block text-sm font-medium text-navy">
+                                    {t('Subject', 'Sujet', 'الموضوع')}
+                                </span>
+                                <input required className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-sapphire" />
                             </label>
                             <label className="block">
                                 <span className="mb-2 block text-sm font-medium text-navy">
@@ -130,19 +132,27 @@ export function ContactUsPage() {
                             </label>
 
                             <button type="submit" className="inline-flex rounded-full bg-sapphire px-5 py-3 text-sm font-semibold text-white">
-                                {t('Submit', 'Envoyer', 'إرسال')}
+                                {t('Send Message', 'Envoyer le message', 'إرسال الرسالة')}
                             </button>
 
                             {submitted ? (
                                 <p className="text-sm font-medium text-sapphire">
                                     {t(
-                                        'Thank you. Your request has been captured for demo purposes.',
-                                        'Merci. Votre demande a ete capturee a des fins de demonstration.',
-                                        'شكراً. تم تسجيل طلبك لأغراض العرض التجريبي.'
+                                        'Thank you. Your message has been captured for demo purposes.',
+                                        'Merci. Votre message a ete capture a des fins de demonstration.',
+                                        'شكراً. تم تسجيل رسالتك لأغراض العرض التجريبي.'
                                     )}
                                 </p>
                             ) : null}
                         </form>
+
+                        <p className="mt-6 text-sm leading-7 text-navy/75">
+                            {t(
+                                'We are building a smarter and more connected healthcare experience through secure digital identity and NFC technology.',
+                                'Nous construisons une experience de sante plus intelligente et connectee grace a une identite numerique securisee et la technologie NFC.',
+                                'نحن نبني تجربة صحية أكثر ذكاءً وترابطاً عبر هوية رقمية آمنة وتقنية NFC.'
+                            )}
+                        </p>
                     </div>
                 </div>
             </section>

@@ -1,4 +1,4 @@
-import { ArrowRight, CreditCard, Link as LinkIcon, LogIn, ShieldAlert, Smartphone } from 'lucide-react';
+import { Clock3, Link as LinkIcon, QrCode, ShieldCheck, Smartphone, UserCog } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PageMeta } from '../components/PageMeta';
 import { useLanguage } from '../context/LanguageContext';
@@ -16,48 +16,48 @@ export function HowItWorksPage() {
 
     const steps = [
         {
-            icon: CreditCard,
-            title: t('1. Obtain an NFC card', '1. Obtenir une carte NFC', '1. الحصول على بطاقة NFC'),
+            icon: UserCog,
+            title: t('1. Create a Medical Identity', '1. Creer une identite medicale', '1. إنشاء هوية طبية'),
             body: t(
-                'The user receives a 2ks NFC medical card designed for fast emergency identification.',
-                'L\'utilisateur recoit une carte medicale NFC 2ks concue pour une identification d\'urgence rapide.',
-                'يتلقى المستخدم بطاقة 2ks الطبية بتقنية NFC والمصممة للتعريف السريع في الطوارئ.'
+                'The patient creates and manages a secure medical profile containing essential information such as blood type, allergies, chronic conditions, medications, implants, emergency contacts, and directives.',
+                'Le patient cree et gere un profil medical securise contenant des informations essentielles comme le groupe sanguin, les allergies, les maladies chroniques, les traitements, les implants, les contacts d urgence et les directives.',
+                'يقوم المريض بإنشاء وإدارة ملف طبي آمن يتضمن معلومات أساسية مثل فصيلة الدم والحساسيات والأمراض المزمنة والأدوية والزرعات وجهات الاتصال الطارئة والتوجيهات.'
             )
         },
         {
             icon: LinkIcon,
-            title: t('2. Link the card to the user', '2. Lier la carte a l\'utilisateur', '2. ربط البطاقة بالمستخدم'),
+            title: t('2. Link the Card', '2. Lier la carte', '2. ربط البطاقة'),
             body: t(
-                'The profile is connected to the card through a guided onboarding flow.',
-                'Le profil est relie a la carte via un parcours d\'onboarding guide.',
-                'يتم ربط الملف الشخصي بالبطاقة عبر مسار تهيئة موجه.'
+                'A HayatID NFC card and QR code are linked to the medical identity so the information can be reached quickly when needed.',
+                'Une carte NFC HayatID et un code QR sont relies a l identite medicale pour permettre un acces rapide aux informations lorsque necessaire.',
+                'يتم ربط بطاقة HayatID بتقنية NFC ورمز QR بالهوية الطبية حتى يمكن الوصول إلى المعلومات بسرعة عند الحاجة.'
             )
         },
         {
-            icon: Smartphone,
-            title: t('3. Scan or open on phone', '3. Scanner ou ouvrir sur telephone', '3. المسح أو الفتح على الهاتف'),
+            icon: QrCode,
+            title: t('3. Emergency Access in Seconds', '3. Acces d urgence en quelques secondes', '3. وصول الطوارئ خلال ثوانٍ'),
             body: t(
-                'A tap or scan opens the card experience instantly on a mobile device.',
-                'Un tap ou scan ouvre instantanement l\'experience carte sur mobile.',
-                'يفتح اللمس أو المسح تجربة البطاقة فوراً على الهاتف.'
+                'In an emergency, a passerby or healthcare worker scans the NFC card or QR code using a phone browser. Essential medical information becomes visible without requiring an app.',
+                'En cas d urgence, un proche ou un professionnel de sante scanne la carte NFC ou le code QR via le navigateur du telephone. Les informations medicales essentielles deviennent visibles sans application.',
+                'في حالة الطوارئ، يقوم أحد المارة أو العامل الصحي بمسح بطاقة NFC أو رمز QR عبر متصفح الهاتف، فتظهر المعلومات الطبية الأساسية دون الحاجة إلى تطبيق.'
             )
         },
         {
-            icon: LogIn,
-            title: t('4. Access login', '4. Acceder a la connexion', '4. الوصول إلى تسجيل الدخول'),
+            icon: ShieldCheck,
+            title: t('4. Professional Access', '4. Acces professionnel', '4. وصول المهنيين الصحيين'),
             body: t(
-                'Users can continue to the login interface for the protected account journey.',
-                'Les utilisateurs poursuivent vers l\'interface de connexion pour le parcours compte protege.',
-                'يمكن للمستخدم متابعة تسجيل الدخول للوصول إلى مسار الحساب المحمي.'
+                'Healthcare professionals can go further through a secure verification flow to access extended medical information in an appropriate professional context.',
+                'Les professionnels de sante peuvent aller plus loin via un parcours de verification securise pour acceder a des informations medicales etendues dans un cadre professionnel approprie.',
+                'يمكن للمهنيين الصحيين التقدم عبر مسار تحقق آمن للوصول إلى معلومات طبية موسعة ضمن سياق مهني مناسب.'
             )
         },
         {
-            icon: ShieldAlert,
-            title: t('5. Use Urgent in emergencies', '5. Utiliser Urgent en cas d\'urgence', '5. استخدام Urgent في الطوارئ'),
+            icon: Clock3,
+            title: t('5. Continuous Updates', '5. Mises a jour continues', '5. تحديثات مستمرة'),
             body: t(
-                'In emergency situations, Urgent highlights only life-critical fields for fast action.',
-                'En cas d\'urgence, Urgent affiche uniquement les champs vitaux pour une action rapide.',
-                'في حالات الطوارئ، يعرض زر Urgent الحقول الحيوية فقط لتصرف سريع.'
+                'The patient can keep the profile updated so the medical identity stays relevant, accessible, and useful over time.',
+                'Le patient peut maintenir son profil a jour afin que l identite medicale reste pertinente, accessible et utile dans le temps.',
+                'يمكن للمريض تحديث الملف بشكل مستمر لتبقى الهوية الطبية دقيقة ومتاحة ومفيدة مع مرور الوقت.'
             )
         }
     ];
@@ -65,11 +65,11 @@ export function HowItWorksPage() {
     return (
         <MarketingLayout>
             <PageMeta
-                title={t('HayatID | How It Works', 'HayatID | Comment ca marche', 'HayatID | كيف يعمل')}
+                title={t('How It Works', 'Comment ca marche', 'كيف يعمل')}
                 description={t(
-                    'Discover how HayatID NFC emergency identity works from scan to urgent view and protected workflows.',
-                    'Decouvrez le fonctionnement de HayatID de la carte NFC jusqu\'a l\'acces urgent et au parcours protege.',
-                    'اكتشف كيف تعمل هوية HayatID من مسح البطاقة حتى عرض الطوارئ والمسار المحمي.'
+                    'Discover how HayatID connects NFC and QR to secure medical access in a clear step-by-step journey.',
+                    'Decouvrez comment HayatID connecte NFC et QR a un acces medical securise dans un parcours clair.',
+                    'اكتشف كيف يربط HayatID بين NFC وQR للوصول الطبي الآمن عبر رحلة واضحة خطوة بخطوة.'
                 )}
             />
 
@@ -80,11 +80,18 @@ export function HowItWorksPage() {
                     </p>
                     <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-navy sm:text-5xl">
                         {t(
-                            'A simple five-step journey from card setup to urgent emergency access.',
-                            'Un parcours simple en cinq etapes, de la configuration carte a l\'acces urgent.',
-                            'رحلة بسيطة من خمس خطوات من إعداد البطاقة إلى وصول الطوارئ العاجل.'
+                            'A seamless journey from NFC tap to secure medical access',
+                            'Un parcours fluide du geste NFC vers un acces medical securise',
+                            'رحلة سلسة من لمس NFC إلى وصول طبي آمن'
                         )}
                     </h1>
+                    <p className="mt-5 max-w-3xl text-base leading-8 text-navy/75 sm:text-lg">
+                        {t(
+                            'HayatID connects a physical NFC card and QR code to a digital medical identity platform. The experience is designed to be fast, accessible, and intuitive.',
+                            'HayatID relie une carte NFC physique et un code QR a une plateforme numerique d identite medicale. L experience est pensee pour etre rapide, accessible et intuitive.',
+                            'يربط HayatID بطاقة NFC فعلية ورمز QR بمنصة هوية طبية رقمية، وقد صُممت التجربة لتكون سريعة وسهلة ومتاحة للجميع.'
+                        )}
+                    </p>
                 </div>
 
                 <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -109,19 +116,22 @@ export function HowItWorksPage() {
                 <div className={`mt-10 rounded-[2rem] bg-navy p-7 text-white sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
                     <h2 className="text-2xl font-semibold sm:text-3xl">
                         {t(
-                            'See the flow live in the demo environment.',
-                            'Voir le flux en direct dans l\'environnement de demo.',
-                            'شاهد المسار مباشرة داخل بيئة العرض التجريبي.'
+                            'Built for speed, clarity, and trust',
+                            'Concu pour la rapidite, la clarte et la confiance',
+                            'مبني على السرعة والوضوح والثقة'
                         )}
                     </h2>
-                    <div className="mt-5 flex flex-wrap gap-3">
-                        <Link to="/card/demo-token" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-navy">
-                            {t('Open NFC card demo', 'Ouvrir la demo NFC', 'فتح عرض بطاقة NFC')}
-                            <ArrowRight className={`h-4 w-4 ${isArabic ? 'rotate-180' : ''}`} />
-                        </Link>
-                        <Link to="/register" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white">
-                            {t('Open create account demo', 'Ouvrir la demo d\'inscription', 'فتح عرض إنشاء الحساب')}
-                            <ArrowRight className={`h-4 w-4 ${isArabic ? 'rotate-180' : ''}`} />
+                    <p className="mt-4 max-w-3xl text-sm leading-7 text-white/80 sm:text-base">
+                        {t(
+                            'HayatID is designed to reduce friction in emergency access while maintaining a modern, structured medical identity experience.',
+                            'HayatID est concu pour reduire les frictions lors de l acces d urgence tout en maintenant une experience moderne et structuree d identite medicale.',
+                            'تم تصميم HayatID لتقليل الاحتكاك في الوصول الطارئ مع الحفاظ على تجربة هوية طبية حديثة ومنظمة.'
+                        )}
+                    </p>
+                    <div className="mt-5">
+                        <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-navy transition hover:bg-slate-100">
+                            {t('Contact Us', 'Contactez-nous', 'تواصل معنا')}
+                            <Smartphone className="h-4 w-4" />
                         </Link>
                     </div>
                 </div>
