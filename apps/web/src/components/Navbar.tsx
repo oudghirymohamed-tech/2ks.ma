@@ -63,7 +63,7 @@ export function Navbar() {
                     <div>
                         <p className="text-lg font-semibold tracking-tight">{copy.brand}</p>
                         <p className="text-xs uppercase tracking-[0.2em] text-navy/65">
-                            {t('Smart medical identity platform', 'Plateforme d identite medicale intelligente', 'منصة الهوية الطبية الذكية')}
+                            {t('Powered by 2ks Technology', 'Propulse par 2ks Technology', 'مدعوم بتقنية 2ks')}
                         </p>
                     </div>
                 </Link>

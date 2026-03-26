@@ -16,16 +16,16 @@ export function Footer() {
             <div className={`mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.6fr_1fr_1fr] lg:px-8 lg:py-16 ${isArabic ? 'font-arabic text-right' : ''}`}>
                 {/* Brand column */}
                 <div>
-                    <p className="text-xl font-bold tracking-tight text-white">{t('HayatID — Smart medical identity powered by 2KS', 'HayatID — Identite medicale intelligente propulsee par 2KS', 'HayatID — هوية طبية ذكية مدعومة من 2KS')}</p>
+                    <p className="text-xl font-bold tracking-tight text-white">{t('HayatID — Smart medical identity powered by 2ks', 'HayatID — Identite medicale intelligente propulsee par 2ks', 'HayatID — هوية طبية ذكية مدعومة بتقنية 2ks')}</p>
                     <p className="mt-4 max-w-sm text-sm leading-7 text-white/60">
                         {t(
-                            'Building a more connected healthcare experience through secure digital identity, NFC, and QR access.',
-                            'Construire une experience de sante plus connectee grace a une identite numerique securisee, NFC et acces QR.',
-                            'نبني تجربة صحية أكثر ترابطاً عبر هوية رقمية آمنة وتقنيات NFC وQR.'
+                            '2ks Technology powers the connected healthcare experience behind HayatID.',
+                            '2ks Technology alimente l experience de sante connectee derriere HayatID.',
+                            'تقنية 2ks تشغل تجربة الرعاية الصحية المترابطة خلف HayatID.'
                         )}
                     </p>
                     <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-powder/70 shadow-[0_8px_18px_rgba(0,0,0,0.2)]">
-                        {t('Smart Medical Identity Platform', 'Plateforme d identite medicale intelligente', 'منصة الهوية الطبية الذكية')}
+                        {t('Powered by 2ks Technology', 'Propulse par 2ks Technology', 'مدعوم بتقنية 2ks')}
                     </div>
                 </div>
 
@@ -70,7 +70,7 @@ export function Footer() {
                         {t('© 2026 HayatID. All rights reserved.', '© 2026 HayatID. Tous droits reserves.', '© 2026 HayatID. جميع الحقوق محفوظة.')}
                     </p>
                     <p className="text-xs text-white/30">
-                        {t('Powered by 2KS', 'Propulse par 2KS', 'مدعوم بواسطة 2KS')}
+                        {t('Powered by 2ks Technology', 'Propulse par 2ks Technology', 'مدعوم بتقنية 2ks')}
                     </p>
                 </div>
             </div>
