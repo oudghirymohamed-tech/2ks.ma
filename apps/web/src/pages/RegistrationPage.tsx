@@ -1,12 +1,12 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { AlertCircle, CheckCircle2, ChevronLeft, ChevronRight, CreditCard, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { PageMeta } from '../components/PageMeta';
 import { useLanguage } from '../context/LanguageContext';
 import { MarketingLayout } from '../layouts/MarketingLayout';
 
-type StepKey = 'card' | 'account';
+type StepKey = 'card' | 'personal' | 'account' | 'review' | 'success';
 
 const registrationCopy = {
     en: {
@@ -24,20 +24,27 @@ const registrationCopy = {
         finish: 'Create demo account',
         loading: 'Processing...',
         cardStepTitle: 'Verify Card',
-        cardStepBody: 'Use the button below to simulate successful card verification and continue to account creation.',
+        cardStepBody: 'Use the button below to simulate successful card verification and continue to the next step.',
         verifyCard: 'Verify Card',
         cardVerified: 'Demo card verified successfully',
-        accountStepTitle: 'Create Account',
+        personalStepTitle: 'Personal Information',
+        accountStepTitle: 'Account Setup',
+        reviewStepTitle: 'Review / Confirmation',
+        reviewHint: 'Please confirm your details before creating your demo account.',
+        successStepTitle: 'Success',
         fullName: 'Full Name',
         phone: 'Phone Number',
         email: 'Email Address',
         password: 'Password',
         confirmPassword: 'Confirm Password',
+        editHint: 'Use Back if you need to edit any information.',
         accountSuccess: 'Demo account created successfully',
         mismatch: 'Password and confirmation must match.',
-        invalid: 'Please complete all required fields.',
+        invalid: 'Please complete all required fields correctly.',
+        invalidEmail: 'Please enter a valid email address.',
+        invalidPhone: 'Please enter a valid phone number.',
         openDemo: 'Open demo hub',
-        stepTitles: ['Verify card', 'Account details'] as string[]
+        stepTitles: ['Verify card', 'Personal information', 'Account setup', 'Review', 'Success'] as string[]
     },
     fr: {
         metaTitle: 'Creez votre identite medicale intelligente',
@@ -54,50 +61,64 @@ const registrationCopy = {
         finish: 'Creer un compte demo',
         loading: 'Traitement...',
         cardStepTitle: 'Verifier la carte',
-        cardStepBody: 'Utilisez le bouton ci-dessous pour simuler une verification reussie puis continuer vers la creation du compte.',
+        cardStepBody: 'Utilisez le bouton ci-dessous pour simuler une verification reussie puis continuer.',
         verifyCard: 'Verifier la carte',
         cardVerified: 'Carte demo verifiee avec succes',
-        accountStepTitle: 'Creer un compte',
+        personalStepTitle: 'Informations personnelles',
+        accountStepTitle: 'Configuration du compte',
+        reviewStepTitle: 'Revue / Confirmation',
+        reviewHint: 'Veuillez confirmer vos informations avant de creer le compte demo.',
+        successStepTitle: 'Succes',
         fullName: 'Nom complet',
         phone: 'Numero de telephone',
         email: 'Adresse email',
         password: 'Mot de passe',
         confirmPassword: 'Confirmer le mot de passe',
+        editHint: 'Utilisez Retour si vous voulez modifier des informations.',
         accountSuccess: 'Compte demo cree avec succes',
         mismatch: 'Le mot de passe et la confirmation doivent correspondre.',
-        invalid: 'Veuillez remplir tous les champs obligatoires.',
+        invalid: 'Veuillez remplir correctement tous les champs obligatoires.',
+        invalidEmail: 'Veuillez saisir une adresse email valide.',
+        invalidPhone: 'Veuillez saisir un numero de telephone valide.',
         openDemo: 'Ouvrir le hub demo',
-        stepTitles: ['Verification carte', 'Details du compte'] as string[]
+        stepTitles: ['Verification carte', 'Informations personnelles', 'Configuration compte', 'Revue', 'Succes'] as string[]
     },
     ar: {
-        metaTitle: 'أنشئ هويتك الطبية الذكية',
-        metaDescription: 'جرّب تجربة التسجيل في HayatID بوضع العرض دون الحاجة إلى بطاقة فعلية.',
+        metaTitle: 'انشئ هويتك الطبية الذكية',
+        metaDescription: 'جرب تجربة التسجيل في HayatID بوضع العرض دون الحاجة الى بطاقة فعلية.',
         badge: 'تسجيل تجريبي',
-        title: 'أنشئ هويتك الطبية الذكية',
-        intro: 'جرّب تجربة التسجيل في HayatID بوضع العرض دون الحاجة إلى بطاقة فعلية.',
-        note: 'هذه تجربة عرض توضيحية. لا حاجة إلى بطاقة حقيقية.',
+        title: 'انشئ هويتك الطبية الذكية',
+        intro: 'جرب تجربة التسجيل في HayatID بوضع العرض دون الحاجة الى بطاقة فعلية.',
+        note: 'هذه تجربة عرض توضيحية. لا حاجة الى بطاقة حقيقية.',
         active: 'الخطوة الحالية',
         done: 'مكتملة',
         pending: 'قادمة',
         back: 'رجوع',
         next: 'متابعة',
-        finish: 'إنشاء حساب تجريبي',
-        loading: 'جارٍ المعالجة...',
+        finish: 'انشاء حساب تجريبي',
+        loading: 'جار المعالجة...',
         cardStepTitle: 'التحقق من البطاقة',
-        cardStepBody: 'استخدم الزر أدناه لمحاكاة تحقق ناجح من البطاقة ثم تابع إلى إنشاء الحساب.',
+        cardStepBody: 'استخدم الزر ادناه لمحاكاة تحقق ناجح من البطاقة ثم تابع.',
         verifyCard: 'تحقق من البطاقة',
         cardVerified: 'تم التحقق من البطاقة التجريبية بنجاح',
-        accountStepTitle: 'إنشاء الحساب',
+        personalStepTitle: 'المعلومات الشخصية',
+        accountStepTitle: 'اعداد الحساب',
+        reviewStepTitle: 'المراجعة / التأكيد',
+        reviewHint: 'يرجى تأكيد البيانات قبل انشاء الحساب التجريبي.',
+        successStepTitle: 'نجاح',
         fullName: 'الاسم الكامل',
         phone: 'رقم الهاتف',
-        email: 'البريد الإلكتروني',
+        email: 'البريد الالكتروني',
         password: 'كلمة المرور',
         confirmPassword: 'تأكيد كلمة المرور',
-        accountSuccess: 'تم إنشاء الحساب التجريبي بنجاح',
-        mismatch: 'يجب أن تتطابق كلمة المرور مع التأكيد.',
-        invalid: 'يرجى إكمال جميع الحقول المطلوبة.',
+        editHint: 'استخدم زر الرجوع اذا كنت تريد تعديل اي بيانات.',
+        accountSuccess: 'تم انشاء الحساب التجريبي بنجاح',
+        mismatch: 'يجب ان تتطابق كلمة المرور مع التأكيد.',
+        invalid: 'يرجى اكمال جميع الحقول المطلوبة بشكل صحيح.',
+        invalidEmail: 'يرجى ادخال بريد الكتروني صحيح.',
+        invalidPhone: 'يرجى ادخال رقم هاتف صحيح.',
         openDemo: 'فتح مركز العرض',
-        stepTitles: ['التحقق من البطاقة', 'بيانات الحساب'] as string[]
+        stepTitles: ['التحقق من البطاقة', 'المعلومات الشخصية', 'اعداد الحساب', 'المراجعة', 'نجاح'] as string[]
     }
 } as const;
 
@@ -108,14 +129,13 @@ export function RegistrationPage() {
     const copy = registrationCopy[language === 'fr' ? 'fr' : isArabic ? 'ar' : 'en'];
 
     const isDemoMode = true;
-    const steps: StepKey[] = ['card', 'account'];
+    const steps: StepKey[] = ['card', 'personal', 'account', 'review', 'success'];
 
     const [step, setStep] = useState(0);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isCardVerified, setIsCardVerified] = useState(false);
     const [statusMessage, setStatusMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    const [accountCreated, setAccountCreated] = useState(false);
 
     const [form, setForm] = useState({
         fullName: isArabic ? 'مستخدم تجريبي' : 'Demo User',
@@ -130,15 +150,50 @@ export function RegistrationPage() {
     const canAdvance = step < steps.length - 1;
 
     const canLeaveCardStep = isCardVerified;
-    const canLeaveAccountStep =
+    const canLeavePersonalStep =
         form.fullName.trim().length > 2 &&
-        form.phone.trim().length > 6 &&
-        form.email.includes('@') &&
-        form.password.length >= 6 &&
-        form.confirmPassword.length >= 6;
+        /^\+?[0-9\s-]{7,}$/.test(form.phone.trim()) &&
+        form.email.includes('@');
+    const canLeaveAccountStep = form.password.length >= 6 && form.confirmPassword.length >= 6;
 
-    const canGoNext = currentStep === 'card' && canLeaveCardStep;
-    const canFinish = currentStep === 'account' && canLeaveAccountStep;
+    const canGoNext =
+        (currentStep === 'card' && canLeaveCardStep) ||
+        (currentStep === 'personal' && canLeavePersonalStep) ||
+        (currentStep === 'account' && canLeaveAccountStep);
+    const canFinish = currentStep === 'review';
+
+    function validateCurrentStep() {
+        if (currentStep === 'personal') {
+            if (form.fullName.trim().length <= 2 || form.phone.trim().length <= 6 || form.email.trim().length <= 3) {
+                setErrorMessage(copy.invalid);
+                return false;
+            }
+
+            if (!/^\+?[0-9\s-]{7,}$/.test(form.phone.trim())) {
+                setErrorMessage(copy.invalidPhone);
+                return false;
+            }
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+                setErrorMessage(copy.invalidEmail);
+                return false;
+            }
+        }
+
+        if (currentStep === 'account') {
+            if (!canLeaveAccountStep) {
+                setErrorMessage(copy.invalid);
+                return false;
+            }
+
+            if (form.password !== form.confirmPassword) {
+                setErrorMessage(copy.mismatch);
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     async function handleVerifyCard() {
         setErrorMessage('');
@@ -160,6 +215,19 @@ export function RegistrationPage() {
         }
     }
 
+    function handleNext() {
+        setErrorMessage('');
+        setStatusMessage('');
+
+        if (!validateCurrentStep()) {
+            return;
+        }
+
+        if (canGoNext) {
+            setStep((current) => Math.min(steps.length - 1, current + 1));
+        }
+    }
+
     async function handleCreateDemoAccount() {
         if (!canFinish) {
             setErrorMessage(copy.invalid);
@@ -177,9 +245,8 @@ export function RegistrationPage() {
 
         try {
             await new Promise((resolve) => setTimeout(resolve, 600));
-            setAccountCreated(true);
             setStatusMessage(copy.accountSuccess);
-            setTimeout(() => navigate('/demo'), 900);
+            setStep(4);
         } finally {
             setIsSubmitting(false);
         }
@@ -253,9 +320,9 @@ export function RegistrationPage() {
                                     </div>
                                 ) : null}
 
-                                {currentStep === 'account' ? (
+                                {currentStep === 'personal' ? (
                                     <div className="rounded-3xl border border-slate-200 bg-canvas p-5 shadow-sm">
-                                        <p className="text-lg font-semibold text-navy">{copy.accountStepTitle}</p>
+                                        <p className="text-lg font-semibold text-navy">{copy.personalStepTitle}</p>
                                         <div className="mt-4 grid gap-4">
                                             <label className="block">
                                                 <span className="mb-2 block text-sm font-medium text-slate-700">{copy.fullName}</span>
@@ -284,7 +351,14 @@ export function RegistrationPage() {
                                                     className="premium-input"
                                                 />
                                             </label>
+                                        </div>
+                                    </div>
+                                ) : null}
 
+                                {currentStep === 'account' ? (
+                                    <div className="rounded-3xl border border-slate-200 bg-canvas p-5 shadow-sm">
+                                        <p className="text-lg font-semibold text-navy">{copy.accountStepTitle}</p>
+                                        <div className="mt-4 grid gap-4">
                                             <label className="block">
                                                 <span className="mb-2 block text-sm font-medium text-slate-700">{copy.password}</span>
                                                 <input
@@ -307,6 +381,49 @@ export function RegistrationPage() {
                                         </div>
                                     </div>
                                 ) : null}
+
+                                {currentStep === 'review' ? (
+                                    <div className="rounded-3xl border border-slate-200 bg-canvas p-5 shadow-sm">
+                                        <p className="text-lg font-semibold text-navy">{copy.reviewStepTitle}</p>
+                                        <p className="mt-2 text-sm leading-7 text-navy/72">{copy.reviewHint}</p>
+                                        <div className="mt-4 grid gap-3 rounded-2xl border border-sapphire/15 bg-white p-4">
+                                            <div className="flex items-center justify-between gap-4 border-b border-slate-100 pb-2 text-sm">
+                                                <span className="font-medium text-navy/70">{copy.fullName}</span>
+                                                <span className="font-semibold text-navy">{form.fullName}</span>
+                                            </div>
+                                            <div className="flex items-center justify-between gap-4 border-b border-slate-100 pb-2 text-sm">
+                                                <span className="font-medium text-navy/70">{copy.phone}</span>
+                                                <span className="font-semibold text-navy">{form.phone}</span>
+                                            </div>
+                                            <div className="flex items-center justify-between gap-4 border-b border-slate-100 pb-2 text-sm">
+                                                <span className="font-medium text-navy/70">{copy.email}</span>
+                                                <span className="font-semibold text-navy">{form.email}</span>
+                                            </div>
+                                            <div className="flex items-center justify-between gap-4 text-sm">
+                                                <span className="font-medium text-navy/70">{copy.password}</span>
+                                                <span className="font-semibold text-navy">{'*'.repeat(Math.min(form.password.length, 10))}</span>
+                                            </div>
+                                        </div>
+                                        <p className="mt-4 text-xs font-medium uppercase tracking-[0.16em] text-sapphire/75">{copy.editHint}</p>
+                                    </div>
+                                ) : null}
+
+                                {currentStep === 'success' ? (
+                                    <div className="rounded-3xl border border-call/25 bg-call/10 p-5 shadow-sm">
+                                        <p className="text-lg font-semibold text-call">{copy.successStepTitle}</p>
+                                        <p className="mt-2 text-sm leading-7 text-call">{copy.accountSuccess}</p>
+                                        <div className="mt-5 flex flex-wrap gap-3">
+                                            <button
+                                                type="button"
+                                                onClick={() => navigate('/demo')}
+                                                className="premium-btn-primary gap-2"
+                                            >
+                                                <CreditCard className="h-4 w-4" />
+                                                {copy.openDemo}
+                                            </button>
+                                        </div>
+                                    </div>
+                                ) : null}
                             </motion.div>
                         </AnimatePresence>
 
@@ -324,37 +441,28 @@ export function RegistrationPage() {
                             </div>
                         ) : null}
 
-                        {accountCreated ? (
-                            <div className="mt-5">
-                                <Link to="/demo" className="inline-flex items-center gap-2 rounded-full border border-sapphire/25 bg-white px-4 py-2.5 text-sm font-semibold text-sapphire transition hover:border-sapphire">
-                                    <CreditCard className="h-4 w-4" />
-                                    {copy.openDemo}
-                                </Link>
-                            </div>
-                        ) : null}
-
                         <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
                             <button
                                 type="button"
                                 onClick={() => setStep((current) => Math.max(0, current - 1))}
-                                disabled={!canGoBack || isSubmitting}
+                                disabled={!canGoBack || isSubmitting || currentStep === 'success'}
                                 className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 disabled:cursor-not-allowed disabled:opacity-40"
                             >
                                 <ChevronLeft className={`h-4 w-4 ${isArabic ? 'rotate-180' : ''}`} />
                                 {copy.back}
                             </button>
 
-                            {canAdvance ? (
+                            {canAdvance && currentStep !== 'review' ? (
                                 <button
                                     type="button"
-                                    onClick={() => canGoNext && setStep((current) => Math.min(steps.length - 1, current + 1))}
+                                    onClick={handleNext}
                                     disabled={!canGoNext || isSubmitting}
                                     className="premium-btn-primary gap-2 bg-navy disabled:cursor-not-allowed disabled:opacity-50"
                                 >
                                     {copy.next}
                                     <ChevronRight className={`h-4 w-4 ${isArabic ? 'rotate-180' : ''}`} />
                                 </button>
-                            ) : (
+                            ) : currentStep === 'review' ? (
                                 <button
                                     type="button"
                                     onClick={handleCreateDemoAccount}
@@ -364,7 +472,7 @@ export function RegistrationPage() {
                                     {isSubmitting ? copy.loading : copy.finish}
                                     <CheckCircle2 className="h-4 w-4" />
                                 </button>
-                            )}
+                            ) : null}
                         </div>
                     </div>
                 </div>
