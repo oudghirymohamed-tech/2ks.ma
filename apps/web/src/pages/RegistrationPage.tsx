@@ -6,7 +6,9 @@ import { PageMeta } from '../components/PageMeta';
 import { useLanguage } from '../context/LanguageContext';
 import { MarketingLayout } from '../layouts/MarketingLayout';
 
-type StepKey = 'card' | 'personal' | 'account' | 'review' | 'success';
+type StepKey = 'card' | 'personal' | 'urgent' | 'otp' | 'account' | 'review' | 'success';
+
+const DEMO_OTP_CODE = '123456';
 
 const registrationCopy = {
     en: {
@@ -28,8 +30,31 @@ const registrationCopy = {
         verifyCard: 'Verify Card',
         cardVerified: 'Demo card verified successfully',
         personalStepTitle: 'Personal Information',
+        dob: 'Date of Birth (optional)',
+        gender: 'Gender (optional)',
+        urgentStepTitle: 'Urgent Information',
+        urgentStepSubtitle: 'Add the most important medical details that may help in urgent situations.',
+        bloodType: 'Blood Type',
+        allergies: 'Allergies',
+        chronicConditions: 'Chronic Conditions',
+        medications: 'Current Medications',
+        implants: 'Medical Implants / Devices',
+        emergencyContactName: 'Emergency Contact Name',
+        emergencyContactPhone: 'Emergency Contact Phone',
+        emergencyNotes: 'Emergency Notes / Instructions',
+        otpStepTitle: 'OTP Verification',
+        otpStepSubtitle: 'Verify your phone number to continue your account setup.',
+        otpLabel: 'OTP Code',
+        sendCode: 'Send Code',
+        verifyCode: 'Verify Code',
+        resendCode: 'Resend Code',
+        changePhone: 'Change Phone Number',
+        otpSent: 'Demo OTP sent successfully',
+        otpVerified: 'Phone number verified successfully',
+        otpInvalid: 'Invalid OTP code. Try 123456 in demo mode.',
+        otpMissing: 'Please send and verify the OTP code before continuing.',
         accountStepTitle: 'Account Setup',
-        reviewStepTitle: 'Review / Confirmation',
+        reviewStepTitle: 'Review',
         reviewHint: 'Please confirm your details before creating your demo account.',
         successStepTitle: 'Success',
         fullName: 'Full Name',
@@ -44,7 +69,7 @@ const registrationCopy = {
         invalidEmail: 'Please enter a valid email address.',
         invalidPhone: 'Please enter a valid phone number.',
         openDemo: 'Open demo hub',
-        stepTitles: ['Verify card', 'Personal information', 'Account setup', 'Review', 'Success'] as string[]
+        stepTitles: ['Verify card', 'Personal information', 'Urgent information', 'OTP verification', 'Account setup', 'Review', 'Success'] as string[]
     },
     fr: {
         metaTitle: 'Creez votre identite medicale intelligente',
@@ -65,8 +90,31 @@ const registrationCopy = {
         verifyCard: 'Verifier la carte',
         cardVerified: 'Carte demo verifiee avec succes',
         personalStepTitle: 'Informations personnelles',
+        dob: 'Date de naissance (optionnel)',
+        gender: 'Genre (optionnel)',
+        urgentStepTitle: 'Informations urgentes',
+        urgentStepSubtitle: 'Ajoutez les details medicaux les plus importants pour les situations urgentes.',
+        bloodType: 'Groupe sanguin',
+        allergies: 'Allergies',
+        chronicConditions: 'Conditions chroniques',
+        medications: 'Medicaments en cours',
+        implants: 'Implants / dispositifs medicaux',
+        emergencyContactName: 'Nom du contact d urgence',
+        emergencyContactPhone: 'Telephone du contact d urgence',
+        emergencyNotes: 'Notes / instructions d urgence',
+        otpStepTitle: 'Verification OTP',
+        otpStepSubtitle: 'Verifiez votre numero de telephone pour continuer la creation du compte.',
+        otpLabel: 'Code OTP',
+        sendCode: 'Envoyer le code',
+        verifyCode: 'Verifier le code',
+        resendCode: 'Renvoyer le code',
+        changePhone: 'Changer le numero',
+        otpSent: 'OTP demo envoye avec succes',
+        otpVerified: 'Numero de telephone verifie avec succes',
+        otpInvalid: 'Code OTP invalide. Essayez 123456 en mode demo.',
+        otpMissing: 'Veuillez envoyer et verifier le code OTP avant de continuer.',
         accountStepTitle: 'Configuration du compte',
-        reviewStepTitle: 'Revue / Confirmation',
+        reviewStepTitle: 'Revue',
         reviewHint: 'Veuillez confirmer vos informations avant de creer le compte demo.',
         successStepTitle: 'Succes',
         fullName: 'Nom complet',
@@ -81,7 +129,7 @@ const registrationCopy = {
         invalidEmail: 'Veuillez saisir une adresse email valide.',
         invalidPhone: 'Veuillez saisir un numero de telephone valide.',
         openDemo: 'Ouvrir le hub demo',
-        stepTitles: ['Verification carte', 'Informations personnelles', 'Configuration compte', 'Revue', 'Succes'] as string[]
+        stepTitles: ['Verification carte', 'Informations personnelles', 'Informations urgentes', 'Verification OTP', 'Configuration compte', 'Revue', 'Succes'] as string[]
     },
     ar: {
         metaTitle: 'انشئ هويتك الطبية الذكية',
@@ -102,8 +150,31 @@ const registrationCopy = {
         verifyCard: 'تحقق من البطاقة',
         cardVerified: 'تم التحقق من البطاقة التجريبية بنجاح',
         personalStepTitle: 'المعلومات الشخصية',
+        dob: 'تاريخ الميلاد (اختياري)',
+        gender: 'الجنس (اختياري)',
+        urgentStepTitle: 'المعلومات العاجلة',
+        urgentStepSubtitle: 'اضف اهم التفاصيل الطبية التي قد تساعد في الحالات العاجلة.',
+        bloodType: 'فصيلة الدم',
+        allergies: 'الحساسية',
+        chronicConditions: 'الحالات المزمنة',
+        medications: 'الادوية الحالية',
+        implants: 'الزرعات / الاجهزة الطبية',
+        emergencyContactName: 'اسم جهة اتصال الطوارئ',
+        emergencyContactPhone: 'هاتف جهة اتصال الطوارئ',
+        emergencyNotes: 'ملاحظات / تعليمات الطوارئ',
+        otpStepTitle: 'التحقق عبر OTP',
+        otpStepSubtitle: 'تحقق من رقم الهاتف للمتابعة في اعداد الحساب.',
+        otpLabel: 'رمز OTP',
+        sendCode: 'ارسال الرمز',
+        verifyCode: 'تحقق من الرمز',
+        resendCode: 'اعادة ارسال الرمز',
+        changePhone: 'تغيير رقم الهاتف',
+        otpSent: 'تم ارسال رمز OTP التجريبي بنجاح',
+        otpVerified: 'تم التحقق من رقم الهاتف بنجاح',
+        otpInvalid: 'رمز OTP غير صحيح. جرب 123456 في الوضع التجريبي.',
+        otpMissing: 'يرجى ارسال والتحقق من رمز OTP قبل المتابعة.',
         accountStepTitle: 'اعداد الحساب',
-        reviewStepTitle: 'المراجعة / التأكيد',
+        reviewStepTitle: 'المراجعة',
         reviewHint: 'يرجى تأكيد البيانات قبل انشاء الحساب التجريبي.',
         successStepTitle: 'نجاح',
         fullName: 'الاسم الكامل',
@@ -118,7 +189,7 @@ const registrationCopy = {
         invalidEmail: 'يرجى ادخال بريد الكتروني صحيح.',
         invalidPhone: 'يرجى ادخال رقم هاتف صحيح.',
         openDemo: 'فتح مركز العرض',
-        stepTitles: ['التحقق من البطاقة', 'المعلومات الشخصية', 'اعداد الحساب', 'المراجعة', 'نجاح'] as string[]
+        stepTitles: ['التحقق من البطاقة', 'المعلومات الشخصية', 'المعلومات العاجلة', 'التحقق عبر OTP', 'اعداد الحساب', 'المراجعة', 'نجاح'] as string[]
     }
 } as const;
 
@@ -129,7 +200,7 @@ export function RegistrationPage() {
     const copy = registrationCopy[language === 'fr' ? 'fr' : isArabic ? 'ar' : 'en'];
 
     const isDemoMode = true;
-    const steps: StepKey[] = ['card', 'personal', 'account', 'review', 'success'];
+    const steps: StepKey[] = ['card', 'personal', 'urgent', 'otp', 'account', 'review', 'success'];
 
     const [step, setStep] = useState(0);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -141,9 +212,23 @@ export function RegistrationPage() {
         fullName: isArabic ? 'مستخدم تجريبي' : 'Demo User',
         phone: '+212600112233',
         email: 'demo@hayatid.info',
+        dateOfBirth: '',
+        gender: '',
+        bloodType: '',
+        allergies: '',
+        chronicConditions: '',
+        medications: '',
+        implants: '',
+        emergencyContactName: '',
+        emergencyContactPhone: '',
+        emergencyNotes: '',
         password: 'Password123',
         confirmPassword: 'Password123'
     });
+
+    const [otpCode, setOtpCode] = useState('');
+    const [otpSent, setOtpSent] = useState(false);
+    const [otpVerified, setOtpVerified] = useState(false);
 
     const currentStep = steps[step];
     const canGoBack = step > 0;
@@ -154,13 +239,16 @@ export function RegistrationPage() {
         form.fullName.trim().length > 2 &&
         /^\+?[0-9\s-]{7,}$/.test(form.phone.trim()) &&
         form.email.includes('@');
+    const canLeaveUrgentStep = true;
+    const canLeaveOtpStep = otpVerified;
     const canLeaveAccountStep = form.password.length >= 6 && form.confirmPassword.length >= 6;
 
     const canGoNext =
         (currentStep === 'card' && canLeaveCardStep) ||
         (currentStep === 'personal' && canLeavePersonalStep) ||
+        (currentStep === 'urgent' && canLeaveUrgentStep) ||
+        (currentStep === 'otp' && canLeaveOtpStep) ||
         (currentStep === 'account' && canLeaveAccountStep);
-    const canFinish = currentStep === 'review';
 
     function validateCurrentStep() {
         if (currentStep === 'personal') {
@@ -176,6 +264,13 @@ export function RegistrationPage() {
 
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
                 setErrorMessage(copy.invalidEmail);
+                return false;
+            }
+        }
+
+        if (currentStep === 'otp') {
+            if (!otpSent || !otpVerified) {
+                setErrorMessage(copy.otpMissing);
                 return false;
             }
         }
@@ -228,25 +323,73 @@ export function RegistrationPage() {
         }
     }
 
-    async function handleCreateDemoAccount() {
-        if (!canFinish) {
-            setErrorMessage(copy.invalid);
+    async function handleSendOtp() {
+        setErrorMessage('');
+        setStatusMessage('');
+
+        if (!/^\+?[0-9\s-]{7,}$/.test(form.phone.trim())) {
+            setErrorMessage(copy.invalidPhone);
             return;
         }
+
+        setIsSubmitting(true);
+        try {
+            await new Promise((resolve) => setTimeout(resolve, 450));
+            setOtpSent(true);
+            setOtpVerified(false);
+            setStatusMessage(copy.otpSent);
+        } finally {
+            setIsSubmitting(false);
+        }
+    }
+
+    async function handleVerifyOtp() {
+        setErrorMessage('');
+        setStatusMessage('');
+
+        if (!otpSent) {
+            setErrorMessage(copy.otpMissing);
+            return;
+        }
+
+        setIsSubmitting(true);
+        try {
+            await new Promise((resolve) => setTimeout(resolve, 250));
+            if (isDemoMode && otpCode.trim() === DEMO_OTP_CODE) {
+                setOtpVerified(true);
+                setStatusMessage(copy.otpVerified);
+                return;
+            }
+            setOtpVerified(false);
+            setErrorMessage(copy.otpInvalid);
+        } finally {
+            setIsSubmitting(false);
+        }
+    }
+
+    function handleChangePhoneNumber() {
+        setOtpCode('');
+        setOtpSent(false);
+        setOtpVerified(false);
+        setStatusMessage('');
+        setErrorMessage('');
+        setStep(1);
+    }
+
+    async function handleCreateDemoAccount() {
+        setErrorMessage('');
+        setStatusMessage('');
 
         if (form.password !== form.confirmPassword) {
             setErrorMessage(copy.mismatch);
             return;
         }
 
-        setErrorMessage('');
-        setStatusMessage('');
         setIsSubmitting(true);
-
         try {
             await new Promise((resolve) => setTimeout(resolve, 600));
             setStatusMessage(copy.accountSuccess);
-            setStep(4);
+            setStep(6);
         } finally {
             setIsSubmitting(false);
         }
@@ -351,6 +494,178 @@ export function RegistrationPage() {
                                                     className="premium-input"
                                                 />
                                             </label>
+
+                                            <div className="grid gap-4 sm:grid-cols-2">
+                                                <label className="block">
+                                                    <span className="mb-2 block text-sm font-medium text-slate-700">{copy.dob}</span>
+                                                    <input
+                                                        type="date"
+                                                        value={form.dateOfBirth}
+                                                        onChange={(event) => setForm({ ...form, dateOfBirth: event.target.value })}
+                                                        className="premium-input"
+                                                    />
+                                                </label>
+                                                <label className="block">
+                                                    <span className="mb-2 block text-sm font-medium text-slate-700">{copy.gender}</span>
+                                                    <select
+                                                        value={form.gender}
+                                                        onChange={(event) => setForm({ ...form, gender: event.target.value })}
+                                                        className="premium-input"
+                                                    >
+                                                        <option value="" />
+                                                        <option value="female">Female</option>
+                                                        <option value="male">Male</option>
+                                                        <option value="other">Other</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : null}
+
+                                {currentStep === 'urgent' ? (
+                                    <div className="rounded-3xl border border-slate-200 bg-canvas p-5 shadow-sm">
+                                        <p className="text-lg font-semibold text-navy">{copy.urgentStepTitle}</p>
+                                        <p className="mt-2 text-sm leading-7 text-navy/72">{copy.urgentStepSubtitle}</p>
+
+                                        <div className="mt-4 grid gap-4">
+                                            <div className="rounded-2xl border border-sapphire/15 bg-white p-4">
+                                                <div className="grid gap-4 sm:grid-cols-2">
+                                                    <label className="block">
+                                                        <span className="mb-2 block text-sm font-medium text-slate-700">{copy.bloodType}</span>
+                                                        <input
+                                                            value={form.bloodType}
+                                                            onChange={(event) => setForm({ ...form, bloodType: event.target.value })}
+                                                            className="premium-input"
+                                                        />
+                                                    </label>
+                                                    <label className="block">
+                                                        <span className="mb-2 block text-sm font-medium text-slate-700">{copy.implants}</span>
+                                                        <input
+                                                            value={form.implants}
+                                                            onChange={(event) => setForm({ ...form, implants: event.target.value })}
+                                                            className="premium-input"
+                                                        />
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div className="rounded-2xl border border-sapphire/15 bg-white p-4">
+                                                <div className="grid gap-4">
+                                                    <label className="block">
+                                                        <span className="mb-2 block text-sm font-medium text-slate-700">{copy.allergies}</span>
+                                                        <textarea
+                                                            rows={2}
+                                                            value={form.allergies}
+                                                            onChange={(event) => setForm({ ...form, allergies: event.target.value })}
+                                                            className="premium-input"
+                                                        />
+                                                    </label>
+                                                    <label className="block">
+                                                        <span className="mb-2 block text-sm font-medium text-slate-700">{copy.chronicConditions}</span>
+                                                        <textarea
+                                                            rows={2}
+                                                            value={form.chronicConditions}
+                                                            onChange={(event) => setForm({ ...form, chronicConditions: event.target.value })}
+                                                            className="premium-input"
+                                                        />
+                                                    </label>
+                                                    <label className="block">
+                                                        <span className="mb-2 block text-sm font-medium text-slate-700">{copy.medications}</span>
+                                                        <textarea
+                                                            rows={2}
+                                                            value={form.medications}
+                                                            onChange={(event) => setForm({ ...form, medications: event.target.value })}
+                                                            className="premium-input"
+                                                        />
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div className="rounded-2xl border border-sapphire/15 bg-white p-4">
+                                                <div className="grid gap-4 sm:grid-cols-2">
+                                                    <label className="block">
+                                                        <span className="mb-2 block text-sm font-medium text-slate-700">{copy.emergencyContactName}</span>
+                                                        <input
+                                                            value={form.emergencyContactName}
+                                                            onChange={(event) => setForm({ ...form, emergencyContactName: event.target.value })}
+                                                            className="premium-input"
+                                                        />
+                                                    </label>
+                                                    <label className="block">
+                                                        <span className="mb-2 block text-sm font-medium text-slate-700">{copy.emergencyContactPhone}</span>
+                                                        <input
+                                                            value={form.emergencyContactPhone}
+                                                            onChange={(event) => setForm({ ...form, emergencyContactPhone: event.target.value })}
+                                                            className="premium-input"
+                                                        />
+                                                    </label>
+                                                </div>
+                                                <label className="mt-4 block">
+                                                    <span className="mb-2 block text-sm font-medium text-slate-700">{copy.emergencyNotes}</span>
+                                                    <textarea
+                                                        rows={3}
+                                                        value={form.emergencyNotes}
+                                                        onChange={(event) => setForm({ ...form, emergencyNotes: event.target.value })}
+                                                        className="premium-input"
+                                                    />
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : null}
+
+                                {currentStep === 'otp' ? (
+                                    <div className="rounded-3xl border border-slate-200 bg-canvas p-5 shadow-sm">
+                                        <p className="text-lg font-semibold text-navy">{copy.otpStepTitle}</p>
+                                        <p className="mt-2 text-sm leading-7 text-navy/72">{copy.otpStepSubtitle}</p>
+
+                                        <div className="mt-4 rounded-2xl border border-sapphire/15 bg-white p-4">
+                                            <p className="text-sm text-navy/70">{copy.phone}: <span className="font-semibold text-navy">{form.phone}</span></p>
+
+                                            <label className="mt-4 block">
+                                                <span className="mb-2 block text-sm font-medium text-slate-700">{copy.otpLabel}</span>
+                                                <input
+                                                    value={otpCode}
+                                                    onChange={(event) => setOtpCode(event.target.value.replace(/\D/g, '').slice(0, 6))}
+                                                    className="premium-input text-center tracking-[0.3em]"
+                                                    placeholder="123456"
+                                                />
+                                            </label>
+
+                                            <div className="mt-4 flex flex-wrap gap-3">
+                                                <button
+                                                    type="button"
+                                                    onClick={handleSendOtp}
+                                                    disabled={isSubmitting}
+                                                    className="premium-btn-secondary"
+                                                >
+                                                    {copy.sendCode}
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={handleVerifyOtp}
+                                                    disabled={isSubmitting || !otpCode}
+                                                    className="premium-btn-primary"
+                                                >
+                                                    {copy.verifyCode}
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={handleSendOtp}
+                                                    disabled={isSubmitting}
+                                                    className="inline-flex items-center justify-center rounded-full border border-sapphire/20 bg-white px-5 py-3 text-sm font-semibold text-sapphire transition hover:border-sapphire"
+                                                >
+                                                    {copy.resendCode}
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={handleChangePhoneNumber}
+                                                    className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-navy transition hover:border-slate-400"
+                                                >
+                                                    {copy.changePhone}
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 ) : null}
@@ -398,6 +713,18 @@ export function RegistrationPage() {
                                             <div className="flex items-center justify-between gap-4 border-b border-slate-100 pb-2 text-sm">
                                                 <span className="font-medium text-navy/70">{copy.email}</span>
                                                 <span className="font-semibold text-navy">{form.email}</span>
+                                            </div>
+                                            <div className="flex items-center justify-between gap-4 border-b border-slate-100 pb-2 text-sm">
+                                                <span className="font-medium text-navy/70">{copy.bloodType}</span>
+                                                <span className="font-semibold text-navy">{form.bloodType || '-'}</span>
+                                            </div>
+                                            <div className="flex items-center justify-between gap-4 border-b border-slate-100 pb-2 text-sm">
+                                                <span className="font-medium text-navy/70">{copy.emergencyContactName}</span>
+                                                <span className="font-semibold text-navy">{form.emergencyContactName || '-'}</span>
+                                            </div>
+                                            <div className="flex items-center justify-between gap-4 border-b border-slate-100 pb-2 text-sm">
+                                                <span className="font-medium text-navy/70">{copy.emergencyContactPhone}</span>
+                                                <span className="font-semibold text-navy">{form.emergencyContactPhone || '-'}</span>
                                             </div>
                                             <div className="flex items-center justify-between gap-4 text-sm">
                                                 <span className="font-medium text-navy/70">{copy.password}</span>
@@ -466,7 +793,7 @@ export function RegistrationPage() {
                                 <button
                                     type="button"
                                     onClick={handleCreateDemoAccount}
-                                    disabled={!canFinish || isSubmitting}
+                                    disabled={isSubmitting}
                                     className="inline-flex items-center gap-2 rounded-full bg-call px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#166D2F] disabled:cursor-not-allowed disabled:opacity-50"
                                 >
                                     {isSubmitting ? copy.loading : copy.finish}
