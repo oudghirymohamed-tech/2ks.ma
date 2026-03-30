@@ -22,7 +22,7 @@ html {
 body {
     margin: 0;
     min-width: 320px;
-    background: radial-gradient(circle at 15% 0%, rgba(255, 255, 255, 0.62), transparent 35%), var(--ice-blue);
+    background: #FAFAF8;
     color: var(--deep-navy);
     font-family: 'Inter', system-ui, sans-serif;
     text-rendering: optimizeLegibility;
