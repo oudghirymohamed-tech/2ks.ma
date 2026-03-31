@@ -1,4 +1,4 @@
-import { Menu, ArrowRight, ShieldCheck, ScanSearch, HeartPulse, RadioTower, Mail, Instagram, Linkedin, X } from 'lucide-react';
+import { Menu, ArrowRight, ShieldCheck, ScanSearch, HeartPulse, RadioTower, Mail, Instagram, Linkedin, X, Heart } from 'lucide-react';
 import { useState } from 'react';
 import { PageMeta } from '../components/PageMeta';
 import { useLanguage } from '../context/LanguageContext';
@@ -346,20 +346,34 @@ export function LandingPage() {
     const languageOptions = ['en', 'fr', 'ar'] as const;
 
     return (
-        <div className="min-h-screen bg-[#041225] text-white">
+        <div className="font-ui min-h-screen bg-[#041225] text-white">
             <PageMeta title={content.metaTitle} description={content.metaDescription} />
 
             <div className="relative isolate overflow-hidden">
-                <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,#041225_0%,#071a35_36%,#06162d_100%)]" />
-                <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(73,134,255,0.24),transparent_28%),radial-gradient(circle_at_82%_18%,rgba(108,226,255,0.14),transparent_22%),radial-gradient(circle_at_50%_100%,rgba(59,130,246,0.12),transparent_35%)]" />
-                <div className="absolute inset-x-0 top-0 -z-10 h-[540px] bg-[linear-gradient(180deg,rgba(255,255,255,0.04),transparent)]" />
+                <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,#041125_0%,#061733_30%,#071a3a_58%,#06162e_100%)]" />
+                <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_2%,rgba(56,145,255,0.24),transparent_28%),radial-gradient(circle_at_88%_8%,rgba(126,205,255,0.14),transparent_26%),radial-gradient(circle_at_50%_100%,rgba(74,132,255,0.16),transparent_34%)]" />
+                <div className="absolute inset-x-0 top-0 -z-10 h-[620px] bg-[linear-gradient(180deg,rgba(255,255,255,0.05),transparent)]" />
+                <div className="absolute inset-x-0 top-0 -z-10 h-[900px] bg-[radial-gradient(circle_at_50%_36%,rgba(107,190,255,0.09),transparent_42%)]" />
 
-                <header className="sticky top-0 z-40 border-b border-white/10 bg-[#06162dd9] backdrop-blur-xl">
+                <div aria-hidden className="pointer-events-none absolute -left-12 top-24 -z-10 hidden lg:block">
+                    <Heart className="h-24 w-24 text-sky-100/10" strokeWidth={1.2} />
+                </div>
+                <div aria-hidden className="pointer-events-none absolute right-[7%] top-[18%] -z-10 hidden lg:block">
+                    <Heart className="h-16 w-16 text-blue-100/10" strokeWidth={1.2} />
+                </div>
+                <div aria-hidden className="pointer-events-none absolute bottom-[30%] left-[8%] -z-10 hidden lg:block">
+                    <Heart className="h-12 w-12 text-white/8" strokeWidth={1.1} />
+                </div>
+
+                <header className="sticky top-0 z-40 border-b border-white/10 bg-[#06162de6] backdrop-blur-xl">
                     <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
                         <a href="#top" className="inline-flex min-w-0 items-center gap-3">
-                            <img src="/favicon.svg" alt="HayatID logo" width="44" height="44" className="h-11 w-11 rounded-2xl" fetchPriority="high" />
+                            <span className="relative">
+                                <span className="absolute inset-0 rounded-2xl bg-sky-300/20 blur-md" />
+                                <img src="/favicon.svg" alt="HayatID logo" width="44" height="44" className="relative h-11 w-11 rounded-2xl" fetchPriority="high" />
+                            </span>
                             <span className={`min-w-0 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                                <span className="block truncate text-base font-semibold tracking-[0.01em] text-white sm:text-lg">HayatID</span>
+                                <span className="font-editorial block truncate text-[1.05rem] font-medium tracking-[0.01em] text-white sm:text-[1.2rem]">HayatID</span>
                                 <span className="block truncate text-[0.68rem] uppercase tracking-[0.28em] text-sky-100/60 sm:text-[0.72rem]">
                                     {content.brandSignature}
                                 </span>
@@ -368,7 +382,7 @@ export function LandingPage() {
 
                         <nav className="hidden items-center gap-7 lg:flex">
                             {navItems.map((item) => (
-                                <a key={item.href} href={item.href} className="text-sm font-medium text-slate-200/84 transition hover:text-white">
+                                <a key={item.href} href={item.href} className="text-sm font-medium tracking-[0.03em] text-slate-200/84 transition hover:text-white">
                                     {item.label}
                                 </a>
                             ))}
@@ -381,7 +395,7 @@ export function LandingPage() {
                                         key={option}
                                         type="button"
                                         onClick={() => setLanguage(option)}
-                                        className={`min-h-[36px] rounded-full px-3 text-xs font-semibold uppercase tracking-[0.18em] transition ${language === option ? 'bg-white text-[#041225]' : 'text-slate-200/76 hover:bg-white/8 hover:text-white'}`}
+                                        className={`min-h-[36px] rounded-full px-3 text-xs font-semibold uppercase tracking-[0.2em] transition ${language === option ? 'bg-white text-[#041225]' : 'text-slate-200/76 hover:bg-white/8 hover:text-white'}`}
                                         aria-pressed={language === option}
                                     >
                                         {option}
@@ -390,7 +404,7 @@ export function LandingPage() {
                             </div>
                             <a
                                 href="#contact"
-                                className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-white/12 bg-white/8 px-5 text-sm font-semibold text-white transition hover:border-white/20 hover:bg-white/12"
+                                className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-white/12 bg-white/8 px-5 text-sm font-semibold tracking-[0.02em] text-white transition hover:border-white/20 hover:bg-white/12"
                             >
                                 {content.secondaryCta}
                             </a>
@@ -438,7 +452,7 @@ export function LandingPage() {
                                 <a
                                     href="#contact"
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="inline-flex min-h-[46px] items-center justify-center rounded-full bg-white px-5 text-sm font-semibold text-[#041225]"
+                                    className="inline-flex min-h-[46px] items-center justify-center rounded-full bg-white px-5 text-sm font-semibold tracking-[0.02em] text-[#041225]"
                                 >
                                     {content.secondaryCta}
                                 </a>
@@ -448,34 +462,35 @@ export function LandingPage() {
                 </header>
 
                 <main id="top">
-                    <section className="mx-auto max-w-7xl px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-14 lg:px-8 lg:pb-24 lg:pt-16">
-                        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.95fr)] lg:items-center xl:gap-16">
+                    <section className="mx-auto max-w-7xl px-4 pb-20 pt-12 sm:px-6 sm:pb-24 sm:pt-16 lg:px-8 lg:pb-28 lg:pt-20">
+                        <div className="grid gap-12 lg:grid-cols-[minmax(0,1.06fr)_minmax(430px,0.94fr)] lg:items-center xl:gap-16">
                             <div className={isArabic ? 'font-arabic text-right' : ''}>
-                                <div className="inline-flex items-center rounded-full border border-sky-200/12 bg-white/8 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-sky-100/72">
+                                <div className="inline-flex items-center gap-2 rounded-full border border-sky-200/12 bg-white/8 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-sky-100/72">
+                                    <Heart className="h-3.5 w-3.5" />
                                     {content.heroEyebrow}
                                 </div>
-                                <h1 className="mt-6 max-w-4xl text-[clamp(2.8rem,8vw,5.4rem)] font-semibold leading-[0.98] tracking-[-0.04em] text-white">
+                                <h1 className="font-editorial mt-7 max-w-4xl text-[clamp(2.95rem,8.2vw,5.9rem)] font-medium leading-[0.95] tracking-[-0.03em] text-white">
                                     {content.heroTitle}
                                 </h1>
-                                <p className="mt-6 max-w-2xl text-base leading-8 text-slate-200/78 sm:text-lg">
+                                <p className="mt-7 max-w-2xl text-base leading-8 text-slate-200/78 sm:text-[1.08rem]">
                                     {content.heroBody}
                                 </p>
-                                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+                                <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                                     <a
                                         href="#about"
-                                        className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,#f5f9ff_0%,#cfe7ff_100%)] px-7 text-sm font-semibold text-[#041225] shadow-[0_14px_40px_rgba(117,194,255,0.18)] transition hover:translate-y-[-1px] hover:shadow-[0_18px_44px_rgba(117,194,255,0.24)]"
+                                        className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,#f5f9ff_0%,#cfe7ff_100%)] px-7 text-sm font-semibold tracking-[0.02em] text-[#041225] shadow-[0_14px_40px_rgba(117,194,255,0.18)] transition hover:translate-y-[-1px] hover:shadow-[0_18px_44px_rgba(117,194,255,0.24)]"
                                     >
                                         {content.primaryCta}
                                         <ArrowRight className={`h-4 w-4 ${isArabic ? 'rotate-180' : ''}`} />
                                     </a>
                                     <a
                                         href="#contact"
-                                        className="inline-flex min-h-[54px] items-center justify-center rounded-full border border-white/14 bg-white/6 px-7 text-sm font-semibold text-white transition hover:border-white/22 hover:bg-white/10"
+                                        className="inline-flex min-h-[54px] items-center justify-center rounded-full border border-white/14 bg-white/6 px-7 text-sm font-semibold tracking-[0.02em] text-white transition hover:border-white/22 hover:bg-white/10"
                                     >
                                         {content.secondaryCta}
                                     </a>
                                 </div>
-                                <div className="mt-10 flex flex-wrap gap-3 text-sm text-sky-50/80">
+                                <div className="mt-11 flex flex-wrap gap-3 text-sm text-sky-50/80">
                                     {content.heroTags.map((tag) => (
                                         <span key={tag} className="rounded-full border border-white/10 bg-white/6 px-4 py-2">
                                             {tag}
@@ -485,17 +500,26 @@ export function LandingPage() {
                             </div>
 
                             <div className="relative">
-                                <div className="absolute left-1/2 top-[12%] h-48 w-48 -translate-x-1/2 rounded-full bg-sky-300/18 blur-3xl" />
+                                <div className="absolute left-1/2 top-[12%] h-52 w-52 -translate-x-1/2 rounded-full bg-sky-300/16 blur-3xl" />
                                 <div className="absolute right-[8%] top-[18%] h-32 w-32 rounded-full bg-blue-500/18 blur-3xl" />
-                                <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.09),rgba(255,255,255,0.03))] p-5 shadow-[0_28px_80px_rgba(0,0,0,0.32)] sm:p-7">
+                                <div className="absolute left-[8%] top-[30%] hidden h-20 w-20 rounded-full border border-white/10 lg:block" />
+                                <div className="absolute bottom-[12%] right-[14%] hidden h-14 w-14 rounded-full border border-sky-100/10 lg:block" />
+
+                                <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.09),rgba(255,255,255,0.03))] p-5 shadow-[0_30px_80px_rgba(0,0,0,0.34)] sm:p-7">
                                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.13),transparent_42%)]" />
+                                    <div className="absolute -right-10 top-10 text-white/8">
+                                        <Heart className="h-24 w-24" strokeWidth={1} />
+                                    </div>
                                     <div className="relative space-y-5">
                                         <div className="flex items-center justify-between gap-4 rounded-[1.4rem] border border-white/10 bg-[#081c37]/90 p-4 sm:p-5">
                                             <div className={isArabic ? 'font-arabic text-right' : ''}>
                                                 <p className="text-xs uppercase tracking-[0.24em] text-sky-100/54">{content.heroVisualTitle}</p>
                                                 <p className="mt-3 max-w-xs text-sm leading-6 text-slate-200/78">{content.heroVisualBody}</p>
                                             </div>
-                                            <img src="/favicon.svg" alt="HayatID emblem" width="72" height="72" className="h-[72px] w-[72px] shrink-0 rounded-[1.5rem]" />
+                                            <span className="relative">
+                                                <span className="absolute inset-0 rounded-[1.5rem] bg-sky-300/20 blur-md" />
+                                                <img src="/favicon.svg" alt="HayatID emblem" width="72" height="72" className="relative h-[72px] w-[72px] shrink-0 rounded-[1.5rem]" />
+                                            </span>
                                         </div>
 
                                         <div className="grid gap-4 sm:grid-cols-[1.05fr_0.95fr]">
@@ -506,6 +530,7 @@ export function LandingPage() {
                                                     <div className="absolute h-[40%] w-[40%] rounded-full border border-sky-200/18" />
                                                     <div className="absolute left-[18%] top-[24%] h-2.5 w-2.5 rounded-full bg-sky-200 shadow-[0_0_18px_rgba(186,230,253,0.65)]" />
                                                     <div className="absolute bottom-[20%] right-[20%] h-2.5 w-2.5 rounded-full bg-blue-300 shadow-[0_0_18px_rgba(125,211,252,0.56)]" />
+                                                    <Heart className="absolute h-12 w-12 text-white/16" strokeWidth={1.2} />
                                                     <div className="rounded-[1.8rem] border border-white/14 bg-white/10 p-5 backdrop-blur">
                                                         <img src="/favicon.svg" alt="HayatID logo mark" width="96" height="96" className="h-24 w-24 rounded-[1.8rem]" />
                                                     </div>
@@ -535,11 +560,11 @@ export function LandingPage() {
                         </div>
                     </section>
 
-                    <section id="about" className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+                    <section id="about" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
                         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] xl:gap-8">
                             <div className={`rounded-[2rem] border border-white/10 bg-white/6 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.18)] backdrop-blur sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
                                 <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-100/64">{content.aboutLabel}</p>
-                                <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
+                                <h2 className="font-editorial mt-4 max-w-3xl text-3xl font-medium leading-[1.05] tracking-[-0.02em] text-white sm:text-[2.65rem]">
                                     {content.aboutTitle}
                                 </h2>
                                 <p className="mt-5 max-w-3xl text-base leading-8 text-slate-200/76">{content.aboutBody}</p>
@@ -547,7 +572,10 @@ export function LandingPage() {
                             <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
                                 {content.aboutHighlights.map((item) => (
                                     <article key={item.title} className={`rounded-[1.65rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.04))] p-5 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                                        <p className="text-lg font-semibold text-white">{item.title}</p>
+                                        <div className="flex items-center gap-2 text-sky-100/60">
+                                            <Heart className="h-4 w-4" strokeWidth={1.5} />
+                                            <p className="text-lg font-semibold text-white">{item.title}</p>
+                                        </div>
                                         <p className="mt-3 text-sm leading-7 text-slate-200/70">{item.body}</p>
                                     </article>
                                 ))}
@@ -555,12 +583,12 @@ export function LandingPage() {
                         </div>
                     </section>
 
-                    <section id="how-it-works" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+                    <section id="how-it-works" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
                         <div className={`max-w-3xl ${isArabic ? 'font-arabic text-right' : ''}`}>
                             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-100/64">{content.howLabel}</p>
-                            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">{content.howTitle}</h2>
+                            <h2 className="font-editorial mt-4 text-3xl font-medium leading-[1.06] tracking-[-0.02em] text-white sm:text-[2.65rem]">{content.howTitle}</h2>
                         </div>
-                        <div className="mt-8 grid gap-4 lg:grid-cols-3">
+                        <div className="mt-10 grid gap-4 lg:grid-cols-3">
                             {content.steps.map((step, index) => {
                                 const Icon = stepIcons[index];
 
@@ -572,7 +600,7 @@ export function LandingPage() {
                                                 <Icon className="h-5 w-5" />
                                             </span>
                                         </div>
-                                        <h3 className="mt-6 text-xl font-semibold tracking-[-0.02em] text-white">{step.title}</h3>
+                                        <h3 className="font-editorial mt-6 text-[1.46rem] font-medium leading-[1.12] tracking-[-0.01em] text-white">{step.title}</h3>
                                         <p className="mt-4 text-sm leading-7 text-slate-200/72">{step.body}</p>
                                     </article>
                                 );
@@ -580,16 +608,16 @@ export function LandingPage() {
                         </div>
                     </section>
 
-                    <section id="why-it-matters" className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-10">
+                    <section id="why-it-matters" className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-12">
                         <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(8,27,53,0.96),rgba(5,18,37,0.96))] p-6 sm:p-8 lg:p-10">
                             <div className={`max-w-3xl ${isArabic ? 'font-arabic text-right' : ''}`}>
                                 <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-100/64">{content.whyLabel}</p>
-                                <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">{content.whyTitle}</h2>
+                                <h2 className="font-editorial mt-4 text-3xl font-medium leading-[1.06] tracking-[-0.02em] text-white sm:text-[2.65rem]">{content.whyTitle}</h2>
                             </div>
                             <div className="mt-8 grid gap-4 lg:grid-cols-3">
                                 {content.whyItems.map((item) => (
                                     <article key={item.title} className={`rounded-[1.6rem] border border-white/10 bg-white/6 p-5 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                                        <p className="text-lg font-semibold text-white">{item.title}</p>
+                                        <p className="font-editorial text-[1.35rem] font-medium leading-[1.12] text-white">{item.title}</p>
                                         <p className="mt-3 text-sm leading-7 text-slate-200/72">{item.body}</p>
                                     </article>
                                 ))}
@@ -597,18 +625,18 @@ export function LandingPage() {
                         </div>
                     </section>
 
-                    <section id="team" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+                    <section id="team" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
                         <div className={`max-w-3xl ${isArabic ? 'font-arabic text-right' : ''}`}>
                             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-100/64">{content.teamLabel}</p>
-                            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">{content.teamTitle}</h2>
+                            <h2 className="font-editorial mt-4 text-3xl font-medium tracking-[-0.02em] text-white sm:text-[2.65rem]">{content.teamTitle}</h2>
                         </div>
-                        <div className="mt-8 grid gap-4 lg:grid-cols-3">
+                        <div className="mt-10 grid gap-4 lg:grid-cols-3">
                             {content.teamMembers.map((member, index) => (
                                 <article key={member.name} className={`rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.04))] p-6 ${isArabic ? 'font-arabic text-right' : ''}`}>
                                     <div className={`h-1.5 w-full rounded-full bg-gradient-to-r ${teamAccents[index]}`} />
                                     <div className="mt-6 flex items-start justify-between gap-4">
                                         <div>
-                                            <h3 className="text-xl font-semibold tracking-[-0.02em] text-white">{member.name}</h3>
+                                            <h3 className="font-editorial text-[1.5rem] font-medium tracking-[-0.01em] text-white">{member.name}</h3>
                                             <p className="mt-2 text-sm font-semibold uppercase tracking-[0.24em] text-sky-100/60">{member.role}</p>
                                         </div>
                                         <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/8 text-sky-100">
@@ -621,17 +649,17 @@ export function LandingPage() {
                         </div>
                     </section>
 
-                    <section id="contact" className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-24">
+                    <section id="contact" className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">
                         <div className="overflow-hidden rounded-[2.1rem] border border-sky-200/10 bg-[linear-gradient(135deg,rgba(10,33,63,0.98),rgba(7,24,46,0.98))] shadow-[0_30px_90px_rgba(0,0,0,0.25)]">
                             <div className="grid gap-8 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] lg:px-10 lg:py-12">
                                 <div className={isArabic ? 'font-arabic text-right' : ''}>
                                     <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-100/64">{content.contactLabel}</p>
-                                    <h2 className="mt-4 max-w-2xl text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">{content.contactTitle}</h2>
+                                    <h2 className="font-editorial mt-4 max-w-2xl text-3xl font-medium leading-[1.05] tracking-[-0.02em] text-white sm:text-[2.6rem]">{content.contactTitle}</h2>
                                     <p className="mt-5 max-w-2xl text-base leading-8 text-slate-200/78">{content.contactBody}</p>
                                     <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                                         <a
                                             href={contactLinks.email}
-                                            className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,#f5f9ff_0%,#cfe7ff_100%)] px-7 text-sm font-semibold text-[#041225] transition hover:translate-y-[-1px]"
+                                            className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,#f5f9ff_0%,#cfe7ff_100%)] px-7 text-sm font-semibold tracking-[0.02em] text-[#041225] transition hover:translate-y-[-1px]"
                                         >
                                             <Mail className="h-4 w-4" />
                                             {content.contactPrimary}
@@ -640,7 +668,7 @@ export function LandingPage() {
                                             href={contactLinks.linkedin}
                                             target="_blank"
                                             rel="noreferrer"
-                                            className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-full border border-white/14 bg-white/6 px-7 text-sm font-semibold text-white transition hover:border-white/22 hover:bg-white/10"
+                                            className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-full border border-white/14 bg-white/6 px-7 text-sm font-semibold tracking-[0.02em] text-white transition hover:border-white/22 hover:bg-white/10"
                                         >
                                             <Linkedin className="h-4 w-4" />
                                             {content.contactSecondary}
@@ -704,7 +732,7 @@ export function LandingPage() {
                             <div className="inline-flex items-center gap-3">
                                 <img src="/favicon.svg" alt="HayatID logo" width="48" height="48" className="h-12 w-12 rounded-2xl" loading="lazy" />
                                 <div>
-                                    <p className="text-lg font-semibold tracking-[0.01em] text-white">HayatID</p>
+                                    <p className="font-editorial text-[1.35rem] font-medium tracking-[0.01em] text-white">HayatID</p>
                                     <p className="text-[0.72rem] uppercase tracking-[0.28em] text-sky-100/56">{content.brandSignature}</p>
                                 </div>
                             </div>

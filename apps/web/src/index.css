@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -24,7 +24,7 @@ body {
     min-width: 320px;
     background: radial-gradient(circle at 15% 0%, rgba(255, 255, 255, 0.62), transparent 35%), var(--ice-blue);
     color: var(--deep-navy);
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     overflow-x: clip;
@@ -158,4 +158,12 @@ img {
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
+}
+
+.font-editorial {
+    font-family: 'Fraunces', 'Times New Roman', serif;
+}
+
+.font-ui {
+    font-family: 'Manrope', system-ui, sans-serif;
 }
