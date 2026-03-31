@@ -79,7 +79,7 @@ export function BrandSiteLayout({ children }: BrandSiteLayoutProps) {
                                         key={option}
                                         type="button"
                                         onClick={() => setLanguage(option)}
-                                        className={`min-h-[36px] rounded-full px-3 text-xs font-semibold uppercase tracking-[0.2em] transition ${language === option ? 'bg-white text-[#041225]' : 'text-slate-200/76 hover:bg-white/8 hover:text-white'}`}
+                                        className={`min-h-[44px] rounded-full px-3 text-xs font-semibold uppercase tracking-[0.2em] transition ${language === option ? 'bg-white text-[#041225]' : 'text-slate-200/76 hover:bg-white/8 hover:text-white'}`}
                                         aria-pressed={language === option}
                                     >
                                         {option}
@@ -95,7 +95,7 @@ export function BrandSiteLayout({ children }: BrandSiteLayoutProps) {
                                         key={`mobile-${option}`}
                                         type="button"
                                         onClick={() => setLanguage(option)}
-                                        className={`min-h-[36px] rounded-full px-2.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] transition ${language === option ? 'bg-white text-[#041225]' : 'text-slate-200/76 hover:bg-white/8 hover:text-white'}`}
+                                        className={`min-h-[44px] rounded-full px-2.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] transition ${language === option ? 'bg-white text-[#041225]' : 'text-slate-200/76 hover:bg-white/8 hover:text-white'}`}
                                         aria-pressed={language === option}
                                     >
                                         {option}

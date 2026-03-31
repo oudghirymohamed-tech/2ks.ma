@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -24,10 +24,27 @@ body {
     min-width: 320px;
     background: radial-gradient(circle at 15% 0%, rgba(255, 255, 255, 0.62), transparent 35%), var(--ice-blue);
     color: var(--deep-navy);
-    font-family: 'Manrope', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     overflow-x: clip;
+    line-height: 1.65;
+    letter-spacing: -0.005em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+}
+
+p,
+li {
+    overflow-wrap: anywhere;
 }
 
 * {
@@ -161,11 +178,24 @@ img {
 }
 
 .font-editorial {
-    font-family: 'Fraunces', 'Times New Roman', serif;
+    font-family: 'Sora', 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.018em;
+    line-height: 1.08;
+    font-feature-settings: 'ss01' on;
 }
 
 .font-ui {
-    font-family: 'Manrope', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.005em;
+}
+
+.font-arabic {
+    font-family: 'Noto Sans Arabic', 'Inter', system-ui, sans-serif;
+    letter-spacing: 0;
+}
+
+p[class*='uppercase'][class*='tracking-'] {
+    font-family: 'Sora', 'Inter', system-ui, sans-serif;
 }
 
 .brand-page-enter {
@@ -770,6 +800,15 @@ img {
 }
 
 @media (max-width: 640px) {
+    body {
+        line-height: 1.6;
+    }
+
+    .font-editorial {
+        letter-spacing: -0.014em;
+        line-height: 1.12;
+    }
+
     .hero-nfc-scene {
         min-height: 19rem;
     }
@@ -829,6 +868,22 @@ img {
     .hero-scan-flash,
     .hero-nfc-pulse {
         left: 55%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .font-editorial {
+        line-height: 1.1;
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        line-height: 1.68;
+    }
+
+    .font-editorial {
+        letter-spacing: -0.02em;
     }
 }
 
