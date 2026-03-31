@@ -5,11 +5,10 @@ import {
     Clock,
     Globe,
     HeartPulse,
+    Instagram,
     Linkedin,
     Lock,
     Mail,
-    MapPin,
-    Phone,
     Shield,
     Smartphone,
     Sparkles,
@@ -79,13 +78,12 @@ const content = {
         },
         team: {
             label: 'Our Team',
-            title: 'Built by Healthcare & Technology Experts',
-            description: 'We combine deep expertise in healthcare, security, and technology to build a platform that truly serves patients and providers.',
+            title: 'Meet the Founders',
+            description: 'A passionate team dedicated to transforming healthcare access through innovation and technology.',
             members: [
-                { name: 'Dr. Sarah Chen', role: 'CEO & Co-Founder', bio: 'Former ER physician with 15 years of experience. Harvard Medical School.' },
-                { name: 'Ahmed Mansour', role: 'CTO & Co-Founder', bio: 'Ex-Google engineer. Expert in secure systems and NFC technology.' },
-                { name: 'Maria Santos', role: 'Head of Product', bio: 'Healthcare product leader. Previously at Apple Health.' },
-                { name: 'James Wilson', role: 'Chief Medical Officer', bio: 'Board-certified emergency medicine. Johns Hopkins.' },
+                { name: 'Lamani Mohamed Nacer', role: 'CEO', bio: 'Visionary leader driving the future of medical identity solutions.' },
+                { name: 'Ennaim Kaoutar', role: 'CMO', bio: 'Marketing strategist building the HayatID brand and community.' },
+                { name: 'Erraoudi Kenza', role: 'COO', bio: 'Operations expert ensuring seamless delivery and execution.' },
             ],
         },
         contact: {
@@ -100,10 +98,10 @@ const content = {
                 submitting: 'Sending...',
                 success: 'Message sent successfully!',
             },
-            info: {
-                email: 'hello@hayatid.com',
-                phone: '+1 (555) 123-4567',
-                address: 'San Francisco, CA',
+info: {
+                email: 'hayatid.contact@gmail.com',
+                instagram: '@hayatid',
+                linkedin: 'HayatID',
             },
         },
         footer: {
@@ -178,13 +176,12 @@ const content = {
         },
         team: {
             label: 'Notre Equipe',
-            title: 'Construit par des Experts en Sante et Technologie',
-            description: 'Nous combinons une expertise approfondie en sante, securite et technologie.',
+            title: 'Rencontrez les Fondateurs',
+            description: 'Une equipe passionnee dediee a transformer l acces aux soins de sante par l innovation et la technologie.',
             members: [
-                { name: 'Dr. Sarah Chen', role: 'PDG & Co-Fondatrice', bio: 'Ancienne medecin urgentiste avec 15 ans d experience.' },
-                { name: 'Ahmed Mansour', role: 'CTO & Co-Fondateur', bio: 'Ex-ingenieur Google. Expert en systemes securises.' },
-                { name: 'Maria Santos', role: 'Directrice Produit', bio: 'Leader produit en sante. Anciennement chez Apple Health.' },
-                { name: 'James Wilson', role: 'Directeur Medical', bio: 'Medecine d urgence certifie. Johns Hopkins.' },
+                { name: 'Lamani Mohamed Nacer', role: 'PDG', bio: 'Leader visionnaire guidant l avenir des solutions d identite medicale.' },
+                { name: 'Ennaim Kaoutar', role: 'Directrice Marketing', bio: 'Stratege marketing construisant la marque et la communaute HayatID.' },
+                { name: 'Erraoudi Kenza', role: 'Directrice des Operations', bio: 'Experte en operations assurant une execution fluide.' },
             ],
         },
         contact: {
@@ -200,9 +197,9 @@ const content = {
                 success: 'Message envoye!',
             },
             info: {
-                email: 'hello@hayatid.com',
-                phone: '+1 (555) 123-4567',
-                address: 'San Francisco, CA',
+                email: 'hayatid.contact@gmail.com',
+                instagram: '@hayatid',
+                linkedin: 'HayatID',
             },
         },
         footer: {
@@ -277,13 +274,12 @@ const content = {
         },
         team: {
             label: 'فريقنا',
-            title: 'بناه خبراء الرعاية الصحية والتكنولوجيا',
-            description: 'نجمع بين الخبرة العميقة في الرعاية الصحية والأمان والتكنولوجيا.',
+            title: 'تعرف على المؤسسين',
+            description: 'فريق شغوف مكرس لتحويل الوصول إلى الرعاية الصحية من خلال الابتكار والتكنولوجيا.',
             members: [
-                { name: 'د. سارة تشن', role: 'الرئيس التنفيذي والشريك المؤسس', bio: 'طبيبة طوارئ سابقة مع 15 عاماً من الخبرة.' },
-                { name: 'أحمد منصور', role: 'المدير التقني والشريك المؤسس', bio: 'مهندس سابق في Google. خبير في الأنظمة الآمنة.' },
-                { name: 'ماريا سانتوس', role: 'رئيسة المنتج', bio: 'قائدة منتج في الرعاية الصحية.' },
-                { name: 'جيمس ويلسون', role: 'المدير الطبي', bio: 'طب الطوارئ المعتمد. Johns Hopkins.' },
+                { name: 'لعماني محمد ناصر', role: 'الرئيس التنفيذي', bio: 'قائد صاحب رؤية يقود مستقبل حلول الهوية الطبية.' },
+                { name: 'النعيم كوثر', role: 'مديرة التسويق', bio: 'استراتيجية تسويق تبني علامة HayatID ومجتمعها.' },
+                { name: 'الراودي كنزة', role: 'مديرة العمليات', bio: 'خبيرة عمليات تضمن التنفيذ السلس.' },
             ],
         },
         contact: {
@@ -298,10 +294,10 @@ const content = {
                 submitting: 'جاري الإرسال...',
                 success: 'تم إرسال الرسالة!',
             },
-            info: {
-                email: 'hello@hayatid.com',
-                phone: '+1 (555) 123-4567',
-                address: 'سان فرانسيسكو، كاليفورنيا',
+info: {
+                email: 'hayatid.contact@gmail.com',
+                instagram: '@hayatid',
+                linkedin: 'HayatID',
             },
         },
         footer: {
@@ -646,7 +642,7 @@ export function LandingPage() {
                         whileInView="animate"
                         viewport={{ once: true }}
                         variants={staggerContainer}
-                        className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
+                        className="mx-auto mt-16 grid max-w-4xl gap-8 sm:grid-cols-2 lg:grid-cols-3"
                     >
                         {t.team.members.map((member, i) => (
                             <motion.div
@@ -752,33 +748,33 @@ export function LandingPage() {
                             </motion.p>
 
                             <motion.div variants={fadeInUp} className="mt-10 space-y-6">
-                                <div className="flex items-center gap-4">
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sapphire/10 text-sapphire">
+                                <a href="mailto:hayatid.contact@gmail.com" className="flex items-center gap-4 group">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sapphire/10 text-sapphire transition group-hover:bg-sapphire group-hover:text-white">
                                         <Mail className="h-5 w-5" />
                                     </div>
                                     <div>
                                         <p className="text-sm text-navy/60">Email</p>
                                         <p className="font-medium text-navy">{t.contact.info.email}</p>
                                     </div>
-                                </div>
-                                <div className="flex items-center gap-4">
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sapphire/10 text-sapphire">
-                                        <Phone className="h-5 w-5" />
+                                </a>
+                                <a href="https://instagram.com/hayatid" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sapphire/10 text-sapphire transition group-hover:bg-sapphire group-hover:text-white">
+                                        <Instagram className="h-5 w-5" />
                                     </div>
                                     <div>
-                                        <p className="text-sm text-navy/60">Phone</p>
-                                        <p className="font-medium text-navy">{t.contact.info.phone}</p>
+                                        <p className="text-sm text-navy/60">Instagram</p>
+                                        <p className="font-medium text-navy">{t.contact.info.instagram}</p>
                                     </div>
-                                </div>
-                                <div className="flex items-center gap-4">
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sapphire/10 text-sapphire">
-                                        <MapPin className="h-5 w-5" />
+                                </a>
+                                <a href="https://linkedin.com/company/hayatid" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sapphire/10 text-sapphire transition group-hover:bg-sapphire group-hover:text-white">
+                                        <Linkedin className="h-5 w-5" />
                                     </div>
                                     <div>
-                                        <p className="text-sm text-navy/60">Location</p>
-                                        <p className="font-medium text-navy">{t.contact.info.address}</p>
+                                        <p className="text-sm text-navy/60">LinkedIn</p>
+                                        <p className="font-medium text-navy">{t.contact.info.linkedin}</p>
                                     </div>
-                                </div>
+                                </a>
                             </motion.div>
                         </motion.div>
 
