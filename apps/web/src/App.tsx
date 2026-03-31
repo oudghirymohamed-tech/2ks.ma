@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AboutUsPage } from './pages/AboutUsPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import { BRAND_ROUTE_PATHS } from './config/brandRoutes';
 import { AuthProvider } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { AdminPage } from './pages/AdminPage';
@@ -23,6 +24,8 @@ import { CheckoutPage } from './pages/CheckoutPage';
 import { RegistrationPage } from './pages/RegistrationPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { TermsPage } from './pages/TermsPage';
+import { WhyItMattersPage } from './pages/WhyItMattersPage';
+import { TeamPage } from './pages/TeamPage';
 
 export default function App() {
     return (
@@ -30,11 +33,13 @@ export default function App() {
             <AuthProvider>
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={<LandingPage />} />
-                        <Route path="/about" element={<AboutUsPage />} />
-                        <Route path="/how-it-works" element={<HowItWorksPage />} />
+                        <Route path={BRAND_ROUTE_PATHS.home} element={<LandingPage />} />
+                        <Route path={BRAND_ROUTE_PATHS.about} element={<AboutUsPage />} />
+                        <Route path={BRAND_ROUTE_PATHS.howItWorks} element={<HowItWorksPage />} />
+                        <Route path={BRAND_ROUTE_PATHS.whyItMatters} element={<WhyItMattersPage />} />
+                        <Route path={BRAND_ROUTE_PATHS.team} element={<TeamPage />} />
                         <Route path="/services" element={<ServicesPage />} />
-                        <Route path="/contact" element={<ContactUsPage />} />
+                        <Route path={BRAND_ROUTE_PATHS.contact} element={<ContactUsPage />} />
                         <Route path="/faq" element={<FaqPage />} />
                         <Route path="/terms" element={<TermsPage />} />
                         <Route path="/privacy" element={<PrivacyPolicyPage />} />

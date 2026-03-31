@@ -1,782 +1,239 @@
-import { Menu, ArrowRight, ShieldCheck, ScanSearch, HeartPulse, RadioTower, Mail, Instagram, Linkedin, X } from 'lucide-react';
-import { useState } from 'react';
+import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { BrandSiteLayout } from '../components/BrandSiteLayout';
 import { PageMeta } from '../components/PageMeta';
 import { useLanguage } from '../context/LanguageContext';
 
-const homeContent = {
-    en: {
-        metaTitle: 'HayatID | Modern Medical Identity',
-        metaDescription:
-            'HayatID is a modern medical identity concept designed to present essential health information with clarity, trust, and accessibility in critical moments.',
-        nav: {
-            about: 'About',
-            howItWorks: 'How It Works',
-            whyItMatters: 'Why It Matters',
-            team: 'Team',
-            contact: 'Contact'
-        },
-        brandSignature: 'Powered by 2KS',
-        heroEyebrow: 'Medical identity, designed with institutional clarity',
-        heroTitle: 'A premium medical identity experience built for trust in critical moments.',
-        heroBody:
-            'HayatID is a modern medical identity concept designed to present essential health information with clarity, trust, and accessibility when every second matters.',
-        primaryCta: 'Discover HayatID',
-        secondaryCta: 'Contact Us',
-        heroVisualTitle: 'Signal-led identity architecture',
-        heroVisualBody:
-            'Structured health signals, resilient access paths, and a calm presentation layer shaped for real-world medical contexts.',
-        heroVisualPoints: ['Clear emergency context', 'Accessible health essentials', 'Designed for instant recognition'],
-        heroTags: ['Health-tech', 'Identity clarity', 'Institutional design'],
-        aboutLabel: 'About HayatID',
-        aboutTitle: 'A refined concept for presenting medical essentials with confidence.',
-        aboutBody:
-            'HayatID brings together physical identity, structured health information, and a modern presentation layer so essential medical details can be understood quickly and responsibly. The concept focuses on clarity, reassurance, and trusted access rather than digital noise.',
-        aboutHighlights: [
-            {
-                title: 'Trust-first experience',
-                body: 'Every element is designed to feel credible, calm, and immediately understandable.'
-            },
-            {
-                title: 'Accessible by design',
-                body: 'Critical information is organized to reduce friction and support fast interpretation.'
-            },
-            {
-                title: 'Powered by 2KS',
-                body: 'The HayatID concept is backed by the product vision and execution discipline of 2KS.'
-            }
-        ],
-        howLabel: 'How it works',
-        howTitle: 'A simple journey from identity touchpoint to essential health context.',
-        steps: [
-            {
-                title: 'A patient carries a HayatID identifier',
-                body: 'The identity object acts as the physical starting point for a clear and consistent medical information experience.'
-            },
-            {
-                title: 'Essential information is presented with structure',
-                body: 'Relevant health details are arranged to be read quickly, without clutter or unnecessary complexity.'
-            },
-            {
-                title: 'Critical moments become easier to navigate',
-                body: 'The result is a calmer, more reliable interaction around the information that matters most.'
-            }
-        ],
-        whyLabel: 'Why it matters',
-        whyTitle: 'Designed to make important information easier to trust, faster to understand, and harder to miss.',
-        whyItems: [
-            {
-                title: 'Clarity under pressure',
-                body: 'HayatID focuses attention on essential medical context when time, accuracy, and readability are critical.'
-            },
-            {
-                title: 'A more reassuring identity layer',
-                body: 'The visual language is calm and professional, helping the experience feel dependable from the first glance.'
-            },
-            {
-                title: 'A stronger bridge between physical and digital',
-                body: 'HayatID connects a tangible identifier to a structured digital presentation that remains simple to access.'
-            }
-        ],
-        teamLabel: 'Team',
-        teamTitle: 'The people leading HayatID.',
-        teamMembers: [
-            {
-                name: 'Lamani Mohamed Nacer',
-                role: 'CEO',
-                bio: 'Leading the strategic vision of HayatID.'
-            },
-            {
-                name: 'Ennaim Kaoutar',
-                role: 'CMO',
-                bio: 'Building the brand, communication, and outreach.'
-            },
-            {
-                name: 'Erraoudi Kenza',
-                role: 'COO',
-                bio: 'Driving operations and project execution.'
-            }
-        ],
-        contactLabel: 'Contact CTA',
-        contactTitle: 'Start the conversation with HayatID.',
-        contactBody:
-            'For institutional introductions, partnerships, product discussions, or media inquiries, contact the HayatID team directly.',
-        contactPrimary: 'Email HayatID',
-        contactSecondary: 'View LinkedIn',
-        footerNavigation: 'Navigation',
-        footerContact: 'Contact',
-        footerNote:
-            'HayatID is a modern medical identity concept focused on clarity, trust, and accessibility in critical moments.',
-        footerRights: '© 2026 HayatID. All rights reserved.'
-    },
-    fr: {
-        metaTitle: 'HayatID | Identite medicale moderne',
-        metaDescription:
-            'HayatID est un concept moderne d identite medicale concu pour presenter les informations de sante essentielles avec clarte, confiance et accessibilite dans les moments critiques.',
-        nav: {
-            about: 'A propos',
-            howItWorks: 'Fonctionnement',
-            whyItMatters: 'Pourquoi c est important',
-            team: 'Equipe',
-            contact: 'Contact'
-        },
-        brandSignature: 'Powered by 2KS',
-        heroEyebrow: 'Une identite medicale pensee avec une clarte institutionnelle',
-        heroTitle: 'Une experience premium d identite medicale concue pour inspirer confiance dans les moments critiques.',
-        heroBody:
-            'HayatID est un concept moderne d identite medicale concu pour presenter les informations de sante essentielles avec clarte, confiance et accessibilite lorsque chaque seconde compte.',
-        primaryCta: 'Decouvrir HayatID',
-        secondaryCta: 'Nous contacter',
-        heroVisualTitle: 'Une architecture d identite guidee par le signal',
-        heroVisualBody:
-            'Des signaux de sante structures, des chemins d acces resilients et une couche de presentation apaisante adaptee aux contextes medicaux reels.',
-        heroVisualPoints: ['Contexte d urgence lisible', 'Informations essentielles accessibles', 'Concu pour une reconnaissance immediate'],
-        heroTags: ['Health-tech', 'Clarification identitaire', 'Design institutionnel'],
-        aboutLabel: 'A propos de HayatID',
-        aboutTitle: 'Un concept raffine pour presenter l essentiel medical avec assurance.',
-        aboutBody:
-            'HayatID relie une identite physique, des informations de sante structurees et une couche de presentation moderne afin que les details medicaux essentiels puissent etre compris rapidement et avec responsabilite. Le concept privilegie la clarte, le sentiment de confiance et un acces fiable.',
-        aboutHighlights: [
-            {
-                title: 'Une experience fondee sur la confiance',
-                body: 'Chaque element est pense pour etre credible, calme et immediatement comprehensible.'
-            },
-            {
-                title: 'Accessible par conception',
-                body: 'Les informations critiques sont organisees pour limiter la friction et faciliter la lecture.'
-            },
-            {
-                title: 'Propulse par 2KS',
-                body: 'Le concept HayatID s appuie sur la vision produit et la rigueur d execution de 2KS.'
-            }
-        ],
-        howLabel: 'Comment ca marche',
-        howTitle: 'Un parcours simple, du point de contact identitaire a l essentiel medical.',
-        steps: [
-            {
-                title: 'Le patient dispose d un identifiant HayatID',
-                body: 'L objet d identite devient le point de depart physique d une experience medicale claire et coherente.'
-            },
-            {
-                title: 'Les informations essentielles sont presentees avec structure',
-                body: 'Les details de sante pertinents sont organises pour etre lus rapidement, sans surcharge inutile.'
-            },
-            {
-                title: 'Les moments critiques deviennent plus simples a gerer',
-                body: 'Le resultat est une interaction plus sereine et plus fiable autour de l information qui compte vraiment.'
-            }
-        ],
-        whyLabel: 'Pourquoi c est important',
-        whyTitle: 'Concu pour rendre l information importante plus fiable, plus rapide a comprendre et plus difficile a manquer.',
-        whyItems: [
-            {
-                title: 'De la clarte sous pression',
-                body: 'HayatID met l attention sur le contexte medical essentiel lorsque le temps, la precision et la lisibilite sont decisifs.'
-            },
-            {
-                title: 'Une couche d identite plus rassurante',
-                body: 'Le langage visuel est sobre et professionnel, afin que l experience inspire confiance des le premier regard.'
-            },
-            {
-                title: 'Un meilleur lien entre physique et numerique',
-                body: 'HayatID relie un identifiant tangible a une presentation digitale structuree et simple d acces.'
-            }
-        ],
-        teamLabel: 'Equipe',
-        teamTitle: 'L equipe qui porte HayatID.',
-        teamMembers: [
-            {
-                name: 'Lamani Mohamed Nacer',
-                role: 'CEO',
-                bio: 'Pilote la vision strategique de HayatID.'
-            },
-            {
-                name: 'Ennaim Kaoutar',
-                role: 'CMO',
-                bio: 'Construit la marque, la communication et le rayonnement.'
-            },
-            {
-                name: 'Erraoudi Kenza',
-                role: 'COO',
-                bio: 'Conduit les operations et l execution du projet.'
-            }
-        ],
-        contactLabel: 'Prendre contact',
-        contactTitle: 'Engagez la conversation avec HayatID.',
-        contactBody:
-            'Pour les mises en relation institutionnelles, les partenariats, les discussions produit ou les demandes media, contactez directement l equipe HayatID.',
-        contactPrimary: 'Envoyer un email',
-        contactSecondary: 'Voir LinkedIn',
-        footerNavigation: 'Navigation',
-        footerContact: 'Contact',
-        footerNote:
-            'HayatID est un concept moderne d identite medicale centre sur la clarte, la confiance et l accessibilite dans les moments critiques.',
-        footerRights: '© 2026 HayatID. Tous droits reserves.'
-    },
-    ar: {
-        metaTitle: 'HayatID | هوية طبية حديثة',
-        metaDescription:
-            'HayatID هو مفهوم حديث للهوية الطبية صُمم لتقديم المعلومات الصحية الأساسية بوضوح وثقة وسهولة وصول في اللحظات الحرجة.',
-        nav: {
-            about: 'حول HayatID',
-            howItWorks: 'كيف يعمل',
-            whyItMatters: 'لماذا يهم',
-            team: 'الفريق',
-            contact: 'تواصل'
-        },
-        brandSignature: 'Powered by 2KS',
-        heroEyebrow: 'هوية طبية مصممة بوضوح مؤسسي',
-        heroTitle: 'تجربة هوية طبية راقية بُنيت على الثقة في اللحظات الحرجة.',
-        heroBody:
-            'HayatID هو مفهوم حديث للهوية الطبية صُمم لتقديم المعلومات الصحية الأساسية بوضوح وثقة وسهولة وصول عندما تكون كل ثانية مهمة.',
-        primaryCta: 'اكتشف HayatID',
-        secondaryCta: 'تواصل معنا',
-        heroVisualTitle: 'بنية هوية تقودها الإشارة',
-        heroVisualBody:
-            'إشارات صحية منظمة، ومسارات وصول مرنة، وطبقة عرض هادئة صُممت لتناسب السياقات الطبية الواقعية.',
-        heroVisualPoints: ['سياق طارئ واضح', 'معلومات صحية أساسية سهلة الوصول', 'مصمم لتمييز فوري'],
-        heroTags: ['تقنية صحية', 'وضوح الهوية', 'تصميم مؤسسي'],
-        aboutLabel: 'حول HayatID',
-        aboutTitle: 'مفهوم متقن لعرض الأساسيات الطبية بثقة.',
-        aboutBody:
-            'يجمع HayatID بين هوية مادية ومعلومات صحية منظمة وطبقة عرض حديثة حتى يمكن فهم التفاصيل الطبية الأساسية بسرعة وبشكل مسؤول. يركز المفهوم على الوضوح والطمأنينة والوصول الموثوق بدلاً من الضجيج الرقمي.',
-        aboutHighlights: [
-            {
-                title: 'تجربة تنطلق من الثقة',
-                body: 'كل عنصر صُمم ليبدو موثوقاً وهادئاً وسهل الفهم من النظرة الأولى.'
-            },
-            {
-                title: 'سهولة وصول في التصميم',
-                body: 'يتم تنظيم المعلومات الحرجة لتقليل الاحتكاك ودعم القراءة السريعة.'
-            },
-            {
-                title: 'بدعم من 2KS',
-                body: 'يرتكز مفهوم HayatID على رؤية 2KS للمنتج وانضباطها في التنفيذ.'
-            }
-        ],
-        howLabel: 'كيف يعمل',
-        howTitle: 'رحلة بسيطة من نقطة الهوية إلى السياق الصحي الأساسي.',
-        steps: [
-            {
-                title: 'يحمل المريض معرف HayatID',
-                body: 'يشكل عنصر الهوية نقطة الانطلاق المادية لتجربة معلومات طبية واضحة ومتسقة.'
-            },
-            {
-                title: 'تُعرض المعلومات الأساسية بشكل منظم',
-                body: 'يتم ترتيب التفاصيل الصحية المهمة لتُقرأ بسرعة من دون ازدحام أو تعقيد غير ضروري.'
-            },
-            {
-                title: 'تصبح اللحظات الحرجة أسهل في التعامل',
-                body: 'النتيجة هي تفاعل أكثر هدوءاً وموثوقية حول المعلومات التي تهم فعلاً.'
-            }
-        ],
-        whyLabel: 'لماذا يهم',
-        whyTitle: 'مصمم ليجعل المعلومات المهمة أوضح وأسرع فهماً وأصعب تجاهلاً.',
-        whyItems: [
-            {
-                title: 'وضوح تحت الضغط',
-                body: 'يركز HayatID الانتباه على السياق الطبي الأساسي عندما يكون الوقت والدقة وسهولة القراءة عوامل حاسمة.'
-            },
-            {
-                title: 'طبقة هوية أكثر طمأنينة',
-                body: 'اللغة البصرية هادئة ومهنية لتمنح التجربة إحساساً بالاعتمادية منذ النظرة الأولى.'
-            },
-            {
-                title: 'جسر أقوى بين المادي والرقمي',
-                body: 'يربط HayatID معرفاً ملموساً بطبقة رقمية منظمة وسهلة الوصول.'
-            }
-        ],
-        teamLabel: 'الفريق',
-        teamTitle: 'الفريق الذي يقود HayatID.',
-        teamMembers: [
-            {
-                name: 'Lamani Mohamed Nacer',
-                role: 'CEO',
-                bio: 'يقود الرؤية الاستراتيجية لـ HayatID.'
-            },
-            {
-                name: 'Ennaim Kaoutar',
-                role: 'CMO',
-                bio: 'تبني العلامة والتواصل والانتشار.'
-            },
-            {
-                name: 'Erraoudi Kenza',
-                role: 'COO',
-                bio: 'تدير العمليات وتنفيذ المشروع.'
-            }
-        ],
-        contactLabel: 'دعوة للتواصل',
-        contactTitle: 'ابدأ الحوار مع HayatID.',
-        contactBody:
-            'للتعريفات المؤسسية والشراكات والنقاشات المتعلقة بالمنتج أو الاستفسارات الإعلامية، تواصل مباشرة مع فريق HayatID.',
-        contactPrimary: 'راسل HayatID',
-        contactSecondary: 'عرض LinkedIn',
-        footerNavigation: 'التنقل',
-        footerContact: 'التواصل',
-        footerNote:
-            'HayatID هو مفهوم حديث للهوية الطبية يركز على الوضوح والثقة وسهولة الوصول في اللحظات الحرجة.',
-        footerRights: '© 2026 HayatID. جميع الحقوق محفوظة.'
-    }
-} as const;
-
-const stepIcons = [ScanSearch, ShieldCheck, HeartPulse] as const;
-const teamAccents = ['from-[#7ed1ff] to-[#3b82f6]', 'from-[#78f3d3] to-[#2563eb]', 'from-[#b7c7ff] to-[#4f46e5]'] as const;
-
-const contactLinks = {
-    instagram:
-        'https://www.instagram.com/hayatid.ma?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
-    linkedin: 'https://www.linkedin.com/company/2ks-ma/',
-    email: 'mailto:hayatid.contact@gmail.com'
-} as const;
-
 export function LandingPage() {
-    const { language, setLanguage } = useLanguage();
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { language } = useLanguage();
     const isArabic = language === 'ar';
-    const content = homeContent[language === 'fr' ? 'fr' : isArabic ? 'ar' : 'en'];
 
-    const navItems = [
-        { href: '#about', label: content.nav.about },
-        { href: '#how-it-works', label: content.nav.howItWorks },
-        { href: '#why-it-matters', label: content.nav.whyItMatters },
-        { href: '#team', label: content.nav.team },
-        { href: '#contact', label: content.nav.contact }
+    const t = (en: string, fr: string, ar: string) => {
+        if (language === 'ar') return ar;
+        if (language === 'fr') return fr;
+        return en;
+    };
+
+    const highlights = [
+        {
+            title: t('Instant Contactless Access', 'Acces sans contact instantane', 'وصول فوري بدون تلامس'),
+            body: t(
+                'Essential identity and health context can be reached quickly through NFC-enabled interaction.',
+                'Le contexte d identite et de sante essentiel devient accessible rapidement via une interaction NFC.',
+                'يمكن الوصول السريع إلى سياق الهوية والمعلومات الصحية الأساسية عبر تفاعل NFC.'
+            )
+        },
+        {
+            title: t('Trust-Led Design', 'Design centre sur la confiance', 'تصميم قائم على الثقة'),
+            body: t(
+                'A calm, clear, and premium experience designed for critical moments where confidence matters.',
+                'Une experience apaisante, claire et premium concue pour les moments critiques ou la confiance est essentielle.',
+                'تجربة هادئة وواضحة وراقية صُممت للحظات الحرجة التي تتطلب الثقة.'
+            )
+        },
+        {
+            title: t('Powered by 2KS', 'Propulse par 2KS', 'مدعوم من 2KS'),
+            body: t(
+                'Built with a modern product mindset that combines accessibility, structure, and institutional quality.',
+                'Concu avec une vision produit moderne qui combine accessibilite, structure et qualite institutionnelle.',
+                'مبني برؤية منتج حديثة تجمع بين سهولة الوصول والتنظيم والجودة المؤسسية.'
+            )
+        }
     ];
 
-    const languageOptions = ['en', 'fr', 'ar'] as const;
+    const heroSignals = [
+        t('Contactless', 'Sans contact', 'بدون تلامس'),
+        t('Trusted Clarity', 'Clarte fiable', 'وضوح موثوق'),
+        t('Critical-Ready', 'Pret au critique', 'جاهز للحالات الحرجة')
+    ];
 
     return (
-        <div className="font-ui min-h-screen bg-[#041225] text-white">
-            <PageMeta title={content.metaTitle} description={content.metaDescription} />
+        <BrandSiteLayout>
+            <PageMeta
+                title={t('HayatID | Modern Medical Identity', 'HayatID | Identite medicale moderne', 'HayatID | هوية طبية حديثة')}
+                description={t(
+                    'A premium medical-tech website presenting HayatID as a modern identity concept for clearer, trusted health access.',
+                    'Un site medical-tech premium presentant HayatID comme un concept moderne d identite pour un acces a la sante plus clair et fiable.',
+                    'موقع طبي تقني راقٍ يقدم HayatID كمفهوم حديث للهوية من أجل وصول صحي أوضح وأكثر موثوقية.'
+                )}
+            />
 
-            <div className="relative isolate overflow-hidden">
-                <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,#041125_0%,#061733_30%,#071a3a_58%,#06162e_100%)]" />
-                <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_2%,rgba(56,145,255,0.24),transparent_28%),radial-gradient(circle_at_88%_8%,rgba(126,205,255,0.14),transparent_26%),radial-gradient(circle_at_50%_100%,rgba(74,132,255,0.16),transparent_34%)]" />
-                <div className="absolute inset-x-0 top-0 -z-10 h-[620px] bg-[linear-gradient(180deg,rgba(255,255,255,0.05),transparent)]" />
-                <div className="absolute inset-x-0 top-0 -z-10 h-[900px] bg-[radial-gradient(circle_at_50%_36%,rgba(107,190,255,0.09),transparent_42%)]" />
-
-                <header className="sticky top-0 z-40 border-b border-white/10 bg-[#06162de6] backdrop-blur-xl">
-                    <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
-                        <a href="#top" className="inline-flex min-w-0 items-center gap-3">
-                            <span className="relative">
-                                <span className="absolute inset-0 rounded-2xl bg-sky-300/20 blur-md" />
-                                <img src="/favicon.svg" alt="HayatID logo" width="44" height="44" className="relative h-11 w-11 rounded-2xl" fetchPriority="high" />
-                            </span>
-                            <span className={`min-w-0 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                                <span className="font-editorial block truncate text-[1.05rem] font-medium tracking-[0.01em] text-white sm:text-[1.2rem]">HayatID</span>
-                                <span className="block truncate text-[0.68rem] uppercase tracking-[0.28em] text-sky-100/60 sm:text-[0.72rem]">
-                                    {content.brandSignature}
+            <section className="motion-section mx-auto max-w-7xl px-4 pb-20 pt-12 sm:px-6 sm:pb-24 sm:pt-16 lg:px-8 lg:pb-28 lg:pt-20">
+                <div className="grid gap-12 lg:grid-cols-[minmax(0,1.04fr)_minmax(430px,0.96fr)] lg:items-center xl:gap-16">
+                    <div className={isArabic ? 'font-arabic text-right' : ''}>
+                        <div className="inline-flex items-center gap-2 rounded-full border border-sky-200/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04))] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-sky-100/74">
+                            <span className="inline-block h-2 w-2 rounded-full bg-sky-200/85" />
+                            {t('Flagship Experience', 'Experience flagship', 'التجربة الرئيسية')}
+                        </div>
+                        <h1 className="font-editorial mt-7 max-w-4xl text-[clamp(3.05rem,8.9vw,6.25rem)] font-medium leading-[0.92] tracking-[-0.032em] text-white">
+                            {t(
+                                'The premium medical identity layer for moments where recognition must be instant.',
+                                'La couche premium d identite medicale pour les moments ou la reconnaissance doit etre immediate.',
+                                'طبقة الهوية الطبية الراقية للحظات التي يجب أن يكون فيها التعرف فورياً.'
+                            )}
+                        </h1>
+                        <p className="mt-7 max-w-2xl text-base leading-8 text-slate-200/78 sm:text-[1.08rem]">
+                            {t(
+                                'HayatID is designed to present essential health context with institutional elegance, calm readability, and trusted contactless access under pressure.',
+                                'HayatID est concu pour presenter le contexte de sante essentiel avec elegance institutionnelle, lisibilite apaisante et acces sans contact fiable sous pression.',
+                                'تم تصميم HayatID لعرض السياق الصحي الأساسي بأناقة مؤسسية وقابلية قراءة هادئة ووصول موثوق بدون تلامس تحت الضغط.'
+                            )}
+                        </p>
+                        <div className="mt-8 flex flex-wrap gap-2.5">
+                            {heroSignals.map((signal) => (
+                                <span key={signal} className="inline-flex items-center rounded-full border border-white/12 bg-white/7 px-3 py-1.5 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-sky-100/74">
+                                    {signal}
                                 </span>
-                            </span>
-                        </a>
-
-                        <nav className="hidden items-center gap-7 lg:flex">
-                            {navItems.map((item) => (
-                                <a key={item.href} href={item.href} className="text-sm font-medium tracking-[0.03em] text-slate-200/84 transition hover:text-white">
-                                    {item.label}
-                                </a>
-                            ))}
-                        </nav>
-
-                        <div className="hidden items-center gap-3 lg:flex">
-                            <div className="inline-flex rounded-full border border-white/12 bg-white/6 p-1 backdrop-blur">
-                                {languageOptions.map((option) => (
-                                    <button
-                                        key={option}
-                                        type="button"
-                                        onClick={() => setLanguage(option)}
-                                        className={`min-h-[36px] rounded-full px-3 text-xs font-semibold uppercase tracking-[0.2em] transition ${language === option ? 'bg-white text-[#041225]' : 'text-slate-200/76 hover:bg-white/8 hover:text-white'}`}
-                                        aria-pressed={language === option}
-                                    >
-                                        {option}
-                                    </button>
-                                ))}
-                            </div>
-                            <a
-                                href="#contact"
-                                className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-white/12 bg-white/8 px-5 text-sm font-semibold tracking-[0.02em] text-white transition hover:border-white/20 hover:bg-white/12"
-                            >
-                                {content.secondaryCta}
-                            </a>
-                        </div>
-
-                        <div className="flex items-center gap-2 lg:hidden">
-                            <div className="inline-flex rounded-full border border-white/12 bg-white/6 p-1 backdrop-blur">
-                                {languageOptions.map((option) => (
-                                    <button
-                                        key={`mobile-${option}`}
-                                        type="button"
-                                        onClick={() => setLanguage(option)}
-                                        className={`min-h-[36px] rounded-full px-2.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] transition ${language === option ? 'bg-white text-[#041225]' : 'text-slate-200/76 hover:bg-white/8 hover:text-white'}`}
-                                        aria-pressed={language === option}
-                                    >
-                                        {option}
-                                    </button>
-                                ))}
-                            </div>
-                            <button
-                                type="button"
-                                onClick={() => setIsMenuOpen((current) => !current)}
-                                aria-expanded={isMenuOpen}
-                                aria-label={isMenuOpen ? 'Close navigation' : 'Open navigation'}
-                                className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/12 bg-white/8 text-white transition hover:bg-white/12"
-                            >
-                                {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-                            </button>
-                        </div>
-                    </div>
-
-                    {isMenuOpen ? (
-                        <nav className="border-t border-white/10 px-4 py-4 lg:hidden sm:px-6">
-                            <div className="flex flex-col gap-2 rounded-[1.5rem] border border-white/10 bg-white/6 p-3 backdrop-blur-xl">
-                                {navItems.map((item) => (
-                                    <a
-                                        key={`mobile-${item.href}`}
-                                        href={item.href}
-                                        onClick={() => setIsMenuOpen(false)}
-                                        className="rounded-xl px-4 py-3 text-sm font-medium text-slate-100 transition hover:bg-white/8"
-                                    >
-                                        {item.label}
-                                    </a>
-                                ))}
-                                <a
-                                    href="#contact"
-                                    onClick={() => setIsMenuOpen(false)}
-                                    className="inline-flex min-h-[46px] items-center justify-center rounded-full bg-white px-5 text-sm font-semibold tracking-[0.02em] text-[#041225]"
-                                >
-                                    {content.secondaryCta}
-                                </a>
-                            </div>
-                        </nav>
-                    ) : null}
-                </header>
-
-                <main id="top">
-                    <section className="mx-auto max-w-7xl px-4 pb-20 pt-12 sm:px-6 sm:pb-24 sm:pt-16 lg:px-8 lg:pb-28 lg:pt-20">
-                        <div className="grid gap-12 lg:grid-cols-[minmax(0,1.06fr)_minmax(430px,0.94fr)] lg:items-center xl:gap-16">
-                            <div className={isArabic ? 'font-arabic text-right' : ''}>
-                                <div className="inline-flex items-center gap-2 rounded-full border border-sky-200/12 bg-white/8 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-sky-100/72">
-                                    {content.heroEyebrow}
-                                </div>
-                                <h1 className="font-editorial mt-7 max-w-4xl text-[clamp(2.95rem,8.2vw,5.9rem)] font-medium leading-[0.95] tracking-[-0.03em] text-white">
-                                    {content.heroTitle}
-                                </h1>
-                                <p className="mt-7 max-w-2xl text-base leading-8 text-slate-200/78 sm:text-[1.08rem]">
-                                    {content.heroBody}
-                                </p>
-                                <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                                    <a
-                                        href="#about"
-                                        className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,#f5f9ff_0%,#cfe7ff_100%)] px-7 text-sm font-semibold tracking-[0.02em] text-[#041225] shadow-[0_14px_40px_rgba(117,194,255,0.18)] transition hover:translate-y-[-1px] hover:shadow-[0_18px_44px_rgba(117,194,255,0.24)]"
-                                    >
-                                        {content.primaryCta}
-                                        <ArrowRight className={`h-4 w-4 ${isArabic ? 'rotate-180' : ''}`} />
-                                    </a>
-                                    <a
-                                        href="#contact"
-                                        className="inline-flex min-h-[54px] items-center justify-center rounded-full border border-white/14 bg-white/6 px-7 text-sm font-semibold tracking-[0.02em] text-white transition hover:border-white/22 hover:bg-white/10"
-                                    >
-                                        {content.secondaryCta}
-                                    </a>
-                                </div>
-                                <div className="mt-11 flex flex-wrap gap-3 text-sm text-sky-50/80">
-                                    {content.heroTags.map((tag) => (
-                                        <span key={tag} className="rounded-full border border-white/10 bg-white/6 px-4 py-2">
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="relative">
-                                <div className="absolute left-1/2 top-[12%] h-52 w-52 -translate-x-1/2 rounded-full bg-sky-300/16 blur-3xl" />
-                                <div className="absolute right-[8%] top-[18%] h-32 w-32 rounded-full bg-blue-500/18 blur-3xl" />
-                                <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.09),rgba(255,255,255,0.03))] p-5 shadow-[0_30px_80px_rgba(0,0,0,0.34)] sm:p-7">
-                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.13),transparent_42%)]" />
-                                    <div className="relative rounded-[1.7rem] border border-sky-100/12 bg-[linear-gradient(180deg,rgba(8,28,55,0.95),rgba(4,17,37,0.95))] p-5 sm:p-6">
-                                        <div className="hero-nfc-scene">
-                                            <div className="hero-nfc-scene__glow" />
-                                            <div className="hero-scan-zone" aria-hidden />
-                                            <div className="hero-scan-flash" aria-hidden />
-
-                                            <div className="hero-phone-float">
-                                                <div className="hero-phone-shell">
-                                                    <div className="hero-phone-screen">
-                                                        <div className="hero-phone-header">
-                                                            <img
-                                                                src="/favicon.svg"
-                                                                alt="HayatID logo"
-                                                                width="40"
-                                                                height="40"
-                                                                className="h-10 w-10 rounded-xl"
-                                                            />
-                                                            <div className={isArabic ? 'font-arabic text-right' : ''}>
-                                                                <p className="text-[0.62rem] uppercase tracking-[0.22em] text-sky-100/64">HayatID</p>
-                                                                <p className="mt-1 text-sm font-semibold text-white">NFC Identity Ready</p>
-                                                            </div>
-                                                        </div>
-                                                        <div className="hero-phone-band" />
-                                                        <div className="hero-phone-band hero-phone-band--soft" />
-                                                        <div className="hero-phone-chip" />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div className="hero-nfc-card-float">
-                                                <div className="hero-nfc-card">
-                                                    <div className="hero-nfc-card__shine" />
-                                                    <div className="hero-nfc-card__topline">
-                                                        <p className="text-[0.53rem] font-semibold uppercase tracking-[0.2em] text-sky-100/62">HayatID</p>
-                                                        <div className="hero-nfc-contactless" aria-hidden>
-                                                            <span />
-                                                            <span />
-                                                            <span />
-                                                        </div>
-                                                    </div>
-                                                    <div className="hero-nfc-card__middle">
-                                                        <div className="hero-nfc-chip" aria-hidden />
-                                                        <img
-                                                            src="/favicon.svg"
-                                                            alt="HayatID NFC card"
-                                                            width="36"
-                                                            height="36"
-                                                            className="h-9 w-9 rounded-lg"
-                                                        />
-                                                    </div>
-                                                    <div className={`hero-nfc-card__bottom ${isArabic ? 'font-arabic text-right' : ''}`}>
-                                                        <p className="text-[0.5rem] uppercase tracking-[0.16em] text-sky-100/58">Powered by 2KS</p>
-                                                        <p className="mt-1 text-[0.66rem] font-semibold tracking-[0.04em] text-white/90">NFC Smart Medical ID</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div className="hero-nfc-pulse hero-nfc-pulse--one" />
-                                            <div className="hero-nfc-pulse hero-nfc-pulse--two" />
-                                            <div className="hero-nfc-wave hero-nfc-wave--a" />
-                                            <div className="hero-nfc-wave hero-nfc-wave--b" />
-                                            <div className="hero-nfc-wave hero-nfc-wave--c" />
-                                        </div>
-
-                                        <div className={`mt-4 rounded-2xl border border-white/8 bg-white/6 px-4 py-3 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                                            <p className="text-xs uppercase tracking-[0.2em] text-sky-100/58">{content.heroVisualTitle}</p>
-                                            <p className="mt-2 text-sm leading-6 text-slate-200/78">{content.heroVisualBody}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section id="about" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-                        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] xl:gap-8">
-                            <div className={`rounded-[2rem] border border-white/10 bg-white/6 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.18)] backdrop-blur sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-100/64">{content.aboutLabel}</p>
-                                <h2 className="font-editorial mt-4 max-w-3xl text-3xl font-medium leading-[1.05] tracking-[-0.02em] text-white sm:text-[2.65rem]">
-                                    {content.aboutTitle}
-                                </h2>
-                                <p className="mt-5 max-w-3xl text-base leading-8 text-slate-200/76">{content.aboutBody}</p>
-                            </div>
-                            <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-                                {content.aboutHighlights.map((item) => (
-                                    <article key={item.title} className={`rounded-[1.65rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.04))] p-5 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                                        <p className="text-lg font-semibold text-white">{item.title}</p>
-                                        <p className="mt-3 text-sm leading-7 text-slate-200/70">{item.body}</p>
-                                    </article>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
-
-                    <section id="how-it-works" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-                        <div className={`max-w-3xl ${isArabic ? 'font-arabic text-right' : ''}`}>
-                            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-100/64">{content.howLabel}</p>
-                            <h2 className="font-editorial mt-4 text-3xl font-medium leading-[1.06] tracking-[-0.02em] text-white sm:text-[2.65rem]">{content.howTitle}</h2>
-                        </div>
-                        <div className="mt-10 grid gap-4 lg:grid-cols-3">
-                            {content.steps.map((step, index) => {
-                                const Icon = stepIcons[index];
-
-                                return (
-                                    <article key={step.title} className={`rounded-[1.75rem] border border-white/10 bg-[#081b35]/90 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.18)] ${isArabic ? 'font-arabic text-right' : ''}`}>
-                                        <div className="flex items-center justify-between gap-3">
-                                            <span className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-100/56">0{index + 1}</span>
-                                            <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/8 text-sky-100">
-                                                <Icon className="h-5 w-5" />
-                                            </span>
-                                        </div>
-                                        <h3 className="font-editorial mt-6 text-[1.46rem] font-medium leading-[1.12] tracking-[-0.01em] text-white">{step.title}</h3>
-                                        <p className="mt-4 text-sm leading-7 text-slate-200/72">{step.body}</p>
-                                    </article>
-                                );
-                            })}
-                        </div>
-                    </section>
-
-                    <section id="why-it-matters" className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-12">
-                        <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(8,27,53,0.96),rgba(5,18,37,0.96))] p-6 sm:p-8 lg:p-10">
-                            <div className={`max-w-3xl ${isArabic ? 'font-arabic text-right' : ''}`}>
-                                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-100/64">{content.whyLabel}</p>
-                                <h2 className="font-editorial mt-4 text-3xl font-medium leading-[1.06] tracking-[-0.02em] text-white sm:text-[2.65rem]">{content.whyTitle}</h2>
-                            </div>
-                            <div className="mt-8 grid gap-4 lg:grid-cols-3">
-                                {content.whyItems.map((item) => (
-                                    <article key={item.title} className={`rounded-[1.6rem] border border-white/10 bg-white/6 p-5 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                                        <p className="font-editorial text-[1.35rem] font-medium leading-[1.12] text-white">{item.title}</p>
-                                        <p className="mt-3 text-sm leading-7 text-slate-200/72">{item.body}</p>
-                                    </article>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
-
-                    <section id="team" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-                        <div className={`max-w-3xl ${isArabic ? 'font-arabic text-right' : ''}`}>
-                            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-100/64">{content.teamLabel}</p>
-                            <h2 className="font-editorial mt-4 text-3xl font-medium tracking-[-0.02em] text-white sm:text-[2.65rem]">{content.teamTitle}</h2>
-                        </div>
-                        <div className="mt-10 grid gap-4 lg:grid-cols-3">
-                            {content.teamMembers.map((member, index) => (
-                                <article key={member.name} className={`rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.04))] p-6 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                                    <div className={`h-1.5 w-full rounded-full bg-gradient-to-r ${teamAccents[index]}`} />
-                                    <div className="mt-6 flex items-start justify-between gap-4">
-                                        <div>
-                                            <h3 className="font-editorial text-[1.5rem] font-medium tracking-[-0.01em] text-white">{member.name}</h3>
-                                            <p className="mt-2 text-sm font-semibold uppercase tracking-[0.24em] text-sky-100/60">{member.role}</p>
-                                        </div>
-                                        <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/8 text-sky-100">
-                                            <ShieldCheck className="h-5 w-5" />
-                                        </span>
-                                    </div>
-                                    <p className="mt-5 text-sm leading-7 text-slate-200/72">{member.bio}</p>
-                                </article>
                             ))}
                         </div>
-                    </section>
+                        <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+                            <Link
+                                to="/about"
+                                className="inline-flex min-h-[56px] items-center justify-center gap-2 rounded-full bg-[linear-gradient(132deg,#ffffff_0%,#e9f4ff_46%,#cbe4ff_100%)] px-8 text-sm font-semibold tracking-[0.03em] text-[#051429] shadow-[0_18px_48px_rgba(117,194,255,0.24)] transition hover:translate-y-[-1px] hover:shadow-[0_22px_54px_rgba(117,194,255,0.3)]"
+                            >
+                                {t('Discover the Identity Experience', 'Decouvrir l experience identitaire', 'اكتشف تجربة الهوية')}
+                                <ArrowRight className={`h-4 w-4 ${isArabic ? 'rotate-180' : ''}`} />
+                            </Link>
+                            <Link
+                                to="/contact"
+                                className="inline-flex min-h-[56px] items-center justify-center rounded-full border border-white/20 bg-white/7 px-8 text-sm font-semibold tracking-[0.03em] text-white transition hover:border-sky-100/32 hover:bg-white/12"
+                            >
+                                {t('Start a Conversation', 'Demarrer un echange', 'ابدأ محادثة')}
+                            </Link>
+                            <Link
+                                to="/how-it-works"
+                                className="inline-flex min-h-[56px] items-center justify-center rounded-full px-7 text-sm font-semibold tracking-[0.03em] text-sky-100/90 underline decoration-sky-100/35 underline-offset-8 transition hover:text-white"
+                            >
+                                {t('See How It Works', 'Voir le fonctionnement', 'شاهد كيف يعمل')}
+                            </Link>
+                        </div>
+                        <div className="mt-8 grid max-w-xl grid-cols-3 gap-3">
+                            {[
+                                { value: 'NFC', label: t('Core Interaction', 'Interaction centrale', 'التفاعل الأساسي') },
+                                { value: 'QR', label: t('Secondary Access', 'Acces secondaire', 'وصول ثانوي') },
+                                { value: '24/7', label: t('Readiness', 'Disponibilite', 'الجاهزية') }
+                            ].map((metric) => (
+                                <div key={metric.value} className="rounded-2xl border border-white/10 bg-white/6 px-3 py-3.5">
+                                    <p className="font-editorial text-[1.35rem] leading-none text-white">{metric.value}</p>
+                                    <p className="mt-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-sky-100/58">{metric.label}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
 
-                    <section id="contact" className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">
-                        <div className="overflow-hidden rounded-[2.1rem] border border-sky-200/10 bg-[linear-gradient(135deg,rgba(10,33,63,0.98),rgba(7,24,46,0.98))] shadow-[0_30px_90px_rgba(0,0,0,0.25)]">
-                            <div className="grid gap-8 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] lg:px-10 lg:py-12">
-                                <div className={isArabic ? 'font-arabic text-right' : ''}>
-                                    <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-100/64">{content.contactLabel}</p>
-                                    <h2 className="font-editorial mt-4 max-w-2xl text-3xl font-medium leading-[1.05] tracking-[-0.02em] text-white sm:text-[2.6rem]">{content.contactTitle}</h2>
-                                    <p className="mt-5 max-w-2xl text-base leading-8 text-slate-200/78">{content.contactBody}</p>
-                                    <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                                        <a
-                                            href={contactLinks.email}
-                                            className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,#f5f9ff_0%,#cfe7ff_100%)] px-7 text-sm font-semibold tracking-[0.02em] text-[#041225] transition hover:translate-y-[-1px]"
-                                        >
-                                            <Mail className="h-4 w-4" />
-                                            {content.contactPrimary}
-                                        </a>
-                                        <a
-                                            href={contactLinks.linkedin}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-full border border-white/14 bg-white/6 px-7 text-sm font-semibold tracking-[0.02em] text-white transition hover:border-white/22 hover:bg-white/10"
-                                        >
-                                            <Linkedin className="h-4 w-4" />
-                                            {content.contactSecondary}
-                                        </a>
+                    <div className="relative">
+                        <div className="absolute left-[48%] top-[6%] h-64 w-64 -translate-x-1/2 rounded-full bg-sky-300/18 blur-3xl" />
+                        <div className="absolute right-[4%] top-[8%] h-44 w-44 rounded-full bg-blue-400/18 blur-3xl" />
+                        <div className="home-hero-shell interactive-hover relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.11),rgba(255,255,255,0.03))] p-5 shadow-[0_34px_90px_rgba(0,0,0,0.38)] sm:p-7">
+                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.13),transparent_42%)]" />
+                            <div className="relative rounded-[1.7rem] border border-sky-100/12 bg-[linear-gradient(180deg,rgba(8,28,55,0.95),rgba(4,17,37,0.95))] p-5 sm:p-6">
+                                <div className="hero-nfc-scene">
+                                    <div className="hero-depth-grid" aria-hidden />
+                                    <div className="hero-orbit-ring" aria-hidden />
+                                    <div className="hero-nfc-scene__glow" />
+                                    <div className="hero-scan-zone" aria-hidden />
+                                    <div className="hero-scan-flash" aria-hidden />
+
+                                    <div className="hero-phone-float">
+                                        <div className="hero-phone-shell">
+                                            <div className="hero-phone-screen">
+                                                <div className="hero-phone-header">
+                                                    <img
+                                                        src="/favicon.svg"
+                                                        alt="HayatID logo"
+                                                        width="40"
+                                                        height="40"
+                                                        className="h-10 w-10 rounded-xl"
+                                                    />
+                                                    <div className={isArabic ? 'font-arabic text-right' : ''}>
+                                                        <p className="text-[0.62rem] uppercase tracking-[0.22em] text-sky-100/64">HayatID</p>
+                                                        <p className="mt-1 text-sm font-semibold text-white">NFC Identity Ready</p>
+                                                    </div>
+                                                </div>
+                                                <div className="hero-phone-band" />
+                                                <div className="hero-phone-band hero-phone-band--soft" />
+                                                <div className="hero-phone-chip" />
+                                                <div className="hero-phone-pill" />
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div className="grid gap-3">
-                                    <a href={contactLinks.email} className="rounded-[1.4rem] border border-white/10 bg-white/6 p-5 transition hover:bg-white/8">
-                                        <div className="flex items-center gap-3">
-                                            <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/8 text-sky-100">
-                                                <Mail className="h-5 w-5" />
-                                            </span>
-                                            <div>
-                                                <p className="text-xs uppercase tracking-[0.24em] text-sky-100/56">Email</p>
-                                                <p className="mt-2 text-sm font-semibold text-white">hayatid.contact@gmail.com</p>
+                                    <div className="hero-nfc-card-float">
+                                        <div className="hero-nfc-card">
+                                            <div className="hero-nfc-card__shine" />
+                                            <div className="hero-nfc-card__topline">
+                                                <p className="text-[0.53rem] font-semibold uppercase tracking-[0.2em] text-sky-100/62">HayatID</p>
+                                                <div className="hero-nfc-contactless" aria-hidden>
+                                                    <span />
+                                                    <span />
+                                                    <span />
+                                                </div>
+                                            </div>
+                                            <div className="hero-nfc-card__middle">
+                                                <div className="hero-nfc-chip" aria-hidden />
+                                                <img
+                                                    src="/favicon.svg"
+                                                    alt="HayatID NFC card"
+                                                    width="36"
+                                                    height="36"
+                                                    className="h-9 w-9 rounded-lg"
+                                                />
+                                            </div>
+                                            <div className={`hero-nfc-card__bottom ${isArabic ? 'font-arabic text-right' : ''}`}>
+                                                <p className="text-[0.5rem] uppercase tracking-[0.16em] text-sky-100/58">Powered by 2KS</p>
+                                                <p className="mt-1 text-[0.66rem] font-semibold tracking-[0.04em] text-white/90">NFC Smart Medical ID</p>
                                             </div>
                                         </div>
-                                    </a>
-                                    <a
-                                        href={contactLinks.instagram}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className="rounded-[1.4rem] border border-white/10 bg-white/6 p-5 transition hover:bg-white/8"
-                                    >
-                                        <div className="flex items-center gap-3">
-                                            <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/8 text-sky-100">
-                                                <Instagram className="h-5 w-5" />
-                                            </span>
-                                            <div>
-                                                <p className="text-xs uppercase tracking-[0.24em] text-sky-100/56">Instagram</p>
-                                                <p className="mt-2 text-sm font-semibold text-white">@hayatid.ma</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a
-                                        href={contactLinks.linkedin}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className="rounded-[1.4rem] border border-white/10 bg-white/6 p-5 transition hover:bg-white/8"
-                                    >
-                                        <div className="flex items-center gap-3">
-                                            <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/8 text-sky-100">
-                                                <Linkedin className="h-5 w-5" />
-                                            </span>
-                                            <div>
-                                                <p className="text-xs uppercase tracking-[0.24em] text-sky-100/56">LinkedIn</p>
-                                                <p className="mt-2 text-sm font-semibold text-white">2KS</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </main>
+                                    </div>
 
-                <footer className="border-t border-white/8 bg-[#030d1b]">
-                    <div className="mx-auto grid max-w-7xl gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.9fr)] lg:px-8">
-                        <div className={isArabic ? 'font-arabic text-right' : ''}>
-                            <div className="inline-flex items-center gap-3">
-                                <img src="/favicon.svg" alt="HayatID logo" width="48" height="48" className="h-12 w-12 rounded-2xl" loading="lazy" />
-                                <div>
-                                    <p className="font-editorial text-[1.35rem] font-medium tracking-[0.01em] text-white">HayatID</p>
-                                    <p className="text-[0.72rem] uppercase tracking-[0.28em] text-sky-100/56">{content.brandSignature}</p>
-                                </div>
-                            </div>
-                            <p className="mt-5 max-w-xl text-sm leading-7 text-slate-300/72">{content.footerNote}</p>
-                        </div>
-
-                        <div className={`grid gap-5 sm:grid-cols-2 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                            <div>
-                                <p className="text-xs uppercase tracking-[0.24em] text-sky-100/50">{content.footerNavigation}</p>
-                                <div className="mt-4 grid gap-3">
-                                    {navItems.map((item) => (
-                                        <a key={`footer-${item.href}`} href={item.href} className="text-sm text-slate-200/72 transition hover:text-white">
-                                            {item.label}
-                                        </a>
-                                    ))}
-                                </div>
-                            </div>
-                            <div>
-                                <p className="text-xs uppercase tracking-[0.24em] text-sky-100/50">{content.footerContact}</p>
-                                <div className="mt-4 grid gap-3 text-sm text-slate-200/72">
-                                    <a href={contactLinks.email} className="transition hover:text-white">
-                                        hayatid.contact@gmail.com
-                                    </a>
-                                    <a href={contactLinks.instagram} target="_blank" rel="noreferrer" className="transition hover:text-white">
-                                        Instagram
-                                    </a>
-                                    <a href={contactLinks.linkedin} target="_blank" rel="noreferrer" className="transition hover:text-white">
-                                        LinkedIn
-                                    </a>
+                                    <div className="hero-nfc-pulse hero-nfc-pulse--one" />
+                                    <div className="hero-nfc-pulse hero-nfc-pulse--two" />
+                                    <div className="hero-nfc-wave hero-nfc-wave--a" />
+                                    <div className="hero-nfc-wave hero-nfc-wave--b" />
+                                    <div className="hero-nfc-wave hero-nfc-wave--c" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="border-t border-white/8">
-                        <div className={`mx-auto flex max-w-7xl flex-col gap-3 px-4 py-5 text-xs text-slate-300/52 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8 ${isArabic ? 'font-arabic' : ''}`}>
-                            <p>{content.footerRights}</p>
-                            <p>{content.brandSignature}</p>
-                        </div>
+                </div>
+            </section>
+
+            <section className="motion-section mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-24">
+                <div className="grid gap-4 md:grid-cols-3">
+                    {highlights.map((item, index) => (
+                        <article
+                            key={item.title}
+                            className={`motion-card interactive-hover rounded-[1.6rem] border border-white/10 bg-white/6 p-5 shadow-[0_16px_40px_rgba(0,0,0,0.2)] transition hover:-translate-y-1 ${isArabic ? 'font-arabic text-right' : ''}`}
+                            style={{ animationDelay: `${index * 90}ms` }}
+                        >
+                            <h2 className="font-editorial text-[1.45rem] font-medium leading-[1.12] text-white">{item.title}</h2>
+                            <p className="mt-3 text-sm leading-7 text-slate-200/72">{item.body}</p>
+                        </article>
+                    ))}
+                </div>
+
+                <div className={`motion-card interactive-hover mt-8 rounded-[1.8rem] border border-white/10 bg-[linear-gradient(135deg,rgba(10,33,63,0.98),rgba(7,24,46,0.98))] p-6 sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-100/60">{t('Explore More', 'Explorer davantage', 'استكشف المزيد')}</p>
+                    <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-200/76">
+                        {t(
+                            'Navigate through dedicated pages to discover the HayatID vision, process, impact, team, and contact experience in detail.',
+                            'Parcourez des pages dediees pour decouvrir en detail la vision, le fonctionnement, l impact, l equipe et le contact HayatID.',
+                            'تنقل عبر صفحات مخصصة لاكتشاف رؤية HayatID وآلية العمل والأثر والفريق وتجربة التواصل بالتفصيل.'
+                        )}
+                    </p>
+                    <div className="mt-5 flex flex-wrap gap-3">
+                        <Link to="/how-it-works" className="inline-flex min-h-[46px] items-center rounded-full border border-white/16 bg-white/8 px-5 text-sm font-semibold text-white transition hover:bg-white/12">
+                            {t('How It Works', 'Comment ca marche', 'كيف يعمل')}
+                        </Link>
+                        <Link to="/why-it-matters" className="inline-flex min-h-[46px] items-center rounded-full border border-white/16 bg-white/8 px-5 text-sm font-semibold text-white transition hover:bg-white/12">
+                            {t('Why It Matters', 'Pourquoi c est important', 'لماذا يهم')}
+                        </Link>
+                        <Link to="/team" className="inline-flex min-h-[46px] items-center rounded-full border border-white/16 bg-white/8 px-5 text-sm font-semibold text-white transition hover:bg-white/12">
+                            {t('Team', 'Equipe', 'الفريق')}
+                        </Link>
                     </div>
-                </footer>
-            </div>
-        </div>
+                </div>
+            </section>
+        </BrandSiteLayout>
     );
 }

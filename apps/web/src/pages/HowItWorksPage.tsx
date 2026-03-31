@@ -1,8 +1,8 @@
-import { Clock3, Link as LinkIcon, QrCode, ShieldCheck, Smartphone, UserCog } from 'lucide-react';
+import { ArrowRight, Link as LinkIcon, QrCode, ShieldCheck, Waves } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { BrandSiteLayout } from '../components/BrandSiteLayout';
 import { PageMeta } from '../components/PageMeta';
 import { useLanguage } from '../context/LanguageContext';
-import { MarketingLayout } from '../layouts/MarketingLayout';
 
 export function HowItWorksPage() {
     const { language } = useLanguage();
@@ -16,126 +16,145 @@ export function HowItWorksPage() {
 
     const steps = [
         {
-            icon: UserCog,
-            title: t('1. Create a Medical Identity', '1. Creer une identite medicale', '1. إنشاء هوية طبية'),
+            icon: LinkIcon,
+            title: t('Identity Link', 'Lien d identite', 'ربط الهوية'),
+            cue: t('Foundation', 'Fondation', 'الأساس'),
             body: t(
-                'The patient creates and manages a secure medical profile containing essential information such as blood type, allergies, chronic conditions, medications, implants, emergency contacts, and directives.',
-                'Le patient cree et gere un profil medical securise contenant des informations essentielles comme le groupe sanguin, les allergies, les maladies chroniques, les traitements, les implants, les contacts d urgence et les directives.',
-                'يقوم المريض بإنشاء وإدارة ملف طبي آمن يتضمن معلومات أساسية مثل فصيلة الدم والحساسيات والأمراض المزمنة والأدوية والزرعات وجهات الاتصال الطارئة والتوجيهات.'
+                'A physical identifier is linked to a structured medical identity context.',
+                'Un identifiant physique est lie a un contexte d identite medicale structure.',
+                'يتم ربط معرف مادي بسياق هوية طبية منظم.'
             )
         },
         {
-            icon: LinkIcon,
-            title: t('2. Link the Card', '2. Lier la carte', '2. ربط البطاقة'),
+            icon: Waves,
+            title: t('Contactless Trigger', 'Declenchement sans contact', 'تشغيل بدون تلامس'),
+            cue: t('Activation', 'Activation', 'التفعيل'),
             body: t(
-                'A HayatID NFC card and QR code are linked to the medical identity so the information can be reached quickly when needed.',
-                'Une carte NFC HayatID et un code QR sont relies a l identite medicale pour permettre un acces rapide aux informations lorsque necessaire.',
-                'يتم ربط بطاقة HayatID بتقنية NFC ورمز QR بالهوية الطبية حتى يمكن الوصول إلى المعلومات بسرعة عند الحاجة.'
+                'NFC interaction initiates fast access with minimal friction and clear intent.',
+                'L interaction NFC declenche un acces rapide avec une friction minimale et une intention claire.',
+                'يبدأ تفاعل NFC وصولاً سريعاً بأقل احتكاك وبنية واضحة.'
             )
         },
         {
             icon: QrCode,
-            title: t('3. Emergency Access in Seconds', '3. Acces d urgence en quelques secondes', '3. وصول الطوارئ خلال ثوانٍ'),
+            title: t('Readable Health Context', 'Contexte de sante lisible', 'سياق صحي قابل للقراءة'),
+            cue: t('Interpretation', 'Interpretation', 'التفسير'),
             body: t(
-                'In an emergency, a passerby or healthcare worker scans the NFC card or QR code using a phone browser. Essential medical information becomes visible without requiring an app.',
-                'En cas d urgence, un proche ou un professionnel de sante scanne la carte NFC ou le code QR via le navigateur du telephone. Les informations medicales essentielles deviennent visibles sans application.',
-                'في حالة الطوارئ، يقوم أحد المارة أو العامل الصحي بمسح بطاقة NFC أو رمز QR عبر متصفح الهاتف، فتظهر المعلومات الطبية الأساسية دون الحاجة إلى تطبيق.'
+                'Essential information is displayed in a concise, recognizable structure.',
+                'Les informations essentielles sont affichees dans une structure concise et reconnaissable.',
+                'تُعرض المعلومات الأساسية ضمن بنية موجزة وسهلة التعرّف.'
             )
         },
         {
             icon: ShieldCheck,
-            title: t('4. Professional Access', '4. Acces professionnel', '4. وصول المهنيين الصحيين'),
+            title: t('Trusted Continuity', 'Continuite de confiance', 'استمرارية موثوقة'),
+            cue: t('Reliability', 'Fiabilite', 'الاعتمادية'),
             body: t(
-                'Healthcare professionals can go further through a secure verification flow to access extended medical information in an appropriate professional context.',
-                'Les professionnels de sante peuvent aller plus loin via un parcours de verification securise pour acceder a des informations medicales etendues dans un cadre professionnel approprie.',
-                'يمكن للمهنيين الصحيين التقدم عبر مسار تحقق آمن للوصول إلى معلومات طبية موسعة ضمن سياق مهني مناسب.'
-            )
-        },
-        {
-            icon: Clock3,
-            title: t('5. Continuous Updates', '5. Mises a jour continues', '5. تحديثات مستمرة'),
-            body: t(
-                'The patient can keep the profile updated so the medical identity stays relevant, accessible, and useful over time.',
-                'Le patient peut maintenir son profil a jour afin que l identite medicale reste pertinente, accessible et utile dans le temps.',
-                'يمكن للمريض تحديث الملف بشكل مستمر لتبقى الهوية الطبية دقيقة ومتاحة ومفيدة مع مرور الوقت.'
+                'The experience remains consistent and dependable across critical situations.',
+                'L experience reste coherente et fiable a travers les situations critiques.',
+                'تبقى التجربة متسقة ويمكن الاعتماد عليها عبر المواقف الحرجة.'
             )
         }
     ];
 
     return (
-        <MarketingLayout>
+        <BrandSiteLayout>
             <PageMeta
-                title={t('How It Works', 'Comment ca marche', 'كيف يعمل')}
+                title={t('How It Works | HayatID', 'Fonctionnement | HayatID', 'كيف يعمل | HayatID')}
                 description={t(
-                    'Discover how HayatID connects NFC and QR to secure medical access in a clear step-by-step journey.',
-                    'Decouvrez comment HayatID connecte NFC et QR a un acces medical securise dans un parcours clair.',
-                    'اكتشف كيف يربط HayatID بين NFC وQR للوصول الطبي الآمن عبر رحلة واضحة خطوة بخطوة.'
+                    'Explore the HayatID process through a clear premium medical-tech journey.',
+                    'Explorez le processus HayatID a travers un parcours medical-tech premium et clair.',
+                    'اكتشف آلية HayatID عبر رحلة طبية تقنية راقية وواضحة.'
                 )}
             />
 
-            <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-                <div className={isArabic ? 'font-arabic text-right' : ''}>
-                    <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sapphire">
-                        {t('How It Works', 'Comment ca marche', 'كيف يعمل')}
-                    </p>
-                    <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-navy sm:text-5xl">
-                        {t(
-                            'A seamless journey from NFC tap to secure medical access',
-                            'Un parcours fluide du geste NFC vers un acces medical securise',
-                            'رحلة سلسة من لمس NFC إلى وصول طبي آمن'
-                        )}
-                    </h1>
-                    <p className="mt-5 max-w-3xl text-base leading-8 text-navy/75 sm:text-lg">
-                        {t(
-                            'HayatID connects a physical NFC card and QR code to a digital medical identity platform. The experience is designed to be fast, accessible, and intuitive.',
-                            'HayatID relie une carte NFC physique et un code QR a une plateforme numerique d identite medicale. L experience est pensee pour etre rapide, accessible et intuitive.',
-                            'يربط HayatID بطاقة NFC فعلية ورمز QR بمنصة هوية طبية رقمية، وقد صُممت التجربة لتكون سريعة وسهلة ومتاحة للجميع.'
-                        )}
-                    </p>
-                </div>
+            <section className="motion-section mx-auto max-w-7xl px-4 pb-14 pt-12 sm:px-6 sm:pt-16 lg:px-8 lg:pb-20 lg:pt-20">
+                <div className="grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
+                    <div className={`interactive-hover relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(160deg,rgba(11,33,64,0.96),rgba(5,18,37,0.96))] p-7 shadow-[0_24px_68px_rgba(0,0,0,0.26)] sm:p-10 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                        <div className="absolute -right-14 -top-14 h-44 w-44 rounded-full bg-sky-200/12 blur-3xl" aria-hidden />
+                        <div className="absolute left-1/3 top-2 h-28 w-28 rounded-full bg-blue-200/10 blur-3xl" aria-hidden />
+                        <p className="relative z-[1] text-sm font-semibold uppercase tracking-[0.24em] text-sky-100/62">{t('How It Works', 'Comment ca marche', 'كيف يعمل')}</p>
+                        <h1 className="font-editorial relative z-[1] mt-4 max-w-4xl text-[clamp(2.45rem,6.5vw,4.5rem)] font-medium leading-[0.96] tracking-[-0.025em] text-white">
+                            {t(
+                                'A visually guided journey from identity signal to trusted medical clarity.',
+                                'Un parcours visuellement guide du signal d identite vers une clarte medicale fiable.',
+                                'رحلة موجهة بصرياً من إشارة الهوية إلى وضوح طبي موثوق.'
+                            )}
+                        </h1>
+                        <p className="relative z-[1] mt-6 max-w-3xl text-base leading-8 text-slate-200/76 sm:text-lg">
+                            {t(
+                                'The flow is intentionally simple: link, trigger, read, and trust. Every stage is designed to stay understandable under pressure while preserving premium medical-tech quality.',
+                                'Le flux est volontairement simple : lier, declencher, lire et faire confiance. Chaque etape est concue pour rester comprehensible sous pression tout en preservant une qualite medical-tech premium.',
+                                'التدفق بسيط عن قصد: ربط ثم تفعيل ثم قراءة ثم ثقة. صُممت كل مرحلة لتظل مفهومة تحت الضغط مع الحفاظ على جودة طبية تقنية راقية.'
+                            )}
+                        </p>
+                    </div>
 
-                <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                    {steps.map((step) => {
-                        const Icon = step.icon;
-
-                        return (
-                            <article
-                                key={step.title}
-                                className={`rounded-[1.8rem] border border-sapphire/15 bg-powder/25 p-6 ${isArabic ? 'font-arabic text-right' : ''}`}
-                            >
-                                <div className="inline-flex rounded-2xl bg-sapphire/10 p-3 text-sapphire">
-                                    <Icon className="h-5 w-5" />
+                    <aside className={`how-visual-map interactive-hover relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(155deg,rgba(14,43,79,0.88),rgba(6,22,42,0.94))] p-6 shadow-[0_24px_68px_rgba(0,0,0,0.25)] sm:p-7 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_20%,rgba(191,226,255,0.18),transparent_44%)]" aria-hidden />
+                        <p className="relative z-[1] text-xs font-semibold uppercase tracking-[0.22em] text-sky-100/56">{t('Flow Preview', 'Apercu du flux', 'معاينة التدفق')}</p>
+                        <div className="relative z-[1] mt-5 space-y-4">
+                            {steps.map((step, index) => (
+                                <div key={`preview-${step.title}`} className="relative flex items-center gap-3">
+                                    <span className="how-preview-node inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/14 bg-white/9 text-xs font-semibold text-sky-100">
+                                        0{index + 1}
+                                    </span>
+                                    <p className="text-sm font-semibold tracking-[0.02em] text-slate-100/92">{step.title}</p>
+                                    {index < steps.length - 1 ? <span className="how-preview-line" aria-hidden /> : null}
                                 </div>
-                                <h2 className="mt-4 text-2xl font-semibold text-navy">{step.title}</h2>
-                                <p className="mt-3 text-sm leading-7 text-navy/75 sm:text-base">{step.body}</p>
+                            ))}
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <section className="motion-section mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
+                <div className="relative grid gap-4 lg:grid-cols-2">
+                    <div className="how-step-connector hidden lg:block" aria-hidden />
+                    {steps.map((step, index) => {
+                        const Icon = step.icon;
+                        return (
+                            <article key={step.title} className={`how-step-card group relative rounded-[1.7rem] border border-white/10 bg-white/6 p-6 transition hover:-translate-y-1 hover:border-sky-200/24 ${isArabic ? 'font-arabic text-right' : ''}`} style={{ animationDelay: `${index * 110}ms` }}>
+                                <div className="how-step-glow" aria-hidden />
+                                <div className="relative z-[1] flex items-center justify-between gap-3">
+                                    <span className="inline-flex items-center rounded-full border border-white/12 bg-white/7 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-sky-100/62">
+                                        0{index + 1} • {step.cue}
+                                    </span>
+                                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.14),rgba(255,255,255,0.04))] text-sky-100 transition group-hover:scale-[1.05] group-hover:border-sky-100/36">
+                                        <Icon className="h-5 w-5" />
+                                    </span>
+                                </div>
+                                <h2 className="font-editorial relative z-[1] mt-5 text-[2rem] font-medium leading-[1.05] text-white">{step.title}</h2>
+                                <p className="relative z-[1] mt-3 text-sm leading-7 text-slate-200/74 sm:text-base">{step.body}</p>
+                                <div className="relative z-[1] mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-sky-100/56">
+                                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-sky-200/70" />
+                                    {t('Next-stage ready', 'Pret pour l etape suivante', 'جاهز للمرحلة التالية')}
+                                </div>
                             </article>
                         );
                     })}
                 </div>
 
-                <div className={`mt-10 rounded-[2rem] bg-navy p-7 text-white sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                    <h2 className="text-2xl font-semibold sm:text-3xl">
+                <div className={`motion-card interactive-hover mt-8 rounded-[1.8rem] border border-white/10 bg-[linear-gradient(135deg,rgba(16,47,85,0.74),rgba(8,25,47,0.86))] p-6 sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-100/56">{t('Outcome', 'Resultat', 'النتيجة')}</p>
+                    <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-200/76">
                         {t(
-                            'Built for speed, clarity, and trust',
-                            'Concu pour la rapidite, la clarte et la confiance',
-                            'مبني على السرعة والوضوح والثقة'
-                        )}
-                    </h2>
-                    <p className="mt-4 max-w-3xl text-sm leading-7 text-white/80 sm:text-base">
-                        {t(
-                            'HayatID is designed to reduce friction in emergency access while maintaining a modern, structured medical identity experience.',
-                            'HayatID est concu pour reduire les frictions lors de l acces d urgence tout en maintenant une experience moderne et structuree d identite medicale.',
-                            'تم تصميم HayatID لتقليل الاحتكاك في الوصول الطارئ مع الحفاظ على تجربة هوية طبية حديثة ومنظمة.'
+                            'The complete flow keeps interaction intuitive while elevating presentation quality to a premium medical-tech standard.',
+                            'Le flux complet garde une interaction intuitive tout en elevant la qualite de presentation a un standard medical-tech premium.',
+                            'يحافظ التدفق الكامل على سهولة التفاعل مع رفع جودة العرض إلى معيار طبي تقني راقٍ.'
                         )}
                     </p>
-                    <div className="mt-5">
-                        <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-navy transition hover:bg-slate-100">
-                            {t('Contact Us', 'Contactez-nous', 'تواصل معنا')}
-                            <Smartphone className="h-4 w-4" />
+                    <div className="mt-5 flex flex-wrap gap-3">
+                        <Link to="/why-it-matters" className="inline-flex min-h-[50px] items-center gap-2 rounded-full bg-[linear-gradient(135deg,#f5f9ff_0%,#d6e9ff_100%)] px-6 text-sm font-semibold text-[#041225] shadow-[0_12px_34px_rgba(125,193,255,0.18)] transition hover:translate-y-[-1px]">
+                            {t('Explore Why It Matters', 'Voir pourquoi c est important', 'اكتشف لماذا يهم')}
+                            <ArrowRight className={`h-4 w-4 ${isArabic ? 'rotate-180' : ''}`} />
+                        </Link>
+                        <Link to="/contact" className="inline-flex min-h-[50px] items-center rounded-full border border-white/16 bg-white/8 px-6 text-sm font-semibold text-white transition hover:bg-white/12">
+                            {t('Talk to the Team', 'Parler a l equipe', 'تواصل مع الفريق')}
                         </Link>
                     </div>
                 </div>
             </section>
-        </MarketingLayout>
+        </BrandSiteLayout>
     );
 }

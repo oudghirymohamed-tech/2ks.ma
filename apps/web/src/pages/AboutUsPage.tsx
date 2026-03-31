@@ -1,7 +1,6 @@
-import { CheckCircle2, Lightbulb, ShieldCheck, Stethoscope, Target } from 'lucide-react';
+import { BrandSiteLayout } from '../components/BrandSiteLayout';
 import { PageMeta } from '../components/PageMeta';
 import { useLanguage } from '../context/LanguageContext';
-import { MarketingLayout } from '../layouts/MarketingLayout';
 
 export function AboutUsPage() {
     const { language } = useLanguage();
@@ -13,145 +12,179 @@ export function AboutUsPage() {
         return en;
     };
 
-    const highlights = [
+    const principles = [
         {
-            icon: CheckCircle2,
-            title: t('Faster emergency access', 'Acces d urgence plus rapide', 'وصول أسرع في حالات الطوارئ'),
+            label: t('Precision', 'Precision', 'الدقة'),
             body: t(
-                'Faster access to essential emergency medical information.',
-                'Acces plus rapide aux informations medicales essentielles en urgence.',
-                'وصول أسرع إلى المعلومات الطبية الأساسية في حالات الطوارئ.'
+                'Essential health context is prioritized and presented with disciplined clarity.',
+                'Le contexte de sante essentiel est priorise et presente avec une clarte rigoureuse.',
+                'يتم ترتيب السياق الصحي الأساسي وتقديمه بوضوح منضبط.'
             )
         },
         {
-            icon: Stethoscope,
-            title: t('No app required', 'Sans application requise', 'بدون تطبيق للطرف القارئ'),
+            label: t('Calm Design', 'Design apaisant', 'تصميم هادئ'),
             body: t(
-                'No app required for the reader in emergency situations.',
-                'Aucune application n est requise pour la personne qui consulte les informations.',
-                'لا حاجة لتثبيت تطبيق لدى الشخص الذي يقوم بالقراءة في الطوارئ.'
+                'A composed visual language reduces cognitive noise in sensitive situations.',
+                'Un langage visuel compose reduit le bruit cognitif dans les situations sensibles.',
+                'لغة بصرية متزنة تقلل الضجيج الذهني في المواقف الحساسة.'
             )
         },
         {
-            icon: ShieldCheck,
-            title: t('Structured and secure', 'Structure et securite', 'هوية منظمة وآمنة'),
+            label: t('Trusted Access', 'Acces fiable', 'وصول موثوق'),
             body: t(
-                'Structured and secure medical identity experience.',
-                'Experience d identite medicale structuree et securisee.',
-                'تجربة هوية طبية منظمة وآمنة.'
+                'Contactless interaction is structured to feel immediate, readable, and reliable.',
+                'L interaction sans contact est structuree pour etre immediate, lisible et fiable.',
+                'تمت هيكلة التفاعل بدون تلامس ليكون فورياً وقابلاً للقراءة ويمكن الاعتماد عليه.'
+            )
+        }
+    ];
+
+    const storyMoments = [
+        {
+            title: t('Observation', 'Observation', 'الملاحظة'),
+            body: t(
+                'Critical moments often fail because useful information exists but is not instantly understandable.',
+                'Les moments critiques echouent souvent car l information utile existe, mais n est pas immediatement comprehensible.',
+                'تفشل اللحظات الحرجة غالباً لأن المعلومات المفيدة موجودة لكنها ليست مفهومة فوراً.'
             )
         },
         {
-            icon: Target,
-            title: t('Better continuity of care', 'Continuite de soin amelioree', 'استمرارية أفضل بين المريض والمهني الصحي'),
+            title: t('Response', 'Reponse', 'الاستجابة'),
             body: t(
-                'Better continuity between patients and healthcare professionals.',
-                'Meilleure continuite entre patients et professionnels de sante.',
-                'استمرارية أفضل بين المرضى والمهنيين الصحيين.'
+                'HayatID turns that gap into a premium identity layer where essentials are presented with confidence.',
+                'HayatID transforme cet ecart en une couche identitaire premium ou l essentiel est presente avec confiance.',
+                'يحوّل HayatID هذه الفجوة إلى طبقة هوية راقية تُعرض فيها الأساسيات بثقة.'
+            )
+        },
+        {
+            title: t('Direction', 'Direction', 'الاتجاه'),
+            body: t(
+                'The vision is a medical-tech experience that feels modern, humane, and institutionally credible.',
+                'La vision est une experience medical-tech moderne, humaine et institutionnellement credible.',
+                'الرؤية هي تجربة طبية تقنية حديثة وإنسانية وموثوقة مؤسسياً.'
             )
         }
     ];
 
     return (
-        <MarketingLayout>
+        <BrandSiteLayout>
             <PageMeta
-                title={t('About Us', 'A propos', 'من نحن')}
+                title={t('About HayatID', 'A propos de HayatID', 'حول HayatID')}
                 description={t(
-                    'Learn how HayatID combines NFC and QR with secure medical identity access.',
-                    'Decouvrez comment HayatID combine NFC et QR avec un acces medical securise.',
-                    'اكتشف كيف يجمع HayatID بين NFC وQR مع وصول طبي آمن.'
+                    'Discover the HayatID vision, mission, and identity principles behind a modern medical-tech concept.',
+                    'Decouvrez la vision, la mission et les principes identitaires de HayatID derriere un concept medical-tech moderne.',
+                    'اكتشف رؤية HayatID ورسالتها ومبادئ هويتها وراء مفهوم طبي تقني حديث.'
                 )}
             />
 
-            <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-                <div className={isArabic ? 'font-arabic text-right' : ''}>
-                    <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sapphire">{t('About Us', 'A propos', 'من نحن')}</p>
-                    <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-navy sm:text-5xl">
+            <section className="motion-section mx-auto max-w-7xl px-4 pb-14 pt-12 sm:px-6 sm:pt-16 lg:px-8 lg:pb-18 lg:pt-20">
+                <div className={`interactive-hover relative overflow-hidden rounded-[2.1rem] border border-white/10 bg-[linear-gradient(162deg,rgba(10,35,68,0.96),rgba(5,18,37,0.98))] p-7 shadow-[0_30px_84px_rgba(0,0,0,0.3)] sm:p-10 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                    <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-sky-200/12 blur-3xl" aria-hidden />
+                    <div className="absolute left-1/2 top-0 h-36 w-36 -translate-x-1/2 rounded-full bg-blue-300/12 blur-3xl" aria-hidden />
+                    <p className="relative z-[1] text-sm font-semibold uppercase tracking-[0.26em] text-sky-100/60">{t('About HayatID', 'A propos de HayatID', 'حول HayatID')}</p>
+                    <h1 className="font-editorial relative z-[1] mt-4 max-w-5xl text-[clamp(2.55rem,6.8vw,5rem)] font-medium leading-[0.95] tracking-[-0.028em] text-white">
                         {t(
-                            'Redefining medical access through smart digital identity',
-                            'Redefinir l acces medical grace a une identite numerique intelligente',
-                            'إعادة تعريف الوصول الطبي عبر هوية رقمية ذكية'
+                            'Medical identity, rewritten with editorial clarity and modern trust.',
+                            'L identite medicale, reecrite avec une clarte editoriale et une confiance moderne.',
+                            'هوية طبية أُعيدت صياغتها بوضوح تحريري وثقة حديثة.'
                         )}
                     </h1>
-                    <p className="mt-5 max-w-3xl text-base leading-8 text-navy/75 sm:text-lg">
+                    <p className="relative z-[1] mt-6 max-w-3xl text-base leading-8 text-slate-200/78 sm:text-lg">
                         {t(
-                            'HayatID is a smart medical identity platform powered by 2KS technology. It combines an NFC card and QR access with a secure digital experience to make essential medical information more accessible, structured, and useful in critical moments.',
-                            'HayatID est une plateforme d identite medicale intelligente propulsee par 2KS. Elle combine une carte NFC et un acces QR avec une experience numerique securisee pour rendre les informations medicales essentielles plus accessibles, structurees et utiles dans les moments critiques.',
-                            'HayatID منصة هوية طبية ذكية مدعومة بتقنية 2KS، تجمع بين بطاقة NFC والوصول عبر QR ضمن تجربة رقمية آمنة لجعل المعلومات الطبية الأساسية أكثر سهولة وتنظيماً وفائدة في اللحظات الحرجة.'
+                            'HayatID is built as a premium medical-tech identity concept where essential health context is communicated with precision, calm, and immediate readability in critical situations.',
+                            'HayatID est concu comme un concept premium d identite medical-tech ou le contexte de sante essentiel est communique avec precision, serenite et lisibilite immediate dans les situations critiques.',
+                            'تم تصميم HayatID كمفهوم راقٍ للهوية الطبية التقنية حيث يُنقل السياق الصحي الأساسي بدقة وهدوء وقابلية قراءة فورية في المواقف الحرجة.'
                         )}
                     </p>
-                </div>
-
-                <div className="mt-10 grid gap-5 lg:grid-cols-2">
-                    <article className={`rounded-[1.8rem] border border-sapphire/15 bg-white/80 p-6 shadow-soft sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                        <h2 className="text-2xl font-semibold text-navy sm:text-3xl">{t('The Problem', 'Le probleme', 'المشكلة')}</h2>
-                        <p className="mt-4 text-sm leading-7 text-navy/75 sm:text-base">
-                            {t(
-                                'In emergency situations, essential medical information is often unavailable when it matters most. Blood type, allergies, implants, medications, and emergency contacts may exist, but remain inaccessible in the first crucial seconds.',
-                                'En situation d urgence, les informations medicales essentielles ne sont souvent pas disponibles au moment critique. Groupe sanguin, allergies, implants, traitements et contacts d urgence peuvent exister, mais restent inaccessibles durant les premieres secondes decisives.',
-                                'في حالات الطوارئ، غالباً لا تكون المعلومات الطبية الأساسية متاحة عند الحاجة القصوى. فصيلة الدم والحساسيات والزرعات والأدوية وجهات الاتصال الطارئة قد تكون موجودة، لكنها تبقى غير متاحة في الثواني الأولى الحاسمة.'
-                            )}
-                        </p>
-                    </article>
-
-                    <article className={`rounded-[1.8rem] border border-sapphire/15 bg-powder/25 p-6 shadow-soft sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                        <h2 className="text-2xl font-semibold text-navy sm:text-3xl">{t('The Solution', 'La solution', 'الحل')}</h2>
-                        <p className="mt-4 text-sm leading-7 text-navy/75 sm:text-base">
-                            {t(
-                                'HayatID provides a portable medical identity through an NFC card and QR code. With a simple scan, essential medical information can be accessed quickly through a browser, without requiring a dedicated app on the reader side.',
-                                'HayatID fournit une identite medicale portable via une carte NFC et un code QR. Avec un simple scan, les informations medicales essentielles sont accessibles rapidement depuis un navigateur, sans application dediee cote lecteur.',
-                                'يوفر HayatID هوية طبية محمولة عبر بطاقة NFC ورمز QR. وبمجرد مسح بسيط، يمكن الوصول السريع إلى المعلومات الطبية الأساسية عبر المتصفح دون الحاجة إلى تطبيق مخصص لدى القارئ.'
-                            )}
-                        </p>
-                    </article>
-                </div>
-
-                <article className={`mt-5 rounded-[1.8rem] border border-sapphire/15 bg-white/80 p-6 shadow-soft sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                    <h2 className="text-2xl font-semibold text-navy sm:text-3xl">{t('Why HayatID Matters', 'Pourquoi HayatID compte', 'لماذا HayatID مهم')}</h2>
-                    <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                        {highlights.map((item) => {
-                            const Icon = item.icon;
-
-                            return (
-                                <div key={item.title} className="rounded-2xl border border-sapphire/15 bg-slate-50 p-4">
-                                    <div className="inline-flex rounded-2xl bg-sapphire/10 p-3 text-sapphire">
-                                        <Icon className="h-5 w-5" />
-                                    </div>
-                                    <p className="mt-3 text-sm font-semibold text-navy">{item.title}</p>
-                                    <p className="mt-2 text-sm leading-6 text-navy/75">{item.body}</p>
-                                </div>
-                            );
-                        })}
+                    <div className="relative z-[1] mt-8 grid gap-3 sm:grid-cols-3">
+                        {principles.map((item) => (
+                            <article key={item.label} className="rounded-2xl border border-white/12 bg-white/7 px-4 py-4">
+                                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-100/62">{item.label}</p>
+                                <p className="mt-2 text-sm leading-6 text-slate-200/74">{item.body}</p>
+                            </article>
+                        ))}
                     </div>
-                </article>
-
-                <div className="mt-5 grid gap-5 lg:grid-cols-2">
-                    <article className={`rounded-[1.8rem] border border-sapphire/15 bg-white/80 p-6 shadow-soft sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                        <h2 className="inline-flex items-center gap-2 text-2xl font-semibold text-navy sm:text-3xl">
-                            <Lightbulb className="h-5 w-5 text-sapphire" />
-                            {t('Field Validation', 'Validation terrain', 'التحقق الميداني')}
-                        </h2>
-                        <p className="mt-4 text-sm leading-7 text-navy/75 sm:text-base">
-                            {t(
-                                'The product has already been validated with healthcare professionals in real-world conditions, showing strong adoption interest.',
-                                'Le produit a deja ete valide avec des professionnels de sante en conditions reelles, montrant un fort interet d adoption.',
-                                'تم التحقق من المنتج بالفعل مع مهنيي الرعاية الصحية في ظروف واقعية، مع اهتمام قوي بالتبني.'
-                            )}
-                        </p>
-                    </article>
-
-                    <article className={`rounded-[1.8rem] border border-sapphire/15 bg-navy p-6 text-white shadow-soft sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                        <h2 className="text-2xl font-semibold sm:text-3xl">{t('Our Vision', 'Notre vision', 'رؤيتنا')}</h2>
-                        <p className="mt-4 text-sm leading-7 text-white/80 sm:text-base">
-                            {t(
-                                'HayatID aims to help build a more connected healthcare experience where critical medical information is available quickly, clearly, and responsibly.',
-                                'HayatID vise a construire une experience de sante plus connectee ou les informations medicales critiques sont disponibles rapidement, clairement et de maniere responsable.',
-                                'يهدف HayatID إلى المساهمة في بناء تجربة صحية أكثر ترابطاً، بحيث تتوفر المعلومات الطبية الحرجة بسرعة ووضوح وبشكل مسؤول.'
-                            )}
-                        </p>
-                    </article>
                 </div>
             </section>
-        </MarketingLayout>
+
+            <section className="motion-section mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8 lg:pb-20">
+                <div className="grid gap-5 lg:grid-cols-[1.02fr_0.98fr]">
+                    <article className={`motion-card interactive-hover rounded-[1.8rem] border border-white/10 bg-white/7 p-6 shadow-[0_20px_52px_rgba(0,0,0,0.2)] sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-100/56">{t('Story Arc', 'Trame narrative', 'المسار السردي')}</p>
+                        <h2 className="font-editorial mt-4 text-[2.25rem] font-medium leading-[1.02] text-white sm:text-[2.65rem]">
+                            {t('From urgency to elegance in one identity gesture.', 'De l urgence a l elegance en un geste identitaire.', 'من الاستعجال إلى الأناقة في إيماءة هوية واحدة.')}
+                        </h2>
+                        <div className="mt-6 space-y-4">
+                            {storyMoments.map((moment, index) => (
+                                <div key={moment.title} className="rounded-2xl border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.04))] px-4 py-4">
+                                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-sky-100/56">0{index + 1} • {moment.title}</p>
+                                    <p className="mt-2 text-sm leading-7 text-slate-200/74">{moment.body}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </article>
+
+                    <div className="grid gap-5">
+                        <article className={`motion-card interactive-hover relative overflow-hidden rounded-[1.8rem] border border-white/10 bg-[linear-gradient(150deg,rgba(20,60,103,0.5),rgba(7,24,48,0.8))] p-6 shadow-[0_20px_52px_rgba(0,0,0,0.2)] sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                            <div className="absolute -right-10 -top-10 h-36 w-36 rounded-full bg-sky-100/12 blur-3xl" aria-hidden />
+                            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-100/56">{t('Mission', 'Mission', 'الرسالة')}</p>
+                            <h3 className="font-editorial mt-3 text-[2rem] font-medium leading-[1.04] text-white">
+                                {t('Present the essential, remove the noise.', 'Presenter l essentiel, supprimer le bruit.', 'عرض الأساسي وإزالة الضجيج.')}
+                            </h3>
+                            <p className="mt-4 text-sm leading-7 text-slate-200/74 sm:text-base">
+                                {t(
+                                    'Our mission is to shape a medical identity experience where core health signals are recognized immediately with confidence, across real-world contactless moments.',
+                                    'Notre mission est de construire une experience d identite medicale ou les signaux de sante essentiels sont reconnus immediatement avec confiance, dans des moments sans contact du monde reel.',
+                                    'رسالتنا هي بناء تجربة هوية طبية يتم فيها التعرف الفوري على الإشارات الصحية الأساسية بثقة عبر لحظات التفاعل الواقعية بدون تلامس.'
+                                )}
+                            </p>
+                        </article>
+
+                        <article className={`motion-card interactive-hover rounded-[1.8rem] border border-white/10 bg-[#061a36]/88 p-6 shadow-[0_20px_52px_rgba(0,0,0,0.2)] sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-100/56">{t('Identity Note', 'Note identitaire', 'ملاحظة الهوية')}</p>
+                            <p className="font-editorial mt-4 text-[1.9rem] font-medium leading-[1.08] text-white sm:text-[2.2rem]">
+                                {t(
+                                    'HayatID is not just a product surface, it is a trust language for medical reality.',
+                                    'HayatID n est pas seulement une surface produit, c est un langage de confiance pour la realite medicale.',
+                                    'HayatID ليس مجرد واجهة منتج، بل لغة ثقة للواقع الطبي.'
+                                )}
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section className="motion-section mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-24">
+                <div className={`interactive-hover rounded-[2rem] border border-white/10 bg-[linear-gradient(155deg,rgba(9,30,57,0.9),rgba(5,18,37,0.96))] p-6 sm:p-8 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                    <div className="max-w-3xl">
+                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-100/56">{t('Guiding Values', 'Valeurs directrices', 'القيم الموجهة')}</p>
+                        <h2 className="font-editorial mt-3 text-[2.2rem] font-medium leading-[1.03] text-white sm:text-[2.7rem]">
+                            {t('A premium medical-tech identity must feel human before it feels technical.', 'Une identite medical-tech premium doit d abord paraitre humaine avant d etre technique.', 'يجب أن تبدو الهوية الطبية التقنية الراقية إنسانية قبل أن تبدو تقنية.')}
+                        </h2>
+                    </div>
+                    <div className="mt-6 grid gap-4 md:grid-cols-3">
+                        {[
+                            {
+                                title: t('Clarity', 'Clarte', 'الوضوح'),
+                                body: t('Information should be immediately understandable, especially under pressure.', 'L information doit etre immediatement comprensible, surtout sous pression.', 'يجب أن تكون المعلومات مفهومة فوراً، خاصة تحت الضغط.')
+                            },
+                            {
+                                title: t('Accessibility', 'Accessibilite', 'سهولة الوصول'),
+                                body: t('Identity interaction must remain simple, inclusive, and dependable.', 'L interaction identitaire doit rester simple, inclusive et fiable.', 'يجب أن يبقى تفاعل الهوية بسيطاً وشاملاً ويمكن الاعتماد عليه.')
+                            },
+                            {
+                                title: t('Responsibility', 'Responsabilite', 'المسؤولية'),
+                                body: t('Design and technology should serve people with trust and care.', 'Le design et la technologie doivent servir les personnes avec confiance et soin.', 'ينبغي أن يخدم التصميم والتقنية الناس بثقة واهتمام.')
+                            }
+                        ].map((item) => (
+                            <article key={item.title} className="motion-card interactive-hover rounded-[1.45rem] border border-white/10 bg-white/7 p-5 shadow-[0_16px_36px_rgba(0,0,0,0.16)]">
+                                <h3 className="font-editorial text-[1.55rem] font-medium text-white">{item.title}</h3>
+                                <p className="mt-3 text-sm leading-7 text-slate-200/74">{item.body}</p>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        </BrandSiteLayout>
     );
 }
