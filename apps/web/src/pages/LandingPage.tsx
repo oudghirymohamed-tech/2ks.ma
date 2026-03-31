@@ -58,35 +58,35 @@ export function LandingPage() {
                 )}
             />
 
-            <section className="motion-section mx-auto max-w-7xl px-4 pb-20 pt-12 sm:px-6 sm:pb-24 sm:pt-16 lg:px-8 lg:pb-28 lg:pt-20">
-                <div className="grid gap-12 lg:grid-cols-[minmax(0,1.04fr)_minmax(430px,0.96fr)] lg:items-center xl:gap-16">
-                    <div className={isArabic ? 'font-arabic text-right' : ''}>
+            <section className="motion-section mx-auto max-w-7xl px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-14 lg:px-8 lg:pb-24 lg:pt-16">
+                <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.96fr)] lg:items-center xl:gap-14">
+                    <div className={`${isArabic ? 'font-arabic text-right' : ''} lg:max-w-[38rem]`}>
                         <div className="inline-flex items-center gap-2 rounded-full border border-sky-200/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04))] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-sky-100/74">
                             <span className="inline-block h-2 w-2 rounded-full bg-sky-200/85" />
                             {t('Flagship Experience', 'Experience flagship', 'التجربة الرئيسية')}
                         </div>
-                        <h1 className="font-editorial mt-7 max-w-4xl text-[clamp(3.05rem,8.9vw,6.25rem)] font-medium leading-[0.92] tracking-[-0.032em] text-white">
+                        <h1 className="font-editorial mt-6 max-w-[19ch] text-[clamp(2.2rem,5.4vw,4.65rem)] font-medium leading-[0.98] tracking-[-0.024em] text-white lg:max-w-[17ch]">
                             {t(
                                 'The premium medical identity layer for moments where recognition must be instant.',
                                 'La couche premium d identite medicale pour les moments ou la reconnaissance doit etre immediate.',
                                 'طبقة الهوية الطبية الراقية للحظات التي يجب أن يكون فيها التعرف فورياً.'
                             )}
                         </h1>
-                        <p className="mt-7 max-w-2xl text-base leading-8 text-slate-200/78 sm:text-[1.08rem]">
+                        <p className="mt-5 max-w-[60ch] text-base leading-7 text-slate-200/78 sm:text-[1.04rem] sm:leading-8">
                             {t(
                                 'HayatID is designed to present essential health context with institutional elegance, calm readability, and trusted contactless access under pressure.',
                                 'HayatID est concu pour presenter le contexte de sante essentiel avec elegance institutionnelle, lisibilite apaisante et acces sans contact fiable sous pression.',
                                 'تم تصميم HayatID لعرض السياق الصحي الأساسي بأناقة مؤسسية وقابلية قراءة هادئة ووصول موثوق بدون تلامس تحت الضغط.'
                             )}
                         </p>
-                        <div className="mt-8 flex flex-wrap gap-2.5">
+                        <div className="mt-6 flex flex-wrap gap-2.5">
                             {heroSignals.map((signal) => (
                                 <span key={signal} className="inline-flex items-center rounded-full border border-white/12 bg-white/7 px-3 py-1.5 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-sky-100/74">
                                     {signal}
                                 </span>
                             ))}
                         </div>
-                        <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+                        <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                             <Link
                                 to="/about"
                                 className="inline-flex min-h-[56px] items-center justify-center gap-2 rounded-full bg-[linear-gradient(132deg,#ffffff_0%,#e9f4ff_46%,#cbe4ff_100%)] px-8 text-sm font-semibold tracking-[0.03em] text-[#051429] shadow-[0_18px_48px_rgba(117,194,255,0.24)] transition hover:translate-y-[-1px] hover:shadow-[0_22px_54px_rgba(117,194,255,0.3)]"
@@ -107,7 +107,7 @@ export function LandingPage() {
                                 {t('See How It Works', 'Voir le fonctionnement', 'شاهد كيف يعمل')}
                             </Link>
                         </div>
-                        <div className="mt-8 grid max-w-xl grid-cols-3 gap-3">
+                        <div className="mt-6 grid max-w-xl grid-cols-3 gap-3">
                             {[
                                 { value: 'NFC', label: t('Core Interaction', 'Interaction centrale', 'التفاعل الأساسي') },
                                 { value: 'QR', label: t('Secondary Access', 'Acces secondaire', 'وصول ثانوي') },
@@ -121,7 +121,7 @@ export function LandingPage() {
                         </div>
                     </div>
 
-                    <div className="relative">
+                    <div className="relative lg:ml-auto lg:w-full lg:max-w-[37rem]">
                         <div className="absolute left-[48%] top-[6%] h-64 w-64 -translate-x-1/2 rounded-full bg-sky-300/18 blur-3xl" />
                         <div className="absolute right-[4%] top-[8%] h-44 w-44 rounded-full bg-blue-400/18 blur-3xl" />
                         <div className="home-hero-shell interactive-hover relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.11),rgba(255,255,255,0.03))] p-5 shadow-[0_34px_90px_rgba(0,0,0,0.38)] sm:p-7">
