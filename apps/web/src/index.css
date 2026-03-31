@@ -22,7 +22,7 @@ html {
 body {
     margin: 0;
     min-width: 320px;
-    background: #FAFAF8;
+    background: var(--deep-navy);
     color: var(--deep-navy);
     font-family: 'Inter', system-ui, sans-serif;
     text-rendering: optimizeLegibility;
