@@ -289,7 +289,7 @@ const content = {
         contact: {
             label: 'اتصل بنا',
             title: 'تواصل معنا',
-            description: 'لديك أسئلة؟ نحب أن نسمع منك.',
+            description: 'لديك أسئ��ة؟ نحب أن نسمع منك.',
             form: {
                 name: 'اسمك',
                 email: 'البريد الإلكتروني',
@@ -456,13 +456,27 @@ export function LandingPage() {
             <section ref={heroRef} className="relative flex min-h-[100svh] items-center justify-center overflow-hidden pt-24">
                 {/* Animated Background */}
                 <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                    {/* Primary glow */}
-                    <div className="absolute left-1/2 top-1/4 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sapphire/30 blur-[150px]" />
-                    {/* Secondary glows */}
-                    <div className="absolute -left-40 top-1/2 h-[500px] w-[500px] rounded-full bg-sapphire/20 blur-[120px]" />
-                    <div className="absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-emerald-500/15 blur-[100px]" />
-                    {/* Grid overlay */}
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(15,82,186,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(15,82,186,0.03)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
+                    {/* Primary central glow */}
+                    <motion.div 
+                        animate={{ 
+                            scale: [1, 1.1, 1],
+                            opacity: [0.3, 0.4, 0.3]
+                        }}
+                        transition={{ 
+                            duration: 8, 
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                        className="absolute left-1/2 top-1/3 h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sapphire/25 blur-[180px]" 
+                    />
+                    {/* Secondary accent glows */}
+                    <div className="absolute -left-60 top-1/2 h-[600px] w-[600px] rounded-full bg-sapphire/15 blur-[150px]" />
+                    <div className="absolute -right-60 bottom-0 h-[500px] w-[500px] rounded-full bg-blue-400/10 blur-[120px]" />
+                    <div className="absolute right-1/4 top-20 h-[300px] w-[300px] rounded-full bg-emerald-500/8 blur-[100px]" />
+                    {/* Subtle grid overlay */}
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(15,82,186,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(15,82,186,0.04)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)]" />
+                    {/* Radial vignette */}
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,9,38,0.4)_100%)]" />
                 </div>
 
                 <motion.div
@@ -484,23 +498,24 @@ export function LandingPage() {
                     </motion.div>
 
                     <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.1 }}
-                        className="mx-auto max-w-5xl text-balance text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
+                        transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                        className="mx-auto max-w-5xl text-balance text-[2.5rem] font-extrabold leading-[1.05] tracking-[-0.02em] text-white sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem]"
                     >
                         {t.hero.headline}
                         <br />
-                        <span className="bg-gradient-to-r from-sapphire via-blue-400 to-sapphire bg-clip-text text-transparent">
+                        <span className="relative inline-block bg-gradient-to-r from-blue-400 via-sapphire to-blue-400 bg-[length:200%_auto] bg-clip-text text-transparent animate-[gradient_3s_linear_infinite]">
                             {t.hero.headlineAccent}
+                            <span className="absolute -inset-1 block bg-gradient-to-r from-sapphire/20 to-blue-400/20 blur-2xl" />
                         </span>
                     </motion.h1>
 
                     <motion.p
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.2 }}
-                        className="mt-8 text-lg font-medium tracking-wide text-sapphire sm:text-xl md:text-2xl"
+                        transition={{ duration: 0.7, delay: 0.25 }}
+                        className="mt-8 text-lg font-semibold uppercase tracking-[0.2em] text-sapphire/90 sm:text-xl"
                     >
                         {t.hero.subheadline}
                     </motion.p>
@@ -508,8 +523,8 @@ export function LandingPage() {
                     <motion.p
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.3 }}
-                        className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-white/50 sm:text-lg"
+                        transition={{ duration: 0.7, delay: 0.35 }}
+                        className="mx-auto mt-8 max-w-2xl text-pretty text-base leading-[1.8] text-white/60 sm:text-lg sm:leading-[1.8]"
                     >
                         {t.hero.description}
                     </motion.p>
@@ -517,19 +532,20 @@ export function LandingPage() {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.4 }}
-                        className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
+                        transition={{ duration: 0.7, delay: 0.45 }}
+                        className="mt-14 flex flex-col items-center justify-center gap-5 sm:flex-row"
                     >
                         <a
                             href="#waitlist"
-                            className="group inline-flex items-center gap-2 rounded-xl bg-sapphire px-8 py-4 text-base font-semibold text-white shadow-2xl shadow-sapphire/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-sapphire/50"
+                            className="group relative inline-flex items-center gap-2.5 rounded-2xl bg-gradient-to-b from-sapphire to-sapphire/90 px-10 py-5 text-base font-semibold text-white shadow-[0_20px_50px_-12px_rgba(15,82,186,0.5)] transition-all duration-300 hover:shadow-[0_25px_60px_-12px_rgba(15,82,186,0.6)] hover:translate-y-[-2px]"
                         >
-                            {t.hero.cta}
-                            <ArrowRight className={`h-5 w-5 transition-transform group-hover:translate-x-0.5 ${isArabic ? 'rotate-180 group-hover:-translate-x-0.5' : ''}`} />
+                            <span className="absolute inset-0 rounded-2xl bg-gradient-to-t from-white/0 to-white/10" />
+                            <span className="relative">{t.hero.cta}</span>
+                            <ArrowRight className={`relative h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 ${isArabic ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
                         </a>
                         <a
                             href="#about"
-                            className="inline-flex items-center gap-2 rounded-xl border border-white/[0.12] bg-white/[0.03] px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
+                            className="inline-flex items-center gap-2 rounded-2xl border border-white/[0.12] bg-white/[0.02] px-10 py-5 text-base font-semibold text-white/90 backdrop-blur-sm transition-all duration-300 hover:border-white/25 hover:bg-white/[0.06] hover:text-white"
                         >
                             {t.hero.ctaSecondary}
                         </a>
@@ -553,8 +569,14 @@ export function LandingPage() {
             </section>
 
             {/* About Section */}
-            <section id="about" className="relative overflow-hidden bg-slate-50 py-24 lg:py-32">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <section id="about" className="relative overflow-hidden bg-[#F8FAFC] py-28 lg:py-40">
+                {/* Subtle background accent */}
+                <div className="pointer-events-none absolute inset-0">
+                    <div className="absolute left-0 top-0 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sapphire/[0.03] blur-[100px]" />
+                    <div className="absolute bottom-0 right-0 h-[400px] w-[400px] translate-x-1/3 translate-y-1/3 rounded-full bg-sapphire/[0.02] blur-[80px]" />
+                </div>
+
+                <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
                     <motion.div
                         initial="initial"
                         whileInView="animate"
@@ -562,13 +584,13 @@ export function LandingPage() {
                         variants={staggerContainer}
                         className="text-center"
                     >
-                        <motion.span variants={fadeInUp} className="inline-block rounded-full bg-sapphire/10 px-4 py-2 text-sm font-semibold text-sapphire">
+                        <motion.span variants={fadeInUp} className="inline-block rounded-full bg-sapphire/[0.08] px-5 py-2.5 text-sm font-semibold tracking-wide text-sapphire">
                             {t.about.label}
                         </motion.span>
-                        <motion.h2 variants={fadeInUp} className="mt-6 text-balance text-3xl font-bold tracking-tight text-navy sm:text-4xl lg:text-5xl">
+                        <motion.h2 variants={fadeInUp} className="mt-8 text-balance text-3xl font-bold tracking-[-0.02em] text-navy sm:text-4xl lg:text-[2.75rem]">
                             {t.about.title}
                         </motion.h2>
-                        <motion.p variants={fadeInUp} className="mx-auto mt-6 max-w-3xl text-pretty text-lg leading-relaxed text-navy/60">
+                        <motion.p variants={fadeInUp} className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-[1.75] text-navy/55">
                             {t.about.description}
                         </motion.p>
                     </motion.div>
@@ -578,19 +600,19 @@ export function LandingPage() {
                         whileInView="animate"
                         viewport={{ once: true, margin: '-100px' }}
                         variants={staggerContainer}
-                        className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+                        className="mt-20 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
                     >
                         {t.about.features.map((feature, i) => (
                             <motion.div
                                 key={i}
                                 variants={fadeInUp}
-                                className="group relative rounded-3xl border border-slate-200/80 bg-white p-8 transition-all duration-500 hover:border-sapphire/20 hover:shadow-2xl hover:shadow-sapphire/[0.08]"
+                                className="group relative rounded-[1.5rem] border border-slate-200/60 bg-white p-7 shadow-[0_1px_3px_rgba(0,0,0,0.04)] transition-all duration-500 hover:border-sapphire/15 hover:shadow-[0_20px_40px_-12px_rgba(15,82,186,0.12)]"
                             >
-                                <div className="relative mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-sapphire/10 to-sapphire/5 text-sapphire transition-all duration-500 group-hover:scale-110 group-hover:from-sapphire group-hover:to-sapphire/80 group-hover:text-white group-hover:shadow-lg group-hover:shadow-sapphire/30">
-                                    <feature.icon className="h-6 w-6" />
+                                <div className="relative mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-sapphire/[0.08] to-sapphire/[0.03] text-sapphire transition-all duration-500 group-hover:scale-105 group-hover:from-sapphire group-hover:to-sapphire/80 group-hover:text-white group-hover:shadow-[0_8px_24px_-4px_rgba(15,82,186,0.35)]">
+                                    <feature.icon className="h-5 w-5" />
                                 </div>
-                                <h3 className="text-lg font-semibold text-navy">{feature.title}</h3>
-                                <p className="mt-3 leading-relaxed text-navy/60">{feature.desc}</p>
+                                <h3 className="text-[1.05rem] font-semibold tracking-tight text-navy">{feature.title}</h3>
+                                <p className="mt-2.5 text-[0.9rem] leading-relaxed text-navy/55">{feature.desc}</p>
                             </motion.div>
                         ))}
                     </motion.div>
@@ -598,13 +620,13 @@ export function LandingPage() {
             </section>
 
             {/* How It Works Section */}
-            <section id="how-it-works" className="relative overflow-hidden bg-navy py-24 lg:py-32">
+            <section id="how-it-works" className="relative overflow-hidden bg-navy py-28 lg:py-40">
                 <div className="pointer-events-none absolute inset-0">
-                    <div className="absolute right-0 top-1/4 h-[600px] w-[600px] rounded-full bg-sapphire/15 blur-[150px]" />
-                    <div className="absolute -left-20 bottom-0 h-[400px] w-[400px] rounded-full bg-sapphire/10 blur-[100px]" />
+                    <div className="absolute right-0 top-1/4 h-[700px] w-[700px] rounded-full bg-sapphire/12 blur-[180px]" />
+                    <div className="absolute -left-40 bottom-0 h-[500px] w-[500px] rounded-full bg-sapphire/8 blur-[120px]" />
                 </div>
 
-                <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
                     <motion.div
                         initial="initial"
                         whileInView="animate"
@@ -612,10 +634,10 @@ export function LandingPage() {
                         variants={staggerContainer}
                         className="text-center"
                     >
-                        <motion.span variants={fadeInUp} className="inline-block rounded-full border border-sapphire/30 bg-sapphire/10 px-4 py-2 text-sm font-semibold text-sapphire">
+                        <motion.span variants={fadeInUp} className="inline-block rounded-full border border-sapphire/25 bg-sapphire/[0.08] px-5 py-2.5 text-sm font-semibold tracking-wide text-sapphire">
                             {t.howItWorks.label}
                         </motion.span>
-                        <motion.h2 variants={fadeInUp} className="mt-6 text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+                        <motion.h2 variants={fadeInUp} className="mt-8 text-balance text-3xl font-bold tracking-[-0.02em] text-white sm:text-4xl lg:text-[2.75rem]">
                             {t.howItWorks.title}
                         </motion.h2>
                     </motion.div>
@@ -625,19 +647,19 @@ export function LandingPage() {
                         whileInView="animate"
                         viewport={{ once: true, margin: '-100px' }}
                         variants={staggerContainer}
-                        className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+                        className="mt-20 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
                     >
                         {t.howItWorks.steps.map((step, i) => (
                             <motion.div
                                 key={i}
                                 variants={fadeInUp}
-                                className="group relative rounded-3xl border border-white/[0.08] bg-white/[0.02] p-8 backdrop-blur-sm transition-all duration-500 hover:border-white/[0.15] hover:bg-white/[0.05]"
+                                className="group relative rounded-[1.5rem] border border-white/[0.06] bg-white/[0.02] p-7 backdrop-blur-sm transition-all duration-500 hover:border-white/[0.12] hover:bg-white/[0.04]"
                             >
-                                <span className="text-5xl font-bold text-white/10 transition-colors group-hover:text-sapphire/30">{step.number}</span>
-                                <h3 className="mt-4 text-lg font-semibold text-white">{step.title}</h3>
-                                <p className="mt-3 leading-relaxed text-white/50">{step.desc}</p>
+                                <span className="bg-gradient-to-b from-white/20 to-white/5 bg-clip-text text-5xl font-bold text-transparent transition-all group-hover:from-sapphire/40 group-hover:to-sapphire/10">{step.number}</span>
+                                <h3 className="mt-5 text-[1.05rem] font-semibold tracking-tight text-white">{step.title}</h3>
+                                <p className="mt-2.5 text-[0.9rem] leading-relaxed text-white/45">{step.desc}</p>
                                 {i < t.howItWorks.steps.length - 1 && (
-                                    <div className={`absolute -right-3 top-1/2 hidden h-px w-6 bg-gradient-to-r from-white/20 to-transparent lg:block ${isArabic ? '-left-3 -right-auto rotate-180' : ''}`} />
+                                    <div className={`absolute -right-2.5 top-1/2 hidden h-px w-5 bg-gradient-to-r from-white/15 to-transparent lg:block ${isArabic ? '-left-2.5 right-auto rotate-180' : ''}`} />
                                 )}
                             </motion.div>
                         ))}
@@ -646,32 +668,36 @@ export function LandingPage() {
             </section>
 
             {/* Why It Matters Section */}
-            <section id="why-it-matters" className="relative overflow-hidden bg-slate-50 py-24 lg:py-32">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="grid items-center gap-16 lg:grid-cols-2">
+            <section id="why-it-matters" className="relative overflow-hidden bg-[#F8FAFC] py-28 lg:py-40">
+                <div className="pointer-events-none absolute inset-0">
+                    <div className="absolute right-0 top-1/2 h-[400px] w-[400px] -translate-y-1/2 translate-x-1/3 rounded-full bg-sapphire/[0.03] blur-[80px]" />
+                </div>
+
+                <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+                    <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-20">
                         <motion.div
                             initial="initial"
                             whileInView="animate"
                             viewport={{ once: true, margin: '-100px' }}
                             variants={staggerContainer}
                         >
-                            <motion.span variants={fadeInUp} className="inline-block rounded-full bg-sapphire/10 px-4 py-2 text-sm font-semibold text-sapphire">
+                            <motion.span variants={fadeInUp} className="inline-block rounded-full bg-sapphire/[0.08] px-5 py-2.5 text-sm font-semibold tracking-wide text-sapphire">
                                 {t.whyItMatters.label}
                             </motion.span>
-                            <motion.h2 variants={fadeInUp} className="mt-6 text-balance text-3xl font-bold tracking-tight text-navy sm:text-4xl lg:text-5xl">
+                            <motion.h2 variants={fadeInUp} className="mt-8 text-balance text-3xl font-bold tracking-[-0.02em] text-navy sm:text-4xl lg:text-[2.75rem]">
                                 {t.whyItMatters.title}
                             </motion.h2>
-                            <motion.p variants={fadeInUp} className="mt-6 text-pretty text-lg leading-relaxed text-navy/60">
+                            <motion.p variants={fadeInUp} className="mt-6 text-pretty text-lg leading-[1.75] text-navy/55">
                                 {t.whyItMatters.description}
                             </motion.p>
 
-                            <motion.ul variants={fadeInUp} className="mt-10 space-y-5">
+                            <motion.ul variants={fadeInUp} className="mt-10 space-y-4">
                                 {t.whyItMatters.benefits.map((benefit, i) => (
-                                    <li key={i} className="flex items-start gap-4">
-                                        <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500/10">
-                                            <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                                    <li key={i} className="flex items-start gap-3.5">
+                                        <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500/10">
+                                            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
                                         </div>
-                                        <span className="text-navy/80">{benefit}</span>
+                                        <span className="text-[0.95rem] leading-relaxed text-navy/70">{benefit}</span>
                                     </li>
                                 ))}
                             </motion.ul>
@@ -682,16 +708,16 @@ export function LandingPage() {
                             whileInView="animate"
                             viewport={{ once: true, margin: '-100px' }}
                             variants={staggerContainer}
-                            className="grid gap-5"
+                            className="grid gap-4"
                         >
                             {t.whyItMatters.stats.map((stat, i) => (
                                 <motion.div
                                     key={i}
                                     variants={fadeInUp}
-                                    className="group rounded-3xl border border-slate-200/80 bg-white p-8 transition-all duration-500 hover:border-sapphire/20 hover:shadow-xl hover:shadow-sapphire/[0.06]"
+                                    className="group rounded-[1.5rem] border border-slate-200/60 bg-white p-7 shadow-[0_1px_3px_rgba(0,0,0,0.04)] transition-all duration-500 hover:border-sapphire/15 hover:shadow-[0_20px_40px_-12px_rgba(15,82,186,0.1)]"
                                 >
-                                    <span className="bg-gradient-to-r from-sapphire to-blue-400 bg-clip-text text-5xl font-bold text-transparent">{stat.value}</span>
-                                    <p className="mt-3 text-navy/60">{stat.label}</p>
+                                    <span className="bg-gradient-to-r from-sapphire to-blue-400 bg-clip-text text-[2.75rem] font-bold leading-none tracking-tight text-transparent">{stat.value}</span>
+                                    <p className="mt-3 text-[0.9rem] leading-relaxed text-navy/55">{stat.label}</p>
                                 </motion.div>
                             ))}
                         </motion.div>
@@ -700,12 +726,12 @@ export function LandingPage() {
             </section>
 
             {/* Team Section */}
-            <section id="team" className="relative overflow-hidden bg-navy py-24 lg:py-32">
+            <section id="team" className="relative overflow-hidden bg-navy py-28 lg:py-40">
                 <div className="pointer-events-none absolute inset-0">
-                    <div className="absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-sapphire/10 blur-[150px]" />
+                    <div className="absolute left-1/2 top-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-sapphire/8 blur-[180px]" />
                 </div>
 
-                <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
                     <motion.div
                         initial="initial"
                         whileInView="animate"
@@ -713,13 +739,13 @@ export function LandingPage() {
                         variants={staggerContainer}
                         className="text-center"
                     >
-                        <motion.span variants={fadeInUp} className="inline-block rounded-full border border-sapphire/30 bg-sapphire/10 px-4 py-2 text-sm font-semibold text-sapphire">
+                        <motion.span variants={fadeInUp} className="inline-block rounded-full border border-sapphire/25 bg-sapphire/[0.08] px-5 py-2.5 text-sm font-semibold tracking-wide text-sapphire">
                             {t.team.label}
                         </motion.span>
-                        <motion.h2 variants={fadeInUp} className="mt-6 text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+                        <motion.h2 variants={fadeInUp} className="mt-8 text-balance text-3xl font-bold tracking-[-0.02em] text-white sm:text-4xl lg:text-[2.75rem]">
                             {t.team.title}
                         </motion.h2>
-                        <motion.p variants={fadeInUp} className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-white/60">
+                        <motion.p variants={fadeInUp} className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-[1.75] text-white/50">
                             {t.team.description}
                         </motion.p>
                     </motion.div>
@@ -729,24 +755,24 @@ export function LandingPage() {
                         whileInView="animate"
                         viewport={{ once: true, margin: '-100px' }}
                         variants={staggerContainer}
-                        className="mx-auto mt-16 grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                        className="mx-auto mt-16 grid max-w-4xl gap-5 sm:grid-cols-2 lg:grid-cols-3"
                     >
                         {t.team.members.map((member, i) => (
                             <motion.div
                                 key={i}
                                 variants={fadeInUp}
-                                className="group rounded-3xl border border-white/[0.08] bg-white/[0.02] p-8 text-center backdrop-blur-sm transition-all duration-500 hover:border-white/[0.15] hover:bg-white/[0.05]"
+                                className="group rounded-[1.5rem] border border-white/[0.06] bg-white/[0.02] p-7 text-center backdrop-blur-sm transition-all duration-500 hover:border-white/[0.12] hover:bg-white/[0.04]"
                             >
-                                <div className="relative mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-sapphire/30 to-sapphire/10">
-                                    <Users className="h-10 w-10 text-sapphire" />
-                                    <div className="absolute inset-0 rounded-full bg-sapphire/20 blur-xl opacity-0 transition-opacity group-hover:opacity-100" />
+                                <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-sapphire/25 to-sapphire/10">
+                                    <Users className="h-8 w-8 text-sapphire" />
+                                    <div className="absolute inset-0 rounded-full bg-sapphire/15 blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                                 </div>
-                                <h3 className="mt-6 text-lg font-semibold text-white">{member.name}</h3>
-                                <p className="mt-1 text-sm font-medium text-sapphire">{member.role}</p>
-                                <p className="mt-4 text-sm leading-relaxed text-white/50">{member.bio}</p>
+                                <h3 className="mt-5 text-[1.05rem] font-semibold tracking-tight text-white">{member.name}</h3>
+                                <p className="mt-1.5 text-sm font-medium text-sapphire/90">{member.role}</p>
+                                <p className="mt-4 text-[0.85rem] leading-relaxed text-white/40">{member.bio}</p>
                                 <div className="mt-5 flex justify-center">
-                                    <a href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.05] text-white/40 transition-all hover:bg-white/[0.1] hover:text-white">
-                                        <Linkedin className="h-4 w-4" />
+                                    <a href="#" className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.04] text-white/35 transition-all duration-300 hover:bg-sapphire/20 hover:text-sapphire">
+                                        <Linkedin className="h-3.5 w-3.5" />
                                     </a>
                                 </div>
                             </motion.div>
@@ -756,39 +782,40 @@ export function LandingPage() {
             </section>
 
             {/* Waitlist Section */}
-            <section id="waitlist" className="relative overflow-hidden bg-sapphire py-24 lg:py-32">
+            <section id="waitlist" className="relative overflow-hidden bg-gradient-to-br from-sapphire via-sapphire to-blue-700 py-28 lg:py-36">
                 <div className="pointer-events-none absolute inset-0">
-                    <div className="absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-white/15 blur-[150px]" />
-                    <div className="absolute -left-40 bottom-0 h-[300px] w-[300px] rounded-full bg-white/10 blur-[100px]" />
+                    <div className="absolute left-1/2 top-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-white/10 blur-[180px]" />
+                    <div className="absolute -left-60 bottom-0 h-[400px] w-[400px] rounded-full bg-white/8 blur-[120px]" />
+                    <div className="absolute -right-40 top-1/2 h-[300px] w-[300px] rounded-full bg-blue-400/10 blur-[100px]" />
                 </div>
 
-                <div className="relative z-10 mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+                <div className="relative z-10 mx-auto max-w-3xl px-5 text-center sm:px-8">
                     <motion.div
                         initial="initial"
                         whileInView="animate"
                         viewport={{ once: true, margin: '-100px' }}
                         variants={staggerContainer}
                     >
-                        <motion.div variants={fadeInUp} className="mb-8 flex justify-center">
-                            <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10">
-                                <Sparkles className="h-8 w-8 text-white" />
-                                <div className="absolute inset-0 rounded-2xl bg-white/20 blur-xl" />
+                        <motion.div variants={fadeInUp} className="mb-10 flex justify-center">
+                            <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm">
+                                <Sparkles className="h-7 w-7 text-white" />
+                                <div className="absolute inset-0 rounded-2xl bg-white/15 blur-xl" />
                             </div>
                         </motion.div>
-                        <motion.h2 variants={fadeInUp} className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+                        <motion.h2 variants={fadeInUp} className="text-balance text-3xl font-bold tracking-[-0.02em] text-white sm:text-4xl lg:text-[2.75rem]">
                             {t.waitlist.title}
                         </motion.h2>
-                        <motion.p variants={fadeInUp} className="mt-6 text-lg leading-relaxed text-white/80">
+                        <motion.p variants={fadeInUp} className="mt-6 text-lg leading-[1.75] text-white/75">
                             {t.waitlist.description}
                         </motion.p>
 
                         <motion.form
                             variants={fadeInUp}
                             onSubmit={handleWaitlistSubmit}
-                            className="mt-10"
+                            className="mt-12"
                         >
                             {waitlistStatus === 'success' ? (
-                                <div className="inline-flex items-center justify-center gap-3 rounded-2xl bg-white/20 px-8 py-5 text-white backdrop-blur-sm">
+                                <div className="inline-flex items-center justify-center gap-3 rounded-2xl bg-white/15 px-10 py-5 text-white backdrop-blur-sm">
                                     <CheckCircle2 className="h-6 w-6" />
                                     <span className="text-lg font-semibold">{t.waitlist.success}</span>
                                 </div>
@@ -800,22 +827,22 @@ export function LandingPage() {
                                         onChange={(e) => setEmail(e.target.value)}
                                         placeholder={t.waitlist.placeholder}
                                         required
-                                        className="flex-1 rounded-xl border-2 border-white/20 bg-white/10 px-6 py-4 text-white outline-none placeholder:text-white/40 focus:border-white/40 focus:bg-white/15 sm:max-w-sm"
+                                        className="flex-1 rounded-xl border border-white/15 bg-white/8 px-6 py-4 text-white outline-none backdrop-blur-sm placeholder:text-white/35 focus:border-white/30 focus:bg-white/12 sm:max-w-sm"
                                     />
                                     <button
                                         type="submit"
                                         disabled={waitlistStatus === 'submitting'}
-                                        className="group inline-flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-4 font-semibold text-sapphire shadow-2xl shadow-black/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-black/30 disabled:opacity-70"
+                                        className="group inline-flex items-center justify-center gap-2.5 rounded-xl bg-white px-10 py-4 font-semibold text-sapphire shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] transition-all duration-300 hover:translate-y-[-2px] hover:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.4)] disabled:opacity-70"
                                     >
                                         {waitlistStatus === 'submitting' ? t.waitlist.submitting : t.waitlist.cta}
-                                        <ArrowRight className={`h-5 w-5 transition-transform group-hover:translate-x-0.5 ${isArabic ? 'rotate-180 group-hover:-translate-x-0.5' : ''}`} />
+                                        <ArrowRight className={`h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 ${isArabic ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
                                     </button>
                                 </div>
                             )}
                         </motion.form>
 
-                        <motion.p variants={fadeInUp} className="mt-5 flex items-center justify-center gap-2 text-sm text-white/60">
-                            <Lock className="h-4 w-4" />
+                        <motion.p variants={fadeInUp} className="mt-6 flex items-center justify-center gap-2 text-sm text-white/50">
+                            <Lock className="h-3.5 w-3.5" />
                             {t.waitlist.privacy}
                         </motion.p>
                     </motion.div>

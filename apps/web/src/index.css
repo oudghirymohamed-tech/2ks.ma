@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,6 +9,7 @@
     --ice-blue: #D6E6F3;
     --powder-blue: #A6C5D7;
     --sapphire: #0F52BA;
+    --sapphire-glow: rgba(15, 82, 186, 0.4);
     --deep-navy: #000926;
     --emergency-red: #C0392B;
     --call-green: #1A8A3A;
@@ -25,8 +26,10 @@ body {
     background: var(--deep-navy);
     color: var(--deep-navy);
     font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: clip;
 }
 
@@ -131,6 +134,31 @@ img {
         @apply border-sapphire bg-white;
         box-shadow: 0 0 0 4px rgba(15, 82, 186, 0.12);
     }
+
+    /* Subtle glow effects */
+    .glow-sapphire {
+        box-shadow: 0 0 60px 20px rgba(15, 82, 186, 0.15);
+    }
+
+    .glow-sapphire-strong {
+        box-shadow: 0 0 80px 30px rgba(15, 82, 186, 0.25);
+    }
+
+    .text-glow {
+        text-shadow: 0 0 40px rgba(15, 82, 186, 0.5);
+    }
+
+    /* Glass morphism card for dark backgrounds */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(20px);
+    }
+
+    .glass-card:hover {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: rgba(255, 255, 255, 0.12);
+    }
 }
 
 @media (max-width: 640px) {
@@ -143,6 +171,18 @@ img {
     .premium-btn-secondary:active {
         transform: translateY(0.5px) scale(0.995);
     }
+}
+
+/* Gradient text animation */
+@keyframes gradient {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+/* Pulse glow animation */
+@keyframes pulse-glow {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.05); }
 }
 
 @media (prefers-reduced-motion: reduce) {
