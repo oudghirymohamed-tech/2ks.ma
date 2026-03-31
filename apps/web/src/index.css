@@ -190,20 +190,49 @@ img {
     animation: nfcGlow 4s ease-in-out infinite;
 }
 
+.hero-scan-zone {
+    position: absolute;
+    left: 53%;
+    top: 50%;
+    width: 3.7rem;
+    height: 3.7rem;
+    border-radius: 999px;
+    border: 1px dashed rgba(186, 230, 253, 0.26);
+    transform: translate(-50%, -50%);
+    opacity: 0.62;
+    pointer-events: none;
+}
+
+.hero-scan-flash {
+    position: absolute;
+    left: 53%;
+    top: 50%;
+    width: 4.2rem;
+    height: 4.2rem;
+    border-radius: 999px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(147, 226, 255, 0.34), rgba(147, 226, 255, 0));
+    opacity: 0;
+    pointer-events: none;
+    animation: scanFlash 4.6s ease-in-out infinite;
+}
+
 .hero-phone-float {
     position: absolute;
-    right: 10%;
-    top: 17%;
+    right: 10.5%;
+    top: 15.5%;
     animation: phoneFloat 4.6s ease-in-out infinite;
 }
 
 .hero-phone-shell {
     position: relative;
-    width: 12.2rem;
+    width: 11.8rem;
     border-radius: 1.8rem;
-    padding: 0.5rem;
-    background: linear-gradient(160deg, #d8efff 0%, #8cbcf5 36%, #355887 100%);
-    box-shadow: 0 20px 48px rgba(0, 9, 38, 0.46);
+    padding: 0.46rem;
+    background: linear-gradient(158deg, #f2f8ff 0%, #8db9eb 34%, #26456f 72%, #182b45 100%);
+    box-shadow: 0 24px 52px rgba(0, 9, 38, 0.52);
+    transform: rotateY(-13deg) rotateX(5deg) rotateZ(1deg);
+    transform-style: preserve-3d;
 }
 
 .hero-phone-shell::before {
@@ -218,11 +247,20 @@ img {
     background: rgba(0, 9, 38, 0.38);
 }
 
+.hero-phone-shell::after {
+    content: '';
+    position: absolute;
+    inset: 0.32rem;
+    border-radius: 1.42rem;
+    border: 1px solid rgba(218, 240, 255, 0.26);
+    pointer-events: none;
+}
+
 .hero-phone-screen {
-    min-height: 20.5rem;
+    min-height: 20.2rem;
     border-radius: 1.4rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: linear-gradient(180deg, rgba(9, 32, 63, 0.98), rgba(7, 24, 46, 0.98));
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    background: radial-gradient(circle at 72% 20%, rgba(141, 196, 247, 0.16), transparent 36%), linear-gradient(180deg, rgba(9, 32, 63, 0.98), rgba(7, 24, 46, 0.98));
     padding: 1rem;
 }
 
@@ -255,28 +293,129 @@ img {
 
 .hero-nfc-card-float {
     position: absolute;
-    left: 12%;
-    top: 36%;
+    left: 12.5%;
+    top: 34%;
+    perspective: 900px;
     animation: nfcCardMove 4.6s cubic-bezier(0.44, 0.03, 0.57, 0.95) infinite;
 }
 
 .hero-nfc-card {
+    position: relative;
+    width: 12.2rem;
+    aspect-ratio: 1.586;
+    border-radius: 0.82rem;
+    border: 1px solid rgba(186, 230, 253, 0.22);
+    background: linear-gradient(145deg, rgba(8, 36, 70, 0.98), rgba(11, 55, 106, 0.9) 46%, rgba(5, 23, 47, 0.98));
+    padding: 0.58rem 0.68rem;
+    box-shadow: 0 24px 36px rgba(0, 9, 38, 0.44), 0 5px 0 rgba(5, 17, 34, 0.54);
+    transform-style: preserve-3d;
+}
+
+.hero-nfc-card::before {
+    content: '';
+    position: absolute;
+    inset: 0.35rem;
+    border-radius: 0.62rem;
+    border: 1px solid rgba(186, 230, 253, 0.12);
+    pointer-events: none;
+}
+
+.hero-nfc-card::after {
+    content: '';
+    position: absolute;
+    left: 0.48rem;
+    right: 0.48rem;
+    bottom: -0.2rem;
+    height: 0.26rem;
+    border-radius: 0 0 0.55rem 0.55rem;
+    background: linear-gradient(180deg, rgba(191, 226, 255, 0.28), rgba(10, 29, 56, 0.75));
+    filter: blur(0.2px);
+}
+
+.hero-nfc-card__shine {
+    position: absolute;
+    top: 0.1rem;
+    left: 0.5rem;
+    width: 54%;
+    height: 42%;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, rgba(223, 243, 255, 0.3), transparent 72%);
+    pointer-events: none;
+}
+
+.hero-nfc-card__topline {
     display: flex;
     align-items: center;
-    gap: 0.65rem;
-    min-width: 11.5rem;
-    border-radius: 1.15rem;
-    border: 1px solid rgba(186, 230, 253, 0.2);
-    background: linear-gradient(145deg, rgba(224, 243, 255, 0.18), rgba(127, 187, 249, 0.11));
-    backdrop-filter: blur(8px);
-    padding: 0.75rem;
-    box-shadow: 0 16px 32px rgba(0, 9, 38, 0.32);
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-nfc-card__middle {
+    margin-top: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-nfc-card__bottom {
+    position: absolute;
+    left: 0.68rem;
+    right: 0.68rem;
+    bottom: 0.56rem;
+    z-index: 1;
+}
+
+.hero-nfc-chip {
+    width: 1.42rem;
+    height: 1.07rem;
+    border-radius: 0.2rem;
+    border: 1px solid rgba(201, 232, 255, 0.54);
+    background: linear-gradient(155deg, rgba(170, 209, 242, 0.58), rgba(47, 87, 132, 0.7));
+    box-shadow: inset 0 0 0 1px rgba(245, 251, 255, 0.2);
+}
+
+.hero-nfc-contactless {
+    position: relative;
+    width: 1.2rem;
+    height: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-nfc-contactless span {
+    position: absolute;
+    border: 1px solid rgba(186, 230, 253, 0.74);
+    border-left: none;
+    border-radius: 0 999px 999px 0;
+    transform-origin: left center;
+}
+
+.hero-nfc-contactless span:nth-child(1) {
+    width: 0.36rem;
+    height: 0.36rem;
+    right: 0.62rem;
+}
+
+.hero-nfc-contactless span:nth-child(2) {
+    width: 0.54rem;
+    height: 0.54rem;
+    right: 0.4rem;
+}
+
+.hero-nfc-contactless span:nth-child(3) {
+    width: 0.72rem;
+    height: 0.72rem;
+    right: 0.18rem;
 }
 
 .hero-nfc-pulse {
     position: absolute;
-    top: 46%;
-    left: 47%;
+    top: 50%;
+    left: 53%;
     width: 1rem;
     height: 1rem;
     border-radius: 999px;
@@ -296,8 +435,8 @@ img {
 
 .hero-nfc-wave {
     position: absolute;
-    top: 51%;
-    left: 41%;
+    top: 54%;
+    left: 46%;
     border-top: 1px solid rgba(186, 230, 253, 0.4);
     border-radius: 999px;
     opacity: 0;
@@ -327,63 +466,86 @@ img {
 
     0%,
     100% {
-        transform: translate3d(0, 0, 0) rotate(-0.8deg);
+        transform: translate3d(0, 0, 0) rotate(-0.5deg);
     }
 
     50% {
-        transform: translate3d(0, -10px, 0) rotate(0.6deg);
+        transform: translate3d(0, -8px, 0) rotate(0.3deg);
     }
 }
 
 @keyframes nfcCardMove {
 
     0%,
+    16%,
     100% {
-        transform: translate3d(0, 0, 0) rotate(-6deg);
+        transform: translate3d(0, 0, 0) rotateZ(-5.5deg) rotateY(-10deg) rotateX(3deg);
     }
 
-    50% {
-        transform: translate3d(52px, -8px, 0) rotate(-2deg);
+    48%,
+    62% {
+        transform: translate3d(62px, -10px, 0) rotateZ(-2deg) rotateY(-4deg) rotateX(1.2deg);
+    }
+
+    80% {
+        transform: translate3d(26px, -4px, 0) rotateZ(-4deg) rotateY(-7deg) rotateX(2.2deg);
     }
 }
 
 @keyframes nfcPulse {
 
     0%,
-    35% {
+    38% {
         opacity: 0;
         transform: translate(-50%, -50%) scale(0.5);
     }
 
-    56% {
-        opacity: 0.52;
+    54% {
+        opacity: 0.56;
         transform: translate(-50%, -50%) scale(1);
     }
 
-    76%,
+    72%,
     100% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(2.1);
+        transform: translate(-50%, -50%) scale(2.2);
     }
 }
 
 @keyframes nfcWave {
 
     0%,
-    34% {
+    40% {
         opacity: 0;
         transform: scaleX(0.75);
     }
 
-    52% {
+    55% {
         opacity: 0.52;
         transform: scaleX(1);
     }
 
-    78%,
+    74%,
     100% {
         opacity: 0;
         transform: scaleX(1.26);
+    }
+}
+
+@keyframes scanFlash {
+
+    0%,
+    42% {
+        opacity: 0;
+    }
+
+    54% {
+        opacity: 0.72;
+    }
+
+    70%,
+    100% {
+        opacity: 0;
     }
 }
 
@@ -408,11 +570,12 @@ img {
 
     .hero-phone-float {
         right: 6%;
-        top: 19%;
+        top: 18%;
     }
 
     .hero-phone-shell {
         width: 9.8rem;
+        transform: rotateY(-9deg) rotateX(4deg) rotateZ(0.8deg);
     }
 
     .hero-phone-screen {
@@ -433,16 +596,27 @@ img {
     }
 
     .hero-nfc-card-float {
-        left: 6%;
-        top: 38%;
+        left: 5%;
+        top: 35%;
     }
 
     .hero-nfc-card {
-        min-width: 9.5rem;
-        padding: 0.62rem;
+        width: 9.2rem;
+        padding: 0.44rem 0.5rem;
+    }
+
+    .hero-nfc-chip {
+        width: 1.2rem;
+        height: 0.9rem;
     }
 
     .hero-nfc-wave {
-        left: 39%;
+        left: 41%;
+    }
+
+    .hero-scan-zone,
+    .hero-scan-flash,
+    .hero-nfc-pulse {
+        left: 55%;
     }
 }

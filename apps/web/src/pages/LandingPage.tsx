@@ -495,6 +495,8 @@ export function LandingPage() {
                                     <div className="relative rounded-[1.7rem] border border-sky-100/12 bg-[linear-gradient(180deg,rgba(8,28,55,0.95),rgba(4,17,37,0.95))] p-5 sm:p-6">
                                         <div className="hero-nfc-scene">
                                             <div className="hero-nfc-scene__glow" />
+                                            <div className="hero-scan-zone" aria-hidden />
+                                            <div className="hero-scan-flash" aria-hidden />
 
                                             <div className="hero-phone-float">
                                                 <div className="hero-phone-shell">
@@ -521,16 +523,28 @@ export function LandingPage() {
 
                                             <div className="hero-nfc-card-float">
                                                 <div className="hero-nfc-card">
-                                                    <img
-                                                        src="/favicon.svg"
-                                                        alt="HayatID NFC card"
-                                                        width="56"
-                                                        height="56"
-                                                        className="h-14 w-14 rounded-xl"
-                                                    />
-                                                    <div className={isArabic ? 'font-arabic text-right' : ''}>
-                                                        <p className="text-[0.58rem] uppercase tracking-[0.22em] text-sky-100/62">Powered by 2KS</p>
-                                                        <p className="mt-1 text-sm font-semibold text-white">Secure NFC Card</p>
+                                                    <div className="hero-nfc-card__shine" />
+                                                    <div className="hero-nfc-card__topline">
+                                                        <p className="text-[0.53rem] font-semibold uppercase tracking-[0.2em] text-sky-100/62">HayatID</p>
+                                                        <div className="hero-nfc-contactless" aria-hidden>
+                                                            <span />
+                                                            <span />
+                                                            <span />
+                                                        </div>
+                                                    </div>
+                                                    <div className="hero-nfc-card__middle">
+                                                        <div className="hero-nfc-chip" aria-hidden />
+                                                        <img
+                                                            src="/favicon.svg"
+                                                            alt="HayatID NFC card"
+                                                            width="36"
+                                                            height="36"
+                                                            className="h-9 w-9 rounded-lg"
+                                                        />
+                                                    </div>
+                                                    <div className={`hero-nfc-card__bottom ${isArabic ? 'font-arabic text-right' : ''}`}>
+                                                        <p className="text-[0.5rem] uppercase tracking-[0.16em] text-sky-100/58">Powered by 2KS</p>
+                                                        <p className="mt-1 text-[0.66rem] font-semibold tracking-[0.04em] text-white/90">NFC Smart Medical ID</p>
                                                     </div>
                                                 </div>
                                             </div>
