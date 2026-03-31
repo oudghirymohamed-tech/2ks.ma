@@ -1,4 +1,4 @@
-import { Menu, ArrowRight, ShieldCheck, ScanSearch, HeartPulse, RadioTower, Mail, Instagram, Linkedin, X, Heart } from 'lucide-react';
+import { Menu, ArrowRight, ShieldCheck, ScanSearch, HeartPulse, RadioTower, Mail, Instagram, Linkedin, X } from 'lucide-react';
 import { useState } from 'react';
 import { PageMeta } from '../components/PageMeta';
 import { useLanguage } from '../context/LanguageContext';
@@ -318,7 +318,6 @@ const homeContent = {
     }
 } as const;
 
-const heroIcons = [ShieldCheck, HeartPulse, RadioTower] as const;
 const stepIcons = [ScanSearch, ShieldCheck, HeartPulse] as const;
 const teamAccents = ['from-[#7ed1ff] to-[#3b82f6]', 'from-[#78f3d3] to-[#2563eb]', 'from-[#b7c7ff] to-[#4f46e5]'] as const;
 
@@ -354,16 +353,6 @@ export function LandingPage() {
                 <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_2%,rgba(56,145,255,0.24),transparent_28%),radial-gradient(circle_at_88%_8%,rgba(126,205,255,0.14),transparent_26%),radial-gradient(circle_at_50%_100%,rgba(74,132,255,0.16),transparent_34%)]" />
                 <div className="absolute inset-x-0 top-0 -z-10 h-[620px] bg-[linear-gradient(180deg,rgba(255,255,255,0.05),transparent)]" />
                 <div className="absolute inset-x-0 top-0 -z-10 h-[900px] bg-[radial-gradient(circle_at_50%_36%,rgba(107,190,255,0.09),transparent_42%)]" />
-
-                <div aria-hidden className="pointer-events-none absolute -left-12 top-24 -z-10 hidden lg:block">
-                    <Heart className="h-24 w-24 text-sky-100/10" strokeWidth={1.2} />
-                </div>
-                <div aria-hidden className="pointer-events-none absolute right-[7%] top-[18%] -z-10 hidden lg:block">
-                    <Heart className="h-16 w-16 text-blue-100/10" strokeWidth={1.2} />
-                </div>
-                <div aria-hidden className="pointer-events-none absolute bottom-[30%] left-[8%] -z-10 hidden lg:block">
-                    <Heart className="h-12 w-12 text-white/8" strokeWidth={1.1} />
-                </div>
 
                 <header className="sticky top-0 z-40 border-b border-white/10 bg-[#06162de6] backdrop-blur-xl">
                     <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
@@ -466,7 +455,6 @@ export function LandingPage() {
                         <div className="grid gap-12 lg:grid-cols-[minmax(0,1.06fr)_minmax(430px,0.94fr)] lg:items-center xl:gap-16">
                             <div className={isArabic ? 'font-arabic text-right' : ''}>
                                 <div className="inline-flex items-center gap-2 rounded-full border border-sky-200/12 bg-white/8 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-sky-100/72">
-                                    <Heart className="h-3.5 w-3.5" />
                                     {content.heroEyebrow}
                                 </div>
                                 <h1 className="font-editorial mt-7 max-w-4xl text-[clamp(2.95rem,8.2vw,5.9rem)] font-medium leading-[0.95] tracking-[-0.03em] text-white">
@@ -502,57 +490,61 @@ export function LandingPage() {
                             <div className="relative">
                                 <div className="absolute left-1/2 top-[12%] h-52 w-52 -translate-x-1/2 rounded-full bg-sky-300/16 blur-3xl" />
                                 <div className="absolute right-[8%] top-[18%] h-32 w-32 rounded-full bg-blue-500/18 blur-3xl" />
-                                <div className="absolute left-[8%] top-[30%] hidden h-20 w-20 rounded-full border border-white/10 lg:block" />
-                                <div className="absolute bottom-[12%] right-[14%] hidden h-14 w-14 rounded-full border border-sky-100/10 lg:block" />
-
                                 <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.09),rgba(255,255,255,0.03))] p-5 shadow-[0_30px_80px_rgba(0,0,0,0.34)] sm:p-7">
                                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.13),transparent_42%)]" />
-                                    <div className="absolute -right-10 top-10 text-white/8">
-                                        <Heart className="h-24 w-24" strokeWidth={1} />
-                                    </div>
-                                    <div className="relative space-y-5">
-                                        <div className="flex items-center justify-between gap-4 rounded-[1.4rem] border border-white/10 bg-[#081c37]/90 p-4 sm:p-5">
-                                            <div className={isArabic ? 'font-arabic text-right' : ''}>
-                                                <p className="text-xs uppercase tracking-[0.24em] text-sky-100/54">{content.heroVisualTitle}</p>
-                                                <p className="mt-3 max-w-xs text-sm leading-6 text-slate-200/78">{content.heroVisualBody}</p>
-                                            </div>
-                                            <span className="relative">
-                                                <span className="absolute inset-0 rounded-[1.5rem] bg-sky-300/20 blur-md" />
-                                                <img src="/favicon.svg" alt="HayatID emblem" width="72" height="72" className="relative h-[72px] w-[72px] shrink-0 rounded-[1.5rem]" />
-                                            </span>
-                                        </div>
+                                    <div className="relative rounded-[1.7rem] border border-sky-100/12 bg-[linear-gradient(180deg,rgba(8,28,55,0.95),rgba(4,17,37,0.95))] p-5 sm:p-6">
+                                        <div className="hero-nfc-scene">
+                                            <div className="hero-nfc-scene__glow" />
 
-                                        <div className="grid gap-4 sm:grid-cols-[1.05fr_0.95fr]">
-                                            <div className="rounded-[1.6rem] border border-sky-200/10 bg-[linear-gradient(180deg,rgba(12,40,74,0.95),rgba(5,18,37,0.95))] p-5">
-                                                <div className="relative mx-auto flex aspect-[1/1.02] max-w-[320px] items-center justify-center overflow-hidden rounded-[1.7rem] border border-white/8 bg-[radial-gradient(circle_at_center,rgba(118,201,255,0.2),transparent_36%),linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))]">
-                                                    <div className="absolute h-[86%] w-[86%] rounded-full border border-sky-200/18" />
-                                                    <div className="absolute h-[64%] w-[64%] rounded-full border border-sky-200/14" />
-                                                    <div className="absolute h-[40%] w-[40%] rounded-full border border-sky-200/18" />
-                                                    <div className="absolute left-[18%] top-[24%] h-2.5 w-2.5 rounded-full bg-sky-200 shadow-[0_0_18px_rgba(186,230,253,0.65)]" />
-                                                    <div className="absolute bottom-[20%] right-[20%] h-2.5 w-2.5 rounded-full bg-blue-300 shadow-[0_0_18px_rgba(125,211,252,0.56)]" />
-                                                    <Heart className="absolute h-12 w-12 text-white/16" strokeWidth={1.2} />
-                                                    <div className="rounded-[1.8rem] border border-white/14 bg-white/10 p-5 backdrop-blur">
-                                                        <img src="/favicon.svg" alt="HayatID logo mark" width="96" height="96" className="h-24 w-24 rounded-[1.8rem]" />
+                                            <div className="hero-phone-float">
+                                                <div className="hero-phone-shell">
+                                                    <div className="hero-phone-screen">
+                                                        <div className="hero-phone-header">
+                                                            <img
+                                                                src="/favicon.svg"
+                                                                alt="HayatID logo"
+                                                                width="40"
+                                                                height="40"
+                                                                className="h-10 w-10 rounded-xl"
+                                                            />
+                                                            <div className={isArabic ? 'font-arabic text-right' : ''}>
+                                                                <p className="text-[0.62rem] uppercase tracking-[0.22em] text-sky-100/64">HayatID</p>
+                                                                <p className="mt-1 text-sm font-semibold text-white">NFC Identity Ready</p>
+                                                            </div>
+                                                        </div>
+                                                        <div className="hero-phone-band" />
+                                                        <div className="hero-phone-band hero-phone-band--soft" />
+                                                        <div className="hero-phone-chip" />
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div className="space-y-4">
-                                                {content.heroVisualPoints.map((point, index) => {
-                                                    const Icon = heroIcons[index];
-
-                                                    return (
-                                                        <div key={point} className="rounded-[1.4rem] border border-white/10 bg-white/6 p-4 backdrop-blur-sm">
-                                                            <div className={`flex items-start gap-3 ${isArabic ? 'flex-row-reverse text-right font-arabic' : ''}`}>
-                                                                <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-sky-100">
-                                                                    <Icon className="h-5 w-5" />
-                                                                </span>
-                                                                <p className="text-sm leading-6 text-slate-200/84">{point}</p>
-                                                            </div>
-                                                        </div>
-                                                    );
-                                                })}
+                                            <div className="hero-nfc-card-float">
+                                                <div className="hero-nfc-card">
+                                                    <img
+                                                        src="/favicon.svg"
+                                                        alt="HayatID NFC card"
+                                                        width="56"
+                                                        height="56"
+                                                        className="h-14 w-14 rounded-xl"
+                                                    />
+                                                    <div className={isArabic ? 'font-arabic text-right' : ''}>
+                                                        <p className="text-[0.58rem] uppercase tracking-[0.22em] text-sky-100/62">Powered by 2KS</p>
+                                                        <p className="mt-1 text-sm font-semibold text-white">Secure NFC Card</p>
+                                                    </div>
+                                                </div>
                                             </div>
+
+                                            <div className="hero-nfc-pulse hero-nfc-pulse--one" />
+                                            <div className="hero-nfc-pulse hero-nfc-pulse--two" />
+                                            <div className="hero-nfc-wave hero-nfc-wave--a" />
+                                            <div className="hero-nfc-wave hero-nfc-wave--b" />
+                                            <div className="hero-nfc-wave hero-nfc-wave--c" />
+                                        </div>
+
+                                        <div className={`mt-4 rounded-2xl border border-white/8 bg-white/6 px-4 py-3 ${isArabic ? 'font-arabic text-right' : ''}`}>
+                                            <p className="text-xs uppercase tracking-[0.2em] text-sky-100/58">{content.heroVisualTitle}</p>
+                                            <p className="mt-2 text-sm leading-6 text-slate-200/78">{content.heroVisualBody}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -572,10 +564,7 @@ export function LandingPage() {
                             <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
                                 {content.aboutHighlights.map((item) => (
                                     <article key={item.title} className={`rounded-[1.65rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.04))] p-5 ${isArabic ? 'font-arabic text-right' : ''}`}>
-                                        <div className="flex items-center gap-2 text-sky-100/60">
-                                            <Heart className="h-4 w-4" strokeWidth={1.5} />
-                                            <p className="text-lg font-semibold text-white">{item.title}</p>
-                                        </div>
+                                        <p className="text-lg font-semibold text-white">{item.title}</p>
                                         <p className="mt-3 text-sm leading-7 text-slate-200/70">{item.body}</p>
                                     </article>
                                 ))}
